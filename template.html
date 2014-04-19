@@ -1,0 +1,83 @@
+{{define "Page"}}
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{.Title}}</title>
+<link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic,700' rel='stylesheet' type='text/css'>
+<style>
+.container {
+	max-width: 80%;
+	width: 40em;
+	margin: 3em auto;
+	font-family: 'Cardo', serif;
+}
+
+a {
+	color: #333;
+}
+
+.post-list-date {
+	display: inline-block;
+	width: 8em;
+	padding-bottom: 0.5em;
+}
+
+.container * {
+	max-width: 100%;
+	text-align: justify;
+}
+
+.back-link {
+	float: right;
+	text-decoration: none;
+}
+
+.footer {
+	margin-top: 3em;
+	text-align: center;
+	font-size: 0.9em;
+}
+</style>
+</head>
+<body>
+<div class='container'>
+{{.Content}}
+<div class='footer'>
+<div>Copyright &copy; 2014 Preetam Jinka</div>
+<a href='/feed'>Feed</a>
+</div>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37425054-1', 'misfra.me');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
+{{end}}
+
+{{define "Single"}}
+<a class='back-link' href='/'>&#8592;back</a>
+<h1>{{.Title}}</h1>
+
+
+<div>
+{{.Content}}
+</div>
+{{end}}
+
+{{define "All"}}
+<h1>Misframe</h1>
+
+{{range .Posts}}
+	<div>
+	<span class='post-list-date'>{{.FormattedDate}}</span>
+	<a href="{{.Url}}">{{.Title}}</a>
+	</div>
+{{end}}
+
+{{end}}
