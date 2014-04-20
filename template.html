@@ -6,8 +6,8 @@
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 <style>
 .container {
-	max-width: 80%;
-	width: 40em;
+	max-width: 90%;
+	width: 65em;
 	margin: 3em auto;
 	font-size: 13px;
 	line-height: 1.5em;
@@ -18,7 +18,6 @@
 	margin: 0 auto 1em auto;
 	text-align: center;
 	border-bottom: 1px solid #e8e8e8;
-	border-top: 1px solid #e8e8e8;
 }
 
 .blog-title h2 a {
@@ -52,6 +51,10 @@ a {
 	color: #333;
 }
 
+a:hover {
+	color: #2AB072;
+}
+
 .posts-list-item {
 	padding: 0 0 0.5em 0;
 	text-align: center;
@@ -71,11 +74,9 @@ a {
 	max-width: 100%;
 }
 
-.container .post-content p {
-	text-align: justify;
-}
-
-.post-date {
+.container .post-content img {
+	display: block;
+	margin: 0 auto;
 }
 
 .footer {
@@ -85,7 +86,6 @@ a {
 	padding: 0.5em;
 	color: #999;
 
-	border-bottom: 1px solid #e8e8e8;
 	border-top: 1px solid #e8e8e8;
 }
 
@@ -121,7 +121,7 @@ pre {
 <div class='blog-title'><h2><a href='/'>Misframe</a></h2></div>
 {{.Content}}
 <div class='footer'>
-<div>Copyright &copy; 2014 Preetam Jinka</div>
+<div>Copyright &copy; 2011-2014 Preetam Jinka</div>
 <a href='/feed'>Feed</a>
 </div>
 </div>
@@ -150,7 +150,7 @@ pre {
 {{define "All"}}
 {{range .Posts}}
 	<div class='posts-list-item'>
-		<a href="{{.Url}}">{{.Title}}</a>
+		<a href="/{{.Url}}">{{.Title}}</a>
 		<div class='posts-list-date'>{{.FormattedDate}}</div>
 	</div>
 {{end}}
