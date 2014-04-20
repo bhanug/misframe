@@ -3,44 +3,122 @@
 <html>
 <head>
 <title>{{.Title}}</title>
-<link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 <style>
 .container {
 	max-width: 80%;
 	width: 40em;
 	margin: 3em auto;
-	font-family: 'Cardo', serif;
+	font-size: 13px;
+	line-height: 1.5em;
+	font-family: Arial, sans-serif;
+}
+
+.blog-title {
+	margin: 0 auto 1em auto;
+	text-align: center;
+	border-bottom: 1px solid #e8e8e8;
+	border-top: 1px solid #e8e8e8;
+}
+
+.blog-title h2 a {
+	text-align: center;
+	font-weight: 300;
+	text-decoration: none;
+	font-size: 1.5em;
+	font-family: 'Lato', serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-size: 1.125em;
+	font-weight: 700;
+	font-family: 'Lato', sans-serif;
+	color: #333;
+}
+
+h1.post-title {
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: center;
+	line-height: 1em;
+	margin-bottom: 0.2em;
+}
+
+.post-date {
+	text-align: center;
 }
 
 a {
 	color: #333;
 }
 
-.post-list-date {
-	display: inline-block;
-	width: 8em;
-	padding-bottom: 0.5em;
+.posts-list-item {
+	padding: 0 0 0.5em 0;
+	text-align: center;
 }
 
-.container * {
-	max-width: 100%;
-	text-align: justify;
-}
-
-.back-link {
-	float: right;
+.posts-list-item a {
+	font-size: 1.1em;
+	font-family: 'Lato', sans-serif;
 	text-decoration: none;
 }
 
+.posts-list-date, .post-date {
+	color: #999;
+}
+
+.container .post-content * {
+	max-width: 100%;
+}
+
+.container .post-content p {
+	text-align: justify;
+}
+
+.post-date {
+}
+
 .footer {
-	margin-top: 3em;
+	margin-top: 1em;
 	text-align: center;
 	font-size: 0.9em;
+	padding: 0.5em;
+	color: #999;
+
+	border-bottom: 1px solid #e8e8e8;
+	border-top: 1px solid #e8e8e8;
 }
+
+.footer a {
+	color: #aaa;
+}
+
+hr {
+	height: 1px;
+	border: none;
+	background-color: #e8e8e8;
+}
+
+blockquote {
+	border-left: 3px solid #e8e8e8;
+	padding-left: 1em;
+	margin-left: 1em;
+}
+
+pre {
+	font-family: monospace;
+	font-size: 12px;
+	padding: 1em;
+
+	background-color: #fafafa;
+	color: #222;
+}
+
 </style>
 </head>
 <body>
 <div class='container'>
+<div class='blog-title'><h2><a href='/'>Misframe</a></h2></div>
 {{.Content}}
 <div class='footer'>
 <div>Copyright &copy; 2014 Preetam Jinka</div>
@@ -61,22 +139,19 @@ a {
 {{end}}
 
 {{define "Single"}}
-<a class='back-link' href='/'>&#8592;back</a>
-<h1>{{.Title}}</h1>
+<h1 class='post-title'>{{.Title}}</h1>
+<div class='post-date'>{{.FormattedDate}}</div>
 
-
-<div>
+<div class='post-content'>
 {{.Content}}
 </div>
 {{end}}
 
 {{define "All"}}
-<h1>Misframe</h1>
-
 {{range .Posts}}
-	<div>
-	<span class='post-list-date'>{{.FormattedDate}}</span>
-	<a href="{{.Url}}">{{.Title}}</a>
+	<div class='posts-list-item'>
+		<a href="{{.Url}}">{{.Title}}</a>
+		<div class='posts-list-date'>{{.FormattedDate}}</div>
 	</div>
 {{end}}
 
