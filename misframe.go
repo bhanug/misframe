@@ -166,7 +166,7 @@ func main() {
 			templ.ExecuteTemplate(buffer, "Single", post)
 
 			content := buffer.String()
-			buffer = &bytes.Buffer{}
+			buffer.Reset()
 			templ.ExecuteTemplate(w, "Page", struct {
 				Title   string
 				Content string
@@ -178,7 +178,7 @@ func main() {
 			buffer := &bytes.Buffer{}
 			templ.ExecuteTemplate(buffer, "All", Posts)
 			content := buffer.String()
-			buffer = &bytes.Buffer{}
+			buffer.Reset()
 			templ.ExecuteTemplate(w, "Page", struct {
 				Title   string
 				Content string
@@ -190,7 +190,7 @@ func main() {
 	})
 
 	http.HandleFunc("/"+ReloadUrl, func(w http.ResponseWriter, r *http.Request) {
-		Posts = []*Post{}
+		Posts = Posts[:0]
 		Urls = map[string]*Post{}
 
 		loadPosts()
