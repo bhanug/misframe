@@ -17,6 +17,15 @@ import (
 	"github.com/russross/blackfriday"
 )
 
+type PageTemplate struct {
+	Title   string
+	Content string
+}
+
+type AllPostsTemplate struct {
+	Posts []*Post
+}
+
 type Post struct {
 	Title         string
 	Date          time.Time
@@ -165,10 +174,8 @@ func main() {
 		url := strings.TrimLeft(r.URL.Path, "/")
 		if post, present := Urls[url]; present {
 			buffer := &bytes.Buffer{}
-			templ.ExecuteTemplate(buffer, "Single", SinglePostTemplate{
-				Title:   post.Title,
-				Content: post.Content,
-			})
+			templ.ExecuteTemplate(buffer, "Single", post)
+
 			content := buffer.String()
 			buffer = &bytes.Buffer{}
 			templ.ExecuteTemplate(w, "Page", PageTemplate{
@@ -197,18 +204,4 @@ func main() {
 	})
 
 	panic(http.ListenAndServe(Listen, nil))
-}
-
-type PageTemplate struct {
-	Title   string
-	Content string
-}
-
-type SinglePostTemplate struct {
-	Title   string
-	Content string
-}
-
-type AllPostsTemplate struct {
-	Posts []*Post
 }
