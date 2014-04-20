@@ -17,15 +17,6 @@ import (
 	"github.com/russross/blackfriday"
 )
 
-type PageTemplate struct {
-	Title   string
-	Content string
-}
-
-type AllPostsTemplate struct {
-	Posts []*Post
-}
-
 type Post struct {
 	Title         string
 	Date          time.Time
@@ -47,9 +38,7 @@ var (
 
 	Posts = []*Post{}
 	Urls  = map[string]*Post{}
-)
 
-var (
 	templ *template.Template = nil
 )
 
@@ -178,16 +167,22 @@ func main() {
 
 			content := buffer.String()
 			buffer = &bytes.Buffer{}
-			templ.ExecuteTemplate(w, "Page", PageTemplate{
+			templ.ExecuteTemplate(w, "Page", struct {
+				Title   string
+				Content string
+			}{
 				Title:   post.Title,
 				Content: content,
 			})
 		} else {
 			buffer := &bytes.Buffer{}
-			templ.ExecuteTemplate(buffer, "All", AllPostsTemplate{Posts})
+			templ.ExecuteTemplate(buffer, "All", Posts)
 			content := buffer.String()
 			buffer = &bytes.Buffer{}
-			templ.ExecuteTemplate(w, "Page", PageTemplate{
+			templ.ExecuteTemplate(w, "Page", struct {
+				Title   string
+				Content string
+			}{
 				Title:   "Misframe",
 				Content: content,
 			})

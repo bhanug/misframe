@@ -148,7 +148,7 @@ pre {
 {{end}}
 
 {{define "All"}}
-{{range .Posts}}
+{{range .}}
 	<div class='posts-list-item'>
 		<a href="/{{.Url}}">{{.Title}}</a>
 		<div class='posts-list-date'>{{.FormattedDate}}</div>
