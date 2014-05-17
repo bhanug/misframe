@@ -110,10 +110,17 @@ pre {
 	font-size: 12px;
 	padding: 1em;
 
-	background-color: #fafafa;
+	background-color: #fbfbfb;
 	color: #222;
 }
 
+.code-string {
+	color: #444;
+}
+
+.code-comment {
+	color: #888;
+}
 </style>
 </head>
 <body>
@@ -133,6 +140,22 @@ pre {
 
   ga('create', 'UA-37425054-1', 'misfra.me');
   ga('send', 'pageview');
+</script>
+
+<script>
+	// highlight Go
+	var elems = document.querySelectorAll('[lang=go]');
+	for(var i = 0; i < elems.length; i++) {
+		var elem = elems[i];
+		// keywords
+		elem.innerHTML = elem.innerText.replace(/\b(break|default|func|interface|select|case|defer|go|map|struct|chan|else|goto|package|switch|const|fallthrough|if|range|type|continue|for|import|return|var)\b/gm, '<strong>$1</strong>');
+
+		// strings
+		elem.innerHTML = elem.innerHTML.replace(/"(.+)"/gm, '"<span class="code-string">$1</span>"');
+
+		// comments
+		elem.innerHTML = elem.innerHTML.replace(/(\/\/.+)/gm, '<span class="code-comment">$1</span>');
+	}
 </script>
 </body>
 </html>
