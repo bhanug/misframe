@@ -152,7 +152,7 @@ pre {
 	for(var i = 0; i < elems.length; i++) {
 		var elem = elems[i];
 		// keywords
-		elem.innerHTML = elem.innerText.replace(/\b(break|default|func|interface|select|case|defer|go|map|struct|chan|else|goto|package|switch|const|fallthrough|if|range|type|continue|for|import|return|var)\b/gm, '<strong>$1</strong>');
+		elem.innerHTML = elem.textContent.replace(/\b(break|default|func|interface|select|case|defer|go|map|struct|chan|else|goto|package|switch|const|fallthrough|if|range|type|continue|for|import|return|var)\b/gm, '<strong>$1</strong>');
 
 		// strings
 		elem.innerHTML = elem.innerHTML.replace(/"(.+)"/gm, '"<span class="code-string">$1</span>"');
