@@ -169,12 +169,13 @@ func main() {
 			Title: "Misframe",
 			Link:  &feeds.Link{Href: "http://misfra.me/"},
 		}
-		for i := 0; i < 5; i++ {
+		for i := 0; i < 10; i++ {
 			feed.Items = append(feed.Items, &feeds.Item{
-				Title:   Posts[i].Title,
-				Link:    &feeds.Link{Href: "http://misfra.me/" + Posts[i].Url},
-				Created: Posts[i].Date,
-				Author:  &feeds.Author{"Preetam Jinka", ""},
+				Title:       Posts[i].Title,
+				Link:        &feeds.Link{Href: "http://misfra.me/" + Posts[i].Url},
+				Created:     Posts[i].Date,
+				Author:      &feeds.Author{"Preetam Jinka", ""},
+				Description: Posts[i].Content,
 			})
 		}
 		atom, _ := feed.ToAtom()
