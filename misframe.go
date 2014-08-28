@@ -79,7 +79,7 @@ func readPostFile(filename string) *Post {
 	}
 
 	if meta["title"] == "." || meta["date"] == "." || meta["url"] == "." || meta["draft"] != "." {
-		// Exclude posts with bad metadat, or posts with a "draft" label.
+		// Exclude posts with bad metadata, or posts with a "draft" label.
 		return nil
 	}
 
