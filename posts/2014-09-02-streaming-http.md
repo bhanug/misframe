@@ -13,8 +13,10 @@ do everything concurrently with minimal resource usage.
 
 I'm not a Python programmer, but as a Go programmer this is very simple to do.
 You don't have to worry about threads, processes, coroutines, futures, or
-any other concurrency primitives. In fact, the following example doesn't even
-expose goroutines directly.
+any other concurrency/parallelism primitives as you would with Python. In fact,
+the following example doesn't even expose goroutines directly. Even when you
+*do* start to introduce concurrency primitives directly, they're much easier
+to reason about.
 
 This example is an extremely simplified version of the project that I whipped
 up in a couple of minutes. I wouldn't even call it "correct," but it's enough
