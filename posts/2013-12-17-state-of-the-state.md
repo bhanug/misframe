@@ -10,7 +10,7 @@ This all goes back to [Adversaria](http://misfra.me/adversaria). It's that small
 
 ![](https://31.media.tumblr.com/81741791c5f33df8624d6fc250f88d7e/tumblr_inline_mxyoeqMxeh1rs73cz.png)
 
-It's really simple, which is great, but it's also limited. It's be great to have something that looked as simple but with more functionality.
+It's really simple, which is great, but it's also limited. It'd be great to have something that looked as simple but with more functionality.
 
 Fickle
 ---
