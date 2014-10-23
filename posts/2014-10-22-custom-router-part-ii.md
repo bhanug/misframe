@@ -3,7 +3,7 @@ date: 2014-10-22 22:05:00
 url: custom-router-part-ii
 
 Welcome back! In my [previous post](http://misfra.me/custom-router) I
-described this interesting idea of writing a [router](http://en.wikipedia.org/wiki/Router_(computing)).
+described this interesting idea of writing a router.
 I had no idea whether or not it would work. I knew it was possible, of course. I
 run two OpenBSD routers in a failover setup with CARP (this blog is routed through
 them, FYI).
