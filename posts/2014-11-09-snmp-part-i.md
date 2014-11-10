@@ -39,9 +39,9 @@ tell you which field they correspond to.
 <blockquote class="twitter-tweet" lang="en"><p>Look, I&#39;m getting a response! <a href="http://t.co/yenOjrn2R1">pic.twitter.com/yenOjrn2R1</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/528057163806437376">October 31, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-I grabbed a Brocade FWS 624 switch on Ebay. I'm using that for my SNMP tests at home. I think it's too risky to mess around
-with stuff that customers depend on (duh!). This is a layer 2 switch with SNMP and sFlow capability, so it's really helpful.
-I really don't need anything with 24 ports, but it's hard to find cheap managed switches. I got really lucky with this find
+I grabbed a Brocade FWS 624 switch off Ebay. I'm using that for my SNMP tests at home. I think it's too risky to mess around
+with production equipment that customers depend on (duh!). This is a layer 2 switch with SNMP and sFlow capability, so it's really helpful.
+I really don't need anything with 24 ports, but it's hard to find cheap managed switches that support sFlow. I got really lucky with this find
 on Ebay, especially since it's a Brocade device and those are the only ones I have experience with.
 
 ![](http://static.misfra.me/images/posts/snmp-part-i/fws-624.jpg)
