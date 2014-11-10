@@ -34,7 +34,7 @@ some funk with struct tags and reflection. It seems that most people write their
 
 I spent most of my time reading specifications, diagrams, and RFCs to figure out just how to send valid datagrams.
 Wireshark was incredibly useful in this case. Its interface is excellent. You can click on specific bytes in the hex and it'll
-tell you which field it corresponds to.
+tell you which field they correspond to.
 
 <blockquote class="twitter-tweet" lang="en"><p>Look, I&#39;m getting a response! <a href="http://t.co/yenOjrn2R1">pic.twitter.com/yenOjrn2R1</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/528057163806437376">October 31, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
