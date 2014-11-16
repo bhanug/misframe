@@ -6,7 +6,7 @@ url: snmp-part-i
 In case you haven't heard, it's not simple. SNMP is older than me, and it's used everywhere in networking.
 
 I need SNMP support for [Cistern](https://github.com/PreetamJinka/cistern). sFlow is great for statistics
-but it's not useful to get general information. You can easily get interface statistics from sFLow datagrams,
+but it's not useful to get general information. You can easily get interface statistics from sFlow datagrams,
 but you may want to know what the interface description strings are. You may want to know which VLANs those interfaces
 are assigned to. You may even want to get the description strings of VLANs:
 
