@@ -3,56 +3,45 @@
 <html>
 <head>
 <title>{{.Title}}</title>
-<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic' rel='stylesheet' type='text/css'>
 <style>
 body {
-	background-color: #f2f2f2;
 }
 
 .container {
 	max-width: 90%;
-	width: 48em;
+	width: 50em;
 	padding: 0.75em 2em;
-	background-color: white;
 	margin: 1em auto;
-	font-size: 14px;
-	line-height: 1.5em;
-	font-family: Arial, sans-serif;
-	border: 3px solid #eee;
+	font-size: 15px;
+	line-height: 1.7em;
+	font-family: 'Lora', serif;
 }
 
 .blog-title {
 	margin: 0 auto 1em auto;
-	text-align: center;
-	width: 70%;
 	border-bottom: 1px solid #efefef;
+	font-size: 15px;
+	font-weight: 700;
 }
 
 .blog-title h2 a {
-	text-align: center;
 	font-weight: 300;
 	text-decoration: none;
 	font-size: 1.5em;
-	font-family: 'Lato', serif;
 }
 
 h1, h2, h3, h4, h5 {
 	font-size: 1.125em;
 	font-weight: 700;
-	font-family: 'Lato', sans-serif;
 	color: #333;
 }
 
 h1.post-title {
 	font-weight: 400;
-	font-size: 1.5em;
-	text-align: center;
+	font-size: 1.2em;
 	line-height: 1em;
 	margin-bottom: 0.2em;
-}
-
-.post-date {
-	text-align: center;
 }
 
 a {
@@ -65,21 +54,31 @@ a:hover {
 
 .posts-list-item {
 	padding: 0 0 0.5em 0;
-	text-align: center;
 }
 
 .posts-list-item a {
 	font-size: 1.1em;
-	font-family: 'Lato', sans-serif;
 	text-decoration: none;
 }
 
 .posts-list-date, .post-date {
-	color: #999;
+	color: #aaa;
+	font-family: Arial, sans-serif;
+	font-size: 0.8em;
+}
+
+.posts-list-post-summary {
+	font-size: 0.9em;
+	margin-left: 1.25em;
+	color: #555;
 }
 
 .container .post-content * {
 	max-width: 100%;
+}
+
+.container .post-content {
+	margin: 0.5em 0;
 }
 
 .container .post-content img {
@@ -90,12 +89,14 @@ a:hover {
 .footer {
 	margin: 0.75em auto;
 	text-align: center;
-	font-size: 0.9em;
+	font-size: 0.8em;
 	padding: 1em 0 0.25em 0;
-	color: #999;
+	color: #aaa;
 	clear: both;
 	width: 70%;
+	line-height: 125%;
 	border-top: 1px solid #efefef;
+	font-family: Arial, sans-serif;
 }
 
 .footer a {
@@ -132,12 +133,21 @@ pre {
 	color: #888;
 }
 
-.mono {
+.mono, code {
 	font-family: monospace;
+	font-size: 13px;
 }
 
 .twitter-tweet {
 	margin: 0 auto !important;
+}
+
+.post-content p {
+	margin: 0;
+}
+
+.post-content p + p {
+	margin-top: 1em;
 }
 
 </style>
@@ -194,6 +204,9 @@ pre {
 	<div class='posts-list-item'>
 		<a href="/{{.Url}}">{{.Title}}</a>
 		<div class='posts-list-date'>{{.FormattedDate}}</div>
+		{{if ne .Summary "."}}
+		<div class='posts-list-post-summary'>{{.Summary}}</div>
+		{{end}}
 	</div>
 {{end}}
 

@@ -22,12 +22,13 @@ type Post struct {
 	Date          time.Time
 	FormattedDate string
 	Url           string
+	Summary       string
 	Content       string // This is parsed Markdown.
 }
 
 const (
 	FileTimeForm = "2006-01-02 15:04:05"
-	WebTimeForm  = "Jan 02 2006"
+	WebTimeForm  = "01/02/2006 3:04 PM"
 )
 
 var (
@@ -53,10 +54,11 @@ func readPostFile(filename string) *Post {
 	r := bufio.NewReader(f)
 
 	meta := map[string]string{
-		"title": ".",
-		"date":  ".",
-		"url":   ".",
-		"draft": ".",
+		"title":   ".",
+		"date":    ".",
+		"url":     ".",
+		"summary": ".",
+		"draft":   ".",
 	}
 
 	for {
@@ -100,6 +102,7 @@ func readPostFile(filename string) *Post {
 		Date:          created,
 		FormattedDate: created.Format(WebTimeForm),
 		Url:           meta["url"],
+		Summary:       meta["summary"],
 		Content:       string(md(content)),
 	}
 
