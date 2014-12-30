@@ -50,8 +50,10 @@ It looks like Observium uses the Net-SNMP library with PHP. And Net-SNMP isn't e
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 I want to like Observium. I love the idea. This is what they write on their [home page](http://observium.org/):
+
 > Network monitoring for all.
->Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems including Cisco, Windows, Linux, HP, Juniper, Dell, FreeBSD, Brocade, Netscaler, NetApp and many more. Observium seeks to provide a powerful yet simple and intuitive interface to the health and status of your network.
+> 
+> Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems including Cisco, Windows, Linux, HP, Juniper, Dell, FreeBSD, Brocade, Netscaler, NetApp and many more. Observium seeks to provide a powerful yet simple and intuitive interface to the health and status of your network.
 
 That sounds great, but I think they messed up along the way. Observium is buggy. What I dislike even more is the fact that they charge for a "Professional" edition and release an open-source edition with limited features.
 
