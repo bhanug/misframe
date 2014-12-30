@@ -3,8 +3,6 @@ date: 2014-12-30 18:00:00
 url: observium-annoys-me
 summary: I used to use Observium to monitor my switches. It was great, but now it is just buggy and bad.
 
-Observium Annoys Me
-
 I first started using Observium in 2011 or 2012. I was a senior in high school. I wasn't that good at programming. I mean, I could write code in a few languages, knew the basic data structures, Big-O, etc. but I was not familiar with many higher level concepts like monitoring. I knew about SNMP, but I didn't know anything at all about the implementation. As [Bitcable's](https://bitcable.com/) infrastructure grew to include network switches and more hardware, I needed a monitoring tool. I saw Nagios, Cacti, and others but they all intimidated me. I didn't have time to learn those tools. Things like college applications and math homework took up most of my time.
 
 Observium was different. I was able to install it relatively quickly and had everything running without any issues. My daily routine when I got to school at 8 AM was to open up Observium in the syslab and get an overview of everything. It was enough.
