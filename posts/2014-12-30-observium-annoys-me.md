@@ -64,6 +64,6 @@ They don't say anything about new features. I'm interpreting this as, "the open 
 <blockquote class="twitter-tweet" lang="en"><p>This is a GigE interface. I shouldn&#39;t be seeing this &gt;.&lt;. <a href="http://t.co/K7fG3o9cBG">pic.twitter.com/K7fG3o9cBG</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/407931417134260224">December 3, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-I don't like Observium anymore. It's clunky (have you seen the [dependencies](www.observium.org/wiki/Installation)?!), buggy, and I don't like what the authors are doing.
+I don't like Observium anymore. It's clunky (have you seen the [dependencies](http://www.observium.org/wiki/Installation)?!), buggy, and I don't like what the authors are doing.
 
 And that's why I'm working on [Cistern](http://preetamjinka.github.io/cistern/). I want to show you how *I* think network monitoring should be done. I think I'm on the right track because [many](https://cloudhelix.com/) [companies](http://www.arbornetworks.com/products/peakflow) [are](http://www.solarwinds.com/solutions/network-flow-analyzer.aspx) [doing](http://www.metaforsoftware.com/blog/netflow-traffic-analyzer-beyond-nbad) [similar](https://www.sevone.com/supported-technologies/network-performance-management) [things](http://www.ca.com/us/opscenter/ca-network-flow-analysis.aspx).
