@@ -31,6 +31,7 @@ I think the *most important* aspect of personal projects is that they increase o
 A few weeks ago, I learned about [HackCville](http://hackcville.com/)'s [Land A Startup Internship](http://januaryterm.splashthat.com/) course. I don't like this for many reasons, but I'll focus on the following taken from their site:
 
 > **Learn about the importance of side projects and how to start them.**
+> 
 > Side projects demonstrate self-directed learning and curiosity that will set you apart from your peers.
 
 Yes, side projects (or personal projects, as I refer to them) are very important. I don't like the fact that someone would start a personal project to land an interview. That's not genuine. I think there's something wrong if you need to fake who you are or what you do to get the opportunities that you want. I also want to say that a quality like that isn't just unhelpful, but perhaps even negative.
