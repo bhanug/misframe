@@ -14,7 +14,7 @@ service! It's too much of a hassle, in my opinion, to contact them about it. Eh.
 Here's the thing: I can't get another license from them unless I cough up the $42.00, right?
 That discourages me from subscribing again.
 
-You know, the something similar happened to me with [Ksplice Uptrack](https://www.ksplice.com/). I
+You know, the similar happened to me with [Ksplice Uptrack](https://www.ksplice.com/). I
 started using Ksplice before the Oracle purchase, so I had a few licenses and installed it
 on all of my servers. Somehow I think I forgot to pay my invoices and now I have like a $70+ balance.
 I'm not using Ksplice on my servers anymore. Well, I can't install it now without paying my bills, right?
