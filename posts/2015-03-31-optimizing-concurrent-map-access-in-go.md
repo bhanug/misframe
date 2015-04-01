@@ -112,5 +112,37 @@ if source, present = p.sources[name]; !present {
 // Note that if the source was present, we avoid the lock completely!
 ```
 
-This final version gets **9,800,000 inserts / sec**. That's **7 times** faster
+This version gets **9,800,000 inserts / sec**. That's **7 times** faster
 with only about 4 lines changed.
+
+Is this correct? Unfortunately, no! There is still a race condition, and it's easy to find
+using the race detector. We can't guarantee the integrity of the map for readers while there
+is a writer.
+
+Here is the race-free, thread-safe, "correct" version. Using an RWMutex, readers won't block each other
+but writers will still be synchronized.
+```go
+var source *memorySource
+var present bool
+
+p.lock.RLock()
+if source, present = p.sources[name]; !present {
+	// The source wasn't found, so we'll create it.
+	p.lock.RUnlock()
+	p.lock.Lock()
+	if source, present = p.sources[name]; !present {
+		source = &memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock()
+} else {
+	p.lock.RUnlock()
+}
+```
+This version is **93.8%** as fast as the previous one, so still very good. Of course, the previous version
+isn't correct, so there shouldn't even be a comparison.
