@@ -115,6 +115,8 @@ if source, present = p.sources[name]; !present {
 This version gets **9,800,000 inserts / sec**. That's **7 times** faster
 with only about 4 lines changed.
 
+### Edit:
+
 Is this correct? Unfortunately, no! There is still a race condition, and it's easy to find
 using the race detector. We can't guarantee the integrity of the map for readers while there
 is a writer.
