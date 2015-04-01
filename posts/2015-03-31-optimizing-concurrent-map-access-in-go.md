@@ -15,7 +15,7 @@ var present bool
 p.lock.Lock() // lock the mutex
 defer p.lock.Unlock() // unlock the mutex at the end
 
-if source, present := p.sources[name]; !present {
+if source, present = p.sources[name]; !present {
 	// The source wasn't found, so we'll create it.
 	source = &memorySource{
 		name: name,
@@ -52,13 +52,13 @@ you scale up.
 var source *memorySource
 var present bool
 
-if source, present := p.sources[name]; !present { // added this line
+if source, present = p.sources[name]; !present { // added this line
 	// The source wasn't found, so we'll create it.
 
 	p.lock.Lock() // lock the mutex
 	defer p.lock.Unlock() // unlock at the end
 
-	if source, present := p.sources[name]; !present {
+	if source, present = p.sources[name]; !present {
 		source = &memorySource{
 			name: name,
 			metrics: map[string]*memoryMetric{},
@@ -67,6 +67,9 @@ if source, present := p.sources[name]; !present { // added this line
 		// Insert the newly created *memorySource.
 		p.sources[name] = source
 	}
+	// if present is true, then another goroutine has already inserted
+	// the element we want, and source is set to what we want.
+
 } // added this line
 
 // Note that if the source was present, we avoid the lock completely!
@@ -90,11 +93,11 @@ at the result.
 var source *memorySource
 var present bool
 
-if source, present := p.sources[name]; !present {
+if source, present = p.sources[name]; !present {
 	// The source wasn't found, so we'll create it.
 
 	p.lock.Lock() // lock the mutex
-	if source, present := p.sources[name]; !present {
+	if source, present = p.sources[name]; !present {
 		source = &memorySource{
 			name: name,
 			metrics: map[string]*memoryMetric{},
