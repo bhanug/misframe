@@ -68,7 +68,7 @@ func readPostFile(filename string) *Post {
 			break
 		}
 
-		parts := strings.Split(string(line), ": ")
+		parts := strings.SplitN(string(line), ": ", 2)
 		if len(parts) == 2 {
 			if meta[parts[0]] == "." {
 				meta[parts[0]] = parts[1]
