@@ -85,6 +85,8 @@ This is my startup idea. I think there is business potential here, but that is n
 
 I think there is a lot of opportunity for revenue with support and custom integrations. I think this makes a lot of sense for an open-source project. Custom additions to fit into a specific environment will require development regardless of what tools you choose, so maybe it would be better if the original developers do it? I can already imagine people building plugins to inject rules or configuration updates into OpenBSD firewalls, Cisco, Brocade, and Juniper routers and switches, and so on.
 
+There's [no rush](http://misfra.me/no-rush) for me to start a new business right now.
+
 Requests
 ---
 I don't think Cistern is ready for others to use yet, but I'd like to get some alpha testers at some point. I'm mainly building it for myself at this point, but it would be useful to hear what others want to see.
