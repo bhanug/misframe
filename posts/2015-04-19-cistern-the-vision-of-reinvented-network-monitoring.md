@@ -1,7 +1,6 @@
-title: Cistern: The Vision
+title: Cistern: The Vision of Reinvented Network Monitoring
 date: 2015-04-19 02:00:00
-url: cistern-the-vision
-summary: Reinventing network monitoring
+url: cistern-the-vision-of-reinvented-network-monitoring
 
 Background
 ---
