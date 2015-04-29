@@ -19,7 +19,7 @@ USB.
 	eth1      Link encap:Ethernet  HWaddr 78:a5:04:c8:8c:a3  
 	          inet addr:192.168.7.1  Bcast:192.168.7.3  Mask:255.255.255.252
 
-It shows up on my laptop as eth1. My laptop is assign the address 192.168.7.1 and
+It shows up on my laptop as eth1. My laptop is assigned the address 192.168.7.1 and
 the board has 192.168.7.2. sshd is running on the board, so I can easily SSH in via
 192.168.7.2:22.
 
