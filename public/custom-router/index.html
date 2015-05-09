@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Custom Router &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://misfra.me/custom-router" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2014-10-19T00:00:00Z" />
+  
+  
+
+  <title>
+     Custom Router &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://misfra.me/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/main.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://misfra.me/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://misfra.me/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://misfra.me/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://misfra.me/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Custom Router</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2014-10-19T00:00:00Z">
+          Oct 19, 2014
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    <p>So this clever new idea has been floating around in my head
+for a couple of days now. If you consider a router, it&rsquo;s basically
+connecting directing packets to different subnets. The simple case
+is when you have two subnets and a router that&rsquo;s in the middle.</p>
+
+<p>Let&rsquo;s call the router R1, with the two subnets being S1 and S2.
+Let&rsquo;s say you&rsquo;re managing a bunch of servers in a data center rack
+and they&rsquo;re all on S2. Your router, R1, connects them to your
+bandwidth provider who is on S1.</p>
+
+<p>R1 has two interfaces &ndash; one for S1 and one for S2 &ndash; and it
+has an IP address on each. Your provider is routing all of the
+traffic going to S2 to R1&rsquo;s address on S1. All of your hosts
+on S2 are sending the packets that need to go outside the subnet
+to R1&rsquo;s address on S2.</p>
+
+<p>This is really simple (conceptually, of course). I think you can
+write something that can do this with a couple of raw sockets.
+Well, I think I can actually write something that can do
+simple routing like this. All you have to do is peek at the
+IP headers and rewrap the IP packets with new Ethernet headers.</p>
+
+<p>Argh, I don&rsquo;t think I have the hardware to test this out easily.
+Maybe I can play around with some VMs? I haven&rsquo;t tried that out
+yet.</p>
+
+<p>For some reason I keep thinking that the kernel doesn&rsquo;t like this.
+Perhaps <code>iptables</code> will mess with stuff or something. Anyway,
+it&rsquo;d be <em>really</em> cool to write a firewall in Go that does some
+neat deep packet inspection.</p>
+
+<hr />
+
+<p>Increasing my knowledge of the networking stack :D</p>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://misfra.me/the-crazy-one"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://misfra.me/custom-router-part-ii">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://misfra.me/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

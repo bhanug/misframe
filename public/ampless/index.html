@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Ampless &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://misfra.me/ampless" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2012-09-03T00:00:00Z" />
+  
+  
+
+  <title>
+     Ampless &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://misfra.me/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/main.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://misfra.me/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://misfra.me/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://misfra.me/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://misfra.me/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Ampless</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2012-09-03T00:00:00Z">
+          Sep 3, 2012
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    <p><img src="http://media.tumblr.com/4868e27c915ebd069f9ca55ce9cca599/tumblr_inline_mm3t2lduUJ1qz4rgp.jpg" alt="image" /><div class="caption">Attribution: <a href="http://www.flickr.com/photos/raaphorst/3554002238/">Marco Raaphorst</a></div></p>
+
+<p><h2>Introduction</h2>
+<p>For years I had a beginner’s electric guitar amp. After a while I wasn’t satisfied with the sound that I was getting from it. After looking at (and listening to) products like Native Instrument’s Guitar Rig I decided to transition to a digital rig. Why not just get a better amp? Good amps are expensive! Tube amps sound the best with their warmth and rich distortion, but they need to be cranked to a high volume. I couldn’t have anything too loud in my small bedroom.</p></p>
+
+<p><h2>Signal Chain</h2>
+<img src="http://media.tumblr.com/050f643b9a433bf95726f4f1e09f7453/tumblr_inline_mm3t3t4jJ81qz4rgp.png" alt="" />
+</p>
+
+<p>This is what people probably care about the most. The iMic is required since the input port on my Macbook doesn’t have microphone-level input. For a while I didn’t use a distortion pedal. I plugged my guitar straight into my computer and tried to introduce the harmonic distortion digitally. That was a whole new challenge.</p>
+
+<p><h2>Distortion pedals</h2>
+<p>I don’t really have a high-fiedelity setup. Simply put, the amount of noise that is introduced after the iMic is too high to have decent distortion. The audio gets even worse when I apply noise gates and tweak the EQ levels. Eventually, I just grabbed a Satchurator and it’s been providing awesome harmonic distortion.</p></p>
+
+<p><h2>Simulation</h2>
+<p>Guitar amps are essentially a preamp, power amp, and the speakers. The power amp drives the speakers—it has little effect on the audio itself. I can forget about simulating that. The preamp and the speakers affect the sound for the most part. You can probably just do some EQ magic for the preamp stuff. It isn’t too complicated. As for the speaker cabinet, it’s also very easy to simulate. All you have to do is apply a speaker cabinet impulse to your source audio.</p></p>
+
+<p><h2>Convolution Reverb</h2>
+<p>The speaker cabinet simulation is <em>the most</em> important part of the entire system. What I essentially do is simulate my guitar signal going through a speaker cabinet and recorded with a microphone (like an SM57). It’s a really neat application of convolution reverb. We can take some sort of audio signal and modify it so it sounds like it was played somewhere else. If we have the impulse response of a speaker cabinet, we can apply it to any sound and it would sound as if it came out of the speaker cabinet.</p></p>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://misfra.me/its-been-a-long-time-since-johannes-gutenberg"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://misfra.me/the-journey-to-perfection">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://misfra.me/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

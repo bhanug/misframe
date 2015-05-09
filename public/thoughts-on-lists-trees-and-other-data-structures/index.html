@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Thoughts on lists, trees, and other data structures &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://misfra.me/thoughts-on-lists-trees-and-other-data-structures" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2013-12-27T00:00:00Z" />
+  
+  
+
+  <title>
+     Thoughts on lists, trees, and other data structures &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://misfra.me/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/main.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://misfra.me/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://misfra.me/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://misfra.me/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://misfra.me/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Thoughts on lists, trees, and other data structures</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2013-12-27T00:00:00Z">
+          Dec 27, 2013
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>This past spring, I used to go to a study room in Clemons after dinner to work on problem sets. Those rooms have white boards, which I often used to check over work or write some notes as I did my homework. After I was done with my homework, I&rsquo;d start drawing trees and come up with rotation algorithms. Sure, there are algorithms out there for balanced trees, but I always got the feeling that they were really generic and hard to improve.</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Red-black_tree_example.svg/500px-Red-black_tree_example.svg.png" alt="http://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Red-black_tree_example.svg/500px-Red-black_tree_example.svg.png" />
+
+(From <a href="http://en.wikipedia.org/wiki/File:Red-black_tree_example.svg">Wikipedia</a>)</p>
+
+<p>That image represents a <a href="http://en.wikipedia.org/wiki/Red-black_tree">red-black tree</a>, which is a <em>self-balancing</em> tree. A red-black tree balances itself after every insert, which is done by <a href="http://en.wikipedia.org/wiki/Tree_rotation">rotations</a>. Looking at a picture of a tree rotation makes it a lot simpler to understand. It&rsquo;s important to balance a tree and minimize its overall height to maximize the search efficiency.</p>
+
+<p>I thought rebalancing a tree was too computationally expensive. If you had to do it after every insert, it seems like you&rsquo;d really slow things down. What if you didn&rsquo;t rebalance after every insert? If you inserted values sequentially without rebalancing after every insert, you&rsquo;d just have a linked list, right?</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/500px-Singly-linked-list.svg.png" alt="Linked list" />
+</p>
+
+<p>I think I then started to think about how to turn a linked list into a balanced tree. I forget where that took me :). I did come up with a tree that you can balance on-demand (on <a href="https://github.com/PreetamJinka/dreamtree">GitHub</a>). I don&rsquo;t remember whether or not it works! Even if it does, it&rsquo;s probably very inefficient. I think part of it started off as a napkin doodle. Anyway, at the very least, it helped me learn more about <a href="golang.org/">Go</a>.</p>
+
+<p>Over the summer, a close friend told me about skip lists:
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Skip_list.svg/1000px-Skip_list.svg.png" alt="" />
+</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Skip_list">Skip lists</a> are essentially layered linked lists. The higher levels are &ldquo;fast lanes,&rdquo; which allow you to <em>skip</em> nodes. Here&rsquo;s the great thing about skip lists: they have the same average time complexity of balanced binary search trees (O(log n)), <em>and</em> they don&rsquo;t require balancing! That&rsquo;s perfect!</p>
+
+<h2 id="what-s-the-point:bd2ade12ca8ba7e16e6273bd1a599e86">What&rsquo;s the point?</h2>
+
+<p>I&rsquo;ve come to realize that if you&rsquo;re going to build a database, you need to make sure you pick the right data structures. When I started thinking about this stuff <a href="http://misfra.me/writing-a-database">last March</a>, I think I assumed that once I pick a couple of things that seemed to work, everything else would fall into place. I slowly learned otherwise.</p>
+
+<h2 id="inspiration-from-datomic:bd2ade12ca8ba7e16e6273bd1a599e86">Inspiration from Datomic</h2>
+
+<p>Earlier this month, Craig Andera (<a href="https://twitter.com/craigandera">@craigandera</a>) came to talk about <a href="http://www.datomic.com/">Datomic</a>. Craig mentioned how Datomic is centered around time and facts. In the Datomic world, a database has facts and, and if something is a fact at a certain point in time, it always stays a fact. But facts might not be facts later on in time, or previously in time.</p>
+
+<p>What I really liked about Datomic was that you can look at the data (or facts!) which exist right now, but you can also go back in time to see what was there before. You can <em>observe</em> the state of the database in the past. That&rsquo;s cool!</p>
+
+<h2 id="persistent-data-structures:bd2ade12ca8ba7e16e6273bd1a599e86">Persistent data structures</h2>
+
+<p>I think it&rsquo;s sort of interesting how databases seem to take on the characteristics of what they&rsquo;re developed in. Datomic is written in Clojure, and Craig mentioned several times how certain parts of Datomic are like parts of Clojure.</p>
+
+<p>Clojure&rsquo;s a functional language, and (please correct me if I&rsquo;m wrong!) I think functional languages are based around immutable data types. If you have a tree, for example, and you append something to it, you&rsquo;d get a completely new tree. The old tree never changes. It&rsquo;s <em><a href="http://en.wikipedia.org/wiki/Persistent_data_structure">persistent</a></em>.</p>
+
+<p>Internally, Datomic uses an append-only, persistent tree. Neat!</p>
+
+<h2 id="lexicon-an-ordered-list-and-a-fickle-key-value-store:bd2ade12ca8ba7e16e6273bd1a599e86">Lexicon, an ordered list, and a fickle key-value store</h2>
+
+<p>Writing a database is a hard task, so I had to break it down into smaller ones. A few months ago, I decided I really had to get down to the core of this thing and build it up from the ground up just as I want it.</p>
+
+<p>I created <a href="https://github.com/PreetamJinka/lexicon">lexicon</a>, which is an ordered key-value map package for Go. Lexicon uses another package I wrote, which essentially added ordering to the <code>container/list</code> package that&rsquo;s in Go&rsquo;s standard library. I kept it simple enough to not be restrictive, yet still very useful.</p>
+
+<p>After I had a decent version of lexicon, it didn&rsquo;t take long to write a simple TCP server wrapper around it and have a <em>very</em> basic key-value store. I think at that point, I thought: whoa&hellip; that was easy! I think I was able to get replication working (well, trivial replication) in one sitting.</p>
+
+<h2 id="it-gets-complicated:bd2ade12ca8ba7e16e6273bd1a599e86">It gets complicated.</h2>
+
+<p>Eventually, I started thinking about how I could keep replication safe. Originally, a &ldquo;primary&rdquo; would just broadcast the commands its got to its replicas, but that&rsquo;s not safe. What if a replica shuts down? How do we know that the replica is at the same state at the primary?</p>
+
+<p>Another issue was that I wanted to add some form of transactions. I wanted to be able to put in transactional logic. Hmm&hellip; oh! I like how CouchDB has <a href="http://en.wikipedia.org/wiki/Multiversion_concurrency_control">multiversion concurrency control</a> using revisions for each document. Maybe I could have a version for each key!</p>
+
+<p>These two problems seemed rather orthogonal. I couldn&rsquo;t figure out a single solution for both of them. I think at this point, I just stopped working on this.</p>
+
+<p>And then I heard about Datomic.</p>
+
+<p>That&rsquo;s it! I don&rsquo;t need versions for each key, but rather versions for the entire database! That way I could if transactions are operating against an old version, <em>and</em> I could keep replicas synchronized by comparing versions! Now, how do I add versions to this database thing? That&rsquo;s when things got tough.</p>
+
+<p>An easy way to store versions is to make raw copies. That&rsquo;s not efficient by any means! That would be a waste of a lot of space. The answer seemed to be a persistent data structure. Somehow I stumbled onto <a href="http://en.wikipedia.org/wiki/Treap">treaps</a>, and found a persistent treap package for Go. It didn&rsquo;t take long before I had versions supported in lexicon.</p>
+
+<h2 id="the-issue-with-treaps:bd2ade12ca8ba7e16e6273bd1a599e86">The issue with treaps</h2>
+
+<p>The most important issue that I&rsquo;ve noticed with my versioned treap stuff was that it&rsquo;s <em>incredibly</em> memory-hungry. It just seemed to have such a massive overhead. Oh and, of course, a treap is a tree. There&rsquo;s rebalancing. It&rsquo;s relatively expensive.</p>
+
+<p>I had to get rid of the treaps! I needed a <em>new</em> data structure. A versioned skip list! I tried to find a persistent skip list, but then stumbled onto this <a href="http://stackoverflow.com/questions/3489560/purely-functional-concurrent-skip-list">comment on Stack Overflow</a>:</p>
+
+<blockquote>
+<p>The property of skip lists that makes them good for concurrent updates (namely that most additions and subtractions are local) also makes them bad for immutability (namely that a lot of earlier items in the list point eventually to the later items, and would have to be changed).
+[&hellip;]
+Thus, tree structures are better for immutability (as the damage is always locally limited&ndash;just the node you care about and its direct parents up through the root of the tree).</p>
+</blockquote>
+
+<p>Argh. Okay, so I have to make it mutable, since I&rsquo;d like to make this write-intensive. I tried to look for a mutable, versioned skip list. I couldn&rsquo;t find one&hellip;</p>
+
+<h2 id="writing-a-list:bd2ade12ca8ba7e16e6273bd1a599e86">Writing a list</h2>
+
+<blockquote>
+<p>My sister: What are you doing?</p>
+
+<p>Me: Making a list.</p>
+
+<p>My sister: And checking it twice?</p>
+
+<p>Me: -_-</p>
+</blockquote>
+
+<p>This past week, I wrote <a href="https://github.com/PreetamJinka/vlmap">vlmap</a>, which is a versioned, ordered skip list map written in C. Lots of words, but what do they mean?</p>
+
+<p>It&rsquo;s ordered. The keys are stored in order (lexicographically), so it&rsquo;s possible to do range reads over the data structure.</p>
+
+<p>It&rsquo;s versioned. I can see what the list looked like in the past. This means I can do snapshot reads!</p>
+
+<p>It&rsquo;s a map, so it&rsquo;s an associative array.</p>
+
+<p>It&rsquo;s written in C. I think I chose to write it in C because I got pissed at Go&rsquo;s garbage collector while I was testing out the treaps :P. This was actually very significant. I spent a few days working with Valgrind to make sure I wasn&rsquo;t leaking any memory. I think this was my first big C project, so I definitely learned a few things along the way. Besides that, since it&rsquo;s written in C, I can reuse it in many languages, including Go. In fact, the primary test for it right now is <a href="https://github.com/PreetamJinka/vlmap/blob/67ff1585fcea/test/test.go">written in Go</a>.</p>
+
+<p>I&rsquo;m really, <em>really</em> proud of this vlmap project. I think it&rsquo;s incredibly neat to have a versioned data structure. You can even iterate through a snapshot! That&rsquo;s awesome!</p>
+
+<h2 id="speed:bd2ade12ca8ba7e16e6273bd1a599e86">Speed</h2>
+
+<p>A skip list is much, much better. Not only is it faster, it also uses significantly less memory. I have a couple of pprof-generated profiles below. Using only inserts, I got&hellip; 17043 ns/operation for a treap, 3911 ns / operation for a skip list.</p>
+
+<p>Treap:
+<a href="http://static.misfra.me/images/treap.png"><img src="http://static.misfra.me/images/treap.png" alt="" />
+</a></p>
+
+<p>Skip list:
+<a href="http://static.misfra.me/images/skiplist.png"><img src="http://static.misfra.me/images/skiplist.png" alt="" />
+</a></p>
+
+<h2 id="final-thoughts:bd2ade12ca8ba7e16e6273bd1a599e86">Final thoughts</h2>
+
+<p>I think this has been my longest blog post so far&hellip; and I&rsquo;m making it even longer right now! I learned a lot over these past few days, weeks, and months. I hope you learned a thing or two from this blog post as well. There&rsquo;s still a <em>lot</em> out there to learn. Lock-free algorithms and thread-safety are probably what I&rsquo;m going to look at next, but I&rsquo;m also going to think about the next big challenge for this database I&rsquo;m building.</p>
+
+<p>I don&rsquo;t have a comment system, but if you have a question or a comment, hit me up on Twitter (<a href="https://twitter.com/PreetamJinka">@PreetamJinka</a>)!</p>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://misfra.me/c-is-weird"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://misfra.me/gambling-with-cheap-ram">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://misfra.me/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

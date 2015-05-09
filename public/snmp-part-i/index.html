@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" SNMP Part I &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://misfra.me/snmp-part-i" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2014-11-09T00:00:00Z" />
+  
+  
+
+  <title>
+     SNMP Part I &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://misfra.me/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/main.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://misfra.me/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://misfra.me/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://misfra.me/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://misfra.me/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">SNMP Part I</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2014-11-09T00:00:00Z">
+          Nov 9, 2014
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p><a href="http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol">SNMP</a> stands for Simple Network Management Protocol.
+In case you haven&rsquo;t heard, it&rsquo;s not simple. SNMP is older than me, and it&rsquo;s used everywhere in networking.</p>
+
+<p>I need SNMP support for <a href="https://github.com/PreetamJinka/cistern">Cistern</a>. sFlow is great for statistics
+but it&rsquo;s not useful to get general information. You can easily get interface statistics from sFlow datagrams,
+but you may want to know what the interface description strings are. You may want to know which VLANs those interfaces
+are assigned to. You may even want to get the description strings of VLANs:</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-i/observium-vlans.png" alt="" />
+</p>
+
+<p>The idea of using flows to get this information is silly. The best way to do this is via polling, and doing so when you need to.
+That&rsquo;s where SNMP comes in.</p>
+
+<p>So, why write a decoder in Go? There&rsquo;s <a href="http://net-snmp.sourceforge.net/">Net-SNMP</a>, which is basically the defacto
+library for this stuff. It has a C library that you can easily use from Go. The issue is that it&rsquo;s not thread safe.
+That&rsquo;s a little annoying for Go programs. The other issue is that I dislike using cgo. A pure-Go implementation
+is much cleaner, in my opinion.</p>
+
+<h2 id="protocol-summary:da9dd7ab917e637ee8e36ceb9537f444">Protocol summary</h2>
+
+<p>SNMP is not like sFlow at all. sFlow is unidirectional, i.e. packets go one way. SNMP has requests and responses.
+To make things even more complicated, it&rsquo;s all over UDP. That means it&rsquo;s your responsibility to handle that state.
+SNMP is also used for things like switched PDUs (power distribution units), so you can use SNMP to do remote reboots.
+This is very sensitive stuff, so you really need your datagrams to be encryped. SNMPv3 supports encryption, which is
+great but complicated!</p>
+
+<p>SNMP uses a binary encoding format called <a href="https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One">ASN.1</a>. There&rsquo;s a
+standard Go package called <a href="http://golang.org/pkg/encoding/asn1/">encoding/asn1</a>, but it&rsquo;s quite awkward to use. There&rsquo;s
+some funk with struct tags and reflection. It seems that most people write their own ASN.1 encoding and decoding functions.</p>
+
+<p>I spent most of my time reading specifications, diagrams, and RFCs to figure out just how to send valid datagrams.
+Wireshark was incredibly useful in this case. Its interface is excellent. You can click on specific bytes in the hex and it&rsquo;ll
+tell you which field they correspond to.</p>
+
+<p><blockquote class="twitter-tweet" lang="en"><p>Look, I&#39;m getting a response! <a href="http://t.co/yenOjrn2R1">pic.twitter.com/yenOjrn2R1</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/528057163806437376">October 31, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>I grabbed a Brocade FWS 624 switch off Ebay. I&rsquo;m using that for my SNMP tests at home. I think it&rsquo;s too risky to mess around
+with production equipment that customers depend on (duh!). This is a layer 2 switch with SNMP and sFlow capability, so it&rsquo;s really helpful.
+I really don&rsquo;t need anything with 24 ports, but it&rsquo;s hard to find cheap managed switches that support sFlow. I got really lucky with this find
+on Ebay, especially since it&rsquo;s a Brocade device and those are the only ones I have experience with.</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-i/fws-624.jpg" alt="" />
+</p>
+
+<p><blockquote class="twitter-tweet" lang="en"><p>Hand-crafting SNMP packets right now :&#39;( <a href="http://t.co/faJNB5iH1Q">pic.twitter.com/faJNB5iH1Q</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/528811871567347713">November 2, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>A lot of this is quite tedious. Once I got used to hand-crafting packets and the encoding, I whipped up some simple
+Go types that encoded themselves. Then I was able to write stuff like this:</p>
+
+<pre><code class="language-go">conn.WriteTo(Sequence{
+	Int(3), // this is an INTEGER
+	Sequence{
+		Int(rand.Intn(1000000000)),
+		Int(65507),
+		String(&quot;\x04&quot;), // this is an OCTET STRING
+		Int(3),
+	},
+	String(Sequence{
+		String(&quot;&quot;),
+		Int(0),
+		Int(0),
+		String(&quot;&quot;),
+		String(&quot;&quot;),
+		String(&quot;&quot;),
+	}.Encode()),
+	Sequence{
+		String(&quot;&quot;),
+		String(&quot;&quot;),
+		GetRequest{
+			Int(rand.Intn(1000000000)),
+			Int(0),
+			Int(0),
+			Sequence{},
+		},
+	},
+}.Encode(), &amp;net.UDPAddr{
+	IP:   net.IPv4(10, 2, 33, 100),
+	Port: 161,
+})
+</code></pre>
+
+<p>The last major piece was encryption, which is a major PITA. You can&rsquo;t use Wireshark for this (duh!).
+I used <a href="https://github.com/tiebingzhang/WapSNMP/">github.com/tiebingzhang/WapSNMP</a> as a reference for the
+encryption stuff. I thought about forking it but it doesn&rsquo;t have a license. It&rsquo;s also a fork, so I&rsquo;m not
+really sure how to deal with that. I also didn&rsquo;t think it was good, idiomatic Go code. :-/</p>
+
+<p>After hours of work over a few weeks&hellip;</p>
+
+<p><blockquote class="twitter-tweet" lang="en"><p>IT WORKS! <a href="http://t.co/OXhIZX6uqA">pic.twitter.com/OXhIZX6uqA</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/531541736062214144">November 9, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>Not simple at all. At least now I have something that works and can iterate really quickly. And with that,
+SNMP gets added to my LinkedIn profile :P.</p>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://misfra.me/custom-router-part-ii"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://misfra.me/snmp-part-ii">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://misfra.me/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

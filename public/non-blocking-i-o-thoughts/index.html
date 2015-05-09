@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Non-blocking I/O thoughts &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://misfra.me/non-blocking-i-o-thoughts" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2013-11-18T00:00:00Z" />
+  
+  
+
+  <title>
+     Non-blocking I/O thoughts &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://misfra.me/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/main.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://misfra.me/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://misfra.me/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://misfra.me/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://misfra.me/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Non-blocking I/O thoughts</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2013-11-18T00:00:00Z">
+          Nov 18, 2013
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>I started using Node.js a long time ago. It was the first time I saw async execution outside of the browser. It was cool &ndash; still is.</p>
+
+<p>I worked with Node internals for a significant part of a summer. It doesn&rsquo;t take long before you realize that the event loop is one of the most important components of Node. Node uses libuv for its evented I/O, and I sort of got into it, but not really. Conceptually, it sort of made sense.</p>
+
+<p>I&rsquo;ve been working a lot using Go and C lately, and also thinking about async stuff. Something you can do in Node is pass a callback to an async file reading function and have that operation not block. Cool. You can also read from a socket asynchronously. Great! How would I do that in C?</p>
+
+<p>I started reading. Hey, you can do non-blocking socket reads using plain ol&rsquo; vanilla system calls. The kernel is nice enough to provide that for us. I can do async stuff with sockets, but what about files? I started reading some more.</p>
+
+<p>No dice.</p>
+
+<p>Huh&hellip; but how is Node doing it? It&rsquo;s non-blocking and single-threaded, right? It can&rsquo;t be using blocking syscalls!</p>
+
+<p>Wrong!</p>
+
+<p>It&rsquo;s kind of embarrassing that I didn&rsquo;t realize this until now. Node is <em>not single-threaded.</em></p>
+
+<blockquote>
+<p>The libuv filesystem operations are different from socket operations. Socket operations use the non-blocking operations provided by the operating system. <strong>Filesystem operations use blocking functions internally, but invoke these functions in a thread pool</strong> and notify watchers registered with the event loop when application interaction is required.</p>
+
+<p>&ndash; <a href="http://nikhilm.github.io/uvbook/filesystem.html">http://nikhilm.github.io/uvbook/filesystem.html</a></p>
+</blockquote>
+
+<p>Doh! The Node event loop is single-threaded, but if you do async file reads, for example, another thread <em>will be used</em>.</p>
+
+<p>By now, I&rsquo;m thinking async file I/O is annoying in C, unless you use a library to manage a thread pool for you.</p>
+
+<h2 id="libdispatch:eba58e94703725102428b160b750a9dc">libdispatch</h2>
+
+<p>At vBSDCon, I heard about <a href="http://en.wikipedia.org/wiki/Grand_Central_Dispatch">libdispatch</a>. It&rsquo;s really interesting! I wouldn&rsquo;t call it an async I/O library (because it&rsquo;s not) &ndash; it&rsquo;s just a different way of thinking about things.</p>
+
+<blockquote>
+<p>Dispatch Queues are objects that maintain a queue of tasks, either anonymous code blocks or functions, and execute these tasks in their turn. The library automatically creates several queues with different priority levels that execute several tasks concurrently, selecting the optimal number of tasks to run based on the operating environment. A client to the library may also create any number of serial queues, which execute tasks in the order they are submitted, one at a time.</p>
+</blockquote>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://misfra.me/digging-deeper"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://misfra.me/thoughts-on-garbage-collection">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://misfra.me/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

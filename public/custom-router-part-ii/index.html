@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Custom Router Part II &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://misfra.me/custom-router-part-ii" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2014-10-22T00:00:00Z" />
+  
+  
+
+  <title>
+     Custom Router Part II &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://misfra.me/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/main.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://misfra.me/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://misfra.me/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://misfra.me/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://misfra.me/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://misfra.me/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Custom Router Part II</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2014-10-22T00:00:00Z">
+          Oct 22, 2014
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>Welcome back! In my <a href="http://misfra.me/custom-router">previous post</a> I
+described this interesting idea of writing a router.
+I had no idea whether or not it would work. I knew it was possible, of course. I
+run two OpenBSD routers in a failover setup with CARP (this blog is routed through
+them, FYI).</p>
+
+<h2 id="setup:4ac6ca2971bd3a3849aacaefee3bcb19">Setup</h2>
+
+<p>Turns out my BeagleBone Black is great for testing this out! When you plug in
+a factory default BeagleBone Black into a computer, it sets up a network over
+USB.</p>
+
+<p><img src="http://static.misfra.me/images/posts/custom-router-part-ii/bbb-network.png" alt="" />
+</p>
+
+<pre><code>eth1      Link encap:Ethernet  HWaddr 78:a5:04:c8:8c:a3  
+          inet addr:192.168.7.1  Bcast:192.168.7.3  Mask:255.255.255.252
+</code></pre>
+
+<p>It shows up on my laptop as eth1. My laptop is assigned the address 192.168.7.1 and
+the board has 192.168.7.2. sshd is running on the board, so I can easily SSH in via
+192.168.7.2:22.</p>
+
+<p>The board has no other connections. There&rsquo;s no WiFi, and I don&rsquo;t have it connected
+over Ethernet. It cannot send packets out to the Internet. What it <em>can</em> do is
+send packets to my laptop, and my laptop <em>is</em> connected to the Internet. The Internet
+is just a series of tubes right?</p>
+
+<p>I&rsquo;ll just summarize the steps I took to getting this board to reach the rest
+of the Internet.</p>
+
+<h2 id="default-gateway:4ac6ca2971bd3a3849aacaefee3bcb19">Default gateway</h2>
+
+<p>First, we need to set my laptop as the board&rsquo;s default gateway. Otherwise,
+it won&rsquo;t know where to send packets outside the subnet!</p>
+
+<pre><code>root@beaglebone:~# ping 199.58.162.130
+connect: Network is unreachable
+</code></pre>
+
+<p>It&rsquo;s a simple one-liner:</p>
+
+<pre><code>root@beaglebone:~# ip route add default via 192.168.7.1
+root@beaglebone:~# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.7.1     0.0.0.0         UG    0      0        0 usb0
+192.168.7.0     0.0.0.0         255.255.255.252 U     0      0        0 usb0
+</code></pre>
+
+<p>So, does it work? Let me run tcpdump on my laptop and run ping again on the board&hellip;</p>
+
+<pre><code>  ∂ [21:06:42] [~]: sudo tcpdump -i eth1 icmp
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth1, link-type EN10MB (Ethernet), capture size 65535 bytes
+21:06:49.397470 IP 192.168.7.2 &gt; misfra.me: ICMP echo request, id 1451, seq 1, length 64
+21:06:50.406267 IP 192.168.7.2 &gt; misfra.me: ICMP echo request, id 1451, seq 2, length 64
+21:06:51.405815 IP 192.168.7.2 &gt; misfra.me: ICMP echo request, id 1451, seq 3, length 64
+</code></pre>
+
+<p>Great! Packets are reaching my laptop&hellip; but they&rsquo;re not going anywhere after that. They&rsquo;re
+simply dropped.</p>
+
+<h2 id="packet-sniffing:4ac6ca2971bd3a3849aacaefee3bcb19">Packet sniffing</h2>
+
+<p>I gave a talk at beCamp 2014 on <a href="https://github.com/PreetamJinka/packet-sniffing">packet sniffing</a>.
+There are a few examples that I reuse over and over simply because they&rsquo;re great templates for me.</p>
+
+<p>tcpdump is obviously seeing the packets we want, so we can too. Raw socket it up.</p>
+
+<pre><code class="language-go">fd, err := syscall.Socket(syscall.AF_PACKET, syscall.SOCK_RAW, htons(syscall.ETH_P_ALL))
+if err != nil {
+	log.Fatal(err)
+}
+
+log.Println(&quot;Listening on a raw socket...&quot;)
+
+. . .
+
+n, _, err := syscall.Recvfrom(fd, buf, 0)
+if err != nil {
+	log.Fatal(err)
+}
+
+. . .
+</code></pre>
+
+<h2 id="decoding-packets:4ac6ca2971bd3a3849aacaefee3bcb19">Decoding packets</h2>
+
+<p>What you get from reading from AF_PACKET + SOCK_RAW packets are Ethernet frames.
+You need to decode these. I use my <a href="https://github.com/PreetamJinka/proto/blob/master/ethernet.go">proto</a>
+package for that.</p>
+
+<h2 id="routing-itself-and-packet-injection:4ac6ca2971bd3a3849aacaefee3bcb19">Routing itself and packet injection</h2>
+
+<p>You just got a packet, and you have to route it somewhere else. Where (and how) do you send it?
+Well&hellip;  the simple answer would be to send it to your default gateway. There&rsquo;s obviously more to it,
+but you can figure that out on your own (I did :P).</p>
+
+<p>How do you actually send that packet to the default gateway? We know that the default gateway is on the
+same subnet you are. Therefore, we&rsquo;re only working at layer 2 of the <a href="http://en.wikipedia.org/wiki/OSI_model">OSI model</a>.
+There&rsquo;s a really simple answer for this one: just modify the MAC addresses in the Ethernet packet header
+and write the packet back into the socket. That&rsquo;s it! I think this is called <a href="http://en.wikipedia.org/wiki/Packet_injection">packet injection</a>.
+The Wikipedia page makes it sound evil&hellip;</p>
+
+<h2 id="getting-packets-back:4ac6ca2971bd3a3849aacaefee3bcb19">Getting packets back</h2>
+
+<p>One thing you have to be careful about is getting packets back from the Internet.
+I set up a static route on my WiFi router to route the 192.168.7.0/30 subnet
+to my laptop.</p>
+
+<p><img src="http://static.misfra.me/images/posts/custom-router-part-ii/static-route.png" alt="" />
+</p>
+
+<p>Yes, the subnet mask is incorrect but it doesn&rsquo;t make a difference in this situation.</p>
+
+<h2 id="end-result:4ac6ca2971bd3a3849aacaefee3bcb19">End result</h2>
+
+<p>Ta-daaaah!</p>
+
+<p><img src="http://static.misfra.me/images/posts/custom-router-part-ii/demo.gif" alt="" />
+</p>
+
+<p>On the left is the log output of a Go program that&rsquo;s reading and writing from/to
+a raw socket, and printing out the Ethernet frames it&rsquo;s receiving and sending.
+On the right is an SSH session on the board while I run <code>apt-get update</code>.</p>
+
+<p>My Go program does the first routing to the Internet (and last in the inbound
+direction).</p>
+
+<pre><code>2014/10/22 21:39:30 Listening on a raw socket...
+2014/10/22 21:39:30 &lt;nil&gt;
+2014/10/22 21:39:33 this one needs to go to the gateway
+2014/10/22 21:39:33 {78:a5:04:c8:8c:a3 26:06:05:5f:40:f4 0 2048 &lt;snip&gt;
+2014/10/22 21:39:33 {e8:de:27:bb:6b:aa 9c:4e:36:59:b2:54 0 2048 &lt;snip&gt;
+2014/10/22 21:39:33 &lt;nil&gt;
+2014/10/22 21:39:33 this one needs to go to the BeagleBone Black
+2014/10/22 21:39:33 &lt;nil&gt;
+2014/10/22 21:39:34 this one needs to go to the gateway
+</code></pre>
+
+<h2 id="traceroute:4ac6ca2971bd3a3849aacaefee3bcb19">Traceroute</h2>
+
+<p>Check this out&hellip; it&rsquo;s cool.</p>
+
+<pre><code>root@beaglebone:~# traceroute misfra.me
+traceroute to misfra.me (199.58.162.130), 30 hops max, 60 byte packets
+ 1  192.168.0.1 (192.168.0.1)  4.363 ms  6.072 ms  13.493 ms
+ 2  10.2.33.1 (10.2.33.1)  16.266 ms  16.125 ms  16.266 ms
+ 3  10.1.10.1 (10.1.10.1)  15.894 ms  15.743 ms  15.598 ms
+</code></pre>
+
+<p>How come my laptop (192.168.7.1) isn&rsquo;t showing up? Let&rsquo;s think about
+how traceroute(1) actually works. In short, it sends out multiple packets
+with different TTLs (time to live). Quoting <a href="http://en.wikipedia.org/wiki/Time_to_live">Wikipedia</a>&hellip;</p>
+
+<blockquote>
+<p>The TTL field is set by the sender of the datagram, and reduced by every router on the route to its destination. If the TTL field reaches zero before the datagram arrives at its destination, then the datagram is discarded and an ICMP error datagram (11 - Time Exceeded) is sent back to the sender.</p>
+</blockquote>
+
+<p>The reason why we don&rsquo;t see 192.168.7.1 is because my Go program does not
+decrease the TTL (I&rsquo;ll explain why later). My Go program also does not send ICMP
+datagrams. Think about this for a second. Isn&rsquo;t my custom router invisible? Well,
+it&rsquo;s not since it&rsquo;s the default gateway, but what if it was a few hops down? Isn&rsquo;t
+that scary? Uhm&hellip;</p>
+
+<h2 id="checksums-and-ttls:4ac6ca2971bd3a3849aacaefee3bcb19">Checksums and TTLs</h2>
+
+<p>If you open up a diagram of an Ethernet frame (look <a href="http://en.wikipedia.org/wiki/Ethernet_frame#Structure">here</a>),
+you&rsquo;ll notice that there&rsquo;s a field called &ldquo;Frame check sequence&rdquo;. This is a 32-bit CRC &ndash; a checksum.
+Turns out that NICs take care of calculating this checksum for you, so you don&rsquo;t have to worry about it when
+constructing Ethernet frames.</p>
+
+<p>IPv4 packets are different. You have to make sure the checksum stays consistent. The reason why
+I&rsquo;m not decreasing the TTL is because I&rsquo;d have to recalculate the IPv4 packet checksum, and
+I simply didn&rsquo;t have time for that (I had to eat dinner :D).</p>
+
+<h2 id="conclusion-and-next-steps:4ac6ca2971bd3a3849aacaefee3bcb19">Conclusion and next steps</h2>
+
+<p>This was a pretty cool thing to write before dinner. It&rsquo;s not that long, either. All of the code
+is available on GitHub and is MIT licensed (&lsquo;cause I like your freedom):</p>
+
+<p><a href="https://github.com/PreetamJinka/gateway-experiment">https://github.com/PreetamJinka/gateway-experiment</a></p>
+
+<p>Now I&rsquo;m thinking about inter-VLAN routing, stateful firewalls, routing tables, etc.
+It would be neat to try to implement some of this stuff in Go. I already wrote a <a href="http://misfra.me/router-on-a-stick">post</a> on inter-VLAN routing. That was over two years ago? I keep redoing stuff, but every time I do it I go a level lower :P.</p>
+
+<p>Well, I hope that was informative. Ask me questions on Twitter: <a href="https://twitter.com/PreetamJinka">@PreetamJinka</a></p>
+
+  </section>
+  <footer>
+    <section class="author-info row">
+      <div class="author-avatar col-md-2">
+        
+      </div>
+      <div class="author-meta col-md-6">
+        
+        
+      </div>
+      
+    </section>
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://misfra.me/custom-router"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://misfra.me/snmp-part-i">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://misfra.me/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+
