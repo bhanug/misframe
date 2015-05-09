@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Misframe</title>
-    <link>http://localhost:1313/</link>
+    <link>http://misfra.me/</link>
     <description>Recent content on Misframe</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright &amp;copy; Preetam Jinka</copyright>
     <lastBuildDate>Sun, 19 Apr 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://misfra.me/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Cistern: The Vision of Reinvented Network Monitoring</title>
-      <link>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</link>
+      <link>http://misfra.me/cistern-the-vision-of-reinvented-network-monitoring</link>
       <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</guid>
+      <guid>http://misfra.me/cistern-the-vision-of-reinvented-network-monitoring</guid>
       <description>
 
 &lt;h2 id=&#34;background:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Background&lt;/h2&gt;
@@ -150,10 +150,10 @@
     
     <item>
       <title>Optimizing Concurrent Map Access in Go</title>
-      <link>http://localhost:1313/optimizing-concurrent-map-access-in-go</link>
+      <link>http://misfra.me/optimizing-concurrent-map-access-in-go</link>
       <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/optimizing-concurrent-map-access-in-go</guid>
+      <guid>http://misfra.me/optimizing-concurrent-map-access-in-go</guid>
       <description>
 
 &lt;p&gt;One of the more contentious sections of code in &lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;Catena&lt;/a&gt;, my time series storage engine, is the function that fetches a &lt;code&gt;metricSource&lt;/code&gt; given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we&amp;rsquo;ll have to have some sort of synchronization.&lt;/p&gt;
@@ -305,10 +305,10 @@ isn&amp;rsquo;t correct, so there shouldn&amp;rsquo;t even be a comparison.&lt;/
     
     <item>
       <title>State of the State Part III</title>
-      <link>http://localhost:1313/state-of-the-state-part-iii</link>
+      <link>http://misfra.me/state-of-the-state-part-iii</link>
       <pubDate>Thu, 05 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/state-of-the-state-part-iii</guid>
+      <guid>http://misfra.me/state-of-the-state-part-iii</guid>
       <description>
 
 &lt;p&gt;First, I suggest reading Baron&amp;rsquo;s &lt;a href=&#34;http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/&#34;&gt;&amp;ldquo;Time-Series Database Requirements&amp;rdquo;&lt;/a&gt; blog post to get some more context for this post. I read that and, as I usually do, had my mind set on low-level thoughts. I wrote the following comment:&lt;/p&gt;
@@ -427,10 +427,10 @@ The metadata at the end stores sources, metrics, and the offsets of the beginnin
     
     <item>
       <title>Break-in</title>
-      <link>http://localhost:1313/break-in</link>
+      <link>http://misfra.me/break-in</link>
       <pubDate>Sun, 08 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/break-in</guid>
+      <guid>http://misfra.me/break-in</guid>
       <description>&lt;p&gt;Someone broke into my server.&lt;/p&gt;
 
 &lt;p&gt;I was at beSwarm yesterday with my &amp;ldquo;social networking&amp;rdquo; setup.
@@ -466,10 +466,10 @@ The metadata at the end stores sources, metrics, and the offsets of the beginnin
     
     <item>
       <title>Personal projects, knowledge, and intuition</title>
-      <link>http://localhost:1313/personal-projects-knowledge-intuition</link>
+      <link>http://misfra.me/personal-projects-knowledge-intuition</link>
       <pubDate>Wed, 21 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/personal-projects-knowledge-intuition</guid>
+      <guid>http://misfra.me/personal-projects-knowledge-intuition</guid>
       <description>&lt;p&gt;I had a short conversation with someone recently about having personal projects and applying to internships. The short version of what he said is,&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -518,10 +518,10 @@ The metadata at the end stores sources, metrics, and the offsets of the beginnin
     
     <item>
       <title>Observium Annoys Me</title>
-      <link>http://localhost:1313/observium-annoys-me</link>
+      <link>http://misfra.me/observium-annoys-me</link>
       <pubDate>Tue, 30 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/observium-annoys-me</guid>
+      <guid>http://misfra.me/observium-annoys-me</guid>
       <description>&lt;p&gt;I first started using Observium in 2011 or 2012. I was a senior in high school. I wasn&amp;rsquo;t that good at programming. I mean, I could write code in a few languages, knew the basic data structures, Big-O, etc. but I was not familiar with many higher level concepts like monitoring. I knew about SNMP, but I didn&amp;rsquo;t know anything at all about the implementation. As &lt;a href=&#34;https://bitcable.com/&#34;&gt;Bitcable&amp;rsquo;s&lt;/a&gt; infrastructure grew to include network switches and more hardware, I needed a monitoring tool. I saw Nagios, Cacti, and others but they all intimidated me. I didn&amp;rsquo;t have time to learn those tools. Things like college applications and math homework took up most of my time.&lt;/p&gt;
 
 &lt;p&gt;Observium was different. I was able to install it relatively quickly and had everything running without any issues. My daily routine when I got to school at 8 AM was to open up Observium in the syslab and get an overview of everything. It was enough.&lt;/p&gt;
@@ -593,10 +593,10 @@ Devices skipped: 1.
     
     <item>
       <title>A New Design</title>
-      <link>http://localhost:1313/a-new-design</link>
+      <link>http://misfra.me/a-new-design</link>
       <pubDate>Sun, 28 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/a-new-design</guid>
+      <guid>http://misfra.me/a-new-design</guid>
       <description>&lt;p&gt;There used to be a period of time when I kept changing Misframe&amp;rsquo;s design. I was also
 changing what it was running on quite often. I spent most of my time thinking about
 how it ran rather than what I was going to write. After hopping around from using WordPress,
@@ -616,10 +616,10 @@ switch to serif represents a slight change of mood too.&lt;/p&gt;
     
     <item>
       <title>SNMP Part II</title>
-      <link>http://localhost:1313/snmp-part-ii</link>
+      <link>http://misfra.me/snmp-part-ii</link>
       <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/snmp-part-ii</guid>
+      <guid>http://misfra.me/snmp-part-ii</guid>
       <description>
 
 &lt;p&gt;This post is more about the details of how SNMP is currently implemented in Cistern.
@@ -754,10 +754,10 @@ all of it!&lt;/p&gt;
     
     <item>
       <title>SNMP Part I</title>
-      <link>http://localhost:1313/snmp-part-i</link>
+      <link>http://misfra.me/snmp-part-i</link>
       <pubDate>Sun, 09 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/snmp-part-i</guid>
+      <guid>http://misfra.me/snmp-part-i</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol&#34;&gt;SNMP&lt;/a&gt; stands for Simple Network Management Protocol.
@@ -861,10 +861,10 @@ SNMP gets added to my LinkedIn profile :P.&lt;/p&gt;
     
     <item>
       <title>Custom Router Part II</title>
-      <link>http://localhost:1313/custom-router-part-ii</link>
+      <link>http://misfra.me/custom-router-part-ii</link>
       <pubDate>Wed, 22 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/custom-router-part-ii</guid>
+      <guid>http://misfra.me/custom-router-part-ii</guid>
       <description>
 
 &lt;p&gt;Welcome back! In my &lt;a href=&#34;http://misfra.me/custom-router&#34;&gt;previous post&lt;/a&gt; I
@@ -1060,10 +1060,10 @@ It would be neat to try to implement some of this stuff in Go. I already wrote a
     
     <item>
       <title>Custom Router</title>
-      <link>http://localhost:1313/custom-router</link>
+      <link>http://misfra.me/custom-router</link>
       <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/custom-router</guid>
+      <guid>http://misfra.me/custom-router</guid>
       <description>&lt;p&gt;So this clever new idea has been floating around in my head
 for a couple of days now. If you consider a router, it&amp;rsquo;s basically
 connecting directing packets to different subnets. The simple case
@@ -1103,10 +1103,10 @@ neat deep packet inspection.&lt;/p&gt;
     
     <item>
       <title>The Crazy One</title>
-      <link>http://localhost:1313/the-crazy-one</link>
+      <link>http://misfra.me/the-crazy-one</link>
       <pubDate>Thu, 16 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/the-crazy-one</guid>
+      <guid>http://misfra.me/the-crazy-one</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -1153,10 +1153,10 @@ Maybe I should stop doing that&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>State of the State Part II</title>
-      <link>http://localhost:1313/state-of-the-state-part-ii</link>
+      <link>http://misfra.me/state-of-the-state-part-ii</link>
       <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/state-of-the-state-part-ii</guid>
+      <guid>http://misfra.me/state-of-the-state-part-ii</guid>
       <description>
 
 &lt;p&gt;The &lt;a href=&#34;http://misfra.me/state-of-the-state&#34;&gt;original post&lt;/a&gt; was written last December (almost 10 months ago). To summarize, I mentioned my time series logging program, Adversaria, and I wrote about my little toy key-value store, Fickle. I wrote that I would try to add transactions, and then I ended with a goal to use it to power this blog.&lt;/p&gt;
@@ -1207,10 +1207,10 @@ Maybe I should stop doing that&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>BeagleBone Black</title>
-      <link>http://localhost:1313/beaglebone</link>
+      <link>http://misfra.me/beaglebone</link>
       <pubDate>Sun, 05 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/beaglebone</guid>
+      <guid>http://misfra.me/beaglebone</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/beaglebone/beaglebone.jpg&#34; alt=&#34;BeagleBone Black&#34; /&gt;
 &lt;/p&gt;
 
@@ -1240,10 +1240,10 @@ simple reverb effect but audio programming with callbacks and stuff is crazy!&lt
     
     <item>
       <title>Overdue invoices</title>
-      <link>http://localhost:1313/overdue-invoices</link>
+      <link>http://misfra.me/overdue-invoices</link>
       <pubDate>Mon, 22 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/overdue-invoices</guid>
+      <guid>http://misfra.me/overdue-invoices</guid>
       <description>&lt;p&gt;I used to subscribe to CloudLinux but then stopped. I do not use CloudLinux anymore.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m still getting invoiced every month even though I&amp;rsquo;m not using my license at all.&lt;/p&gt;

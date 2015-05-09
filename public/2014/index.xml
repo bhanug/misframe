@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2014s on Misframe</title>
-    <link>http://localhost:1313/2014/</link>
+    <link>http://misfra.me/2014/</link>
     <description>Recent content in 2014s on Misframe</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright &amp;copy; Preetam Jinka</copyright>
     <lastBuildDate>Tue, 30 Dec 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/2014/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://misfra.me/2014/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Observium Annoys Me</title>
-      <link>http://localhost:1313/observium-annoys-me</link>
+      <link>http://misfra.me/observium-annoys-me</link>
       <pubDate>Tue, 30 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/observium-annoys-me</guid>
+      <guid>http://misfra.me/observium-annoys-me</guid>
       <description>&lt;p&gt;I first started using Observium in 2011 or 2012. I was a senior in high school. I wasn&amp;rsquo;t that good at programming. I mean, I could write code in a few languages, knew the basic data structures, Big-O, etc. but I was not familiar with many higher level concepts like monitoring. I knew about SNMP, but I didn&amp;rsquo;t know anything at all about the implementation. As &lt;a href=&#34;https://bitcable.com/&#34;&gt;Bitcable&amp;rsquo;s&lt;/a&gt; infrastructure grew to include network switches and more hardware, I needed a monitoring tool. I saw Nagios, Cacti, and others but they all intimidated me. I didn&amp;rsquo;t have time to learn those tools. Things like college applications and math homework took up most of my time.&lt;/p&gt;
 
 &lt;p&gt;Observium was different. I was able to install it relatively quickly and had everything running without any issues. My daily routine when I got to school at 8 AM was to open up Observium in the syslab and get an overview of everything. It was enough.&lt;/p&gt;
@@ -86,10 +86,10 @@ Devices skipped: 1.
     
     <item>
       <title>A New Design</title>
-      <link>http://localhost:1313/a-new-design</link>
+      <link>http://misfra.me/a-new-design</link>
       <pubDate>Sun, 28 Dec 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/a-new-design</guid>
+      <guid>http://misfra.me/a-new-design</guid>
       <description>&lt;p&gt;There used to be a period of time when I kept changing Misframe&amp;rsquo;s design. I was also
 changing what it was running on quite often. I spent most of my time thinking about
 how it ran rather than what I was going to write. After hopping around from using WordPress,
@@ -109,10 +109,10 @@ switch to serif represents a slight change of mood too.&lt;/p&gt;
     
     <item>
       <title>SNMP Part II</title>
-      <link>http://localhost:1313/snmp-part-ii</link>
+      <link>http://misfra.me/snmp-part-ii</link>
       <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/snmp-part-ii</guid>
+      <guid>http://misfra.me/snmp-part-ii</guid>
       <description>
 
 &lt;p&gt;This post is more about the details of how SNMP is currently implemented in Cistern.
@@ -247,10 +247,10 @@ all of it!&lt;/p&gt;
     
     <item>
       <title>SNMP Part I</title>
-      <link>http://localhost:1313/snmp-part-i</link>
+      <link>http://misfra.me/snmp-part-i</link>
       <pubDate>Sun, 09 Nov 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/snmp-part-i</guid>
+      <guid>http://misfra.me/snmp-part-i</guid>
       <description>
 
 &lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol&#34;&gt;SNMP&lt;/a&gt; stands for Simple Network Management Protocol.
@@ -354,10 +354,10 @@ SNMP gets added to my LinkedIn profile :P.&lt;/p&gt;
     
     <item>
       <title>Custom Router Part II</title>
-      <link>http://localhost:1313/custom-router-part-ii</link>
+      <link>http://misfra.me/custom-router-part-ii</link>
       <pubDate>Wed, 22 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/custom-router-part-ii</guid>
+      <guid>http://misfra.me/custom-router-part-ii</guid>
       <description>
 
 &lt;p&gt;Welcome back! In my &lt;a href=&#34;http://misfra.me/custom-router&#34;&gt;previous post&lt;/a&gt; I
@@ -553,10 +553,10 @@ It would be neat to try to implement some of this stuff in Go. I already wrote a
     
     <item>
       <title>Custom Router</title>
-      <link>http://localhost:1313/custom-router</link>
+      <link>http://misfra.me/custom-router</link>
       <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/custom-router</guid>
+      <guid>http://misfra.me/custom-router</guid>
       <description>&lt;p&gt;So this clever new idea has been floating around in my head
 for a couple of days now. If you consider a router, it&amp;rsquo;s basically
 connecting directing packets to different subnets. The simple case
@@ -596,10 +596,10 @@ neat deep packet inspection.&lt;/p&gt;
     
     <item>
       <title>The Crazy One</title>
-      <link>http://localhost:1313/the-crazy-one</link>
+      <link>http://misfra.me/the-crazy-one</link>
       <pubDate>Thu, 16 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/the-crazy-one</guid>
+      <guid>http://misfra.me/the-crazy-one</guid>
       <description>
 
 &lt;blockquote&gt;
@@ -646,10 +646,10 @@ Maybe I should stop doing that&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>State of the State Part II</title>
-      <link>http://localhost:1313/state-of-the-state-part-ii</link>
+      <link>http://misfra.me/state-of-the-state-part-ii</link>
       <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/state-of-the-state-part-ii</guid>
+      <guid>http://misfra.me/state-of-the-state-part-ii</guid>
       <description>
 
 &lt;p&gt;The &lt;a href=&#34;http://misfra.me/state-of-the-state&#34;&gt;original post&lt;/a&gt; was written last December (almost 10 months ago). To summarize, I mentioned my time series logging program, Adversaria, and I wrote about my little toy key-value store, Fickle. I wrote that I would try to add transactions, and then I ended with a goal to use it to power this blog.&lt;/p&gt;
@@ -700,10 +700,10 @@ Maybe I should stop doing that&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>BeagleBone Black</title>
-      <link>http://localhost:1313/beaglebone</link>
+      <link>http://misfra.me/beaglebone</link>
       <pubDate>Sun, 05 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/beaglebone</guid>
+      <guid>http://misfra.me/beaglebone</guid>
       <description>&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/beaglebone/beaglebone.jpg&#34; alt=&#34;BeagleBone Black&#34; /&gt;
 &lt;/p&gt;
 
@@ -733,10 +733,10 @@ simple reverb effect but audio programming with callbacks and stuff is crazy!&lt
     
     <item>
       <title>Overdue invoices</title>
-      <link>http://localhost:1313/overdue-invoices</link>
+      <link>http://misfra.me/overdue-invoices</link>
       <pubDate>Mon, 22 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/overdue-invoices</guid>
+      <guid>http://misfra.me/overdue-invoices</guid>
       <description>&lt;p&gt;I used to subscribe to CloudLinux but then stopped. I do not use CloudLinux anymore.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m still getting invoiced every month even though I&amp;rsquo;m not using my license at all.&lt;/p&gt;
@@ -767,10 +767,10 @@ So, yeah. Don&amp;rsquo;t tell Oracle :P.&lt;/p&gt;
     
     <item>
       <title>Nontrivial pipes</title>
-      <link>http://localhost:1313/nontrivial-pipes</link>
+      <link>http://misfra.me/nontrivial-pipes</link>
       <pubDate>Tue, 16 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/nontrivial-pipes</guid>
+      <guid>http://misfra.me/nontrivial-pipes</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;m going to take a simple concept, UNIX pipes, and basically frame (or misframe?) a nontrivial scenario.&lt;/p&gt;
@@ -811,10 +811,10 @@ So, yeah. Don&amp;rsquo;t tell Oracle :P.&lt;/p&gt;
     
     <item>
       <title>Thoughts on Career/Job/Internship Fairs</title>
-      <link>http://localhost:1313/thoughts-on-career-job-internship-fairs</link>
+      <link>http://misfra.me/thoughts-on-career-job-internship-fairs</link>
       <pubDate>Mon, 15 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/thoughts-on-career-job-internship-fairs</guid>
+      <guid>http://misfra.me/thoughts-on-career-job-internship-fairs</guid>
       <description>&lt;p&gt;This is just my opinion. I don&amp;rsquo;t like career fairs. I don&amp;rsquo;t think they are of any value &lt;em&gt;to me.&lt;/em&gt; Most people might disagree with what I have to say, and that&amp;rsquo;s totally cool. I&amp;rsquo;m not like most people.&lt;/p&gt;
 
 &lt;p&gt;Career fairs are way too competitive. It&amp;rsquo;s probably &lt;em&gt;the worst&lt;/em&gt; place to differentiate yourself. Everyone&amp;rsquo;s in a suit. Everyone&amp;rsquo;s carrying around their resumes, and everyone basically gives the same rehearsed intro, right? It&amp;rsquo;s also annoying to think that there will always be someone better than you out there. A nicer resume, a higher GPA, a better suit, etc.&lt;/p&gt;
@@ -833,10 +833,10 @@ So, yeah. Don&amp;rsquo;t tell Oracle :P.&lt;/p&gt;
     
     <item>
       <title>Cursive ‘f’</title>
-      <link>http://localhost:1313/cursive-f</link>
+      <link>http://misfra.me/cursive-f</link>
       <pubDate>Mon, 08 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cursive-f</guid>
+      <guid>http://misfra.me/cursive-f</guid>
       <description>&lt;p&gt;I was sitting in one of my math classes the other day (how specific!)
 and noticed that my professor had an interesting way of writing his
 lowercase cursive &amp;lsquo;f&amp;rsquo;. You know how the bottom loop thing should
@@ -872,10 +872,10 @@ that anymore!&lt;/p&gt;
     
     <item>
       <title>LLVM</title>
-      <link>http://localhost:1313/llvm</link>
+      <link>http://misfra.me/llvm</link>
       <pubDate>Thu, 04 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/llvm</guid>
+      <guid>http://misfra.me/llvm</guid>
       <description>&lt;p&gt;For some reason, instead of studying for my math quiz today (it&amp;rsquo;s past
 midnight right now), I decided to play around with LLVM. One of my
 homework exercises was to solve the Fibonacci difference equation,&lt;/p&gt;
@@ -940,10 +940,10 @@ gcc, but it&amp;rsquo;s late and I&amp;rsquo;m too lazy to figure it out.&lt;/p&
     
     <item>
       <title>Streaming HTTP</title>
-      <link>http://localhost:1313/streaming-http</link>
+      <link>http://misfra.me/streaming-http</link>
       <pubDate>Tue, 02 Sep 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/streaming-http</guid>
+      <guid>http://misfra.me/streaming-http</guid>
       <description>&lt;p&gt;I just came back from this month&amp;rsquo;s
 &lt;a href=&#34;https://wiki.python.org/moin/CharlottesvillePythonUserGroup&#34;&gt;PyCHO&lt;/a&gt; meetup,
 and one of the things that we discussed was how to handle many simultaneous

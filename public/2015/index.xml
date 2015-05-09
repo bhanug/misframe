@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2015s on Misframe</title>
-    <link>http://localhost:1313/2015/</link>
+    <link>http://misfra.me/2015/</link>
     <description>Recent content in 2015s on Misframe</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright &amp;copy; Preetam Jinka</copyright>
     <lastBuildDate>Sun, 19 Apr 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/2015/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://misfra.me/2015/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Cistern: The Vision of Reinvented Network Monitoring</title>
-      <link>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</link>
+      <link>http://misfra.me/cistern-the-vision-of-reinvented-network-monitoring</link>
       <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</guid>
+      <guid>http://misfra.me/cistern-the-vision-of-reinvented-network-monitoring</guid>
       <description>
 
 &lt;h2 id=&#34;background:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Background&lt;/h2&gt;
@@ -150,10 +150,10 @@
     
     <item>
       <title>Optimizing Concurrent Map Access in Go</title>
-      <link>http://localhost:1313/optimizing-concurrent-map-access-in-go</link>
+      <link>http://misfra.me/optimizing-concurrent-map-access-in-go</link>
       <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/optimizing-concurrent-map-access-in-go</guid>
+      <guid>http://misfra.me/optimizing-concurrent-map-access-in-go</guid>
       <description>
 
 &lt;p&gt;One of the more contentious sections of code in &lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;Catena&lt;/a&gt;, my time series storage engine, is the function that fetches a &lt;code&gt;metricSource&lt;/code&gt; given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we&amp;rsquo;ll have to have some sort of synchronization.&lt;/p&gt;
@@ -305,10 +305,10 @@ isn&amp;rsquo;t correct, so there shouldn&amp;rsquo;t even be a comparison.&lt;/
     
     <item>
       <title>State of the State Part III</title>
-      <link>http://localhost:1313/state-of-the-state-part-iii</link>
+      <link>http://misfra.me/state-of-the-state-part-iii</link>
       <pubDate>Thu, 05 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/state-of-the-state-part-iii</guid>
+      <guid>http://misfra.me/state-of-the-state-part-iii</guid>
       <description>
 
 &lt;p&gt;First, I suggest reading Baron&amp;rsquo;s &lt;a href=&#34;http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/&#34;&gt;&amp;ldquo;Time-Series Database Requirements&amp;rdquo;&lt;/a&gt; blog post to get some more context for this post. I read that and, as I usually do, had my mind set on low-level thoughts. I wrote the following comment:&lt;/p&gt;
@@ -427,10 +427,10 @@ The metadata at the end stores sources, metrics, and the offsets of the beginnin
     
     <item>
       <title>Break-in</title>
-      <link>http://localhost:1313/break-in</link>
+      <link>http://misfra.me/break-in</link>
       <pubDate>Sun, 08 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/break-in</guid>
+      <guid>http://misfra.me/break-in</guid>
       <description>&lt;p&gt;Someone broke into my server.&lt;/p&gt;
 
 &lt;p&gt;I was at beSwarm yesterday with my &amp;ldquo;social networking&amp;rdquo; setup.
@@ -466,10 +466,10 @@ The metadata at the end stores sources, metrics, and the offsets of the beginnin
     
     <item>
       <title>Personal projects, knowledge, and intuition</title>
-      <link>http://localhost:1313/personal-projects-knowledge-intuition</link>
+      <link>http://misfra.me/personal-projects-knowledge-intuition</link>
       <pubDate>Wed, 21 Jan 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/personal-projects-knowledge-intuition</guid>
+      <guid>http://misfra.me/personal-projects-knowledge-intuition</guid>
       <description>&lt;p&gt;I had a short conversation with someone recently about having personal projects and applying to internships. The short version of what he said is,&lt;/p&gt;
 
 &lt;blockquote&gt;

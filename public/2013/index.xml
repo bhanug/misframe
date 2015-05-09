@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>2013s on Misframe</title>
-    <link>http://localhost:1313/2013/</link>
+    <link>http://misfra.me/2013/</link>
     <description>Recent content in 2013s on Misframe</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright &amp;copy; Preetam Jinka</copyright>
     <lastBuildDate>Mon, 30 Dec 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/2013/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://misfra.me/2013/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Gambling with cheap RAM</title>
-      <link>http://localhost:1313/gambling-with-cheap-ram</link>
+      <link>http://misfra.me/gambling-with-cheap-ram</link>
       <pubDate>Mon, 30 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/gambling-with-cheap-ram</guid>
+      <guid>http://misfra.me/gambling-with-cheap-ram</guid>
       <description>
 
 &lt;p&gt;I got an email from &lt;a href=&#34;http://123systems.net/&#34;&gt;123Systems&lt;/a&gt; about a week ago:&lt;/p&gt;
@@ -52,10 +52,10 @@
     
     <item>
       <title>Thoughts on lists, trees, and other data structures</title>
-      <link>http://localhost:1313/thoughts-on-lists-trees-and-other-data-structures</link>
+      <link>http://misfra.me/thoughts-on-lists-trees-and-other-data-structures</link>
       <pubDate>Fri, 27 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/thoughts-on-lists-trees-and-other-data-structures</guid>
+      <guid>http://misfra.me/thoughts-on-lists-trees-and-other-data-structures</guid>
       <description>
 
 &lt;p&gt;This past spring, I used to go to a study room in Clemons after dinner to work on problem sets. Those rooms have white boards, which I often used to check over work or write some notes as I did my homework. After I was done with my homework, I&amp;rsquo;d start drawing trees and come up with rotation algorithms. Sure, there are algorithms out there for balanced trees, but I always got the feeling that they were really generic and hard to improve.&lt;/p&gt;
@@ -179,10 +179,10 @@ Thus, tree structures are better for immutability (as the damage is always local
     
     <item>
       <title>C is weird.</title>
-      <link>http://localhost:1313/c-is-weird</link>
+      <link>http://misfra.me/c-is-weird</link>
       <pubDate>Thu, 26 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/c-is-weird</guid>
+      <guid>http://misfra.me/c-is-weird</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Falling off the end of a function that is declared to return a value (without explicitly returning a value) leads to undefined consequences.&lt;/p&gt;
 
@@ -203,10 +203,10 @@ Thus, tree structures are better for immutability (as the damage is always local
     
     <item>
       <title>Haste.</title>
-      <link>http://localhost:1313/haste</link>
+      <link>http://misfra.me/haste</link>
       <pubDate>Sat, 21 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/haste</guid>
+      <guid>http://misfra.me/haste</guid>
       <description>&lt;p&gt;I guess people call these types of posts &amp;ldquo;post mortems.&amp;rdquo; Here we go.&lt;/p&gt;
 
 &lt;p&gt;I got this email this morning:
@@ -258,10 +258,10 @@ Thus, tree structures are better for immutability (as the damage is always local
     
     <item>
       <title>Don&#39;t panic! Type assertion safety.</title>
-      <link>http://localhost:1313/dont-panic-type-assertion-safety</link>
+      <link>http://misfra.me/dont-panic-type-assertion-safety</link>
       <pubDate>Wed, 18 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/dont-panic-type-assertion-safety</guid>
+      <guid>http://misfra.me/dont-panic-type-assertion-safety</guid>
       <description>
 
 &lt;p&gt;Go&amp;rsquo;s &lt;code&gt;container/heap&lt;/code&gt; package documentation has an &lt;a href=&#34;http://golang.org/pkg/container/heap/#example__intHeap&#34;&gt;example&lt;/a&gt; of an integer heap. Here&amp;rsquo;s an interesting part of it:&lt;/p&gt;
@@ -320,10 +320,10 @@ Thus, tree structures are better for immutability (as the damage is always local
     
     <item>
       <title>State of the... state!</title>
-      <link>http://localhost:1313/state-of-the-state</link>
+      <link>http://misfra.me/state-of-the-state</link>
       <pubDate>Tue, 17 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/state-of-the-state</guid>
+      <guid>http://misfra.me/state-of-the-state</guid>
       <description>
 
 &lt;p&gt;Three months ago, I started working on &lt;a href=&#34;https://github.com/PreetamJinka/fickle&#34;&gt;fickle&lt;/a&gt;, a key-value store written in Go. The point of this post is to just jot down some thoughts on where the project is right now and where I&amp;rsquo;d like to take it.&lt;/p&gt;
@@ -419,10 +419,10 @@ Thus, tree structures are better for immutability (as the damage is always local
     
     <item>
       <title>Types...</title>
-      <link>http://localhost:1313/types</link>
+      <link>http://misfra.me/types</link>
       <pubDate>Fri, 13 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/types</guid>
+      <guid>http://misfra.me/types</guid>
       <description>&lt;p&gt;What does this print?&lt;/p&gt;
 
 &lt;hr /&gt;
@@ -465,10 +465,10 @@ func main() {
     
     <item>
       <title>Magic.</title>
-      <link>http://localhost:1313/magic</link>
+      <link>http://misfra.me/magic</link>
       <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/magic</guid>
+      <guid>http://misfra.me/magic</guid>
       <description>&lt;p&gt;A friend was talking over dinner about when he was asked, during an interview, what happens when you type in a URL into an address bar in a browser. Lots of stuff happens!&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m just going to start listing stuff. It&amp;rsquo;s practically impossible for me to get everything, so I&amp;rsquo;ll just do a brain dump:&lt;/p&gt;
@@ -501,10 +501,10 @@ func main() {
     
     <item>
       <title>Rejecting customers</title>
-      <link>http://localhost:1313/rejecting-customers</link>
+      <link>http://misfra.me/rejecting-customers</link>
       <pubDate>Sat, 30 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/rejecting-customers</guid>
+      <guid>http://misfra.me/rejecting-customers</guid>
       <description>&lt;p&gt;When I first started &lt;a href=&#34;https://bitcable.com/&#34;&gt;Bitcable&lt;/a&gt;, I used to get really excited whenever I had a new order. It sounds great, right? A new customer, more revenue, getting bigger! Yay! And it was great. I thought it was perfect&amp;hellip; until there were trouble clients.&lt;/p&gt;
 
 &lt;p&gt;My &amp;ldquo;trouble client&amp;rdquo; classification is pretty diverse, in fact. I&amp;rsquo;ve had people open up support tickets constantly. Some have no idea how to manage servers and ask for help on trivial tasks. Sometimes, people break things and want me to fix them. There was once one guy who ordered a VM, paid his invoice, and then, less than 20 minutes later, opened a high priority support ticket asking why it wasn&amp;rsquo;t activated yet. In case you don&amp;rsquo;t know, &amp;ldquo;high priority&amp;rdquo; is for situations like &amp;ldquo;all of my services are down!&amp;rdquo;&lt;/p&gt;
@@ -523,10 +523,10 @@ func main() {
     
     <item>
       <title>Router-on-a-stick</title>
-      <link>http://localhost:1313/router-on-a-stick</link>
+      <link>http://misfra.me/router-on-a-stick</link>
       <pubDate>Wed, 27 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/router-on-a-stick</guid>
+      <guid>http://misfra.me/router-on-a-stick</guid>
       <description>&lt;p&gt;(This is an old post from July 2012.)&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://media.tumblr.com/6ab3187ba70814940579f613dd54e156/tumblr_inline_mwy0cl4GTl1rs73cz.jpg&#34; alt=&#34;&#34; /&gt;
@@ -583,10 +583,10 @@ protocols {
     
     <item>
       <title>Thoughts on garbage collection</title>
-      <link>http://localhost:1313/thoughts-on-garbage-collection</link>
+      <link>http://misfra.me/thoughts-on-garbage-collection</link>
       <pubDate>Sat, 23 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/thoughts-on-garbage-collection</guid>
+      <guid>http://misfra.me/thoughts-on-garbage-collection</guid>
       <description>
 
 &lt;p&gt;A few days ago, I was in the shower thinking about garbage collectors. I think some of my best ideas come from the shower, and I think it&amp;rsquo;s because I don&amp;rsquo;t have anything to distract me.&lt;/p&gt;
@@ -639,10 +639,10 @@ protocols {
     
     <item>
       <title>Non-blocking I/O thoughts</title>
-      <link>http://localhost:1313/non-blocking-i-o-thoughts</link>
+      <link>http://misfra.me/non-blocking-i-o-thoughts</link>
       <pubDate>Mon, 18 Nov 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/non-blocking-i-o-thoughts</guid>
+      <guid>http://misfra.me/non-blocking-i-o-thoughts</guid>
       <description>
 
 &lt;p&gt;I started using Node.js a long time ago. It was the first time I saw async execution outside of the browser. It was cool &amp;ndash; still is.&lt;/p&gt;
@@ -683,10 +683,10 @@ protocols {
     
     <item>
       <title>Digging deeper</title>
-      <link>http://localhost:1313/digging-deeper</link>
+      <link>http://misfra.me/digging-deeper</link>
       <pubDate>Wed, 16 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/digging-deeper</guid>
+      <guid>http://misfra.me/digging-deeper</guid>
       <description>&lt;p&gt;I&amp;rsquo;m starting to find kernel internals, debugging, tracing, and compilers really interesting.&lt;/p&gt;
 
 &lt;p&gt;Wait no, I&amp;rsquo;m finding interesting things about them.&lt;/p&gt;
@@ -697,10 +697,10 @@ protocols {
     
     <item>
       <title>What not to do...</title>
-      <link>http://localhost:1313/what-not-to-do</link>
+      <link>http://misfra.me/what-not-to-do</link>
       <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/what-not-to-do</guid>
+      <guid>http://misfra.me/what-not-to-do</guid>
       <description>&lt;p&gt;A web hosting provider called &amp;ldquo;Easy Hosting&amp;rdquo; shut down recently. Here&amp;rsquo;s what their website says right now:&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -732,10 +732,10 @@ Stuff like that showed up ALL THE TIME. I got annoyed. I got the impression that
     
     <item>
       <title>Hinting</title>
-      <link>http://localhost:1313/hinting</link>
+      <link>http://misfra.me/hinting</link>
       <pubDate>Tue, 06 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/hinting</guid>
+      <guid>http://misfra.me/hinting</guid>
       <description>&lt;p&gt;Can you tell the difference between these two images? Click on them to see a full-size version.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://static.misfra.me/images/hinted.png&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://media.tumblr.com/58bee817767f5dd8bc91ac8cc1b16495/tumblr_inline_mr52atpwFa1qz4rgp.png&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
