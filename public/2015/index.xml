@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2015s on Misframe</title>
+    <link>http://localhost:1313/2015/</link>
+    <description>Recent content in 2015s on Misframe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright &amp;copy; Preetam Jinka</copyright>
+    <lastBuildDate>Sun, 19 Apr 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/2015/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cistern: The Vision of Reinvented Network Monitoring</title>
+      <link>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</link>
+      <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</guid>
+      <description>
+
+&lt;h2 id=&#34;background:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;As a hosting provider, I&amp;rsquo;ve had my fair share of DDoS attacks. My company doesn&amp;rsquo;t do any peering with transit providers. We just have a single upstream provider at our Ashburn data center. My provider has an automated DDoS detection system, which is made from scratch, that detects anomalous flows and either automatically blocks traffic or sends email alerts. I sometimes get alerts forwarded to me in case it&amp;rsquo;s an outbound anomaly originating from one of my clients&amp;rsquo; VMs. I asked my provider for details and he was generous enough to share them, and I thought it was extremely fascinating. It isn&amp;rsquo;t very complicated and seems to work well. I&amp;rsquo;d rather not share details here, but I can get you in touch for more details.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A little over a year ago, one of my customers submitted a support ticket because his site was on the front page of Hacker News and lots of visitors were seeing CloudFlare errors because the origin server (hosted by me) wasn&amp;rsquo;t responding. I SSH&amp;rsquo;d into the cPanel server to see what was going on. Everything looked fine. I probably tweaked settings for 30 minutes or so until I gave up. I still didn&amp;rsquo;t know what was wrong.&lt;/p&gt;
+
+&lt;p&gt;I thought it may have been a network issue. I tried to SSH into another server. Connection timeout. Huh? I tried again. This time, it worked. I disconnected and tried repeatedly and it seemed like four in five attempts to connect would fail. I tried different servers. Same issue. It &lt;em&gt;has&lt;/em&gt; to be a switch issue, I thought. These are different physical machines, and the only thing they have in common is the switch. I&amp;rsquo;ve had switch problems before, and they&amp;rsquo;re extremely annoying to diagnose. This could be bad, I thought, especially since I didn&amp;rsquo;t have a spare switch. It&amp;rsquo;s worth mentioning that I was getting Panopta alerts for all servers during this time. &lt;em&gt;Preetam was probably in panic mode.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I asked my provider if they knew why my TCP connection establishment was so poor. We couldn&amp;rsquo;t figure it out. I was told that there was a big fiber cut in the DC area, and was sent the following message:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Welcome to the Cogent Communications status page. Customers located in the Washington DC area may be experiencing latency and/or packet loss. This is being caused by a fiber cut. Our fiber vendor is aware of the issue and working to repair the damage. There is currently no ETR. The master case is HD5615392.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The problem wasn&amp;rsquo;t solved even after the fiber cut issue was resolved. After some more communication with my provider, I was eventually told that there was a 32k/sec SYN rate limit placed on our network. Hitting that limit would explain why my connections were so horrible! But 32k/sec SYNs is &lt;em&gt;a lot&lt;/em&gt; of SYN traffic. Something weird is going on.&lt;/p&gt;
+
+&lt;p&gt;I wish I remembered how I solved the problem. Turns out that one of my clients&amp;rsquo; VM was sending an outbound attack with a high SYN rate, so that&amp;rsquo;s why we were hitting that rate. I spent &lt;em&gt;hours&lt;/em&gt; trying to figure out what was going on. I just wanted to figure out why my TCP traffic was doing so poorly. I should have asked a better question: &amp;ldquo;what is my network doing?&amp;rdquo;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Given the right tools, those problems could have been solved in seconds or minutes. Really. I am trying to build one, and it&amp;rsquo;s called Cistern.&lt;/p&gt;
+
+&lt;h2 id=&#34;cistern:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Cistern&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://preetamjinka.github.io/cistern/&#34;&gt;Cistern&lt;/a&gt; is a flow collector. I wrote about it previously &lt;a href=&#34;http://misfra.me/state-of-the-state-part-ii&#34;&gt;here&lt;/a&gt;. Its main purpose is to serve as the destination for flow data, in the form of packet samples and counters. It will aggregate these data, analyze them, and serve as a platform to build richer systems. I was certainly surprised to learn how much information can be extracted from packet samples. Those things are quite dense, and they provide a level of insight that you can&amp;rsquo;t get from any other method.&lt;/p&gt;
+
+&lt;p&gt;Flows are an efficient, scalable method of collecting information. Cistern currently decodes flows using the &lt;a href=&#34;http://sflow.org/&#34;&gt;sFlow&lt;/a&gt; protocol. sFlow does have its limitations. It isn&amp;rsquo;t very useful on its own, and in fact, it wasn&amp;rsquo;t designed to be. SNMP polling is used to fetch metadata, like interface names, when necessary. sFlow and SNMP together maximize monitoring capability.&lt;/p&gt;
+
+&lt;p&gt;This is a short summary of what I want to see in Cistern in the near future:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;State of the art software engineering and analytics&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Device autodiscovery&lt;/li&gt;
+&lt;li&gt;Automated threat detection&lt;/li&gt;
+&lt;li&gt;Efficient statistical analysis&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;High quality, language-agnostic APIs&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RESTful JSON&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Open-source core with plenty of features to start with&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Anomalous flow detection&lt;/li&gt;
+&lt;li&gt;Flood detection&lt;/li&gt;
+&lt;li&gt;IP spoof detection&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This whole project is like a big puzzle. I have a blurry vision of what it&amp;rsquo;ll end up like, but I&amp;rsquo;m basically starting from scratch. I need to figure out how to break it down into individual pieces, implement those pieces, and then figure out how to put everything together again.&lt;/p&gt;
+
+&lt;p&gt;Here are some of the pieces that I have so far:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cistern
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/cistern&#34;&gt;https://github.com/PreetamJinka/cistern&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Fully async, thread-safe SNMP v3 implementation. It uses a single socket for all SNMP traffic, so there is plenty of scalability
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/snmp&#34;&gt;https://github.com/PreetamJinka/snmp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Compressed time series storage engine written from scratch
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;https://github.com/PreetamJinka/catena&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The only open-source (as far as I know) sFlow implementation in Go
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/sflow&#34;&gt;https://github.com/PreetamJinka/sflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;OSI layer 2, 3, 4 protocol decoding
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/proto&#34;&gt;https://github.com/PreetamJinka/proto&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;AngularJS powered web UI
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/cistern/tree/gh-pages/ui&#34;&gt;https://github.com/PreetamJinka/cistern/tree/gh-pages/ui&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I think it&amp;rsquo;s a bit inaccurate to describe this as a monitoring system. I like the following comment someone made on Hacker News about Observium (something I &lt;a href=&#34;http://misfra.me/observium-annoys-me&#34;&gt;don&amp;rsquo;t like&lt;/a&gt;):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;(In response to &amp;ldquo;Observium: An auto-discovering network monitoring platform&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;Another system focused on the wrong thing in monitoring: on alerts and charts. Those are merely methods of consuming data, not the only ones and not even the most important ones a decent monitoring system should do.&lt;/p&gt;
+
+&lt;p&gt;Sending e-mail or displaying a set of charts or a status table is simple. Allowing to collect, collate and aggregate the data (metrics and events) in arbitrary way, also as an afterthought, is what monitoring system should do. With virtually everything on the market, when a need for any processing not anticipated by monitoring system author arises, one needs to write much stuff outside said system.&lt;/p&gt;
+
+&lt;p&gt;We need less systems resembling invoicing systems and more systems resembling general purpose databases.&lt;/p&gt;
+
+&lt;p&gt;This is why monitoring &lt;em&gt;still&lt;/em&gt; sucks.&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash; &lt;a href=&#34;https://news.ycombinator.com/item?id=9248672&#34;&gt;https://news.ycombinator.com/item?id=9248672&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I think it&amp;rsquo;s very important for Cistern to behave like a database of network data. We shouldn&amp;rsquo;t just want charts and thresholds! Imagine having access to top flows, top talkers, aggregations and time series of protocol metrics, hardware diagnostics, and more, all from a web UI, JSON API, or query language. Cistern should be a tool and not just a resource.&lt;/p&gt;
+
+&lt;h2 id=&#34;business-model:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Business model&lt;/h2&gt;
+
+&lt;p&gt;This is my startup idea. I think there is business potential here, but that is not my primary goal. I think it&amp;rsquo;s important for everyone to have access to tools that provide more insight into networks. That&amp;rsquo;s why Cistern will always have a free and open core. I want it to be accessible so even 16-year-olds can use it, dig around the source code, make changes, and learn. I think I would have wanted something like that when I was younger. More realistically though, I think the small-scale hosting providers would need this more than anyone. They probably don&amp;rsquo;t make enough to spend thousands on monitoring software, and they probably don&amp;rsquo;t have the resources to administer their network as much as it needs.&lt;/p&gt;
+
+&lt;p&gt;I think there is a lot of opportunity for revenue with support and custom integrations. I think this makes a lot of sense for an open-source project. Custom additions to fit into a specific environment will require development regardless of what tools you choose, so maybe it would be better if the original developers do it? I can already imagine people building plugins to inject rules or configuration updates into OpenBSD firewalls, Cisco, Brocade, and Juniper routers and switches, and so on.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s &lt;a href=&#34;http://misfra.me/no-rush&#34;&gt;no rush&lt;/a&gt; for me to start a new business right now.&lt;/p&gt;
+
+&lt;h2 id=&#34;requests:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Requests&lt;/h2&gt;
+
+&lt;p&gt;I don&amp;rsquo;t think Cistern is ready for others to use yet, but I&amp;rsquo;d like to get some alpha testers at some point. I&amp;rsquo;m mainly building it for myself at this point, but it would be useful to hear what others want to see.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m also looking for donations! I&amp;rsquo;d like to add support for Cisco NetFlow but I don&amp;rsquo;t have any Cisco gear. If you are, or someone you know is, willing to donate Cisco hardware that supports NetFlow (or just SNMP), let me know.&lt;/p&gt;
+
+&lt;h2 id=&#34;why-don-t-you-just-use:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Why don&amp;rsquo;t you just use ____?&lt;/h2&gt;
+
+&lt;p&gt;Building from scratch is a great way to learn.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Optimizing Concurrent Map Access in Go</title>
+      <link>http://localhost:1313/optimizing-concurrent-map-access-in-go</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/optimizing-concurrent-map-access-in-go</guid>
+      <description>
+
+&lt;p&gt;One of the more contentious sections of code in &lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;Catena&lt;/a&gt;, my time series storage engine, is the function that fetches a &lt;code&gt;metricSource&lt;/code&gt; given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we&amp;rsquo;ll have to have some sort of synchronization.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this function is to retrieve a pointer to an object given its name. If it doesn&amp;rsquo;t exist, it creates one and returns a pointer to it. The data structure used is a &lt;code&gt;map[string]*metricSource&lt;/code&gt;. The key fact to remember is that elements are &lt;em&gt;only inserted&lt;/em&gt; into the map.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple implementation. I have excluded the function header and return statement to save space.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+p.lock.Lock() // lock the mutex
+defer p.lock.Unlock() // unlock the mutex at the end
+
+if source, present = p.sources[name]; !present {
+	// The source wasn&#39;t found, so we&#39;ll create it.
+	source = &amp;amp;memorySource{
+		name: name,
+		metrics: map[string]*memoryMetric{},
+	}
+
+	// Insert the newly created *memorySource.
+	p.sources[name] = source
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have a benchmark that inserts time series points into the database. Again, each insert has to
+call this function to get the pointer to the metric source it has to update.&lt;/p&gt;
+
+&lt;p&gt;This one gets about &lt;strong&gt;1,400,000 inserts / sec&lt;/strong&gt; with four goroutines running in parallel
+(i.e. &lt;code&gt;GOMAXPROCS&lt;/code&gt; is set to 4). This may seem fast, but it&amp;rsquo;s actually &lt;em&gt;slower&lt;/em&gt; than having
+one goroutine do all the work. If you&amp;rsquo;re thinking lock contention, you&amp;rsquo;re right.&lt;/p&gt;
+
+&lt;p&gt;So, what&amp;rsquo;s the problem here? Let&amp;rsquo;s consider a simplified case where there are no
+inserts into the map. Suppose goroutine 1 wants to get source &amp;ldquo;a&amp;rdquo; and goroutine 2 wants
+to get &amp;ldquo;b&amp;rdquo;, and assume &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; are already in the map. With the given implementation,
+the first one will grab the lock, get the pointer, unlock, and move on. Meanwhile, the other
+goroutine is stuck waiting to grab the lock. Waiting on that lock seems like a pretty bad use of time!
+This gets worse and worse as you add more goroutines.&lt;/p&gt;
+
+&lt;p&gt;One way to make this faster is to remove the lock and make sure only one goroutine accesses the map.
+That&amp;rsquo;s simple enough but you have to give up scalability. Here&amp;rsquo;s an alternative that&amp;rsquo;s just as simple
+&lt;em&gt;and&lt;/em&gt; maintains thread-safety.&lt;/p&gt;
+
+&lt;p&gt;This change only takes one more line and an additional character, but will keep getting faster as
+you scale up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+if source, present = p.sources[name]; !present { // added this line
+	// The source wasn&#39;t found, so we&#39;ll create it.
+
+	p.lock.Lock() // lock the mutex
+	defer p.lock.Unlock() // unlock at the end
+
+	if source, present = p.sources[name]; !present {
+		source = &amp;amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	// if present is true, then another goroutine has already inserted
+	// the element we want, and source is set to what we want.
+
+} // added this line
+
+// Note that if the source was present, we avoid the lock completely!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;5,500,000 inserts / sec.&lt;/strong&gt; This is &lt;strong&gt;3.93 times&lt;/strong&gt; as fast. Recall that I had four goroutines
+running in parallel, so this increase makes sense.&lt;/p&gt;
+
+&lt;p&gt;This works because we&amp;rsquo;re never deleting sources, and the addresses don&amp;rsquo;t change. If we have
+a pointer address in CPU cache, we can use it safely even if the map is changing below us.
+Notice how we still need the mutex. If we didn&amp;rsquo;t have it, there would be a race condition
+where one goroutine will realize that it has to create the source and insert it, but another
+may insert it in the middle of that sequence. This way, we only hit the lock during inserts into
+the map, but those are relatively rare.&lt;/p&gt;
+
+&lt;p&gt;My colleague &lt;a href=&#34;https://twitter.com/JohnPotocny1&#34;&gt;John Potocny&lt;/a&gt; suggested that I remove the &lt;code&gt;defer&lt;/code&gt;
+because it has nontrivial overhead. He was right. One more &lt;em&gt;very&lt;/em&gt; minor change and I was amazed
+at the result.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+if source, present = p.sources[name]; !present {
+	// The source wasn&#39;t found, so we&#39;ll create it.
+
+	p.lock.Lock() // lock the mutex
+	if source, present = p.sources[name]; !present {
+		source = &amp;amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock() // unlock the mutex
+}
+
+// Note that if the source was present, we avoid the lock completely!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This version gets &lt;strong&gt;9,800,000 inserts / sec&lt;/strong&gt;. That&amp;rsquo;s &lt;strong&gt;7 times&lt;/strong&gt; faster
+with only about 4 lines changed.&lt;/p&gt;
+
+&lt;h3 id=&#34;edit:206870acf6ffd224a29b01999a84c0b1&#34;&gt;Edit:&lt;/h3&gt;
+
+&lt;p&gt;Is this correct? Unfortunately, no! There is still a race condition, and it&amp;rsquo;s easy to find
+using the race detector. We can&amp;rsquo;t guarantee the integrity of the map for readers while there
+is a writer.&lt;/p&gt;
+
+&lt;p&gt;Here is the race-free, thread-safe, &amp;ldquo;correct&amp;rdquo; version. Using an RWMutex, readers won&amp;rsquo;t block each other
+but writers will still be synchronized.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+p.lock.RLock()
+if source, present = p.sources[name]; !present {
+	// The source wasn&#39;t found, so we&#39;ll create it.
+	p.lock.RUnlock()
+	p.lock.Lock()
+	if source, present = p.sources[name]; !present {
+		source = &amp;amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock()
+} else {
+	p.lock.RUnlock()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This version is &lt;strong&gt;93.8%&lt;/strong&gt; as fast as the previous one, so still very good. Of course, the previous version
+isn&amp;rsquo;t correct, so there shouldn&amp;rsquo;t even be a comparison.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>State of the State Part III</title>
+      <link>http://localhost:1313/state-of-the-state-part-iii</link>
+      <pubDate>Thu, 05 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/state-of-the-state-part-iii</guid>
+      <description>
+
+&lt;p&gt;First, I suggest reading Baron&amp;rsquo;s &lt;a href=&#34;http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/&#34;&gt;&amp;ldquo;Time-Series Database Requirements&amp;rdquo;&lt;/a&gt; blog post to get some more context for this post. I read that and, as I usually do, had my mind set on low-level thoughts. I wrote the following comment:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/preetam-comment.jpg&#34; alt=&#34;Preetam&#39;s comment&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I took this screenshot a few months ago, so it has actually been almost a year since I wrote that. Time flies!&lt;/p&gt;
+
+&lt;h2 id=&#34;cistern-s-graphs:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Cistern&amp;rsquo;s graphs&lt;/h2&gt;
+
+&lt;p&gt;Cistern had graphs back in October 2014. I think I used my &lt;a href=&#34;https://github.com/PreetamJinka/metricstore&#34;&gt;metricstore&lt;/a&gt; package. I&amp;rsquo;m not sure because I think I was switching storage engines every other week! I had both BoltDB and SQLite in the source code at some points in the past.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;More progress! &lt;a href=&#34;http://t.co/UBG4gDBjvA&#34;&gt;pic.twitter.com/UBG4gDBjvA&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/521866847608922112&#34;&gt;October 14, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The issue was always getting graphs &amp;ldquo;right.&amp;rdquo;  Every method I used seemed like a hack. And they &lt;em&gt;were&lt;/em&gt; hacks. Nothing I used was specifically made for time series data. Bolt and SQLite are not very well suited for time series, and metricstore is as about as good as storing a CSV for each metric. I needed something better. A couple of days of thinking and about three days of coding, I had something I named &lt;em&gt;catena&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;catena:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Catena&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;n.&lt;/em&gt; A closely linked series.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Catena is a time series storage engine written in Go. It started off very simple (as most things do). In the beginning, the most advanced data structure I used was an array. The implementation has changed since I started writing this post, but the overall design is the same.&lt;/p&gt;
+
+&lt;p&gt;I wrote Catena from scratch. I think it&amp;rsquo;s the best way to understand things completely. However, the ideas aren&amp;rsquo;t completely new. You can definitely see how some things were inspired by LevelDB and other log-structured merge systems. Unlike many of those storage engines, Catena is written specifically for time series. Time series data has very interesting characteristics, and the goal was to develop something that suits those characteristics well.&lt;/p&gt;
+
+&lt;p&gt;The fundamental unit in Catena is a point. A point is like a point on a time series line plot. Points are tuples with a timestamp and a value. A point belongs to a metric, which is something like &lt;code&gt;mem.bytes_free&lt;/code&gt;. A metric has an arbitrary number of points. A metric belongs to a source, which is something like &lt;code&gt;server.misfra.me&lt;/code&gt;. To reiterate, points belong to metrics, which belong to sources.&lt;/p&gt;
+
+&lt;p&gt;For various reasons, everything is separated into partitions. Partitions are chunks of time series data with disjoint timestamp ranges. &lt;em&gt;Nothing&lt;/em&gt; is shared between partitions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/partitions.jpg&#34; alt=&#34;Partitions&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The most recent partitions are stored entirely in memory. Older partitions are compressed and stored as individual files on disk.&lt;/p&gt;
+
+&lt;p&gt;The following image shows how I view partitions. The in-memory partition structure looks a lot like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/partition-view.jpg&#34; alt=&#34;Logical view of a partition&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;h1&lt;/code&gt; and &lt;code&gt;h2&lt;/code&gt; are sources, and &lt;code&gt;m1&lt;/code&gt; to &lt;code&gt;m5&lt;/code&gt; are metrics.&lt;/p&gt;
+
+&lt;p&gt;The on-disk partition format looks something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/file-format.jpg&#34; alt=&#34;File format&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;A, B, ..., J&lt;/code&gt; are arrays of points. They are compressed using gzip compression.
+The metadata at the end stores sources, metrics, and the offsets of the beginning of each point array. When a file partition is opened, its file is memory mapped and the metadata is read into memory in a structure very similar to an in-memory partition, excluding the points themselves. During queries, we look up the offset from the metadata structure, seek, and read the points off. With the current implementation, there is only one seek per metric. Concurrent reads are trivial with file partitions because they are read-only.&lt;/p&gt;
+
+&lt;p&gt;Although I did not know about it when I wrote Catena, Apache Parquet&amp;rsquo;s &lt;a href=&#34;http://parquet.incubator.apache.org/documentation/latest/&#34;&gt;file format&lt;/a&gt; is very similar to what Catena uses. Validation!&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s the basic overview of how things work. Stop here if you&amp;rsquo;re confused already. We&amp;rsquo;re going to dig deep into the internals next.&lt;/p&gt;
+
+&lt;h2 id=&#34;wal:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;WAL&lt;/h2&gt;
+
+&lt;p&gt;Any decent storage engine offers durability guarantees. A write-ahead log is a simple way of doing so. The API to insert data into Catena accepts &lt;em&gt;rows&lt;/em&gt;, which have the following format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+    {&amp;quot;source&amp;quot;: &amp;quot;my.source&amp;quot;, &amp;quot;metric&amp;quot;: &amp;quot;my.metric&amp;quot;, &amp;quot;timestamp&amp;quot;: 1234, &amp;quot;value&amp;quot;: 0.5},
+    {&amp;quot;source&amp;quot;: &amp;quot;my.source&amp;quot;, &amp;quot;metric&amp;quot;: &amp;quot;my.metric&amp;quot;, &amp;quot;timestamp&amp;quot;: 1235, &amp;quot;value&amp;quot;: 0.7},
+    {&amp;quot;source&amp;quot;: &amp;quot;another.source&amp;quot;, &amp;quot;metric&amp;quot;: &amp;quot;my.metric&amp;quot;, &amp;quot;timestamp&amp;quot;: 1234, &amp;quot;value&amp;quot;: 2.12}
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each entry in the WAL is basically a serialization of a set of rows. It&amp;rsquo;s good to batch up a decent number of rows so you can do page-size writes to your filesystem. The serialization format is pretty simple. WAL entries are not compressed, but that should be an easy modification.&lt;/p&gt;
+
+&lt;p&gt;If something goes wrong during a write, the WAL gets truncated at the end of the last good record. This allows for easy recovery after a crash, but it does not protect against data corruption. If you have a bad record in the middle of your WAL, you would lose the rest of the data following that entry.&lt;/p&gt;
+
+&lt;h2 id=&#34;memory-partitions:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Memory partitions&lt;/h2&gt;
+
+&lt;p&gt;The in-memory partitions are the only writable partitions. They exist completely in memory. Each memory partition gets a WAL. Writes first get appended to the WAL, and then make their way into the data structures in memory.&lt;/p&gt;
+
+&lt;p&gt;An interesting fact here is that writes do not have to be strictly in time order. Catena accepts a certain amount of &amp;ldquo;jitter&amp;rdquo; in the timestamps. Points get inserted in order once they are received. In order to support this, however, we need to keep more than one partition writable. If we receive points out of order, we may cross a partition boundary with one point, and then receive a point that belongs in the previous partition. This gives a generous amount of time to accept delayed writes. If your partition sizes are one hour, then you can potentially accept writes at least about an hour late.&lt;/p&gt;
+
+&lt;p&gt;Memory partitions are goroutine-safe. The current implementation uses lock-free lists for sources, metrics, and points.&lt;/p&gt;
+
+&lt;h2 id=&#34;file-partitions:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;File partitions&lt;/h2&gt;
+
+&lt;p&gt;On-disk partitions are simple, and perhaps a little boring. They are read-only and are memory-mapped. Catena actually uses the &lt;code&gt;PROT_READ&lt;/code&gt; flag only with &lt;code&gt;mmap&lt;/code&gt;, so mapped pages are not writable (and attempts to write will trigger a segmentation fault). No locks are used with file partitions and one can have as many concurrent readers as possible.&lt;/p&gt;
+
+&lt;p&gt;Once there are too many in-memory partitions, the oldest gets &amp;ldquo;compacted.&amp;rdquo; Catena iterates through every source and every metric and flushes the points into a compressed gzip chunk and remembers the offset. Each points array is compressed separately. At the end, the metadata and associated offsets are appended to the file.&lt;/p&gt;
+
+&lt;p&gt;gzip compression is important. I chose gzip over something like Snappy because it uses &lt;a href=&#34;https://en.wikipedia.org/wiki/Entropy_encoding&#34;&gt;entropy encoding&lt;/a&gt;. Entropy encoding is &lt;em&gt;very&lt;/em&gt; good with patterns. This is great for time series data, especially if it is stored as packed arrays of (timestamp, value) tuples. Consider the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Timestamp | Value
+--------- | -----
+0x001234  | 0
+0x011234  | 0
+0x021234  | 0
+0x031234  | 0
+0x041234  | 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the timestamps are stored in &lt;em&gt;little-endian&lt;/em&gt; format, so the values are increasing by one. The values are obviously all zeros. If you put the rows next to each other, side by side, you&amp;rsquo;ll notice that &lt;code&gt;1234 0&lt;/code&gt; shows up often (every row has this, in fact). This pattern compresses quite well. Just for fun, I checked what the difference between little-endian timestamps and big-endian timestamps, and it turns out that big-endian timestamps are about 13.7% worse in terms of space.&lt;/p&gt;
+
+&lt;h2 id=&#34;drawbacks:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Drawbacks&lt;/h2&gt;
+
+&lt;p&gt;Catena isn&amp;rsquo;t very good with large partitions. If you have a metric with a million points in a partition, and you wanted to get the last point for that metric in that partition, you actually have to read every point because there is only one gzip stream. Splitting up points into smaller extents would be a good idea here. Realistically though, a million points per partition does not seem wise, but maybe it won&amp;rsquo;t be that bad when we get extents.&lt;/p&gt;
+
+&lt;p&gt;Catena also isn&amp;rsquo;t very good if you have lots of metrics with a single point. If you have a million metrics in a file partition, all of their metadata will be stored in memory. I don&amp;rsquo;t have a plan to address this issue right now, but I&amp;rsquo;m thinking along the lines of just keeping this stuff off memory and streaming it off disk when needed.&lt;/p&gt;
+
+&lt;p&gt;WAL recovery is also rather slow. It currently takes me about 20 minutes to recover from a 100 MB WAL on a 512 MB DigitalOcean droplet. I&amp;rsquo;m not entirely sure what the issue is, but since this is written in Go, I can get some CPU profiles and see where the hot spots are.&lt;/p&gt;
+
+&lt;p&gt;The current version (also the first) of Catena doesn&amp;rsquo;t have a good API for reading. It has this notion of a &amp;ldquo;query,&amp;rdquo; which is a lot like a &amp;ldquo;I want series X from t1 to t2, Y from t3 to t4, and Z from t1 to t4.&amp;rdquo; You send that to Catena and it gives you  a struct with everything you asked for. This is great for a proof-of-concept, but it&amp;rsquo;s horrible in practice. Everything should really be in the form of iterators. I like the idea of an iterator next() call reading data off the disk and streaming it straight to a browser as fast as possible. This would not be too easy if everything had slices of points in memory protected by locks, but it&amp;rsquo;s much more realistic when you have linked lists with nodes you can &amp;ldquo;park&amp;rdquo; iterators on without causing concurrency trouble.&lt;/p&gt;
+
+&lt;h2 id=&#34;final-thoughts:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Final thoughts&lt;/h2&gt;
+
+&lt;p&gt;Catena is on &lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;GitHub&lt;/a&gt; and is generously licensed with the BSD license.&lt;/p&gt;
+
+&lt;p&gt;This is the most technical post of the series! I hope I can keep this pattern going for future posts. &lt;a href=&#34;http://misfra.me/state-of-the-state&#34;&gt;Part I&lt;/a&gt; and &lt;a href=&#34;http://misfra.me/state-of-the-state-part-ii&#34;&gt;part II&lt;/a&gt; of this series are also available if you&amp;rsquo;re interested.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Break-in</title>
+      <link>http://localhost:1313/break-in</link>
+      <pubDate>Sun, 08 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/break-in</guid>
+      <description>&lt;p&gt;Someone broke into my server.&lt;/p&gt;
+
+&lt;p&gt;I was at beSwarm yesterday with my &amp;ldquo;social networking&amp;rdquo; setup.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Social networking! &lt;a href=&#34;http://t.co/fdApIwlKyy&#34;&gt;pic.twitter.com/fdApIwlKyy&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/564090574009929728&#34;&gt;February 7, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;I was demoing &lt;a href=&#34;http://preetamjinka.github.io/cistern/&#34;&gt;Cistern&lt;/a&gt; in some form. Cistern doesn&amp;rsquo;t expose much to the user right now since most of my time was spent on very core features. So, what most people usually saw was the terminal log output. It&amp;rsquo;s still a little interesting because you can see it do some basic host discovery using SNMP, and it prints flow data as it arrives.&lt;/p&gt;
+
+&lt;p&gt;It looks like this. Sorry about the wrapping.
+&lt;img src=&#34;http://static.misfra.me/images/posts/break-in/cistern-log.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I grabbed that screenshot as I was demoing it to someone. It&amp;rsquo;s live flow data. If you look carefully, you&amp;rsquo;ll see that most of the lines show my blog&amp;rsquo;s IP sending UDP packets to some IP&amp;rsquo;s port 22. This only a sample (1 in 1024, in fact) of the packets. Therefore, there are lots of packets going out.&lt;/p&gt;
+
+&lt;p&gt;My blog, which runs on a BeagleBone Black, does not produce this kind of traffic. Something&amp;rsquo;s up.&lt;/p&gt;
+
+&lt;p&gt;I grabbed my laptop and went aside to check up on things. I logged in, and yep. The load average was about 4 on this single core ARM machine and there were weird processes running as the &amp;ldquo;debian&amp;rdquo; user and taking up lots of CPU time. I &lt;em&gt;know&lt;/em&gt; I don&amp;rsquo;t run anything as that user. I checked tcpdump and there were lots of IRC packets going over the wire. I knew immediately that some script kiddie got in and made my server part of an IRC controlled botnet.&lt;/p&gt;
+
+&lt;p&gt;I took care of the issue. How did this happen? I made a silly mistake. The &lt;a href=&#34;http://elinux.org/BeagleBoardDebian&#34;&gt;Debian image&lt;/a&gt; for the BeagleBone Black comes set up with a &amp;ldquo;debian&amp;rdquo; user with the default password &amp;ldquo;temppwd&amp;rdquo;. I always use root with key-based authentication, so I forgot about this user. I apparently did not change the password. Leaving a default combination like that on a publicly accessible server is not good.&lt;/p&gt;
+
+&lt;p&gt;By the way, the script they ran is at the following address: &lt;a href=&#34;http://mui3.ucoz.com/maxx.txt&#34;&gt;http://mui3.ucoz.com/maxx.txt&lt;/a&gt;. Notice how it disguises itself (&lt;code&gt;my @ps = . . .&lt;/code&gt;).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This made me upset, but it also made me excited. I saw, for myself, that my tool is useful. It doesn&amp;rsquo;t even do much right now but it has helped me already. I&amp;rsquo;m excited to think that this can be automated and become a valuable tool. Someone asked me yesterday if I had plans to sell this and I said, &amp;ldquo;no, it&amp;rsquo;s all open source.&amp;rdquo; It&amp;rsquo;ll stay open. My plan is to disrupt network monitoring by making the most technically advanced software possible and keeping it completely open.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/break-in/plots.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Something awesome is coming.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Personal projects, knowledge, and intuition</title>
+      <link>http://localhost:1313/personal-projects-knowledge-intuition</link>
+      <pubDate>Wed, 21 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/personal-projects-knowledge-intuition</guid>
+      <description>&lt;p&gt;I had a short conversation with someone recently about having personal projects and applying to internships. The short version of what he said is,&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I do my school work well and good grades. Besides that, I also do well during internships. Why do I need personal projects?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(The following represent my own views. This is a personal blog after all, and this is just, like, my opinion, man.)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Just for fun, I did a quick search on personal projects to see what kind of links would show up.
+&lt;img src=&#34;http://i.imgur.com/FcmrHYL.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Design, photography, and art. I was not surprised. I predicted that photography would show up. When people look for individuals for some sort of artistic or creative position, I think they&amp;rsquo;re always looking for some sort of portfolio. If you&amp;rsquo;re just getting started &amp;ndash; perhaps as an intern &amp;ndash; your portfolio would only have personal projects. I think portfolios show skill, personality, and experience. How else could you get those?&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;For a student who does not have personal projects, are school work and past work the only significant things one can look at? I am very opinionated against school work. I don&amp;rsquo;t think learning about programming in school will make you a good programmer. And past work or past internships? I&amp;rsquo;m not entirely sure how useful this information is.&lt;/p&gt;
+
+&lt;p&gt;People might talk about how personal projects on GitHub are a demonstration of skill, work ethic, and other good things. I don&amp;rsquo;t necessarily disagree, but there is more to it! It&amp;rsquo;s not just about programming. Being able to get work done correctly and efficiently is how we judge machines. This is about people. Personal projects are your own. They&amp;rsquo;re a part of your personality. They&amp;rsquo;re something you care about. Of all the things you could be doing, you choose to work on them. What keeps you going when no one else is looking tells a lot about who you are.&lt;/p&gt;
+
+&lt;p&gt;Over the years I think I&amp;rsquo;ve come to realize that what separates the great programmers from the rest is the fact that the former know more about what &lt;em&gt;not&lt;/em&gt; to do. They&amp;rsquo;ve done it all, and they know what doesn&amp;rsquo;t work. Everyone makes mistakes, but usually they happen once or twice. The great programmers go about with the experience of many mistakes. The beginners don&amp;rsquo;t, and the only way to change that is to make lots of mistakes. Personal projects are &lt;em&gt;perfect&lt;/em&gt; for them. There&amp;rsquo;s no risk! A friend once told me that interns are either an asset or a liability. People who have made many mistakes (&lt;em&gt;and&lt;/em&gt; learned from them) are great assets in my opinion.&lt;/p&gt;
+
+&lt;p&gt;I think the &lt;em&gt;most important&lt;/em&gt; aspect of personal projects is that they increase one&amp;rsquo;s intuition. There&amp;rsquo;s knowledge &amp;ndash; knowing something, how it works, and so on. I think there&amp;rsquo;s a layer above that which is knowing &lt;em&gt;why&lt;/em&gt; something works. And then I like to believe there&amp;rsquo;s a layer above that which is rather difficult to explain. It&amp;rsquo;s like understanding at a very deep level. I call it intuition, but that may be the wrong word here. I like to credit all of my interesting ideas to this intuition.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A few weeks ago, I learned about &lt;a href=&#34;http://hackcville.com/&#34;&gt;HackCville&lt;/a&gt;&amp;rsquo;s &lt;a href=&#34;http://januaryterm.splashthat.com/&#34;&gt;Land A Startup Internship&lt;/a&gt; course. I don&amp;rsquo;t like this for many reasons, but I&amp;rsquo;ll focus on the following taken from their site:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learn about the importance of side projects and how to start them.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Side projects demonstrate self-directed learning and curiosity that will set you apart from your peers.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yes, side projects (or personal projects, as I refer to them) are very important. I don&amp;rsquo;t like the fact that someone would start a personal project to land an interview. That&amp;rsquo;s not genuine. I think there&amp;rsquo;s something wrong if you need to fake who you are or what you do to get the opportunities that you want. I also want to say that a quality like that isn&amp;rsquo;t just unhelpful, but perhaps even negative.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I take personal projects seriously, and I think they&amp;rsquo;re &lt;em&gt;very&lt;/em&gt; important for college students who don&amp;rsquo;t have a lot of professional experience. There are &lt;em&gt;many&lt;/em&gt; computer science students at UVA, and they&amp;rsquo;re all basically learning the same things. The interesting students have exciting projects that they work on and like to talk about. The others are, well, kind of boring. Sometimes it&amp;rsquo;s fine to be boring :).&lt;/p&gt;
+
+&lt;p&gt;Thanks to Abi for reading a draft of this.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Callback Magic with Go? &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://localhost:1313/callback-magic-with-go" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2013-06-04T00:00:00Z" />
+  
+  
+
+  <title>
+     Callback Magic with Go? &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://localhost:1313/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Callback Magic with Go?</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2013-06-04T00:00:00Z">
+          Jun 4, 2013
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    <p>Go sounds great. You can write concurrent programs using goroutines and
+channels without ever touching that callback nonsense, right? Yeah!</p>
+
+<p></p></p>
+
+<p>I love FoundationDB. On the surface it’s extremely easy to use — it’s
+just a key-value store. All of the complexities are so well abstracted
+that you don’t have to worry about them. I wanted to try to use
+FoundationDB with Go. However, there’s no Go driver for it yet. I
+decided I should try to fix that.</p>
+
+<p></p></p>
+
+<p>FoundationDB’s <a href="http://foundationdb.com/documentation/beta1/api-c.html">C-API</a> works with <a href="http://en.wikipedia.org/wiki/Futures_and_promises">futures</a>. There’s no way around
+them. Now, you can use futures in two ways. You can block and wait for a
+future to be ready, or you can set a callback (ew!).</p>
+
+<p></p></p>
+
+<p>Blocking doesn’t sound so bad with Go, right? If you have something that
+takes a long time, you’ll run it in a separate goroutine and keep going
+in your program. Goroutines are cheaper than threads so you don’t have
+to worry about a lot of overhead. I figured I could just launch a new
+goroutine and block for the future inside. Note that this doesn’t block
+the main program.</p>
+
+<p></p></p>
+
+<p>As it turns out, if you have a blocking system call in a goroutine, it
+will not yield to the scheduler. Keep in mind that a single OS thread
+will have multiple goroutines running on it. Go creates a maximum of N
+OS threads where N is the number of CPU cores you have available. If the
+Go runtime sees that a goroutine will not yield, it will spin up a new
+<em>OS thread</em>! These new threads don’t count towards the maximum.</p>
+
+<p></p></p>
+
+<p>So here’s the deal. If I end up creating 100 futures and block each of
+them in a separate goroutine, I’m essentially creating 100 OS threads.
+Suddenly, the idea of cheap goroutines is gone and I’m left with a
+poorly designed program. There’s only one option left: callbacks.</p>
+
+<p></p></p>
+
+<p>Here’s how to get futures working with Go. FoundationDB’s
+<code>fdb_future_set_callback</code> takes a function pointer and a callback
+argument that gets passed into the function. First you have to create a
+Go function that takes a pointer to a channel and sends something on the
+channel. This will be the callback. You’ll create a channel in your main
+program, and when you need the future to be ready, you’ll read something
+from the channel. If the future’s not ready, it’ll block. Otherwise,
+you’ll get a result immediately.</p>
+
+<p></p></p>
+
+<p>I know this is hard to follow. It takes a while to wrap your head around
+it. In the end, an end-user doesn’t really care. All of this callback
+magic is abstracted away and you end up with a really easy-to-use
+database driver.</p>
+
+<p></p></p>
+
+<p><a href="https://github.com/PreetamJinka/fdbgo">Take a look at the entire prototype.</a></p>
+
+<p></p></p>
+
+  </section>
+  <footer>
+  
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://localhost:1313/potential"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://localhost:1313/8-hours">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

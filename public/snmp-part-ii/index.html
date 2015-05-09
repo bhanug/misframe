@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" SNMP Part II &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://localhost:1313/snmp-part-ii" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2014-11-17T00:00:00Z" />
+  
+  
+
+  <title>
+     SNMP Part II &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://localhost:1313/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">SNMP Part II</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2014-11-17T00:00:00Z">
+          Nov 17, 2014
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>This post is more about the details of how SNMP is currently implemented in Cistern.
+The code at the latest commit as I write this is <a href="https://github.com/PreetamJinka/cistern/tree/4f57ab68c9a18266908a7221823b24085bd39d1c/net/snmp">here</a>.</p>
+
+<p>SNMP communication itself is pretty simple. There are requests and responses.</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-ii/get-request-response.jpg" alt="" />
+</p>
+
+<p><em>PDU</em> stands for &ldquo;protocol data unit.&rdquo; I think of them as structs. If you look
+in the RFCs you&rsquo;ll see them defined like this, in the ASN.1 language:</p>
+
+<pre><code>GetResponse-PDU ::=
+  [2]
+      IMPLICIT SEQUENCE {
+          request-id
+              RequestID,
+
+          error-status
+              ErrorStatus,
+
+          error-index
+              ErrorIndex,
+
+          variable-bindings
+              VarBindList
+      }
+</code></pre>
+
+<p>That&rsquo;s a pretty dense way of describing a <code>GetResponse</code>. You can just think
+of the <code>GetRequest</code> and <code>GetResponse</code> PDUs as structs with certain fields.</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-ii/get-request-response-pdus.jpg" alt="" />
+</p>
+
+<p>You&rsquo;ll notice that they have the same structure. The only thing that changes between the two
+is the PDU type identifier which goes in the header and the <code>VarBindList</code>. The <code>RequestID</code>
+stays the same. This is how you know which request you got a response to, and it&rsquo;s very important.</p>
+
+<hr />
+
+<p>If you run Wireshark (or tcpdump) as you run <code>snmpget</code> (or Cistern :P) over SNMPv3 with encryption,
+you&rsquo;ll see something like this:</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-ii/wireshark-screenshot.png" alt="" />
+</p>
+
+<p>There are four packets of communication. The last two are encrypted. You see the first two show up
+because they are required to fetch the necessary parameters to do encryption.</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-ii/discovery.jpg" alt="" />
+</p>
+
+<p>The <code>GetRequest</code> is blank. The response is a <code>Report</code>, a PDU similar to a <code>GetResponse</code>. It&rsquo;s
+returning a COUNTER of how many invalid SNMP packets were dropped. The important part of this
+response is that we get the following parameters necessary for encryption: <code>EngineID</code>, <code>EngineTime</code>,
+and <code>EngineBoots</code>. Once we have those parameters, we can start encrypting the rest of our packets.</p>
+
+<hr />
+
+<p>This is what SNMP communication may potentially look like:</p>
+
+<p><img src="http://static.misfra.me/images/posts/snmp-part-ii/communication-diagram.jpg" alt="" />
+</p>
+
+<p>Things are out of order, lots of things are going on at the same time, and it&rsquo;s all happening
+over a single port. I suppose you <em>could</em> open a new socket for each request, but that&rsquo;s not
+scalable at all! So this is our situation: a single socket with request-response sequences
+happening concurrently, and it has to be really fast and efficient.</p>
+
+<h2 id="concurrency-for-the-win:02dad372be9ac2904e7edfac9ac7ddac">Concurrency for the win</h2>
+
+<p>It turns out that it&rsquo;s quite simple to structure a program using goroutines and channels
+to handle this scenario. We basically have to send requests over the socket, receive responses,
+and send the corresponding response to whatever made that request. Here&rsquo;s how Cistern does it
+at the moment:</p>
+
+<ol>
+<li>Create a map from <code>RequestID</code>s to channels.</li>
+<li>Start a goroutine that listens on the socket, decodes the <code>RequestID</code> from response PDUs, and sends
+to a corresponding channel in the map.</li>
+<li>If a channel is found, send the response data to it.</li>
+<li>Delete the channel from the map.</li>
+</ol>
+
+<p>That goroutine keeps running for the length of the session. Nothing else is reading from that socket.</p>
+
+<p>Then, when a request is to be made:</p>
+
+<ol>
+<li>Create a request packet, and remember the <code>RequestID</code>.</li>
+<li>Create a channel. Let&rsquo;s call it C.</li>
+<li>Send the packet over the socket, and set C in the map.</li>
+<li>Start another goroutine to do a &ldquo;timeout.&rdquo; Basically, if the channel still exists in the map
+after a certain period of time, <em>close the channel</em> and delete the entry in the map</li>
+<li>This is the cool part. Attempt to read from the channel like so: <code>decoded, ok = &lt;-C</code>. If C is
+closed, <code>ok</code> will be false. Otherwise, we should see something for <code>decoded</code>.</li>
+<li>If the request timed out, try again (only a finite number of times).</li>
+</ol>
+
+<p>So it turns out this approach works really well. You can start up requests concurrently and
+stuff doesn&rsquo;t blow up. Concurrency (and Go) for the win.</p>
+
+<h2 id="single-socket:02dad372be9ac2904e7edfac9ac7ddac">Single socket?</h2>
+
+<p>The current implementation uses a separate socket for each device that Cistern connects to.
+If you had 1,000 devices, you&rsquo;ll have to open 1,000 sockets. That doesn&rsquo;t seem efficient.
+I think everything can be done using a single socket. Specifically, <a href="http://golang.org/pkg/net/#UDPConn.ReadFromUDP"><code>UDPConn.ReadFromUDP</code></a>
+needs to be used. Basically, it allows you to read from a socket and know where it came from.</p>
+
+<p>The &ldquo;session&rdquo; logic in Cistern will get more complicated. I&rsquo;m honestly not sure what the performance
+would look like with one socket vs many. I don&rsquo;t even have many SNMP devices to test against.</p>
+
+<h2 id="conclusion:02dad372be9ac2904e7edfac9ac7ddac">Conclusion</h2>
+
+<p>The single socket approach will probably be coming by the end of the year or sometime
+next year.</p>
+
+<p>I really want this to be the world&rsquo;s most concurrent + efficient SNMPv3 implementation. It&rsquo;ll take
+a lot of work to get there, though. I really would like an SNMP simulator. It is definitely possible.
+I just need the time to do it&hellip;</p>
+
+<p>I think this will crush Net-SNMP in terms of thread-safety :P.</p>
+
+<hr />
+
+<p>How the heck do I add this kind of stuff to my résumé / LinkedIn? Listing &ldquo;SNMP&rdquo; doesn&rsquo;t really capture
+all of it!</p>
+
+  </section>
+  <footer>
+  
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://localhost:1313/snmp-part-i"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://localhost:1313/a-new-design">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

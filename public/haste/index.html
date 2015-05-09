@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Haste. &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://localhost:1313/haste" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2013-12-21T00:00:00Z" />
+  
+  
+
+  <title>
+     Haste. &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://localhost:1313/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Haste.</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2013-12-21T00:00:00Z">
+          Dec 21, 2013
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    <p>I guess people call these types of posts &ldquo;post mortems.&rdquo; Here we go.</p>
+
+<p>I got this email this morning:
+<img src="https://31.media.tumblr.com/a84ce95106b1082757750382100c6cdc/tumblr_inline_my67tzQy421rs73cz.png" alt="" />
+</p>
+
+<p>I generally don&rsquo;t trust alerts with 100% confidence, so I started to check on it. It was weird: it was responding to pings and establishing TCP connections, but it wouldn&rsquo;t respond to anything. SSH wouldn&rsquo;t work either.</p>
+
+<p>I disabled and enabled its ethernet port from the switch. It didn&rsquo;t fix it.</p>
+
+<p>The next step was to give it a power cycle. I can do that remotely with a switched PDU. I think buying that was a great investment. It&rsquo;s incredibly annoying to drive over to the data center to push a button, and I figured it wouldn&rsquo;t be practical for me to do it when I&rsquo;m down in Charlottesville for college.</p>
+
+<p>By this time, I&rsquo;m thinking that I have no way of fixing it from home, so I need to go on-site.</p>
+
+<p>As I get ready and head to the DC, I think about the worst case scenario. It couldn&rsquo;t be a kernel panic or weird, horrific hardware failure since Haste obviously was able to boot up and get assign itself the right IP address. It&rsquo;s probably something software related.</p>
+
+<p>I got there and plugged in a monitor and noticed it wasn&rsquo;t responsive. I gave it another power cycle. Now, what happened next surprised me a lot.</p>
+
+<p>As it started booting up, I saw the stream of green <code>[OK]</code>s, as expected. Then I noticed OOM (out of memory) errors, and exim (a mail transfer agent) kept getting killed. Out of memory?!</p>
+
+<p>Now, I know <em>for sure</em> that Haste had plenty of RAM for its normal operation. It&rsquo;s a cPanel server, and 4 GB is plenty. It usually uses &lt; 1 GB. Well, at least I found out what the issue was. It needs more RAM.</p>
+
+<p><a href="https://bitcable.com/">Bitcable</a> also hosts VMs, and my #1 priority is to keep VMs up and running as reliably as possible. With that in mind, I have a spare VM host, Storm, in the cabinet. It doesn&rsquo;t do much &ndash; I use it sometimes to experiment with network configurations without touching hardware with customers. The great thing about Storm is that it&rsquo;s an <em>exact</em> copy of the other servers. Should anything go wrong with the others, I can simply do a hard drive swap and everything should be fine.</p>
+
+<p>Storm had 16 GB of RAM. Haste had 4. Besides those, the two are exactly the same. So I swapped hard drives. It worked, except for the networking. They don&rsquo;t have the same MAC addresses.</p>
+
+<p>I figured I didn&rsquo;t know how cPanel handled MAC address changes, and it might be a bad idea to change hardware like that, so I ended up swapping the RAM. After 1 hour and 51 minutes of downtime, everything was back up.</p>
+
+<p>Here&rsquo;s what Haste&rsquo;s memory usage looks like right now:
+<img src="https://31.media.tumblr.com/627efe43500f84024cb28d1eaae7e2a8/tumblr_inline_my699yKi9O1rs73cz.png" alt="" />
+</p>
+
+<p>Again, an OOM event is really unexpected.</p>
+
+<p>So what in the world caused that out-of-memory issue? Was it perhaps a DOS vulnerability? Did cPanel explode on me? Unfortunately, it looks like I didn&rsquo;t add Haste to my <a href="http://observium.org/">Observium</a> setup (doh!). But, would that have helped? Observium polls SNMP counters every 5 minutes. And it doesn&rsquo;t even track processes. It wouldn&rsquo;t have been useful, in my opinion.</p>
+
+<p>The issue right now isn&rsquo;t that there was downtime. The issue is that something bad happened and I have no idea why. Maybe I need a high-resolution monitoring system to help diagnose issues like this! ;)</p>
+
+<p>Lessons learned (or reiterated):</p>
+
+<ul>
+<li>Spares are <em>really, really helpful.</em></li>
+<li>Physical hardware is annoying. Isolating this to a VM would mean all of this hardware swapping nonsense wouldn&rsquo;t be an issue.</li>
+<li>Remotely manageable hardware is also <em>really, really helpful.</em></li>
+<li>High resolution monitoring is a must.</li>
+</ul>
+
+  </section>
+  <footer>
+  
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://localhost:1313/dont-panic-type-assertion-safety"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://localhost:1313/c-is-weird">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

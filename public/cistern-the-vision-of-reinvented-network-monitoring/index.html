@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Cistern: The Vision of Reinvented Network Monitoring &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2015-04-19T00:00:00Z" />
+  
+  
+
+  <title>
+     Cistern: The Vision of Reinvented Network Monitoring &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://localhost:1313/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Cistern: The Vision of Reinvented Network Monitoring</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-04-19T00:00:00Z">
+          Apr 19, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<h2 id="background:994aa0a9411ffb8cf0ba0af198ea291b">Background</h2>
+
+<p>As a hosting provider, I&rsquo;ve had my fair share of DDoS attacks. My company doesn&rsquo;t do any peering with transit providers. We just have a single upstream provider at our Ashburn data center. My provider has an automated DDoS detection system, which is made from scratch, that detects anomalous flows and either automatically blocks traffic or sends email alerts. I sometimes get alerts forwarded to me in case it&rsquo;s an outbound anomaly originating from one of my clients&rsquo; VMs. I asked my provider for details and he was generous enough to share them, and I thought it was extremely fascinating. It isn&rsquo;t very complicated and seems to work well. I&rsquo;d rather not share details here, but I can get you in touch for more details.</p>
+
+<hr />
+
+<p>A little over a year ago, one of my customers submitted a support ticket because his site was on the front page of Hacker News and lots of visitors were seeing CloudFlare errors because the origin server (hosted by me) wasn&rsquo;t responding. I SSH&rsquo;d into the cPanel server to see what was going on. Everything looked fine. I probably tweaked settings for 30 minutes or so until I gave up. I still didn&rsquo;t know what was wrong.</p>
+
+<p>I thought it may have been a network issue. I tried to SSH into another server. Connection timeout. Huh? I tried again. This time, it worked. I disconnected and tried repeatedly and it seemed like four in five attempts to connect would fail. I tried different servers. Same issue. It <em>has</em> to be a switch issue, I thought. These are different physical machines, and the only thing they have in common is the switch. I&rsquo;ve had switch problems before, and they&rsquo;re extremely annoying to diagnose. This could be bad, I thought, especially since I didn&rsquo;t have a spare switch. It&rsquo;s worth mentioning that I was getting Panopta alerts for all servers during this time. <em>Preetam was probably in panic mode.</em></p>
+
+<p>I asked my provider if they knew why my TCP connection establishment was so poor. We couldn&rsquo;t figure it out. I was told that there was a big fiber cut in the DC area, and was sent the following message:</p>
+
+<blockquote>
+<p>Welcome to the Cogent Communications status page. Customers located in the Washington DC area may be experiencing latency and/or packet loss. This is being caused by a fiber cut. Our fiber vendor is aware of the issue and working to repair the damage. There is currently no ETR. The master case is HD5615392.</p>
+</blockquote>
+
+<p>The problem wasn&rsquo;t solved even after the fiber cut issue was resolved. After some more communication with my provider, I was eventually told that there was a 32k/sec SYN rate limit placed on our network. Hitting that limit would explain why my connections were so horrible! But 32k/sec SYNs is <em>a lot</em> of SYN traffic. Something weird is going on.</p>
+
+<p>I wish I remembered how I solved the problem. Turns out that one of my clients&rsquo; VM was sending an outbound attack with a high SYN rate, so that&rsquo;s why we were hitting that rate. I spent <em>hours</em> trying to figure out what was going on. I just wanted to figure out why my TCP traffic was doing so poorly. I should have asked a better question: &ldquo;what is my network doing?&rdquo;</p>
+
+<hr />
+
+<p>Given the right tools, those problems could have been solved in seconds or minutes. Really. I am trying to build one, and it&rsquo;s called Cistern.</p>
+
+<h2 id="cistern:994aa0a9411ffb8cf0ba0af198ea291b">Cistern</h2>
+
+<p><a href="http://preetamjinka.github.io/cistern/">Cistern</a> is a flow collector. I wrote about it previously <a href="http://misfra.me/state-of-the-state-part-ii">here</a>. Its main purpose is to serve as the destination for flow data, in the form of packet samples and counters. It will aggregate these data, analyze them, and serve as a platform to build richer systems. I was certainly surprised to learn how much information can be extracted from packet samples. Those things are quite dense, and they provide a level of insight that you can&rsquo;t get from any other method.</p>
+
+<p>Flows are an efficient, scalable method of collecting information. Cistern currently decodes flows using the <a href="http://sflow.org/">sFlow</a> protocol. sFlow does have its limitations. It isn&rsquo;t very useful on its own, and in fact, it wasn&rsquo;t designed to be. SNMP polling is used to fetch metadata, like interface names, when necessary. sFlow and SNMP together maximize monitoring capability.</p>
+
+<p>This is a short summary of what I want to see in Cistern in the near future:</p>
+
+<ul>
+<li><p>State of the art software engineering and analytics</p>
+
+<ul>
+<li>Device autodiscovery</li>
+<li>Automated threat detection</li>
+<li>Efficient statistical analysis</li>
+</ul></li>
+
+<li><p>High quality, language-agnostic APIs</p>
+
+<ul>
+<li>RESTful JSON</li>
+</ul></li>
+
+<li><p>Open-source core with plenty of features to start with</p>
+
+<ul>
+<li>Anomalous flow detection</li>
+<li>Flood detection</li>
+<li>IP spoof detection</li>
+</ul></li>
+</ul>
+
+<p>This whole project is like a big puzzle. I have a blurry vision of what it&rsquo;ll end up like, but I&rsquo;m basically starting from scratch. I need to figure out how to break it down into individual pieces, implement those pieces, and then figure out how to put everything together again.</p>
+
+<p>Here are some of the pieces that I have so far:</p>
+
+<ul>
+<li>Cistern
+
+<ul>
+<li><a href="https://github.com/PreetamJinka/cistern">https://github.com/PreetamJinka/cistern</a></li>
+</ul></li>
+<li>Fully async, thread-safe SNMP v3 implementation. It uses a single socket for all SNMP traffic, so there is plenty of scalability
+
+<ul>
+<li><a href="https://github.com/PreetamJinka/snmp">https://github.com/PreetamJinka/snmp</a></li>
+</ul></li>
+<li>Compressed time series storage engine written from scratch
+
+<ul>
+<li><a href="https://github.com/PreetamJinka/catena">https://github.com/PreetamJinka/catena</a></li>
+</ul></li>
+<li>The only open-source (as far as I know) sFlow implementation in Go
+
+<ul>
+<li><a href="https://github.com/PreetamJinka/sflow">https://github.com/PreetamJinka/sflow</a></li>
+</ul></li>
+<li>OSI layer 2, 3, 4 protocol decoding
+
+<ul>
+<li><a href="https://github.com/PreetamJinka/proto">https://github.com/PreetamJinka/proto</a></li>
+</ul></li>
+<li>AngularJS powered web UI
+
+<ul>
+<li><a href="https://github.com/PreetamJinka/cistern/tree/gh-pages/ui">https://github.com/PreetamJinka/cistern/tree/gh-pages/ui</a></li>
+</ul></li>
+</ul>
+
+<p>I think it&rsquo;s a bit inaccurate to describe this as a monitoring system. I like the following comment someone made on Hacker News about Observium (something I <a href="http://misfra.me/observium-annoys-me">don&rsquo;t like</a>):</p>
+
+<blockquote>
+<p>(In response to &ldquo;Observium: An auto-discovering network monitoring platform&rdquo;)</p>
+
+<p>Another system focused on the wrong thing in monitoring: on alerts and charts. Those are merely methods of consuming data, not the only ones and not even the most important ones a decent monitoring system should do.</p>
+
+<p>Sending e-mail or displaying a set of charts or a status table is simple. Allowing to collect, collate and aggregate the data (metrics and events) in arbitrary way, also as an afterthought, is what monitoring system should do. With virtually everything on the market, when a need for any processing not anticipated by monitoring system author arises, one needs to write much stuff outside said system.</p>
+
+<p>We need less systems resembling invoicing systems and more systems resembling general purpose databases.</p>
+
+<p>This is why monitoring <em>still</em> sucks.</p>
+
+<p>&ndash; <a href="https://news.ycombinator.com/item?id=9248672">https://news.ycombinator.com/item?id=9248672</a></p>
+</blockquote>
+
+<p>I think it&rsquo;s very important for Cistern to behave like a database of network data. We shouldn&rsquo;t just want charts and thresholds! Imagine having access to top flows, top talkers, aggregations and time series of protocol metrics, hardware diagnostics, and more, all from a web UI, JSON API, or query language. Cistern should be a tool and not just a resource.</p>
+
+<h2 id="business-model:994aa0a9411ffb8cf0ba0af198ea291b">Business model</h2>
+
+<p>This is my startup idea. I think there is business potential here, but that is not my primary goal. I think it&rsquo;s important for everyone to have access to tools that provide more insight into networks. That&rsquo;s why Cistern will always have a free and open core. I want it to be accessible so even 16-year-olds can use it, dig around the source code, make changes, and learn. I think I would have wanted something like that when I was younger. More realistically though, I think the small-scale hosting providers would need this more than anyone. They probably don&rsquo;t make enough to spend thousands on monitoring software, and they probably don&rsquo;t have the resources to administer their network as much as it needs.</p>
+
+<p>I think there is a lot of opportunity for revenue with support and custom integrations. I think this makes a lot of sense for an open-source project. Custom additions to fit into a specific environment will require development regardless of what tools you choose, so maybe it would be better if the original developers do it? I can already imagine people building plugins to inject rules or configuration updates into OpenBSD firewalls, Cisco, Brocade, and Juniper routers and switches, and so on.</p>
+
+<p>There&rsquo;s <a href="http://misfra.me/no-rush">no rush</a> for me to start a new business right now.</p>
+
+<h2 id="requests:994aa0a9411ffb8cf0ba0af198ea291b">Requests</h2>
+
+<p>I don&rsquo;t think Cistern is ready for others to use yet, but I&rsquo;d like to get some alpha testers at some point. I&rsquo;m mainly building it for myself at this point, but it would be useful to hear what others want to see.</p>
+
+<p>I&rsquo;m also looking for donations! I&rsquo;d like to add support for Cisco NetFlow but I don&rsquo;t have any Cisco gear. If you are, or someone you know is, willing to donate Cisco hardware that supports NetFlow (or just SNMP), let me know.</p>
+
+<h2 id="why-don-t-you-just-use:994aa0a9411ffb8cf0ba0af198ea291b">Why don&rsquo;t you just use ____?</h2>
+
+<p>Building from scratch is a great way to learn.</p>
+
+  </section>
+  <footer>
+  
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://localhost:1313/optimizing-concurrent-map-access-in-go"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next disabled"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

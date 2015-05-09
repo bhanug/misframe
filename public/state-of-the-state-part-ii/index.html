@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" State of the State Part II &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://localhost:1313/state-of-the-state-part-ii" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2014-10-13T00:00:00Z" />
+  
+  
+
+  <title>
+     State of the State Part II &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://localhost:1313/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">State of the State Part II</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2014-10-13T00:00:00Z">
+          Oct 13, 2014
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>The <a href="http://misfra.me/state-of-the-state">original post</a> was written last December (almost 10 months ago). To summarize, I mentioned my time series logging program, Adversaria, and I wrote about my little toy key-value store, Fickle. I wrote that I would try to add transactions, and then I ended with a goal to use it to power this blog.</p>
+
+<p>Since then, I wrote a <a href="https://github.com/PreetamJinka/txfun/blob/5440e53e17c050b620da6410aaa5bcf1353fd5f5/db_test.go">skip list</a> in C, implemented basic <a href="https://github.com/PreetamJinka/txfun/blob/a36943e976d9baf5d94dcd85726c21f683428810/db_test.go">transactions</a> in Go, and played around with <a href="https://github.com/PreetamJinka/chunks">chunks</a> of ordered byte slices, and wrote a <a href="https://github.com/PreetamJinka/listmap">memory-mapped linked list</a>.</p>
+
+<p>There was certainly a lack of focus, and part of that was due to the fact that I wasn&rsquo;t exactly solving a problem. All of that work was mainly due to curiosity. This time, I do have a problem to solve, and it&rsquo;s worth solving!</p>
+
+<h2 id="cistern:d5f7aecad5355d283ad71d247279c609">Cistern</h2>
+
+<p>I&rsquo;m not exactly interested in writing a traditional database anymore. I&rsquo;ve been working mainly on <a href="https://github.com/PreetamJinka/cistern">Cistern</a>, my sFlow collector. <a href="http://sflow.org/">sFlow</a> is a network monitoring specification. It&rsquo;s very simple to understand. A set of devices (routers, switches, servers) emit counters and packet samples, and they all flow to a collector. The collector then aggregates them.</p>
+
+<p>This is how it all works as a short summary.</p>
+
+<ol>
+<li>Devices generate sFlow datagrams. I started to write a <a href="https://github.com/PreetamJinka/gohsflowd">host sFlow daemon</a> in Go. Since that isn&rsquo;t finished, I&rsquo;m using the original hsflowd. I also have Brocade switches that generate sFlow datagrams in hardware.</li>
+<li>Datagrams get decoded using my <a href="https://github.com/PreetamJinka/sflow-go">sFlow decoding package</a>. This one works pretty well!</li>
+<li>Packet samples get decoded using my <a href="https://github.com/PreetamJinka/protodecode">protocol decoding package</a>. This is a rewrite of what I wrote a few months ago.</li>
+<li>Decoded headers get organized into &ldquo;flows&rdquo; and sent to my <a href="https://github.com/PreetamJinka/flowtrack">flowtrack</a> package. This one is an MVP that needs to be rewritten.</li>
+<li>sFlow counter records are simply numbers, so they simply get aggregated in <a href="https://github.com/PreetamJinka/cistern/blob/master/metrics.go">Cistern&rsquo;s metric registry</a>.</li>
+<li>Every N seconds, the state of all the metrics is recorded into a <a href="https://github.com/PreetamJinka/metricstore">metricstore</a>. A metricstore is essentially an organized set of linked lists, specifically <a href="https://github.com/PreetamJinka/listmap">listmaps</a>.</li>
+<li>There&rsquo;s a crude HTTP API to fetch all of the state (including the time series for metrics) as JSON.</li>
+</ol>
+
+<h2 id="examples:d5f7aecad5355d283ad71d247279c609">Examples</h2>
+
+<p>This is something I came up with that uses Angular.JS and Cistern. The frontend polls occasionally to get a list of hosts, and then queries for the current values of certain metrics. It&rsquo;s all completely dynamic. As new hosts start sending their sFlow datagrams, Cistern automatically creates new entries in the registry and starts supplying the frontend with an updated list of hosts.
+<img src="http://static.misfra.me/images/posts/state-of-the-state-part-ii/realtime.gif" alt="" />
+</p>
+
+<p>Here&rsquo;s some information from packet headers. As you can tell, there&rsquo;s a single IP address opening a bunch of connections to port 22 for a bunch of destination IP addresses. This is most likely a bot trying to find active hosts listening on port 22.
+<img src="http://static.misfra.me/images/posts/state-of-the-state-part-ii/portscan.png" alt="Port scan" />
+</p>
+
+<p>This is a quick demo using the HTTP interface to fetch time series for a metric. I used D3.js to plot the graph.
+<img src="http://static.misfra.me/images/posts/state-of-the-state-part-ii/d3.png" alt="D3.js" />
+</p>
+
+<hr />
+
+<p>Does that sound like a lot? Well, it took me a while to get this far! Part of the reason is that I iterate a lot. Cistern is the composition of a bunch of stuff that I&rsquo;ve written in short bursts. I started writing some <a href="https://github.com/PreetamJinka/flowtools">flow tools</a> in February, and wrote the first <a href="https://github.com/PreetamJinka/flow-collector">flow collector</a> in June. You&rsquo;ll notice that Cistern has a lot of code / ideas in common with those.</p>
+
+<p>There&rsquo;s still a lot of other work to do. I&rsquo;m probably going to work on some D3.js and AngularJS stuff. I need to work on my JavaScript :). I will have to update the storage engine to partition by time so I can get rid of older data. It should be easy enough. I also need to work on detecting scanners, and I have a couple of ideas on how to do that which involves a simple analysis of flows.</p>
+
+<p>It&rsquo;s kind of cool that I was able to do all this stuff (from scratch!) in my free time. Gettin&rsquo; good at this. :)</p>
+
+  </section>
+  <footer>
+  
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://localhost:1313/beaglebone"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://localhost:1313/the-crazy-one">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

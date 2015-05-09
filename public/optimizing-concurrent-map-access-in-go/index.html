@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content=" Optimizing Concurrent Map Access in Go &middot;  Misframe" />
+  <meta property="og:site_name" content="Misframe" />
+  <meta property="og:url" content="http://localhost:1313/optimizing-concurrent-map-access-in-go" />
+  
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:article:author" content="https://facebook.com/PreetamJinka" />
+  
+  <meta property="og:article:published_time" content="2015-03-31T00:00:00Z" />
+  
+  
+
+  <title>
+     Optimizing Concurrent Map Access in Go &middot;  Misframe
+  </title>
+
+  <link rel="stylesheet" href="http://localhost:1313/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/main.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://localhost:1313/css/github.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400" type="text/css">
+  <link rel="shortcut icon" href="http://localhost:1313/images/favicon.ico" />
+  <link rel="apple-touch-icon" href="http://localhost:1313/images/apple-touch-icon.png" />
+  
+</head>
+<body>
+  <header class="global-header">
+    <section class="header-text">
+      <h1><a href="http://localhost:1313/">Misframe</a></h1>
+      
+      <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+      
+      <a href="http://localhost:1313/" class="btn-header btn-back hidden-xs">
+        <i class="fa fa-angle-left"></i>
+        &nbsp;Home
+      </a>
+      
+      
+    </section>
+  </header>
+  <main class="container">
+
+
+<article>
+  <header>
+    <h1 class="text-primary">Optimizing Concurrent Map Access in Go</h1>
+    <div class="post-meta clearfix">
+      <div class="post-date pull-left">
+        Posted on
+        <time datetime="2015-03-31T00:00:00Z">
+          Mar 31, 2015
+        </time>
+      </div>
+      <div class="pull-right">
+        
+      </div>
+    </div>
+  </header>
+  <section>
+    
+
+<p>One of the more contentious sections of code in <a href="https://github.com/PreetamJinka/catena">Catena</a>, my time series storage engine, is the function that fetches a <code>metricSource</code> given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we&rsquo;ll have to have some sort of synchronization.</p>
+
+<p>The purpose of this function is to retrieve a pointer to an object given its name. If it doesn&rsquo;t exist, it creates one and returns a pointer to it. The data structure used is a <code>map[string]*metricSource</code>. The key fact to remember is that elements are <em>only inserted</em> into the map.</p>
+
+<p>Here is a simple implementation. I have excluded the function header and return statement to save space.</p>
+
+<pre><code class="language-go">var source *memorySource
+var present bool
+
+p.lock.Lock() // lock the mutex
+defer p.lock.Unlock() // unlock the mutex at the end
+
+if source, present = p.sources[name]; !present {
+	// The source wasn't found, so we'll create it.
+	source = &amp;memorySource{
+		name: name,
+		metrics: map[string]*memoryMetric{},
+	}
+
+	// Insert the newly created *memorySource.
+	p.sources[name] = source
+}
+</code></pre>
+
+<p>I have a benchmark that inserts time series points into the database. Again, each insert has to
+call this function to get the pointer to the metric source it has to update.</p>
+
+<p>This one gets about <strong>1,400,000 inserts / sec</strong> with four goroutines running in parallel
+(i.e. <code>GOMAXPROCS</code> is set to 4). This may seem fast, but it&rsquo;s actually <em>slower</em> than having
+one goroutine do all the work. If you&rsquo;re thinking lock contention, you&rsquo;re right.</p>
+
+<p>So, what&rsquo;s the problem here? Let&rsquo;s consider a simplified case where there are no
+inserts into the map. Suppose goroutine 1 wants to get source &ldquo;a&rdquo; and goroutine 2 wants
+to get &ldquo;b&rdquo;, and assume &ldquo;a&rdquo; and &ldquo;b&rdquo; are already in the map. With the given implementation,
+the first one will grab the lock, get the pointer, unlock, and move on. Meanwhile, the other
+goroutine is stuck waiting to grab the lock. Waiting on that lock seems like a pretty bad use of time!
+This gets worse and worse as you add more goroutines.</p>
+
+<p>One way to make this faster is to remove the lock and make sure only one goroutine accesses the map.
+That&rsquo;s simple enough but you have to give up scalability. Here&rsquo;s an alternative that&rsquo;s just as simple
+<em>and</em> maintains thread-safety.</p>
+
+<p>This change only takes one more line and an additional character, but will keep getting faster as
+you scale up.</p>
+
+<pre><code class="language-go">var source *memorySource
+var present bool
+
+if source, present = p.sources[name]; !present { // added this line
+	// The source wasn't found, so we'll create it.
+
+	p.lock.Lock() // lock the mutex
+	defer p.lock.Unlock() // unlock at the end
+
+	if source, present = p.sources[name]; !present {
+		source = &amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	// if present is true, then another goroutine has already inserted
+	// the element we want, and source is set to what we want.
+
+} // added this line
+
+// Note that if the source was present, we avoid the lock completely!
+</code></pre>
+
+<p><strong>5,500,000 inserts / sec.</strong> This is <strong>3.93 times</strong> as fast. Recall that I had four goroutines
+running in parallel, so this increase makes sense.</p>
+
+<p>This works because we&rsquo;re never deleting sources, and the addresses don&rsquo;t change. If we have
+a pointer address in CPU cache, we can use it safely even if the map is changing below us.
+Notice how we still need the mutex. If we didn&rsquo;t have it, there would be a race condition
+where one goroutine will realize that it has to create the source and insert it, but another
+may insert it in the middle of that sequence. This way, we only hit the lock during inserts into
+the map, but those are relatively rare.</p>
+
+<p>My colleague <a href="https://twitter.com/JohnPotocny1">John Potocny</a> suggested that I remove the <code>defer</code>
+because it has nontrivial overhead. He was right. One more <em>very</em> minor change and I was amazed
+at the result.</p>
+
+<pre><code class="language-go">var source *memorySource
+var present bool
+
+if source, present = p.sources[name]; !present {
+	// The source wasn't found, so we'll create it.
+
+	p.lock.Lock() // lock the mutex
+	if source, present = p.sources[name]; !present {
+		source = &amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock() // unlock the mutex
+}
+
+// Note that if the source was present, we avoid the lock completely!
+</code></pre>
+
+<p>This version gets <strong>9,800,000 inserts / sec</strong>. That&rsquo;s <strong>7 times</strong> faster
+with only about 4 lines changed.</p>
+
+<h3 id="edit:206870acf6ffd224a29b01999a84c0b1">Edit:</h3>
+
+<p>Is this correct? Unfortunately, no! There is still a race condition, and it&rsquo;s easy to find
+using the race detector. We can&rsquo;t guarantee the integrity of the map for readers while there
+is a writer.</p>
+
+<p>Here is the race-free, thread-safe, &ldquo;correct&rdquo; version. Using an RWMutex, readers won&rsquo;t block each other
+but writers will still be synchronized.</p>
+
+<pre><code class="language-go">var source *memorySource
+var present bool
+
+p.lock.RLock()
+if source, present = p.sources[name]; !present {
+	// The source wasn't found, so we'll create it.
+	p.lock.RUnlock()
+	p.lock.Lock()
+	if source, present = p.sources[name]; !present {
+		source = &amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock()
+} else {
+	p.lock.RUnlock()
+}
+</code></pre>
+
+<p>This version is <strong>93.8%</strong> as fast as the previous one, so still very good. Of course, the previous version
+isn&rsquo;t correct, so there shouldn&rsquo;t even be a comparison.</p>
+
+  </section>
+  <footer>
+  
+    <ul class="pager">
+      
+      <li class="previous"><a href="http://localhost:1313/state-of-the-state-part-iii"><span aria-hidden="true">&larr;</span> Older</a></li>
+      
+      
+      <li class="next"><a href="http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring">Newer <span aria-hidden="true">&rarr;</span></a></li>
+      
+    </ul>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = 'preetamjinka';
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </footer>
+</article>
+
+  </main>
+  <footer class="container global-footer">
+    <div class="copyright-note pull-left">
+      Copyright &copy; Preetam Jinka
+    </div>
+    <div class="sns-links hidden-print">
+  
+  <a href="https://twitter.com/PreetamJinka" target="_blank">
+      <i class="fa fa-twitter"></i>
+  </a>
+  
+  
+  <a href="https://facebook.com/PreetamJinka" target="_blank">
+    <i class="fa fa-facebook"></i>
+  </a>
+  
+  
+  <a href="https://github.com/PreetamJinka" target="_blank">
+    <i class="fa fa-github"></i>
+  </a>
+  
+  
+  
+  <a href="https://jp.linkedin.com/in/preetamjinka" target="_blank">
+    <i class="fa fa-linkedin"></i>
+  </a>
+  
+</div>
+
+  </footer>
+
+  <script src="http://localhost:1313/js/highlight.pack.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-37425054-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  
+  
+</body>
+</html>
+

@@ -1,0 +1,18 @@
+baseurl = "http://misfra.me/"
+title = "Misframe"
+author = "Preetam Jinka"
+copyright = "Copyright &copy; Preetam Jinka"
+canonifyurls = true
+paginate = 10
+rsslink = "feed"
+DisqusShortname = "preetamjinka"
+
+[params]
+  DateForm = "Mon, Jan 2, 2006"
+  RSSlink = "feed"
+  RSSUri = "feed"
+  twitter = "PreetamJinka"
+  github = "PreetamJinka"
+  linkedin = "preetamjinka"
+  facebook = "PreetamJinka"
+  ga_api_key = "UA-37425054-1"

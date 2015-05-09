@@ -1,0 +1,1276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Misframe</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Misframe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright &amp;copy; Preetam Jinka</copyright>
+    <lastBuildDate>Sun, 19 Apr 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Cistern: The Vision of Reinvented Network Monitoring</title>
+      <link>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</link>
+      <pubDate>Sun, 19 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/cistern-the-vision-of-reinvented-network-monitoring</guid>
+      <description>
+
+&lt;h2 id=&#34;background:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;As a hosting provider, I&amp;rsquo;ve had my fair share of DDoS attacks. My company doesn&amp;rsquo;t do any peering with transit providers. We just have a single upstream provider at our Ashburn data center. My provider has an automated DDoS detection system, which is made from scratch, that detects anomalous flows and either automatically blocks traffic or sends email alerts. I sometimes get alerts forwarded to me in case it&amp;rsquo;s an outbound anomaly originating from one of my clients&amp;rsquo; VMs. I asked my provider for details and he was generous enough to share them, and I thought it was extremely fascinating. It isn&amp;rsquo;t very complicated and seems to work well. I&amp;rsquo;d rather not share details here, but I can get you in touch for more details.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A little over a year ago, one of my customers submitted a support ticket because his site was on the front page of Hacker News and lots of visitors were seeing CloudFlare errors because the origin server (hosted by me) wasn&amp;rsquo;t responding. I SSH&amp;rsquo;d into the cPanel server to see what was going on. Everything looked fine. I probably tweaked settings for 30 minutes or so until I gave up. I still didn&amp;rsquo;t know what was wrong.&lt;/p&gt;
+
+&lt;p&gt;I thought it may have been a network issue. I tried to SSH into another server. Connection timeout. Huh? I tried again. This time, it worked. I disconnected and tried repeatedly and it seemed like four in five attempts to connect would fail. I tried different servers. Same issue. It &lt;em&gt;has&lt;/em&gt; to be a switch issue, I thought. These are different physical machines, and the only thing they have in common is the switch. I&amp;rsquo;ve had switch problems before, and they&amp;rsquo;re extremely annoying to diagnose. This could be bad, I thought, especially since I didn&amp;rsquo;t have a spare switch. It&amp;rsquo;s worth mentioning that I was getting Panopta alerts for all servers during this time. &lt;em&gt;Preetam was probably in panic mode.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I asked my provider if they knew why my TCP connection establishment was so poor. We couldn&amp;rsquo;t figure it out. I was told that there was a big fiber cut in the DC area, and was sent the following message:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Welcome to the Cogent Communications status page. Customers located in the Washington DC area may be experiencing latency and/or packet loss. This is being caused by a fiber cut. Our fiber vendor is aware of the issue and working to repair the damage. There is currently no ETR. The master case is HD5615392.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The problem wasn&amp;rsquo;t solved even after the fiber cut issue was resolved. After some more communication with my provider, I was eventually told that there was a 32k/sec SYN rate limit placed on our network. Hitting that limit would explain why my connections were so horrible! But 32k/sec SYNs is &lt;em&gt;a lot&lt;/em&gt; of SYN traffic. Something weird is going on.&lt;/p&gt;
+
+&lt;p&gt;I wish I remembered how I solved the problem. Turns out that one of my clients&amp;rsquo; VM was sending an outbound attack with a high SYN rate, so that&amp;rsquo;s why we were hitting that rate. I spent &lt;em&gt;hours&lt;/em&gt; trying to figure out what was going on. I just wanted to figure out why my TCP traffic was doing so poorly. I should have asked a better question: &amp;ldquo;what is my network doing?&amp;rdquo;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Given the right tools, those problems could have been solved in seconds or minutes. Really. I am trying to build one, and it&amp;rsquo;s called Cistern.&lt;/p&gt;
+
+&lt;h2 id=&#34;cistern:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Cistern&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://preetamjinka.github.io/cistern/&#34;&gt;Cistern&lt;/a&gt; is a flow collector. I wrote about it previously &lt;a href=&#34;http://misfra.me/state-of-the-state-part-ii&#34;&gt;here&lt;/a&gt;. Its main purpose is to serve as the destination for flow data, in the form of packet samples and counters. It will aggregate these data, analyze them, and serve as a platform to build richer systems. I was certainly surprised to learn how much information can be extracted from packet samples. Those things are quite dense, and they provide a level of insight that you can&amp;rsquo;t get from any other method.&lt;/p&gt;
+
+&lt;p&gt;Flows are an efficient, scalable method of collecting information. Cistern currently decodes flows using the &lt;a href=&#34;http://sflow.org/&#34;&gt;sFlow&lt;/a&gt; protocol. sFlow does have its limitations. It isn&amp;rsquo;t very useful on its own, and in fact, it wasn&amp;rsquo;t designed to be. SNMP polling is used to fetch metadata, like interface names, when necessary. sFlow and SNMP together maximize monitoring capability.&lt;/p&gt;
+
+&lt;p&gt;This is a short summary of what I want to see in Cistern in the near future:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;State of the art software engineering and analytics&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Device autodiscovery&lt;/li&gt;
+&lt;li&gt;Automated threat detection&lt;/li&gt;
+&lt;li&gt;Efficient statistical analysis&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;High quality, language-agnostic APIs&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;RESTful JSON&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Open-source core with plenty of features to start with&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Anomalous flow detection&lt;/li&gt;
+&lt;li&gt;Flood detection&lt;/li&gt;
+&lt;li&gt;IP spoof detection&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This whole project is like a big puzzle. I have a blurry vision of what it&amp;rsquo;ll end up like, but I&amp;rsquo;m basically starting from scratch. I need to figure out how to break it down into individual pieces, implement those pieces, and then figure out how to put everything together again.&lt;/p&gt;
+
+&lt;p&gt;Here are some of the pieces that I have so far:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cistern
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/cistern&#34;&gt;https://github.com/PreetamJinka/cistern&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Fully async, thread-safe SNMP v3 implementation. It uses a single socket for all SNMP traffic, so there is plenty of scalability
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/snmp&#34;&gt;https://github.com/PreetamJinka/snmp&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Compressed time series storage engine written from scratch
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;https://github.com/PreetamJinka/catena&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The only open-source (as far as I know) sFlow implementation in Go
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/sflow&#34;&gt;https://github.com/PreetamJinka/sflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;OSI layer 2, 3, 4 protocol decoding
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/proto&#34;&gt;https://github.com/PreetamJinka/proto&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;AngularJS powered web UI
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/PreetamJinka/cistern/tree/gh-pages/ui&#34;&gt;https://github.com/PreetamJinka/cistern/tree/gh-pages/ui&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I think it&amp;rsquo;s a bit inaccurate to describe this as a monitoring system. I like the following comment someone made on Hacker News about Observium (something I &lt;a href=&#34;http://misfra.me/observium-annoys-me&#34;&gt;don&amp;rsquo;t like&lt;/a&gt;):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;(In response to &amp;ldquo;Observium: An auto-discovering network monitoring platform&amp;rdquo;)&lt;/p&gt;
+
+&lt;p&gt;Another system focused on the wrong thing in monitoring: on alerts and charts. Those are merely methods of consuming data, not the only ones and not even the most important ones a decent monitoring system should do.&lt;/p&gt;
+
+&lt;p&gt;Sending e-mail or displaying a set of charts or a status table is simple. Allowing to collect, collate and aggregate the data (metrics and events) in arbitrary way, also as an afterthought, is what monitoring system should do. With virtually everything on the market, when a need for any processing not anticipated by monitoring system author arises, one needs to write much stuff outside said system.&lt;/p&gt;
+
+&lt;p&gt;We need less systems resembling invoicing systems and more systems resembling general purpose databases.&lt;/p&gt;
+
+&lt;p&gt;This is why monitoring &lt;em&gt;still&lt;/em&gt; sucks.&lt;/p&gt;
+
+&lt;p&gt;&amp;ndash; &lt;a href=&#34;https://news.ycombinator.com/item?id=9248672&#34;&gt;https://news.ycombinator.com/item?id=9248672&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I think it&amp;rsquo;s very important for Cistern to behave like a database of network data. We shouldn&amp;rsquo;t just want charts and thresholds! Imagine having access to top flows, top talkers, aggregations and time series of protocol metrics, hardware diagnostics, and more, all from a web UI, JSON API, or query language. Cistern should be a tool and not just a resource.&lt;/p&gt;
+
+&lt;h2 id=&#34;business-model:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Business model&lt;/h2&gt;
+
+&lt;p&gt;This is my startup idea. I think there is business potential here, but that is not my primary goal. I think it&amp;rsquo;s important for everyone to have access to tools that provide more insight into networks. That&amp;rsquo;s why Cistern will always have a free and open core. I want it to be accessible so even 16-year-olds can use it, dig around the source code, make changes, and learn. I think I would have wanted something like that when I was younger. More realistically though, I think the small-scale hosting providers would need this more than anyone. They probably don&amp;rsquo;t make enough to spend thousands on monitoring software, and they probably don&amp;rsquo;t have the resources to administer their network as much as it needs.&lt;/p&gt;
+
+&lt;p&gt;I think there is a lot of opportunity for revenue with support and custom integrations. I think this makes a lot of sense for an open-source project. Custom additions to fit into a specific environment will require development regardless of what tools you choose, so maybe it would be better if the original developers do it? I can already imagine people building plugins to inject rules or configuration updates into OpenBSD firewalls, Cisco, Brocade, and Juniper routers and switches, and so on.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s &lt;a href=&#34;http://misfra.me/no-rush&#34;&gt;no rush&lt;/a&gt; for me to start a new business right now.&lt;/p&gt;
+
+&lt;h2 id=&#34;requests:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Requests&lt;/h2&gt;
+
+&lt;p&gt;I don&amp;rsquo;t think Cistern is ready for others to use yet, but I&amp;rsquo;d like to get some alpha testers at some point. I&amp;rsquo;m mainly building it for myself at this point, but it would be useful to hear what others want to see.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m also looking for donations! I&amp;rsquo;d like to add support for Cisco NetFlow but I don&amp;rsquo;t have any Cisco gear. If you are, or someone you know is, willing to donate Cisco hardware that supports NetFlow (or just SNMP), let me know.&lt;/p&gt;
+
+&lt;h2 id=&#34;why-don-t-you-just-use:994aa0a9411ffb8cf0ba0af198ea291b&#34;&gt;Why don&amp;rsquo;t you just use ____?&lt;/h2&gt;
+
+&lt;p&gt;Building from scratch is a great way to learn.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Optimizing Concurrent Map Access in Go</title>
+      <link>http://localhost:1313/optimizing-concurrent-map-access-in-go</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/optimizing-concurrent-map-access-in-go</guid>
+      <description>
+
+&lt;p&gt;One of the more contentious sections of code in &lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;Catena&lt;/a&gt;, my time series storage engine, is the function that fetches a &lt;code&gt;metricSource&lt;/code&gt; given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we&amp;rsquo;ll have to have some sort of synchronization.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this function is to retrieve a pointer to an object given its name. If it doesn&amp;rsquo;t exist, it creates one and returns a pointer to it. The data structure used is a &lt;code&gt;map[string]*metricSource&lt;/code&gt;. The key fact to remember is that elements are &lt;em&gt;only inserted&lt;/em&gt; into the map.&lt;/p&gt;
+
+&lt;p&gt;Here is a simple implementation. I have excluded the function header and return statement to save space.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+p.lock.Lock() // lock the mutex
+defer p.lock.Unlock() // unlock the mutex at the end
+
+if source, present = p.sources[name]; !present {
+	// The source wasn&#39;t found, so we&#39;ll create it.
+	source = &amp;amp;memorySource{
+		name: name,
+		metrics: map[string]*memoryMetric{},
+	}
+
+	// Insert the newly created *memorySource.
+	p.sources[name] = source
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have a benchmark that inserts time series points into the database. Again, each insert has to
+call this function to get the pointer to the metric source it has to update.&lt;/p&gt;
+
+&lt;p&gt;This one gets about &lt;strong&gt;1,400,000 inserts / sec&lt;/strong&gt; with four goroutines running in parallel
+(i.e. &lt;code&gt;GOMAXPROCS&lt;/code&gt; is set to 4). This may seem fast, but it&amp;rsquo;s actually &lt;em&gt;slower&lt;/em&gt; than having
+one goroutine do all the work. If you&amp;rsquo;re thinking lock contention, you&amp;rsquo;re right.&lt;/p&gt;
+
+&lt;p&gt;So, what&amp;rsquo;s the problem here? Let&amp;rsquo;s consider a simplified case where there are no
+inserts into the map. Suppose goroutine 1 wants to get source &amp;ldquo;a&amp;rdquo; and goroutine 2 wants
+to get &amp;ldquo;b&amp;rdquo;, and assume &amp;ldquo;a&amp;rdquo; and &amp;ldquo;b&amp;rdquo; are already in the map. With the given implementation,
+the first one will grab the lock, get the pointer, unlock, and move on. Meanwhile, the other
+goroutine is stuck waiting to grab the lock. Waiting on that lock seems like a pretty bad use of time!
+This gets worse and worse as you add more goroutines.&lt;/p&gt;
+
+&lt;p&gt;One way to make this faster is to remove the lock and make sure only one goroutine accesses the map.
+That&amp;rsquo;s simple enough but you have to give up scalability. Here&amp;rsquo;s an alternative that&amp;rsquo;s just as simple
+&lt;em&gt;and&lt;/em&gt; maintains thread-safety.&lt;/p&gt;
+
+&lt;p&gt;This change only takes one more line and an additional character, but will keep getting faster as
+you scale up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+if source, present = p.sources[name]; !present { // added this line
+	// The source wasn&#39;t found, so we&#39;ll create it.
+
+	p.lock.Lock() // lock the mutex
+	defer p.lock.Unlock() // unlock at the end
+
+	if source, present = p.sources[name]; !present {
+		source = &amp;amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	// if present is true, then another goroutine has already inserted
+	// the element we want, and source is set to what we want.
+
+} // added this line
+
+// Note that if the source was present, we avoid the lock completely!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;5,500,000 inserts / sec.&lt;/strong&gt; This is &lt;strong&gt;3.93 times&lt;/strong&gt; as fast. Recall that I had four goroutines
+running in parallel, so this increase makes sense.&lt;/p&gt;
+
+&lt;p&gt;This works because we&amp;rsquo;re never deleting sources, and the addresses don&amp;rsquo;t change. If we have
+a pointer address in CPU cache, we can use it safely even if the map is changing below us.
+Notice how we still need the mutex. If we didn&amp;rsquo;t have it, there would be a race condition
+where one goroutine will realize that it has to create the source and insert it, but another
+may insert it in the middle of that sequence. This way, we only hit the lock during inserts into
+the map, but those are relatively rare.&lt;/p&gt;
+
+&lt;p&gt;My colleague &lt;a href=&#34;https://twitter.com/JohnPotocny1&#34;&gt;John Potocny&lt;/a&gt; suggested that I remove the &lt;code&gt;defer&lt;/code&gt;
+because it has nontrivial overhead. He was right. One more &lt;em&gt;very&lt;/em&gt; minor change and I was amazed
+at the result.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+if source, present = p.sources[name]; !present {
+	// The source wasn&#39;t found, so we&#39;ll create it.
+
+	p.lock.Lock() // lock the mutex
+	if source, present = p.sources[name]; !present {
+		source = &amp;amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock() // unlock the mutex
+}
+
+// Note that if the source was present, we avoid the lock completely!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This version gets &lt;strong&gt;9,800,000 inserts / sec&lt;/strong&gt;. That&amp;rsquo;s &lt;strong&gt;7 times&lt;/strong&gt; faster
+with only about 4 lines changed.&lt;/p&gt;
+
+&lt;h3 id=&#34;edit:206870acf6ffd224a29b01999a84c0b1&#34;&gt;Edit:&lt;/h3&gt;
+
+&lt;p&gt;Is this correct? Unfortunately, no! There is still a race condition, and it&amp;rsquo;s easy to find
+using the race detector. We can&amp;rsquo;t guarantee the integrity of the map for readers while there
+is a writer.&lt;/p&gt;
+
+&lt;p&gt;Here is the race-free, thread-safe, &amp;ldquo;correct&amp;rdquo; version. Using an RWMutex, readers won&amp;rsquo;t block each other
+but writers will still be synchronized.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;var source *memorySource
+var present bool
+
+p.lock.RLock()
+if source, present = p.sources[name]; !present {
+	// The source wasn&#39;t found, so we&#39;ll create it.
+	p.lock.RUnlock()
+	p.lock.Lock()
+	if source, present = p.sources[name]; !present {
+		source = &amp;amp;memorySource{
+			name: name,
+			metrics: map[string]*memoryMetric{},
+		}
+
+		// Insert the newly created *memorySource.
+		p.sources[name] = source
+	}
+	p.lock.Unlock()
+} else {
+	p.lock.RUnlock()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This version is &lt;strong&gt;93.8%&lt;/strong&gt; as fast as the previous one, so still very good. Of course, the previous version
+isn&amp;rsquo;t correct, so there shouldn&amp;rsquo;t even be a comparison.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>State of the State Part III</title>
+      <link>http://localhost:1313/state-of-the-state-part-iii</link>
+      <pubDate>Thu, 05 Mar 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/state-of-the-state-part-iii</guid>
+      <description>
+
+&lt;p&gt;First, I suggest reading Baron&amp;rsquo;s &lt;a href=&#34;http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/&#34;&gt;&amp;ldquo;Time-Series Database Requirements&amp;rdquo;&lt;/a&gt; blog post to get some more context for this post. I read that and, as I usually do, had my mind set on low-level thoughts. I wrote the following comment:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/preetam-comment.jpg&#34; alt=&#34;Preetam&#39;s comment&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I took this screenshot a few months ago, so it has actually been almost a year since I wrote that. Time flies!&lt;/p&gt;
+
+&lt;h2 id=&#34;cistern-s-graphs:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Cistern&amp;rsquo;s graphs&lt;/h2&gt;
+
+&lt;p&gt;Cistern had graphs back in October 2014. I think I used my &lt;a href=&#34;https://github.com/PreetamJinka/metricstore&#34;&gt;metricstore&lt;/a&gt; package. I&amp;rsquo;m not sure because I think I was switching storage engines every other week! I had both BoltDB and SQLite in the source code at some points in the past.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;More progress! &lt;a href=&#34;http://t.co/UBG4gDBjvA&#34;&gt;pic.twitter.com/UBG4gDBjvA&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/521866847608922112&#34;&gt;October 14, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The issue was always getting graphs &amp;ldquo;right.&amp;rdquo;  Every method I used seemed like a hack. And they &lt;em&gt;were&lt;/em&gt; hacks. Nothing I used was specifically made for time series data. Bolt and SQLite are not very well suited for time series, and metricstore is as about as good as storing a CSV for each metric. I needed something better. A couple of days of thinking and about three days of coding, I had something I named &lt;em&gt;catena&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;catena:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Catena&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;n.&lt;/em&gt; A closely linked series.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Catena is a time series storage engine written in Go. It started off very simple (as most things do). In the beginning, the most advanced data structure I used was an array. The implementation has changed since I started writing this post, but the overall design is the same.&lt;/p&gt;
+
+&lt;p&gt;I wrote Catena from scratch. I think it&amp;rsquo;s the best way to understand things completely. However, the ideas aren&amp;rsquo;t completely new. You can definitely see how some things were inspired by LevelDB and other log-structured merge systems. Unlike many of those storage engines, Catena is written specifically for time series. Time series data has very interesting characteristics, and the goal was to develop something that suits those characteristics well.&lt;/p&gt;
+
+&lt;p&gt;The fundamental unit in Catena is a point. A point is like a point on a time series line plot. Points are tuples with a timestamp and a value. A point belongs to a metric, which is something like &lt;code&gt;mem.bytes_free&lt;/code&gt;. A metric has an arbitrary number of points. A metric belongs to a source, which is something like &lt;code&gt;server.misfra.me&lt;/code&gt;. To reiterate, points belong to metrics, which belong to sources.&lt;/p&gt;
+
+&lt;p&gt;For various reasons, everything is separated into partitions. Partitions are chunks of time series data with disjoint timestamp ranges. &lt;em&gt;Nothing&lt;/em&gt; is shared between partitions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/partitions.jpg&#34; alt=&#34;Partitions&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The most recent partitions are stored entirely in memory. Older partitions are compressed and stored as individual files on disk.&lt;/p&gt;
+
+&lt;p&gt;The following image shows how I view partitions. The in-memory partition structure looks a lot like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/partition-view.jpg&#34; alt=&#34;Logical view of a partition&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;h1&lt;/code&gt; and &lt;code&gt;h2&lt;/code&gt; are sources, and &lt;code&gt;m1&lt;/code&gt; to &lt;code&gt;m5&lt;/code&gt; are metrics.&lt;/p&gt;
+
+&lt;p&gt;The on-disk partition format looks something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-iii/file-format.jpg&#34; alt=&#34;File format&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;A, B, ..., J&lt;/code&gt; are arrays of points. They are compressed using gzip compression.
+The metadata at the end stores sources, metrics, and the offsets of the beginning of each point array. When a file partition is opened, its file is memory mapped and the metadata is read into memory in a structure very similar to an in-memory partition, excluding the points themselves. During queries, we look up the offset from the metadata structure, seek, and read the points off. With the current implementation, there is only one seek per metric. Concurrent reads are trivial with file partitions because they are read-only.&lt;/p&gt;
+
+&lt;p&gt;Although I did not know about it when I wrote Catena, Apache Parquet&amp;rsquo;s &lt;a href=&#34;http://parquet.incubator.apache.org/documentation/latest/&#34;&gt;file format&lt;/a&gt; is very similar to what Catena uses. Validation!&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s the basic overview of how things work. Stop here if you&amp;rsquo;re confused already. We&amp;rsquo;re going to dig deep into the internals next.&lt;/p&gt;
+
+&lt;h2 id=&#34;wal:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;WAL&lt;/h2&gt;
+
+&lt;p&gt;Any decent storage engine offers durability guarantees. A write-ahead log is a simple way of doing so. The API to insert data into Catena accepts &lt;em&gt;rows&lt;/em&gt;, which have the following format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;[
+    {&amp;quot;source&amp;quot;: &amp;quot;my.source&amp;quot;, &amp;quot;metric&amp;quot;: &amp;quot;my.metric&amp;quot;, &amp;quot;timestamp&amp;quot;: 1234, &amp;quot;value&amp;quot;: 0.5},
+    {&amp;quot;source&amp;quot;: &amp;quot;my.source&amp;quot;, &amp;quot;metric&amp;quot;: &amp;quot;my.metric&amp;quot;, &amp;quot;timestamp&amp;quot;: 1235, &amp;quot;value&amp;quot;: 0.7},
+    {&amp;quot;source&amp;quot;: &amp;quot;another.source&amp;quot;, &amp;quot;metric&amp;quot;: &amp;quot;my.metric&amp;quot;, &amp;quot;timestamp&amp;quot;: 1234, &amp;quot;value&amp;quot;: 2.12}
+]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Each entry in the WAL is basically a serialization of a set of rows. It&amp;rsquo;s good to batch up a decent number of rows so you can do page-size writes to your filesystem. The serialization format is pretty simple. WAL entries are not compressed, but that should be an easy modification.&lt;/p&gt;
+
+&lt;p&gt;If something goes wrong during a write, the WAL gets truncated at the end of the last good record. This allows for easy recovery after a crash, but it does not protect against data corruption. If you have a bad record in the middle of your WAL, you would lose the rest of the data following that entry.&lt;/p&gt;
+
+&lt;h2 id=&#34;memory-partitions:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Memory partitions&lt;/h2&gt;
+
+&lt;p&gt;The in-memory partitions are the only writable partitions. They exist completely in memory. Each memory partition gets a WAL. Writes first get appended to the WAL, and then make their way into the data structures in memory.&lt;/p&gt;
+
+&lt;p&gt;An interesting fact here is that writes do not have to be strictly in time order. Catena accepts a certain amount of &amp;ldquo;jitter&amp;rdquo; in the timestamps. Points get inserted in order once they are received. In order to support this, however, we need to keep more than one partition writable. If we receive points out of order, we may cross a partition boundary with one point, and then receive a point that belongs in the previous partition. This gives a generous amount of time to accept delayed writes. If your partition sizes are one hour, then you can potentially accept writes at least about an hour late.&lt;/p&gt;
+
+&lt;p&gt;Memory partitions are goroutine-safe. The current implementation uses lock-free lists for sources, metrics, and points.&lt;/p&gt;
+
+&lt;h2 id=&#34;file-partitions:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;File partitions&lt;/h2&gt;
+
+&lt;p&gt;On-disk partitions are simple, and perhaps a little boring. They are read-only and are memory-mapped. Catena actually uses the &lt;code&gt;PROT_READ&lt;/code&gt; flag only with &lt;code&gt;mmap&lt;/code&gt;, so mapped pages are not writable (and attempts to write will trigger a segmentation fault). No locks are used with file partitions and one can have as many concurrent readers as possible.&lt;/p&gt;
+
+&lt;p&gt;Once there are too many in-memory partitions, the oldest gets &amp;ldquo;compacted.&amp;rdquo; Catena iterates through every source and every metric and flushes the points into a compressed gzip chunk and remembers the offset. Each points array is compressed separately. At the end, the metadata and associated offsets are appended to the file.&lt;/p&gt;
+
+&lt;p&gt;gzip compression is important. I chose gzip over something like Snappy because it uses &lt;a href=&#34;https://en.wikipedia.org/wiki/Entropy_encoding&#34;&gt;entropy encoding&lt;/a&gt;. Entropy encoding is &lt;em&gt;very&lt;/em&gt; good with patterns. This is great for time series data, especially if it is stored as packed arrays of (timestamp, value) tuples. Consider the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Timestamp | Value
+--------- | -----
+0x001234  | 0
+0x011234  | 0
+0x021234  | 0
+0x031234  | 0
+0x041234  | 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that the timestamps are stored in &lt;em&gt;little-endian&lt;/em&gt; format, so the values are increasing by one. The values are obviously all zeros. If you put the rows next to each other, side by side, you&amp;rsquo;ll notice that &lt;code&gt;1234 0&lt;/code&gt; shows up often (every row has this, in fact). This pattern compresses quite well. Just for fun, I checked what the difference between little-endian timestamps and big-endian timestamps, and it turns out that big-endian timestamps are about 13.7% worse in terms of space.&lt;/p&gt;
+
+&lt;h2 id=&#34;drawbacks:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Drawbacks&lt;/h2&gt;
+
+&lt;p&gt;Catena isn&amp;rsquo;t very good with large partitions. If you have a metric with a million points in a partition, and you wanted to get the last point for that metric in that partition, you actually have to read every point because there is only one gzip stream. Splitting up points into smaller extents would be a good idea here. Realistically though, a million points per partition does not seem wise, but maybe it won&amp;rsquo;t be that bad when we get extents.&lt;/p&gt;
+
+&lt;p&gt;Catena also isn&amp;rsquo;t very good if you have lots of metrics with a single point. If you have a million metrics in a file partition, all of their metadata will be stored in memory. I don&amp;rsquo;t have a plan to address this issue right now, but I&amp;rsquo;m thinking along the lines of just keeping this stuff off memory and streaming it off disk when needed.&lt;/p&gt;
+
+&lt;p&gt;WAL recovery is also rather slow. It currently takes me about 20 minutes to recover from a 100 MB WAL on a 512 MB DigitalOcean droplet. I&amp;rsquo;m not entirely sure what the issue is, but since this is written in Go, I can get some CPU profiles and see where the hot spots are.&lt;/p&gt;
+
+&lt;p&gt;The current version (also the first) of Catena doesn&amp;rsquo;t have a good API for reading. It has this notion of a &amp;ldquo;query,&amp;rdquo; which is a lot like a &amp;ldquo;I want series X from t1 to t2, Y from t3 to t4, and Z from t1 to t4.&amp;rdquo; You send that to Catena and it gives you  a struct with everything you asked for. This is great for a proof-of-concept, but it&amp;rsquo;s horrible in practice. Everything should really be in the form of iterators. I like the idea of an iterator next() call reading data off the disk and streaming it straight to a browser as fast as possible. This would not be too easy if everything had slices of points in memory protected by locks, but it&amp;rsquo;s much more realistic when you have linked lists with nodes you can &amp;ldquo;park&amp;rdquo; iterators on without causing concurrency trouble.&lt;/p&gt;
+
+&lt;h2 id=&#34;final-thoughts:371abeaa64f195bda2c08f7dd273ae9e&#34;&gt;Final thoughts&lt;/h2&gt;
+
+&lt;p&gt;Catena is on &lt;a href=&#34;https://github.com/PreetamJinka/catena&#34;&gt;GitHub&lt;/a&gt; and is generously licensed with the BSD license.&lt;/p&gt;
+
+&lt;p&gt;This is the most technical post of the series! I hope I can keep this pattern going for future posts. &lt;a href=&#34;http://misfra.me/state-of-the-state&#34;&gt;Part I&lt;/a&gt; and &lt;a href=&#34;http://misfra.me/state-of-the-state-part-ii&#34;&gt;part II&lt;/a&gt; of this series are also available if you&amp;rsquo;re interested.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Break-in</title>
+      <link>http://localhost:1313/break-in</link>
+      <pubDate>Sun, 08 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/break-in</guid>
+      <description>&lt;p&gt;Someone broke into my server.&lt;/p&gt;
+
+&lt;p&gt;I was at beSwarm yesterday with my &amp;ldquo;social networking&amp;rdquo; setup.
+&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Social networking! &lt;a href=&#34;http://t.co/fdApIwlKyy&#34;&gt;pic.twitter.com/fdApIwlKyy&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/564090574009929728&#34;&gt;February 7, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;I was demoing &lt;a href=&#34;http://preetamjinka.github.io/cistern/&#34;&gt;Cistern&lt;/a&gt; in some form. Cistern doesn&amp;rsquo;t expose much to the user right now since most of my time was spent on very core features. So, what most people usually saw was the terminal log output. It&amp;rsquo;s still a little interesting because you can see it do some basic host discovery using SNMP, and it prints flow data as it arrives.&lt;/p&gt;
+
+&lt;p&gt;It looks like this. Sorry about the wrapping.
+&lt;img src=&#34;http://static.misfra.me/images/posts/break-in/cistern-log.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I grabbed that screenshot as I was demoing it to someone. It&amp;rsquo;s live flow data. If you look carefully, you&amp;rsquo;ll see that most of the lines show my blog&amp;rsquo;s IP sending UDP packets to some IP&amp;rsquo;s port 22. This only a sample (1 in 1024, in fact) of the packets. Therefore, there are lots of packets going out.&lt;/p&gt;
+
+&lt;p&gt;My blog, which runs on a BeagleBone Black, does not produce this kind of traffic. Something&amp;rsquo;s up.&lt;/p&gt;
+
+&lt;p&gt;I grabbed my laptop and went aside to check up on things. I logged in, and yep. The load average was about 4 on this single core ARM machine and there were weird processes running as the &amp;ldquo;debian&amp;rdquo; user and taking up lots of CPU time. I &lt;em&gt;know&lt;/em&gt; I don&amp;rsquo;t run anything as that user. I checked tcpdump and there were lots of IRC packets going over the wire. I knew immediately that some script kiddie got in and made my server part of an IRC controlled botnet.&lt;/p&gt;
+
+&lt;p&gt;I took care of the issue. How did this happen? I made a silly mistake. The &lt;a href=&#34;http://elinux.org/BeagleBoardDebian&#34;&gt;Debian image&lt;/a&gt; for the BeagleBone Black comes set up with a &amp;ldquo;debian&amp;rdquo; user with the default password &amp;ldquo;temppwd&amp;rdquo;. I always use root with key-based authentication, so I forgot about this user. I apparently did not change the password. Leaving a default combination like that on a publicly accessible server is not good.&lt;/p&gt;
+
+&lt;p&gt;By the way, the script they ran is at the following address: &lt;a href=&#34;http://mui3.ucoz.com/maxx.txt&#34;&gt;http://mui3.ucoz.com/maxx.txt&lt;/a&gt;. Notice how it disguises itself (&lt;code&gt;my @ps = . . .&lt;/code&gt;).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This made me upset, but it also made me excited. I saw, for myself, that my tool is useful. It doesn&amp;rsquo;t even do much right now but it has helped me already. I&amp;rsquo;m excited to think that this can be automated and become a valuable tool. Someone asked me yesterday if I had plans to sell this and I said, &amp;ldquo;no, it&amp;rsquo;s all open source.&amp;rdquo; It&amp;rsquo;ll stay open. My plan is to disrupt network monitoring by making the most technically advanced software possible and keeping it completely open.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/break-in/plots.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Something awesome is coming.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Personal projects, knowledge, and intuition</title>
+      <link>http://localhost:1313/personal-projects-knowledge-intuition</link>
+      <pubDate>Wed, 21 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/personal-projects-knowledge-intuition</guid>
+      <description>&lt;p&gt;I had a short conversation with someone recently about having personal projects and applying to internships. The short version of what he said is,&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;I do my school work well and good grades. Besides that, I also do well during internships. Why do I need personal projects?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;(The following represent my own views. This is a personal blog after all, and this is just, like, my opinion, man.)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Just for fun, I did a quick search on personal projects to see what kind of links would show up.
+&lt;img src=&#34;http://i.imgur.com/FcmrHYL.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Design, photography, and art. I was not surprised. I predicted that photography would show up. When people look for individuals for some sort of artistic or creative position, I think they&amp;rsquo;re always looking for some sort of portfolio. If you&amp;rsquo;re just getting started &amp;ndash; perhaps as an intern &amp;ndash; your portfolio would only have personal projects. I think portfolios show skill, personality, and experience. How else could you get those?&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;For a student who does not have personal projects, are school work and past work the only significant things one can look at? I am very opinionated against school work. I don&amp;rsquo;t think learning about programming in school will make you a good programmer. And past work or past internships? I&amp;rsquo;m not entirely sure how useful this information is.&lt;/p&gt;
+
+&lt;p&gt;People might talk about how personal projects on GitHub are a demonstration of skill, work ethic, and other good things. I don&amp;rsquo;t necessarily disagree, but there is more to it! It&amp;rsquo;s not just about programming. Being able to get work done correctly and efficiently is how we judge machines. This is about people. Personal projects are your own. They&amp;rsquo;re a part of your personality. They&amp;rsquo;re something you care about. Of all the things you could be doing, you choose to work on them. What keeps you going when no one else is looking tells a lot about who you are.&lt;/p&gt;
+
+&lt;p&gt;Over the years I think I&amp;rsquo;ve come to realize that what separates the great programmers from the rest is the fact that the former know more about what &lt;em&gt;not&lt;/em&gt; to do. They&amp;rsquo;ve done it all, and they know what doesn&amp;rsquo;t work. Everyone makes mistakes, but usually they happen once or twice. The great programmers go about with the experience of many mistakes. The beginners don&amp;rsquo;t, and the only way to change that is to make lots of mistakes. Personal projects are &lt;em&gt;perfect&lt;/em&gt; for them. There&amp;rsquo;s no risk! A friend once told me that interns are either an asset or a liability. People who have made many mistakes (&lt;em&gt;and&lt;/em&gt; learned from them) are great assets in my opinion.&lt;/p&gt;
+
+&lt;p&gt;I think the &lt;em&gt;most important&lt;/em&gt; aspect of personal projects is that they increase one&amp;rsquo;s intuition. There&amp;rsquo;s knowledge &amp;ndash; knowing something, how it works, and so on. I think there&amp;rsquo;s a layer above that which is knowing &lt;em&gt;why&lt;/em&gt; something works. And then I like to believe there&amp;rsquo;s a layer above that which is rather difficult to explain. It&amp;rsquo;s like understanding at a very deep level. I call it intuition, but that may be the wrong word here. I like to credit all of my interesting ideas to this intuition.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A few weeks ago, I learned about &lt;a href=&#34;http://hackcville.com/&#34;&gt;HackCville&lt;/a&gt;&amp;rsquo;s &lt;a href=&#34;http://januaryterm.splashthat.com/&#34;&gt;Land A Startup Internship&lt;/a&gt; course. I don&amp;rsquo;t like this for many reasons, but I&amp;rsquo;ll focus on the following taken from their site:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Learn about the importance of side projects and how to start them.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Side projects demonstrate self-directed learning and curiosity that will set you apart from your peers.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yes, side projects (or personal projects, as I refer to them) are very important. I don&amp;rsquo;t like the fact that someone would start a personal project to land an interview. That&amp;rsquo;s not genuine. I think there&amp;rsquo;s something wrong if you need to fake who you are or what you do to get the opportunities that you want. I also want to say that a quality like that isn&amp;rsquo;t just unhelpful, but perhaps even negative.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I take personal projects seriously, and I think they&amp;rsquo;re &lt;em&gt;very&lt;/em&gt; important for college students who don&amp;rsquo;t have a lot of professional experience. There are &lt;em&gt;many&lt;/em&gt; computer science students at UVA, and they&amp;rsquo;re all basically learning the same things. The interesting students have exciting projects that they work on and like to talk about. The others are, well, kind of boring. Sometimes it&amp;rsquo;s fine to be boring :).&lt;/p&gt;
+
+&lt;p&gt;Thanks to Abi for reading a draft of this.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Observium Annoys Me</title>
+      <link>http://localhost:1313/observium-annoys-me</link>
+      <pubDate>Tue, 30 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/observium-annoys-me</guid>
+      <description>&lt;p&gt;I first started using Observium in 2011 or 2012. I was a senior in high school. I wasn&amp;rsquo;t that good at programming. I mean, I could write code in a few languages, knew the basic data structures, Big-O, etc. but I was not familiar with many higher level concepts like monitoring. I knew about SNMP, but I didn&amp;rsquo;t know anything at all about the implementation. As &lt;a href=&#34;https://bitcable.com/&#34;&gt;Bitcable&amp;rsquo;s&lt;/a&gt; infrastructure grew to include network switches and more hardware, I needed a monitoring tool. I saw Nagios, Cacti, and others but they all intimidated me. I didn&amp;rsquo;t have time to learn those tools. Things like college applications and math homework took up most of my time.&lt;/p&gt;
+
+&lt;p&gt;Observium was different. I was able to install it relatively quickly and had everything running without any issues. My daily routine when I got to school at 8 AM was to open up Observium in the syslab and get an overview of everything. It was enough.&lt;/p&gt;
+
+&lt;p&gt;I eventually had to reinstall Observium on another VM. This time, installation wasn&amp;rsquo;t so smooth. I was able to add one device, but couldn&amp;rsquo;t add another. Huh?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./add_device.php &amp;lt;snip&amp;gt;.com ap v3 adminusr &amp;lt;snip&amp;gt; &amp;lt;snip&amp;gt; sha aes 161 udp
+Try to add &amp;lt;snip&amp;gt;.com:
+Trying v3 parameters observium/noAuthNoPriv ... 
+No reply on credentials observium/noAuthNoPriv using v3.
+Trying v3 parameters adminusr/authPriv ... 
+Devices skipped: 1.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;What went wrong? What&amp;rsquo;s the error? Why did it get skipped?&lt;/p&gt;
+
+&lt;p&gt;I also found this goodie in the SNMP include file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cat /opt/observium/includes/snmp.inc.php 
+&amp;lt;?php
+
+/**
+ * Observium
+ *
+ *   This file is part of Observium.
+ *
+ * @package    observium
+ * @subpackage snmp
+ * @author     Adam Armstrong &amp;lt;adama@memetic.org&amp;gt;
+ * @copyright  (C) 2006-2014 Adam Armstrong
+ *
+ */
+
+## If anybody has again the idea to implement the PHP internal library calls,
+## be aware that it was tried and banned by lead dev Adam
+##
+## TRUE STORY. THAT SHIT IS WHACK. -- adama.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It looks like Observium uses the Net-SNMP library with PHP. And Net-SNMP isn&amp;rsquo;t exactly the greatest library out there&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;&lt;a href=&#34;https://twitter.com/PreetamJinka&#34;&gt;@PreetamJinka&lt;/a&gt; no… most languages have their own implementations b/c net-snmp is such a pile. (much of net-snmp is thread safe).&lt;/p&gt;&amp;mdash; Theo Schlossnagle (@postwait) &lt;a href=&#34;https://twitter.com/postwait/status/545755326608580608&#34;&gt;December 19, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;I want to like Observium. I love the idea. This is what they write on their &lt;a href=&#34;http://observium.org/&#34;&gt;home page&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Network monitoring for all.&lt;/p&gt;
+
+&lt;p&gt;Observium is an autodiscovering network monitoring platform supporting a wide range of hardware platforms and operating systems including Cisco, Windows, Linux, HP, Juniper, Dell, FreeBSD, Brocade, Netscaler, NetApp and many more. Observium seeks to provide a powerful yet simple and intuitive interface to the health and status of your network.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That sounds great, but I think they messed up along the way. Observium is buggy. What I dislike even more is the fact that they charge for a &amp;ldquo;Professional&amp;rdquo; edition and release an open-source edition with limited features.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Open Source edition only receives critical security updates between 6-monthly release cycles and is best for small non-critical deployments, home use, evaluation or lab environments.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;They don&amp;rsquo;t say anything about new features. I&amp;rsquo;m interpreting this as, &amp;ldquo;the open source version will stay the same unless there are security issues, and anything new is something you have to pay for.&amp;rdquo; That annoys me. A lot.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;This is a GigE interface. I shouldn&amp;#39;t be seeing this &amp;gt;.&amp;lt;. &lt;a href=&#34;http://t.co/K7fG3o9cBG&#34;&gt;pic.twitter.com/K7fG3o9cBG&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/407931417134260224&#34;&gt;December 3, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t like Observium anymore. It&amp;rsquo;s clunky (have you seen the &lt;a href=&#34;http://www.observium.org/wiki/Installation&#34;&gt;dependencies&lt;/a&gt;?!), buggy, and I don&amp;rsquo;t like what the authors are doing.&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s why I&amp;rsquo;m working on &lt;a href=&#34;http://preetamjinka.github.io/cistern/&#34;&gt;Cistern&lt;/a&gt;. I want to show you how &lt;em&gt;I&lt;/em&gt; think network monitoring should be done. I think I&amp;rsquo;m on the right track because &lt;a href=&#34;https://cloudhelix.com/&#34;&gt;many&lt;/a&gt; &lt;a href=&#34;http://www.arbornetworks.com/products/peakflow&#34;&gt;companies&lt;/a&gt; &lt;a href=&#34;http://www.solarwinds.com/solutions/network-flow-analyzer.aspx&#34;&gt;are&lt;/a&gt; &lt;a href=&#34;http://www.metaforsoftware.com/blog/netflow-traffic-analyzer-beyond-nbad&#34;&gt;doing&lt;/a&gt; &lt;a href=&#34;https://www.sevone.com/supported-technologies/network-performance-management&#34;&gt;similar&lt;/a&gt; &lt;a href=&#34;http://www.ca.com/us/opscenter/ca-network-flow-analysis.aspx&#34;&gt;things&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A New Design</title>
+      <link>http://localhost:1313/a-new-design</link>
+      <pubDate>Sun, 28 Dec 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/a-new-design</guid>
+      <description>&lt;p&gt;There used to be a period of time when I kept changing Misframe&amp;rsquo;s design. I was also
+changing what it was running on quite often. I spent most of my time thinking about
+how it ran rather than what I was going to write. After hopping around from using WordPress,
+Node.js, and Tumblr, I&amp;rsquo;ve landed on something so simple that I can&amp;rsquo;t get distracted from
+the writing.&lt;/p&gt;
+
+&lt;p&gt;With today&amp;rsquo;s tweak, Misframe is mostly in serif. I&amp;rsquo;m using &lt;a href=&#34;https://www.google.com/fonts/specimen/Lora&#34;&gt;Lora&lt;/a&gt;
+as the serif font and Arial for the dates and footer. Lora looks like a mix between Times and
+Palatino to me. The italic &amp;ldquo;&lt;em&gt;y&lt;/em&gt;&amp;rdquo; reminds me of Garamond. I guess it represents a mix of different things,
+which is a trait that is shared with this blog.&lt;/p&gt;
+
+&lt;p&gt;I have a few posts that I&amp;rsquo;m working on right now on &lt;a href=&#34;https://draftin.com/&#34;&gt;Draft&lt;/a&gt;. They&amp;rsquo;re
+not about programming. They are a bit more serious than my programming posts. I guess the
+switch to serif represents a slight change of mood too.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SNMP Part II</title>
+      <link>http://localhost:1313/snmp-part-ii</link>
+      <pubDate>Mon, 17 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/snmp-part-ii</guid>
+      <description>
+
+&lt;p&gt;This post is more about the details of how SNMP is currently implemented in Cistern.
+The code at the latest commit as I write this is &lt;a href=&#34;https://github.com/PreetamJinka/cistern/tree/4f57ab68c9a18266908a7221823b24085bd39d1c/net/snmp&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;SNMP communication itself is pretty simple. There are requests and responses.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-ii/get-request-response.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;PDU&lt;/em&gt; stands for &amp;ldquo;protocol data unit.&amp;rdquo; I think of them as structs. If you look
+in the RFCs you&amp;rsquo;ll see them defined like this, in the ASN.1 language:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GetResponse-PDU ::=
+  [2]
+      IMPLICIT SEQUENCE {
+          request-id
+              RequestID,
+
+          error-status
+              ErrorStatus,
+
+          error-index
+              ErrorIndex,
+
+          variable-bindings
+              VarBindList
+      }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s a pretty dense way of describing a &lt;code&gt;GetResponse&lt;/code&gt;. You can just think
+of the &lt;code&gt;GetRequest&lt;/code&gt; and &lt;code&gt;GetResponse&lt;/code&gt; PDUs as structs with certain fields.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-ii/get-request-response-pdus.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;You&amp;rsquo;ll notice that they have the same structure. The only thing that changes between the two
+is the PDU type identifier which goes in the header and the &lt;code&gt;VarBindList&lt;/code&gt;. The &lt;code&gt;RequestID&lt;/code&gt;
+stays the same. This is how you know which request you got a response to, and it&amp;rsquo;s very important.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;If you run Wireshark (or tcpdump) as you run &lt;code&gt;snmpget&lt;/code&gt; (or Cistern :P) over SNMPv3 with encryption,
+you&amp;rsquo;ll see something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-ii/wireshark-screenshot.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;There are four packets of communication. The last two are encrypted. You see the first two show up
+because they are required to fetch the necessary parameters to do encryption.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-ii/discovery.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;GetRequest&lt;/code&gt; is blank. The response is a &lt;code&gt;Report&lt;/code&gt;, a PDU similar to a &lt;code&gt;GetResponse&lt;/code&gt;. It&amp;rsquo;s
+returning a COUNTER of how many invalid SNMP packets were dropped. The important part of this
+response is that we get the following parameters necessary for encryption: &lt;code&gt;EngineID&lt;/code&gt;, &lt;code&gt;EngineTime&lt;/code&gt;,
+and &lt;code&gt;EngineBoots&lt;/code&gt;. Once we have those parameters, we can start encrypting the rest of our packets.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;This is what SNMP communication may potentially look like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-ii/communication-diagram.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Things are out of order, lots of things are going on at the same time, and it&amp;rsquo;s all happening
+over a single port. I suppose you &lt;em&gt;could&lt;/em&gt; open a new socket for each request, but that&amp;rsquo;s not
+scalable at all! So this is our situation: a single socket with request-response sequences
+happening concurrently, and it has to be really fast and efficient.&lt;/p&gt;
+
+&lt;h2 id=&#34;concurrency-for-the-win:02dad372be9ac2904e7edfac9ac7ddac&#34;&gt;Concurrency for the win&lt;/h2&gt;
+
+&lt;p&gt;It turns out that it&amp;rsquo;s quite simple to structure a program using goroutines and channels
+to handle this scenario. We basically have to send requests over the socket, receive responses,
+and send the corresponding response to whatever made that request. Here&amp;rsquo;s how Cistern does it
+at the moment:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a map from &lt;code&gt;RequestID&lt;/code&gt;s to channels.&lt;/li&gt;
+&lt;li&gt;Start a goroutine that listens on the socket, decodes the &lt;code&gt;RequestID&lt;/code&gt; from response PDUs, and sends
+to a corresponding channel in the map.&lt;/li&gt;
+&lt;li&gt;If a channel is found, send the response data to it.&lt;/li&gt;
+&lt;li&gt;Delete the channel from the map.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That goroutine keeps running for the length of the session. Nothing else is reading from that socket.&lt;/p&gt;
+
+&lt;p&gt;Then, when a request is to be made:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a request packet, and remember the &lt;code&gt;RequestID&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Create a channel. Let&amp;rsquo;s call it C.&lt;/li&gt;
+&lt;li&gt;Send the packet over the socket, and set C in the map.&lt;/li&gt;
+&lt;li&gt;Start another goroutine to do a &amp;ldquo;timeout.&amp;rdquo; Basically, if the channel still exists in the map
+after a certain period of time, &lt;em&gt;close the channel&lt;/em&gt; and delete the entry in the map&lt;/li&gt;
+&lt;li&gt;This is the cool part. Attempt to read from the channel like so: &lt;code&gt;decoded, ok = &amp;lt;-C&lt;/code&gt;. If C is
+closed, &lt;code&gt;ok&lt;/code&gt; will be false. Otherwise, we should see something for &lt;code&gt;decoded&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;If the request timed out, try again (only a finite number of times).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So it turns out this approach works really well. You can start up requests concurrently and
+stuff doesn&amp;rsquo;t blow up. Concurrency (and Go) for the win.&lt;/p&gt;
+
+&lt;h2 id=&#34;single-socket:02dad372be9ac2904e7edfac9ac7ddac&#34;&gt;Single socket?&lt;/h2&gt;
+
+&lt;p&gt;The current implementation uses a separate socket for each device that Cistern connects to.
+If you had 1,000 devices, you&amp;rsquo;ll have to open 1,000 sockets. That doesn&amp;rsquo;t seem efficient.
+I think everything can be done using a single socket. Specifically, &lt;a href=&#34;http://golang.org/pkg/net/#UDPConn.ReadFromUDP&#34;&gt;&lt;code&gt;UDPConn.ReadFromUDP&lt;/code&gt;&lt;/a&gt;
+needs to be used. Basically, it allows you to read from a socket and know where it came from.&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;session&amp;rdquo; logic in Cistern will get more complicated. I&amp;rsquo;m honestly not sure what the performance
+would look like with one socket vs many. I don&amp;rsquo;t even have many SNMP devices to test against.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion:02dad372be9ac2904e7edfac9ac7ddac&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;The single socket approach will probably be coming by the end of the year or sometime
+next year.&lt;/p&gt;
+
+&lt;p&gt;I really want this to be the world&amp;rsquo;s most concurrent + efficient SNMPv3 implementation. It&amp;rsquo;ll take
+a lot of work to get there, though. I really would like an SNMP simulator. It is definitely possible.
+I just need the time to do it&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I think this will crush Net-SNMP in terms of thread-safety :P.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;How the heck do I add this kind of stuff to my résumé / LinkedIn? Listing &amp;ldquo;SNMP&amp;rdquo; doesn&amp;rsquo;t really capture
+all of it!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SNMP Part I</title>
+      <link>http://localhost:1313/snmp-part-i</link>
+      <pubDate>Sun, 09 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/snmp-part-i</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Simple_Network_Management_Protocol&#34;&gt;SNMP&lt;/a&gt; stands for Simple Network Management Protocol.
+In case you haven&amp;rsquo;t heard, it&amp;rsquo;s not simple. SNMP is older than me, and it&amp;rsquo;s used everywhere in networking.&lt;/p&gt;
+
+&lt;p&gt;I need SNMP support for &lt;a href=&#34;https://github.com/PreetamJinka/cistern&#34;&gt;Cistern&lt;/a&gt;. sFlow is great for statistics
+but it&amp;rsquo;s not useful to get general information. You can easily get interface statistics from sFlow datagrams,
+but you may want to know what the interface description strings are. You may want to know which VLANs those interfaces
+are assigned to. You may even want to get the description strings of VLANs:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-i/observium-vlans.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The idea of using flows to get this information is silly. The best way to do this is via polling, and doing so when you need to.
+That&amp;rsquo;s where SNMP comes in.&lt;/p&gt;
+
+&lt;p&gt;So, why write a decoder in Go? There&amp;rsquo;s &lt;a href=&#34;http://net-snmp.sourceforge.net/&#34;&gt;Net-SNMP&lt;/a&gt;, which is basically the defacto
+library for this stuff. It has a C library that you can easily use from Go. The issue is that it&amp;rsquo;s not thread safe.
+That&amp;rsquo;s a little annoying for Go programs. The other issue is that I dislike using cgo. A pure-Go implementation
+is much cleaner, in my opinion.&lt;/p&gt;
+
+&lt;h2 id=&#34;protocol-summary:da9dd7ab917e637ee8e36ceb9537f444&#34;&gt;Protocol summary&lt;/h2&gt;
+
+&lt;p&gt;SNMP is not like sFlow at all. sFlow is unidirectional, i.e. packets go one way. SNMP has requests and responses.
+To make things even more complicated, it&amp;rsquo;s all over UDP. That means it&amp;rsquo;s your responsibility to handle that state.
+SNMP is also used for things like switched PDUs (power distribution units), so you can use SNMP to do remote reboots.
+This is very sensitive stuff, so you really need your datagrams to be encryped. SNMPv3 supports encryption, which is
+great but complicated!&lt;/p&gt;
+
+&lt;p&gt;SNMP uses a binary encoding format called &lt;a href=&#34;https://en.wikipedia.org/wiki/Abstract_Syntax_Notation_One&#34;&gt;ASN.1&lt;/a&gt;. There&amp;rsquo;s a
+standard Go package called &lt;a href=&#34;http://golang.org/pkg/encoding/asn1/&#34;&gt;encoding/asn1&lt;/a&gt;, but it&amp;rsquo;s quite awkward to use. There&amp;rsquo;s
+some funk with struct tags and reflection. It seems that most people write their own ASN.1 encoding and decoding functions.&lt;/p&gt;
+
+&lt;p&gt;I spent most of my time reading specifications, diagrams, and RFCs to figure out just how to send valid datagrams.
+Wireshark was incredibly useful in this case. Its interface is excellent. You can click on specific bytes in the hex and it&amp;rsquo;ll
+tell you which field they correspond to.&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Look, I&amp;#39;m getting a response! &lt;a href=&#34;http://t.co/yenOjrn2R1&#34;&gt;pic.twitter.com/yenOjrn2R1&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/528057163806437376&#34;&gt;October 31, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;I grabbed a Brocade FWS 624 switch off Ebay. I&amp;rsquo;m using that for my SNMP tests at home. I think it&amp;rsquo;s too risky to mess around
+with production equipment that customers depend on (duh!). This is a layer 2 switch with SNMP and sFlow capability, so it&amp;rsquo;s really helpful.
+I really don&amp;rsquo;t need anything with 24 ports, but it&amp;rsquo;s hard to find cheap managed switches that support sFlow. I got really lucky with this find
+on Ebay, especially since it&amp;rsquo;s a Brocade device and those are the only ones I have experience with.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/snmp-part-i/fws-624.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Hand-crafting SNMP packets right now :&amp;#39;( &lt;a href=&#34;http://t.co/faJNB5iH1Q&#34;&gt;pic.twitter.com/faJNB5iH1Q&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/528811871567347713&#34;&gt;November 2, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;A lot of this is quite tedious. Once I got used to hand-crafting packets and the encoding, I whipped up some simple
+Go types that encoded themselves. Then I was able to write stuff like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;conn.WriteTo(Sequence{
+	Int(3), // this is an INTEGER
+	Sequence{
+		Int(rand.Intn(1000000000)),
+		Int(65507),
+		String(&amp;quot;\x04&amp;quot;), // this is an OCTET STRING
+		Int(3),
+	},
+	String(Sequence{
+		String(&amp;quot;&amp;quot;),
+		Int(0),
+		Int(0),
+		String(&amp;quot;&amp;quot;),
+		String(&amp;quot;&amp;quot;),
+		String(&amp;quot;&amp;quot;),
+	}.Encode()),
+	Sequence{
+		String(&amp;quot;&amp;quot;),
+		String(&amp;quot;&amp;quot;),
+		GetRequest{
+			Int(rand.Intn(1000000000)),
+			Int(0),
+			Int(0),
+			Sequence{},
+		},
+	},
+}.Encode(), &amp;amp;net.UDPAddr{
+	IP:   net.IPv4(10, 2, 33, 100),
+	Port: 161,
+})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The last major piece was encryption, which is a major PITA. You can&amp;rsquo;t use Wireshark for this (duh!).
+I used &lt;a href=&#34;https://github.com/tiebingzhang/WapSNMP/&#34;&gt;github.com/tiebingzhang/WapSNMP&lt;/a&gt; as a reference for the
+encryption stuff. I thought about forking it but it doesn&amp;rsquo;t have a license. It&amp;rsquo;s also a fork, so I&amp;rsquo;m not
+really sure how to deal with that. I also didn&amp;rsquo;t think it was good, idiomatic Go code. :-/&lt;/p&gt;
+
+&lt;p&gt;After hours of work over a few weeks&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;IT WORKS! &lt;a href=&#34;http://t.co/OXhIZX6uqA&#34;&gt;pic.twitter.com/OXhIZX6uqA&lt;/a&gt;&lt;/p&gt;&amp;mdash; Preetam Jinka (@PreetamJinka) &lt;a href=&#34;https://twitter.com/PreetamJinka/status/531541736062214144&#34;&gt;November 9, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Not simple at all. At least now I have something that works and can iterate really quickly. And with that,
+SNMP gets added to my LinkedIn profile :P.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Custom Router Part II</title>
+      <link>http://localhost:1313/custom-router-part-ii</link>
+      <pubDate>Wed, 22 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/custom-router-part-ii</guid>
+      <description>
+
+&lt;p&gt;Welcome back! In my &lt;a href=&#34;http://misfra.me/custom-router&#34;&gt;previous post&lt;/a&gt; I
+described this interesting idea of writing a router.
+I had no idea whether or not it would work. I knew it was possible, of course. I
+run two OpenBSD routers in a failover setup with CARP (this blog is routed through
+them, FYI).&lt;/p&gt;
+
+&lt;h2 id=&#34;setup:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;Turns out my BeagleBone Black is great for testing this out! When you plug in
+a factory default BeagleBone Black into a computer, it sets up a network over
+USB.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/custom-router-part-ii/bbb-network.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;eth1      Link encap:Ethernet  HWaddr 78:a5:04:c8:8c:a3  
+          inet addr:192.168.7.1  Bcast:192.168.7.3  Mask:255.255.255.252
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It shows up on my laptop as eth1. My laptop is assigned the address 192.168.7.1 and
+the board has 192.168.7.2. sshd is running on the board, so I can easily SSH in via
+192.168.7.2:22.&lt;/p&gt;
+
+&lt;p&gt;The board has no other connections. There&amp;rsquo;s no WiFi, and I don&amp;rsquo;t have it connected
+over Ethernet. It cannot send packets out to the Internet. What it &lt;em&gt;can&lt;/em&gt; do is
+send packets to my laptop, and my laptop &lt;em&gt;is&lt;/em&gt; connected to the Internet. The Internet
+is just a series of tubes right?&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ll just summarize the steps I took to getting this board to reach the rest
+of the Internet.&lt;/p&gt;
+
+&lt;h2 id=&#34;default-gateway:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Default gateway&lt;/h2&gt;
+
+&lt;p&gt;First, we need to set my laptop as the board&amp;rsquo;s default gateway. Otherwise,
+it won&amp;rsquo;t know where to send packets outside the subnet!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@beaglebone:~# ping 199.58.162.130
+connect: Network is unreachable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s a simple one-liner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@beaglebone:~# ip route add default via 192.168.7.1
+root@beaglebone:~# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         192.168.7.1     0.0.0.0         UG    0      0        0 usb0
+192.168.7.0     0.0.0.0         255.255.255.252 U     0      0        0 usb0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, does it work? Let me run tcpdump on my laptop and run ping again on the board&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  ∂ [21:06:42] [~]: sudo tcpdump -i eth1 icmp
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth1, link-type EN10MB (Ethernet), capture size 65535 bytes
+21:06:49.397470 IP 192.168.7.2 &amp;gt; misfra.me: ICMP echo request, id 1451, seq 1, length 64
+21:06:50.406267 IP 192.168.7.2 &amp;gt; misfra.me: ICMP echo request, id 1451, seq 2, length 64
+21:06:51.405815 IP 192.168.7.2 &amp;gt; misfra.me: ICMP echo request, id 1451, seq 3, length 64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Great! Packets are reaching my laptop&amp;hellip; but they&amp;rsquo;re not going anywhere after that. They&amp;rsquo;re
+simply dropped.&lt;/p&gt;
+
+&lt;h2 id=&#34;packet-sniffing:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Packet sniffing&lt;/h2&gt;
+
+&lt;p&gt;I gave a talk at beCamp 2014 on &lt;a href=&#34;https://github.com/PreetamJinka/packet-sniffing&#34;&gt;packet sniffing&lt;/a&gt;.
+There are a few examples that I reuse over and over simply because they&amp;rsquo;re great templates for me.&lt;/p&gt;
+
+&lt;p&gt;tcpdump is obviously seeing the packets we want, so we can too. Raw socket it up.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;fd, err := syscall.Socket(syscall.AF_PACKET, syscall.SOCK_RAW, htons(syscall.ETH_P_ALL))
+if err != nil {
+	log.Fatal(err)
+}
+
+log.Println(&amp;quot;Listening on a raw socket...&amp;quot;)
+
+. . .
+
+n, _, err := syscall.Recvfrom(fd, buf, 0)
+if err != nil {
+	log.Fatal(err)
+}
+
+. . .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;decoding-packets:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Decoding packets&lt;/h2&gt;
+
+&lt;p&gt;What you get from reading from AF_PACKET + SOCK_RAW packets are Ethernet frames.
+You need to decode these. I use my &lt;a href=&#34;https://github.com/PreetamJinka/proto/blob/master/ethernet.go&#34;&gt;proto&lt;/a&gt;
+package for that.&lt;/p&gt;
+
+&lt;h2 id=&#34;routing-itself-and-packet-injection:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Routing itself and packet injection&lt;/h2&gt;
+
+&lt;p&gt;You just got a packet, and you have to route it somewhere else. Where (and how) do you send it?
+Well&amp;hellip;  the simple answer would be to send it to your default gateway. There&amp;rsquo;s obviously more to it,
+but you can figure that out on your own (I did :P).&lt;/p&gt;
+
+&lt;p&gt;How do you actually send that packet to the default gateway? We know that the default gateway is on the
+same subnet you are. Therefore, we&amp;rsquo;re only working at layer 2 of the &lt;a href=&#34;http://en.wikipedia.org/wiki/OSI_model&#34;&gt;OSI model&lt;/a&gt;.
+There&amp;rsquo;s a really simple answer for this one: just modify the MAC addresses in the Ethernet packet header
+and write the packet back into the socket. That&amp;rsquo;s it! I think this is called &lt;a href=&#34;http://en.wikipedia.org/wiki/Packet_injection&#34;&gt;packet injection&lt;/a&gt;.
+The Wikipedia page makes it sound evil&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;getting-packets-back:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Getting packets back&lt;/h2&gt;
+
+&lt;p&gt;One thing you have to be careful about is getting packets back from the Internet.
+I set up a static route on my WiFi router to route the 192.168.7.0/30 subnet
+to my laptop.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/custom-router-part-ii/static-route.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Yes, the subnet mask is incorrect but it doesn&amp;rsquo;t make a difference in this situation.&lt;/p&gt;
+
+&lt;h2 id=&#34;end-result:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;End result&lt;/h2&gt;
+
+&lt;p&gt;Ta-daaaah!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/custom-router-part-ii/demo.gif&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;On the left is the log output of a Go program that&amp;rsquo;s reading and writing from/to
+a raw socket, and printing out the Ethernet frames it&amp;rsquo;s receiving and sending.
+On the right is an SSH session on the board while I run &lt;code&gt;apt-get update&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;My Go program does the first routing to the Internet (and last in the inbound
+direction).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2014/10/22 21:39:30 Listening on a raw socket...
+2014/10/22 21:39:30 &amp;lt;nil&amp;gt;
+2014/10/22 21:39:33 this one needs to go to the gateway
+2014/10/22 21:39:33 {78:a5:04:c8:8c:a3 26:06:05:5f:40:f4 0 2048 &amp;lt;snip&amp;gt;
+2014/10/22 21:39:33 {e8:de:27:bb:6b:aa 9c:4e:36:59:b2:54 0 2048 &amp;lt;snip&amp;gt;
+2014/10/22 21:39:33 &amp;lt;nil&amp;gt;
+2014/10/22 21:39:33 this one needs to go to the BeagleBone Black
+2014/10/22 21:39:33 &amp;lt;nil&amp;gt;
+2014/10/22 21:39:34 this one needs to go to the gateway
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;traceroute:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Traceroute&lt;/h2&gt;
+
+&lt;p&gt;Check this out&amp;hellip; it&amp;rsquo;s cool.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root@beaglebone:~# traceroute misfra.me
+traceroute to misfra.me (199.58.162.130), 30 hops max, 60 byte packets
+ 1  192.168.0.1 (192.168.0.1)  4.363 ms  6.072 ms  13.493 ms
+ 2  10.2.33.1 (10.2.33.1)  16.266 ms  16.125 ms  16.266 ms
+ 3  10.1.10.1 (10.1.10.1)  15.894 ms  15.743 ms  15.598 ms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How come my laptop (192.168.7.1) isn&amp;rsquo;t showing up? Let&amp;rsquo;s think about
+how traceroute(1) actually works. In short, it sends out multiple packets
+with different TTLs (time to live). Quoting &lt;a href=&#34;http://en.wikipedia.org/wiki/Time_to_live&#34;&gt;Wikipedia&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The TTL field is set by the sender of the datagram, and reduced by every router on the route to its destination. If the TTL field reaches zero before the datagram arrives at its destination, then the datagram is discarded and an ICMP error datagram (11 - Time Exceeded) is sent back to the sender.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The reason why we don&amp;rsquo;t see 192.168.7.1 is because my Go program does not
+decrease the TTL (I&amp;rsquo;ll explain why later). My Go program also does not send ICMP
+datagrams. Think about this for a second. Isn&amp;rsquo;t my custom router invisible? Well,
+it&amp;rsquo;s not since it&amp;rsquo;s the default gateway, but what if it was a few hops down? Isn&amp;rsquo;t
+that scary? Uhm&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;checksums-and-ttls:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Checksums and TTLs&lt;/h2&gt;
+
+&lt;p&gt;If you open up a diagram of an Ethernet frame (look &lt;a href=&#34;http://en.wikipedia.org/wiki/Ethernet_frame#Structure&#34;&gt;here&lt;/a&gt;),
+you&amp;rsquo;ll notice that there&amp;rsquo;s a field called &amp;ldquo;Frame check sequence&amp;rdquo;. This is a 32-bit CRC &amp;ndash; a checksum.
+Turns out that NICs take care of calculating this checksum for you, so you don&amp;rsquo;t have to worry about it when
+constructing Ethernet frames.&lt;/p&gt;
+
+&lt;p&gt;IPv4 packets are different. You have to make sure the checksum stays consistent. The reason why
+I&amp;rsquo;m not decreasing the TTL is because I&amp;rsquo;d have to recalculate the IPv4 packet checksum, and
+I simply didn&amp;rsquo;t have time for that (I had to eat dinner :D).&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion-and-next-steps:4ac6ca2971bd3a3849aacaefee3bcb19&#34;&gt;Conclusion and next steps&lt;/h2&gt;
+
+&lt;p&gt;This was a pretty cool thing to write before dinner. It&amp;rsquo;s not that long, either. All of the code
+is available on GitHub and is MIT licensed (&amp;lsquo;cause I like your freedom):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/PreetamJinka/gateway-experiment&#34;&gt;https://github.com/PreetamJinka/gateway-experiment&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I&amp;rsquo;m thinking about inter-VLAN routing, stateful firewalls, routing tables, etc.
+It would be neat to try to implement some of this stuff in Go. I already wrote a &lt;a href=&#34;http://misfra.me/router-on-a-stick&#34;&gt;post&lt;/a&gt; on inter-VLAN routing. That was over two years ago? I keep redoing stuff, but every time I do it I go a level lower :P.&lt;/p&gt;
+
+&lt;p&gt;Well, I hope that was informative. Ask me questions on Twitter: &lt;a href=&#34;https://twitter.com/PreetamJinka&#34;&gt;@PreetamJinka&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Custom Router</title>
+      <link>http://localhost:1313/custom-router</link>
+      <pubDate>Sun, 19 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/custom-router</guid>
+      <description>&lt;p&gt;So this clever new idea has been floating around in my head
+for a couple of days now. If you consider a router, it&amp;rsquo;s basically
+connecting directing packets to different subnets. The simple case
+is when you have two subnets and a router that&amp;rsquo;s in the middle.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s call the router R1, with the two subnets being S1 and S2.
+Let&amp;rsquo;s say you&amp;rsquo;re managing a bunch of servers in a data center rack
+and they&amp;rsquo;re all on S2. Your router, R1, connects them to your
+bandwidth provider who is on S1.&lt;/p&gt;
+
+&lt;p&gt;R1 has two interfaces &amp;ndash; one for S1 and one for S2 &amp;ndash; and it
+has an IP address on each. Your provider is routing all of the
+traffic going to S2 to R1&amp;rsquo;s address on S1. All of your hosts
+on S2 are sending the packets that need to go outside the subnet
+to R1&amp;rsquo;s address on S2.&lt;/p&gt;
+
+&lt;p&gt;This is really simple (conceptually, of course). I think you can
+write something that can do this with a couple of raw sockets.
+Well, I think I can actually write something that can do
+simple routing like this. All you have to do is peek at the
+IP headers and rewrap the IP packets with new Ethernet headers.&lt;/p&gt;
+
+&lt;p&gt;Argh, I don&amp;rsquo;t think I have the hardware to test this out easily.
+Maybe I can play around with some VMs? I haven&amp;rsquo;t tried that out
+yet.&lt;/p&gt;
+
+&lt;p&gt;For some reason I keep thinking that the kernel doesn&amp;rsquo;t like this.
+Perhaps &lt;code&gt;iptables&lt;/code&gt; will mess with stuff or something. Anyway,
+it&amp;rsquo;d be &lt;em&gt;really&lt;/em&gt; cool to write a firewall in Go that does some
+neat deep packet inspection.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Increasing my knowledge of the networking stack :D&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Crazy One</title>
+      <link>http://localhost:1313/the-crazy-one</link>
+      <pubDate>Thu, 16 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/the-crazy-one</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;We should be celebrating the ones who take time to slow down and better understand themselves, the ones who are shaken by life’s beauty, the ones who aren’t afraid to be alone, the ones who play the baby grand piano when no one’s listening, the ones who don’t follow the money, the ones who practice compassion, the ones who admit the only thing they know is that they know nothing at all.
+— &lt;a href=&#34;https://medium.com/@stanleyyork/the-crazy-ones-part-ii-454f6050b6e9&#34;&gt;The Crazy Ones, Part II&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I liked that paragraph, especially the part about the piano.&lt;/p&gt;
+
+&lt;p&gt;It reminded me of this review of Bitcable I found: &lt;a href=&#34;http://www.96mb.com/96mb-low-end-vps-review-part-xix-bitcable/&#34;&gt;http://www.96mb.com/96mb-low-end-vps-review-part-xix-bitcable/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/the-crazy-one/excerpt.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Some people ask for a free trial in order to write a review. This reviewer did not. I had no idea he would write this, so I
+did not give him any sort of special treatment. Looking back, I&amp;rsquo;m really impressed I was able to pull that off. I was generally
+as quick for every client.&lt;/p&gt;
+
+&lt;p&gt;This was a little over three years ago, in August 2011. Yeah. I was in the middle of a summer internship. Each day was eight hours of interning,
+plus two hours to commute to Fairfax and back, and then I was home checking my emails often :). For some reason I thought that it was a good
+use of my time.&lt;/p&gt;
+
+&lt;p&gt;When you&amp;rsquo;re interning (or working in general), there&amp;rsquo;s always someone looking at your work. There are those who guide you, mentor you, and
+make sure you&amp;rsquo;re doing the right thing. Your hard work usually gets noticed and (hopefully) appreciated. There&amp;rsquo;s an incentive to work hard.
+This is also the case when you go to school. You get good grades. Teachers (and professors, I guess) notice that.&lt;/p&gt;
+
+&lt;p&gt;Working on my web hosting thing was something I did (and still do) all by myself. There are no guides. No mentors. No one to tell you that
+you&amp;rsquo;re doing the right thing. Most importantly, you&amp;rsquo;re not exactly rewarded for your hard work. No one sees the work. It sounds crazy. I think
+it reminds me of mad scientists working alone an a dark lab on some complicated experiments. I was the crazy one. I was experimenting and
+writing stuff like &lt;a href=&#34;https://gist.github.com/PreetamJinka/42fd851980ef9a04e7ab&#34;&gt;this VM provisioning thing&lt;/a&gt;. That script was buried away somewhere
+until I found it again three years later.&lt;/p&gt;
+
+&lt;h2 id=&#34;entrepreneurship:a8fad3f8d4b387ec43daebd0a39cc052&#34;&gt;&amp;ldquo;Entrepreneurship&amp;rdquo;&lt;/h2&gt;
+
+&lt;p&gt;I personally think that entrepreneurs are the crazy type. And you can&amp;rsquo;t teach crazy. I&amp;rsquo;m not a fan of the
+entrepreneurship stuff that people organize and sign up for. Have you seen the How to Start a Startup series? Paul Graham mentions
+in &lt;a href=&#34;http://startupclass.samaltman.com/courses/lec03/&#34;&gt;lecture 3&lt;/a&gt; that &amp;ldquo;the best way to learn on how to start a startup is just to just try to start it.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Hm&amp;hellip; I guess I&amp;rsquo;ll mention that perhaps the most amazing things are happening
+all the time and they simply go unnoticed. That doesn&amp;rsquo;t apply to me, of course&amp;hellip; have you seen the screenshots I&amp;rsquo;ve tweeted? :P
+Maybe I should stop doing that&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>State of the State Part II</title>
+      <link>http://localhost:1313/state-of-the-state-part-ii</link>
+      <pubDate>Mon, 13 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/state-of-the-state-part-ii</guid>
+      <description>
+
+&lt;p&gt;The &lt;a href=&#34;http://misfra.me/state-of-the-state&#34;&gt;original post&lt;/a&gt; was written last December (almost 10 months ago). To summarize, I mentioned my time series logging program, Adversaria, and I wrote about my little toy key-value store, Fickle. I wrote that I would try to add transactions, and then I ended with a goal to use it to power this blog.&lt;/p&gt;
+
+&lt;p&gt;Since then, I wrote a &lt;a href=&#34;https://github.com/PreetamJinka/txfun/blob/5440e53e17c050b620da6410aaa5bcf1353fd5f5/db_test.go&#34;&gt;skip list&lt;/a&gt; in C, implemented basic &lt;a href=&#34;https://github.com/PreetamJinka/txfun/blob/a36943e976d9baf5d94dcd85726c21f683428810/db_test.go&#34;&gt;transactions&lt;/a&gt; in Go, and played around with &lt;a href=&#34;https://github.com/PreetamJinka/chunks&#34;&gt;chunks&lt;/a&gt; of ordered byte slices, and wrote a &lt;a href=&#34;https://github.com/PreetamJinka/listmap&#34;&gt;memory-mapped linked list&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There was certainly a lack of focus, and part of that was due to the fact that I wasn&amp;rsquo;t exactly solving a problem. All of that work was mainly due to curiosity. This time, I do have a problem to solve, and it&amp;rsquo;s worth solving!&lt;/p&gt;
+
+&lt;h2 id=&#34;cistern:d5f7aecad5355d283ad71d247279c609&#34;&gt;Cistern&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;m not exactly interested in writing a traditional database anymore. I&amp;rsquo;ve been working mainly on &lt;a href=&#34;https://github.com/PreetamJinka/cistern&#34;&gt;Cistern&lt;/a&gt;, my sFlow collector. &lt;a href=&#34;http://sflow.org/&#34;&gt;sFlow&lt;/a&gt; is a network monitoring specification. It&amp;rsquo;s very simple to understand. A set of devices (routers, switches, servers) emit counters and packet samples, and they all flow to a collector. The collector then aggregates them.&lt;/p&gt;
+
+&lt;p&gt;This is how it all works as a short summary.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Devices generate sFlow datagrams. I started to write a &lt;a href=&#34;https://github.com/PreetamJinka/gohsflowd&#34;&gt;host sFlow daemon&lt;/a&gt; in Go. Since that isn&amp;rsquo;t finished, I&amp;rsquo;m using the original hsflowd. I also have Brocade switches that generate sFlow datagrams in hardware.&lt;/li&gt;
+&lt;li&gt;Datagrams get decoded using my &lt;a href=&#34;https://github.com/PreetamJinka/sflow-go&#34;&gt;sFlow decoding package&lt;/a&gt;. This one works pretty well!&lt;/li&gt;
+&lt;li&gt;Packet samples get decoded using my &lt;a href=&#34;https://github.com/PreetamJinka/protodecode&#34;&gt;protocol decoding package&lt;/a&gt;. This is a rewrite of what I wrote a few months ago.&lt;/li&gt;
+&lt;li&gt;Decoded headers get organized into &amp;ldquo;flows&amp;rdquo; and sent to my &lt;a href=&#34;https://github.com/PreetamJinka/flowtrack&#34;&gt;flowtrack&lt;/a&gt; package. This one is an MVP that needs to be rewritten.&lt;/li&gt;
+&lt;li&gt;sFlow counter records are simply numbers, so they simply get aggregated in &lt;a href=&#34;https://github.com/PreetamJinka/cistern/blob/master/metrics.go&#34;&gt;Cistern&amp;rsquo;s metric registry&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Every N seconds, the state of all the metrics is recorded into a &lt;a href=&#34;https://github.com/PreetamJinka/metricstore&#34;&gt;metricstore&lt;/a&gt;. A metricstore is essentially an organized set of linked lists, specifically &lt;a href=&#34;https://github.com/PreetamJinka/listmap&#34;&gt;listmaps&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;There&amp;rsquo;s a crude HTTP API to fetch all of the state (including the time series for metrics) as JSON.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;examples:d5f7aecad5355d283ad71d247279c609&#34;&gt;Examples&lt;/h2&gt;
+
+&lt;p&gt;This is something I came up with that uses Angular.JS and Cistern. The frontend polls occasionally to get a list of hosts, and then queries for the current values of certain metrics. It&amp;rsquo;s all completely dynamic. As new hosts start sending their sFlow datagrams, Cistern automatically creates new entries in the registry and starts supplying the frontend with an updated list of hosts.
+&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-ii/realtime.gif&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s some information from packet headers. As you can tell, there&amp;rsquo;s a single IP address opening a bunch of connections to port 22 for a bunch of destination IP addresses. This is most likely a bot trying to find active hosts listening on port 22.
+&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-ii/portscan.png&#34; alt=&#34;Port scan&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This is a quick demo using the HTTP interface to fetch time series for a metric. I used D3.js to plot the graph.
+&lt;img src=&#34;http://static.misfra.me/images/posts/state-of-the-state-part-ii/d3.png&#34; alt=&#34;D3.js&#34; /&gt;
+&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Does that sound like a lot? Well, it took me a while to get this far! Part of the reason is that I iterate a lot. Cistern is the composition of a bunch of stuff that I&amp;rsquo;ve written in short bursts. I started writing some &lt;a href=&#34;https://github.com/PreetamJinka/flowtools&#34;&gt;flow tools&lt;/a&gt; in February, and wrote the first &lt;a href=&#34;https://github.com/PreetamJinka/flow-collector&#34;&gt;flow collector&lt;/a&gt; in June. You&amp;rsquo;ll notice that Cistern has a lot of code / ideas in common with those.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s still a lot of other work to do. I&amp;rsquo;m probably going to work on some D3.js and AngularJS stuff. I need to work on my JavaScript :). I will have to update the storage engine to partition by time so I can get rid of older data. It should be easy enough. I also need to work on detecting scanners, and I have a couple of ideas on how to do that which involves a simple analysis of flows.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s kind of cool that I was able to do all this stuff (from scratch!) in my free time. Gettin&amp;rsquo; good at this. :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>BeagleBone Black</title>
+      <link>http://localhost:1313/beaglebone</link>
+      <pubDate>Sun, 05 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/beaglebone</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/beaglebone/beaglebone.jpg&#34; alt=&#34;BeagleBone Black&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m a huge fan of the &lt;a href=&#34;http://beagleboard.org/black&#34;&gt;BeagleBone Black&lt;/a&gt;. It&amp;rsquo;s an alternative
+to the popular Raspberry Pi. I&amp;rsquo;m such a fan that I got my second one a few days ago.&lt;/p&gt;
+
+&lt;p&gt;This website runs on a BeagleBone Black. It&amp;rsquo;s powered via USB, and it&amp;rsquo;s connected to
+my switch at a data center. For some reason I choose to use this credit card-sized
+ARM computer to host stuff instead of a VM. It reminds me of the little VMs I used to
+work with in middle school. I used to ask my parents to rent VMs for me during my summers.
+They&amp;rsquo;d spend maybe $10 a month for a couple of months and I&amp;rsquo;d play around with it. Root access on a
+Linux VM with a tiny bit of RAM and a public IP? The possibilities were endless!&lt;/p&gt;
+
+&lt;p&gt;You can think about a VM, running on some beefy server somewhere, that is completely opaque
+to you in terms of hardware and stuff, and then you can look at this little thing
+that can fit into your pocket, watch its lights blinking, and it&amp;rsquo;s just so
+magical. I would&amp;rsquo;ve &lt;em&gt;loved&lt;/em&gt; something like this when I was in middle school.&lt;/p&gt;
+
+&lt;p&gt;Anyway, the first BeagleBone is running some other stuff in addition to this blog.
+It hosts my Twilio endpoint and has a bunch of scripts that I use for automation.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m not exactly sure what I&amp;rsquo;m going to use this second one for, but I have plugged
+in a USB audio interface and played my guitar through it. I&amp;rsquo;ve been trying to get a
+simple reverb effect but audio programming with callbacks and stuff is crazy!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Overdue invoices</title>
+      <link>http://localhost:1313/overdue-invoices</link>
+      <pubDate>Mon, 22 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/overdue-invoices</guid>
+      <description>&lt;p&gt;I used to subscribe to CloudLinux but then stopped. I do not use CloudLinux anymore.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m still getting invoiced every month even though I&amp;rsquo;m not using my license at all.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://static.misfra.me/images/posts/overdue-invoices/cloudlinux.png&#34; alt=&#34;CloudLinux email&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;And so, every month, my balance goes up. I will not pay it. Why should I? I didn&amp;rsquo;t use their
+service! It&amp;rsquo;s too much of a hassle, in my opinion, to contact them about it. Eh.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the thing: I can&amp;rsquo;t get another license from them unless I cough up the $42.00, right?
+That discourages me from subscribing again.&lt;/p&gt;
+
+&lt;p&gt;You know, the similar happened to me with &lt;a href=&#34;https://www.ksplice.com/&#34;&gt;Ksplice Uptrack&lt;/a&gt;. I
+started using Ksplice before the Oracle purchase, so I had a few licenses and installed it
+on all of my servers. Somehow I think I forgot to pay my invoices and now I have like a $70+ balance.
+I&amp;rsquo;m not using Ksplice on my servers anymore. Well, I can&amp;rsquo;t install it now without paying my bills, right?
+So, yeah. Don&amp;rsquo;t tell Oracle :P.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re a service company, please:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Don&amp;rsquo;t bill me for things I don&amp;rsquo;t use.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t keep my service going if I don&amp;rsquo;t pay the bill.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
