@@ -1,5 +1,5 @@
 ---
-title: There&rsquo;s no rush.
+title: There's no rush.
 date: "2014-03-11"
 url: /no-rush
 ---
