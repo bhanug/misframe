@@ -9,6 +9,7 @@
       </div>
     </div>
   </header>
+  {{ if .IsPage }}
   <div>
     <p>{{ .Summary }}</p>
   </div>
@@ -16,5 +17,6 @@
   <footer>
     <a class='read-more' href="{{ .Permalink }}">Read more &raquo;</a>
   </footer>
+  {{ end }}
   {{ end }}
 </article>
