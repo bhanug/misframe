@@ -1,0 +1,15 @@
+.hljs-keyword {
+  font-weight: bold;
+}
+
+.hljs-typename {
+  font-style: italic;
+}
+
+.hljs-string {
+  color: #666;
+}
+
+.hljs-comment {
+  color: #999;
+}
