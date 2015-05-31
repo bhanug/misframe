@@ -1,10 +1,12 @@
 {{ partial "header.html" . }}
 <div class="article-list">
   {{ range $index, $page := .Site.Pages }}
-  {{ if ne $index 0 }}
-  <hr/>
-  {{ end }}
-  {{ .Render "list" }}
+    {{ if lt $index 10 }}
+      {{ if ne $index 0 }}
+      <hr/>
+      {{ end }}
+      {{ .Render "list" }}
+    {{ end }}
   {{ end }}
 </div>
 {{ partial "footer.html" . }}
