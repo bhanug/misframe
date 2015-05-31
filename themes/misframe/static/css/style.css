@@ -135,11 +135,18 @@ ul {
   padding-left: 0.5em;
 }
 
+ol {
+  list-style: decimal;
+  list-style-position: inside;
+  margin: 0.5em;
+  padding-left: 0.5em;
+}
+
 ul p {
   line-height: 100%;
 }
 
-ul li {
+ul li, ol li {
   font-size: 14px;
 }
 
