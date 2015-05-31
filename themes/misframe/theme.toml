@@ -1,17 +1,7 @@
 name = "Misframe"
 license = "MIT"
-licenselink = "https://github.com/.../.../LICENSE.md"
-description = ""
-homepage = "http://siteforthistheme.com/"
-tags = ["", ""]
-features = ["", ""]
+homepage = "http://misfra.me"
 
 [author]
-  name = ""
-  homepage = ""
-
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""
+  name = "Preetam Jinka"
+  homepage = "http://preet.am"
