@@ -1,9 +1,8 @@
 <article>
   <header>
-    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-    <div class="post-meta clearfix">
-      <div class="post-date pull-left">
-        Posted on
+    <h2 class='list-title'><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <div class="post-meta">
+      <div class="post-date">
         <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHtml }}">
           {{ .Date.Format "Jan 2, 2006" }}
         </time>
@@ -11,13 +10,11 @@
     </div>
   </header>
   <div>
-    {{ .Summary }}
+    <p>{{ .Summary }}</p>
   </div>
   {{ if .Truncated }}
   <footer>
-    <ul class="pager">
-      <li class="next"><a href="{{ .Permalink }}">Read more &raquo;</a></li>
-    </ul>
+    <a class='read-more' href="{{ .Permalink }}">Read more &raquo;</a>
   </footer>
   {{ end }}
 </article>
