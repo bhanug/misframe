@@ -71,6 +71,10 @@ h2.list-title a {
   border: none;
 }
 
+span.reference {
+  font-size: 0.8em;
+}
+
 /*
 *  Overall text
 */
@@ -111,6 +115,11 @@ a {
   text-decoration: none;
   padding-bottom: 0.1em;
   border-bottom: 1px dashed #bbb;
+}
+
+a:not([href]) {
+  color: inherit;
+  border: none;
 }
 
 em {
