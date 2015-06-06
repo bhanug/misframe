@@ -5,7 +5,8 @@
 body {
   font-family: Lora, Georgia, serif;
   padding: 0;
-  font-size: 16px;
+  font-size: 15px;
+  color: #111;
 }
 
 div.wrapper {
@@ -87,7 +88,14 @@ h1 {
 }
 
 section.post h2 {
+  color: #555;
+  font-size: 1.1em;
   text-transform: uppercase;
+  line-height: 2.2em;
+}
+
+p {
+  line-height: 1.75;
 }
 
 p + h2 {
@@ -109,6 +117,11 @@ em {
   font-style: italic;
 }
 
+strong {
+  font-weight: bold;
+  color: #333;
+}
+
 /*
 *  Block elements
 */
@@ -121,6 +134,7 @@ blockquote {
 }
 
 pre code {
+  font-size: 0.8em;
   font-family: monospace;
   display: block;
   background-color: #fafafa;
@@ -137,29 +151,38 @@ img {
 *  Lists
 */
 
+ul, ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left:  0.5em;
+  padding-left: 0.5em;
+}
+
 ul {
   list-style: disc;
   list-style-position: inside;
-  margin-left:  0.5em;
-  padding-left: 0.5em;
 }
 
 ol {
   list-style: decimal;
   list-style-position: inside;
-  margin: 0.5em;
-  padding-left: 0.5em;
 }
 
 ul p {
   line-height: 100%;
 }
 
-ul li, ol li {
+ul ul, ul ol, ol ol, ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 ul ul li {
   list-style-type: circle;
+}
+
+ul li, ol li {
+  margin: 0.2em;
 }
 
 /*
@@ -192,6 +215,10 @@ ul.pager li {
 
 p code {
   font-family: monospace;
+  font-size: 0.8em;
+  padding: 3px;
+  color: #222;
+  background-color: #f0f0f0;
 }
 
 a.read-more {
