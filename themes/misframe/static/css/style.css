@@ -1,25 +1,60 @@
+/*
+*  Layout
+*/
+
 body {
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: Lora, Georgia, serif;
   padding: 0;
   font-size: 16px;
-  line-height: 25.875px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Lato';
+div.wrapper {
+  width: 43em;
+  max-width: 90%;
+  margin: 0px auto;
+  padding: 50px 0;
 }
 
-a {
-  text-decoration: none;
-  color: #333;
-  padding-bottom: 0.1em;
-  border-bottom: 1px dashed #ddd;
+div.footer p {
+  color: #777;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+div.footer p a {
+  color: #777;
+}
+
+.wrapper section.post {
+  padding: 1em 0;
+}
+
+/*
+*  Specific text
+*/
+
+h1.site-title {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  text-align: left;
+  font-weight: 400;
+  margin-bottom: 2em;
+  font-style: Normal;
+}
+
+h1.site-title a {
+  border: none;
+}
+
+h1.site-title em {
+  color: #777;
+  text-transform: none;
+  margin: 0 1px;
 }
 
 .post-date {
-  font-family: 'Lato';
-  font-weight: 300;
   font-size: 0.8em;
+  color: #777;
   text-align: center;
 }
 
@@ -27,68 +62,32 @@ a {
   text-align: left;
 }
 
-div.wrapper {
-  width: 50em;
-  max-width: 90%;
-  margin: 0px auto;
-  padding: 50px 0;
+h2.list-title {
+  font-size: 1.2em;
 }
 
-p {
-  margin: 0px;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 28.88px;
+h2.list-title a {
+  border: none;
 }
 
-div.basic {
-  margin: 0 auto;
-  text-align: center;
-  width: auto;
-}
+/*
+*  Overall text
+*/
 
-h1.site-title {
-  text-transform: uppercase;
-  font-size: 12px;
-  text-align: left;
-  font-weight: 400;
-  font-style: Normal;
+h1, h2, h3, h4, h5, h6 {
+  font-family: Cabin, Helvetica, Arial, sans-serif;
 }
 
 h1 {
+  font-size: 1.6em;
+  line-height: 1.2em;
   text-align: center;
   font-weight: 400;
   font-style: Normal;
-  font-size: 33px;
-  line-height: 150%;
-}
-
-h2 {
-  font-weight: 300;
-  font-style: Normal;
-  font-size: 20px;
-  line-height: 220%;
-}
-
-em {
-  text-transform: none;
-  font-weight: 400;
-  font-style: italic;
-  margin: 0px 1px;
 }
 
 section.post h2 {
-  text-align: left;
   text-transform: uppercase;
-}
-
-h2.post-header {
-  font-size: 18px;
-  line-height: 40px;
-  font-weight: 300;
-  font-style: Normal;
-  color: rgba(86, 86, 86, 1);
 }
 
 p + h2 {
@@ -99,13 +98,20 @@ p + p {
   margin-top: 1em;
 }
 
-hr {
-  border: none;
-  width: 50%;
-  background-color: #ddd;
-  height: 1px;
-  margin: 1em auto;
+a {
+  color: #333;
+  text-decoration: none;
+  padding-bottom: 0.1em;
+  border-bottom: 1px dashed #bbb;
 }
+
+em {
+  font-style: italic;
+}
+
+/*
+*  Block elements
+*/
 
 blockquote {
   border-left: 8px solid #ddd;
@@ -120,13 +126,16 @@ pre code {
   background-color: #fafafa;
   margin: 0.5em;
   padding: 1em;
-  font-size: 12px;
   line-height: 160%;
 }
 
 img {
   max-width: 100%;
 }
+
+/*
+*  Lists
+*/
 
 ul {
   list-style: disc;
@@ -147,39 +156,38 @@ ul p {
 }
 
 ul li, ol li {
-  font-size: 14px;
 }
 
 ul ul li {
   list-style-type: circle;
 }
 
+/*
+*  Misc. elements
+*/
+hr {
+  border: none;
+  width: 50%;
+  background-color: #ddd;
+  height: 1px;
+  margin: 1em auto;
+}
+
 ul.pager {
   list-style: none;
   text-align: center;
-  margin: 1em auto;
   display: block;
-  width: 150px;
+  margin: 1em auto;
+  width: 150px;;
 }
 
 .pager a {
   border: none;
 }
 
-ul.pager li.previous {
-  float: left;
-}
-
-ul.pager li.next {
-  float: right;
-}
-
-h1.site-title {
-  margin-bottom: 1em;
-}
-
-h1.site-title a {
-  border: none;
+ul.pager li {
+  display: table-cell;
+  width: 125px;
 }
 
 p code {
@@ -191,14 +199,4 @@ a.read-more {
   border: none;
   font-size: 0.8em;
   margin: 2em;
-}
-
-h2.list-title {
-  margin: 0;
-  line-height: 120%;
-  font-weight: normal;
-}
-
-h2.list-title a {
-  border: none;
 }
