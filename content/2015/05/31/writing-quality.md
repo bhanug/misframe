@@ -3,7 +3,7 @@ title: Writing Quality
 date: "2015-05-31"
 ---
 
-About a year ago, I told myself that I would lower my mental thresholds for content to force myself to write more. Not just blog posts, but code too. I'm not sure if it made a difference for blog posts or not, but I don't agree with that idea anymore. When I look back at all of the posts I've written so far on Misframe, I see plenty of issues. I frequently find typos, issues with how the writing flows, and some things just aren't that good. The typos I can fix at any time. The more significant issues... not so much. I know that I'm probably getting better all the time, but that doesn't make a difference unless you're only looking at the latest content. As I keep raising the bar of writing quality over time, older posts look worse.
+About a year ago, I told myself that I would lower my mental thresholds for content to force myself to write more. Not just blog posts, but code too. I'm not sure if it made a difference for blog posts or not, but I don't agree with that idea anymore. When I look back at all of the posts I've written so far on Misframe, I see plenty of issues. I frequently find typos, issues with how the writing flows, and some things that just aren't that good. The typos I can fix at any time. The more significant issues... not so much. I know that I'm probably getting better all the time, but that doesn't make a difference unless you're only looking at the latest content. As I keep raising the bar of writing quality over time, older posts look worse.
 
 Recently, I've been thinking about archiving all of my old posts and starting over ([again](http://misfra.me/starting-over-again/)). I like the way Jason puts it:
 
