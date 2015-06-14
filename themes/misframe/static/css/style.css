@@ -7,7 +7,6 @@ body {
   padding: 0;
   font-size: 15px;
   color: #111;
-  text-rendering: optimizeLegibility;
 }
 
 div.wrapper {

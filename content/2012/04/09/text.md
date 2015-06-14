@@ -1,7 +1,7 @@
 ---
 title: Text
 date: "2012-04-09"
-url: /its-been-a-long-time-since-johannes-gutenberg
+url: /text
 ---
 
 
