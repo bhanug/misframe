@@ -71,8 +71,17 @@ h2.list-title a {
   border: none;
 }
 
-span.reference {
+a.ref {
+  color: #999;
+  padding: 2px;
   font-size: 0.8em;
+  border: none;
+  position: relative;
+  bottom: 5px;
+}
+
+a.endnote {
+  border: none;
 }
 
 /*
@@ -140,6 +149,18 @@ blockquote {
   margin: 0.7em 0.7em 0.7em 0;
   padding-left: 1em;
   color: #333;
+}
+
+blockquote.pullquote {
+  color: #555;
+  border: none;
+  max-width: 30%;
+  float: right;
+  font-family: Cabin;
+  padding: 0.75em;
+  margin: 0.75em 0 0.75em 0.75em;
+  text-align: right;
+  font-size: 1.1em;
 }
 
 pre code {
@@ -235,4 +256,19 @@ a.read-more {
   border: none;
   font-size: 0.8em;
   margin: 2em;
+}
+
+/*
+*  Print
+*/
+
+@media print {
+  #disqus_thread, footer {
+    display: none;
+  }
+
+  body {
+    font-size: 11pt;
+    color: #111 !important;
+  }
 }
