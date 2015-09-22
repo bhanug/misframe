@@ -15,7 +15,7 @@ I tried it out on my BeagleBone Black and it looked like `calloc()` was returnin
 
 It's interesting that these platforms have different results.
 
-[Here's my oops.](https://github.com/PreetamJinka/vlmap/commit/49ed1e966abc491#diff-e08843ac041a0a54fa44b93b13f7687cL31)
+[Here's my oops.](https://github.com/Preetam/vlmap/commit/49ed1e966abc491#diff-e08843ac041a0a54fa44b93b13f7687cL31)
 
 Apparently the program put the result of `calloc()` onto the [register used for the return value on x86](http://stackoverflow.com/questions/7280877/why-and-how-does-gcc-compile-a-function-with-a-missing-return-statement)! Neat!
 

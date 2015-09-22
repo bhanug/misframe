@@ -65,7 +65,7 @@ simply dropped.
 
 Packet sniffing
 ---
-I gave a talk at beCamp 2014 on [packet sniffing](https://github.com/PreetamJinka/packet-sniffing).
+I gave a talk at beCamp 2014 on [packet sniffing](https://github.com/Preetam/packet-sniffing).
 There are a few examples that I reuse over and over simply because they're great templates for me.
 
 tcpdump is obviously seeing the packets we want, so we can too. Raw socket it up.
@@ -91,7 +91,7 @@ if err != nil {
 Decoding packets
 ---
 What you get from reading from AF_PACKET + SOCK_RAW packets are Ethernet frames.
-You need to decode these. I use my [proto](https://github.com/PreetamJinka/proto/blob/master/ethernet.go)
+You need to decode these. I use my [proto](https://github.com/Preetam/proto/blob/master/ethernet.go)
 package for that.
 
 Routing itself and packet injection
@@ -178,7 +178,7 @@ Conclusion and next steps
 This was a pretty cool thing to write before dinner. It's not that long, either. All of the code
 is available on GitHub and is MIT licensed ('cause I like your freedom):
 
-https://github.com/PreetamJinka/gateway-experiment
+https://github.com/Preetam/gateway-experiment
 
 Now I'm thinking about inter-VLAN routing, stateful firewalls, routing tables, etc.
 It would be neat to try to implement some of this stuff in Go. I already wrote a [post](http://misfra.me/router-on-a-stick) on inter-VLAN routing. That was over two years ago? I keep redoing stuff, but every time I do it I go a level lower :P.

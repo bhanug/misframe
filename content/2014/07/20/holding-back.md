@@ -11,7 +11,7 @@ For many people, their GitHub profile is their coding portfolio. I wanted mine t
 
 The really annoying downside is that this arbitrary quality threshold or whatever filters out a lot of good stuff. Here's a little PHP script I found that takes a disk image of Ubuntu 11.10 (so you know it's from way back :P) and provisions a KVM:
 
-https://gist.github.com/PreetamJinka/42fd851980ef9a04e7ab
+https://gist.github.com/Preetam/42fd851980ef9a04e7ab
 
 Now, this one was saved as "deploy.php". I also had one called "crudeDeploy.php". I glanced at it and it's basically the "deploy.php" version except the parameters are hardcoded. It's funny because the root password was set to an expletive. Right now, I'm going, "that's AWESOME." That would've never made it to my GitHub, but I know I probably wrote that because I was super pissed one evening and I wanted the darn thing to work.
 

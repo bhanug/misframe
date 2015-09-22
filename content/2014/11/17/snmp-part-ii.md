@@ -6,7 +6,7 @@ url: /snmp-part-ii
 
 
 This post is more about the details of how SNMP is currently implemented in Cistern.
-The code at the latest commit as I write this is [here](https://github.com/PreetamJinka/cistern/tree/4f57ab68c9a18266908a7221823b24085bd39d1c/net/snmp).
+The code at the latest commit as I write this is [here](https://github.com/Preetam/cistern/tree/4f57ab68c9a18266908a7221823b24085bd39d1c/net/snmp).
 
 SNMP communication itself is pretty simple. There are requests and responses.
 

@@ -13,7 +13,7 @@ I took this screenshot a few months ago, so it has actually been almost a year s
 
 Cistern's graphs
 ---
-Cistern had graphs back in October 2014. I think I used my [metricstore](https://github.com/PreetamJinka/metricstore) package. I'm not sure because I think I was switching storage engines every other week! I had both BoltDB and SQLite in the source code at some points in the past.
+Cistern had graphs back in October 2014. I think I used my [metricstore](https://github.com/Preetam/metricstore) package. I'm not sure because I think I was switching storage engines every other week! I had both BoltDB and SQLite in the source code at some points in the past.
 
 <blockquote class="twitter-tweet" lang="en"><p>More progress! <a href="http://t.co/UBG4gDBjvA">pic.twitter.com/UBG4gDBjvA</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/521866847608922112">October 14, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -108,6 +108,6 @@ The current version (also the first) of Catena doesn't have a good API for readi
 
 Final thoughts
 ---
-Catena is on [GitHub](https://github.com/PreetamJinka/catena) and is generously licensed with the BSD license.
+Catena is on [GitHub](https://github.com/Preetam/catena) and is generously licensed with the BSD license.
 
 This is the most technical post of the series! I hope I can keep this pattern going for future posts. [Part I](http://misfra.me/state-of-the-state) and [part II](http://misfra.me/state-of-the-state-part-ii) of this series are also available if you're interested.

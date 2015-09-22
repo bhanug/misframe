@@ -52,17 +52,17 @@ This whole project is like a big puzzle. I have a blurry vision of what it'll en
 Here are some of the pieces that I have so far:
 
 * Cistern
-	* https://github.com/PreetamJinka/cistern
+	* https://github.com/Preetam/cistern
 * Fully async, thread-safe SNMP v3 implementation. It uses a single socket for all SNMP traffic, so there is plenty of scalability
-	* https://github.com/PreetamJinka/snmp
+	* https://github.com/Preetam/snmp
 * Compressed time series storage engine written from scratch
-	* https://github.com/PreetamJinka/catena
+	* https://github.com/Preetam/catena
 * The only open-source (as far as I know) sFlow implementation in Go
-	* https://github.com/PreetamJinka/sflow
+	* https://github.com/Preetam/sflow
 * OSI layer 2, 3, 4 protocol decoding
-	* https://github.com/PreetamJinka/proto
+	* https://github.com/Preetam/proto
 * AngularJS powered web UI
-	* https://github.com/PreetamJinka/cistern/tree/gh-pages/ui
+	* https://github.com/Preetam/cistern/tree/gh-pages/ui
 
 I think it's a bit inaccurate to describe this as a monitoring system. I like the following comment someone made on Hacker News about Observium (something I [don't like](http://misfra.me/observium-annoys-me)):
 

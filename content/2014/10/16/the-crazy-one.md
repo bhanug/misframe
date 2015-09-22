@@ -29,7 +29,7 @@ This is also the case when you go to school. You get good grades. Teachers (and 
 Working on my web hosting thing was something I did (and still do) all by myself. There are no guides. No mentors. No one to tell you that
 you're doing the right thing. Most importantly, you're not exactly rewarded for your hard work. No one sees the work. It sounds crazy. I think
 it reminds me of mad scientists working alone an a dark lab on some complicated experiments. I was the crazy one. I was experimenting and
-writing stuff like [this VM provisioning thing](https://gist.github.com/PreetamJinka/42fd851980ef9a04e7ab). That script was buried away somewhere
+writing stuff like [this VM provisioning thing](https://gist.github.com/Preetam/42fd851980ef9a04e7ab). That script was buried away somewhere
 until I found it again three years later.
 
 "Entrepreneurship"

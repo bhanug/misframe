@@ -5,7 +5,7 @@ url: /state-of-the-state
 ---
 
 
-Three months ago, I started working on [fickle](https://github.com/PreetamJinka/fickle), a key-value store written in Go. The point of this post is to just jot down some thoughts on where the project is right now and where I'd like to take it.
+Three months ago, I started working on [fickle](https://github.com/Preetam/fickle), a key-value store written in Go. The point of this post is to just jot down some thoughts on where the project is right now and where I'd like to take it.
 
 Adversaria
 ---
@@ -27,7 +27,7 @@ This whole thing sort of came together as I went along. Here's a summary of what
 
 At the core
 ---
-Maps in Go are hash maps. I needed an ordered map (that's basically what a key-value store is). I had to write one: [Lexicon](https://github.com/PreetamJinka/lexicon). Lexicon uses another tiny [package](https://github.com/PreetamJinka/orderedlist) I wrote, which introduces ordering to Go's `container/list` package.
+Maps in Go are hash maps. I needed an ordered map (that's basically what a key-value store is). I had to write one: [Lexicon](https://github.com/Preetam/lexicon). Lexicon uses another tiny [package](https://github.com/Preetam/orderedlist) I wrote, which introduces ordering to Go's `container/list` package.
 
 This *entire* thing is built on top of Lexicon. Fickle is essentially a wrapper that exposes the Lexicon data structure over a network. *That's all.*
 
