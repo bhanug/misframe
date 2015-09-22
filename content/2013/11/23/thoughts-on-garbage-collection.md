@@ -21,7 +21,7 @@ At some point, I stumbled onto `/proc/self/maps`. I probably yelled out, "ARE YO
 
 Hans Boehm garbage collector looks through `/proc/self/maps` too. I didn't look at its source code first to give myself a researching challenge ;).
 
-Here's what I have so far: [GitHub Gist](https://gist.github.com/PreetamJinka/7611115).
+Here's what I have so far: [GitHub Gist](https://gist.github.com/Preetam/7611115).
 
 Here's how it works:
 

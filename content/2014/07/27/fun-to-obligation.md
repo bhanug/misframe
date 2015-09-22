@@ -10,7 +10,7 @@ I had music playing through my headphones and I was staring at a bunch of [sFlow
 documents](http://www.sflow.org/developers/specifications.php) that I had downloaded onto my laptop.
 sFlow is a packet and counter sampling specification, and I wanted to write a decoder in Go.
 
-It's pretty neat to have the entire history on GitHub. I had my first [interesting commit](https://github.com/PreetamJinka/sflow-go/commit/64a8afb40eaa322f655105ae2f569550335219fc) pushed at
+It's pretty neat to have the entire history on GitHub. I had my first [interesting commit](https://github.com/Preetam/sflow-go/commit/64a8afb40eaa322f655105ae2f569550335219fc) pushed at
 9 PM on a Sunday. You can browse through the commits to see how I went from a prototype that
 barely did anything, to a much higher quality Go package. I worked on it in my free time (because
 I have so much :P).
@@ -20,9 +20,9 @@ I guess it makes sense since sFlow usage is usually limited to like... network e
 Even the network engineers I know aren't really programmers. So yeah, no one is really using my package
 or talking about it other than me. It's just a personal project, and I like to work on it whenever
 I have time. It's largely incomplete simply because I don't need the rest of the features,
-but I still use it and make fun [little tools](https://github.com/PreetamJinka/flowtools) for demonstration.
+but I still use it and make fun [little tools](https://github.com/Preetam/flowtools) for demonstration.
 
-The other day I got a notification<sup>1</sup> about a pull request: https://github.com/PreetamJinka/sflow-go/pull/10.
+The other day I got a notification<sup>1</sup> about a pull request: https://github.com/Preetam/sflow-go/pull/10.
 It was a bug fix, and the person seems to be from Turkey and works for an ISP. I was actually shocked, and for two
 reasons. First, I didn't know that people would actually use this personal project of mine. Cool! And
 I didn't know it was buggy! I didn't notice anything wrong, but I haven't tested it much (it is a personal project,

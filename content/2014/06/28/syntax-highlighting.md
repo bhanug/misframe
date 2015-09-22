@@ -40,4 +40,4 @@ code to make it readable. However, we still need little helpers like this
 to let us know if we make a typo. Less is more?
 
 I've turned "Infimum" into a Gist:
-[https://gist.github.com/PreetamJinka/14830c9fc72ec052599a](https://gist.github.com/PreetamJinka/14830c9fc72ec052599a)
+[https://gist.github.com/Preetam/14830c9fc72ec052599a](https://gist.github.com/Preetam/14830c9fc72ec052599a)

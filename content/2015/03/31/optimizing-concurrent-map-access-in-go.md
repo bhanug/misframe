@@ -5,7 +5,7 @@ url: /optimizing-concurrent-map-access-in-go
 summary: "7x performance with 4 lines changed"
 ---
 
-One of the more contentious sections of code in [Catena](https://github.com/PreetamJinka/catena), my time series storage engine, is the function that fetches a `metricSource` given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we'll have to have some sort of synchronization.
+One of the more contentious sections of code in [Catena](https://github.com/Preetam/catena), my time series storage engine, is the function that fetches a `metricSource` given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we'll have to have some sort of synchronization.
 
 The purpose of this function is to retrieve a pointer to an object given its name. If it doesn't exist, it creates one and returns a pointer to it. The data structure used is a `map[string]*metricSource`. The key fact to remember is that elements are *only inserted* into the map.
 

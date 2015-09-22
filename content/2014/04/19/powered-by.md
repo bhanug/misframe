@@ -5,7 +5,7 @@ url: /powered-by
 ---
 
 
-A long, *long* time ago, Misframe used to run on Wordpress. That didn't last very long :-). Then, in 2011, I learned enough about Node.js and CouchDB to build my first blogging "platform" from scratch. That was a really fun project. I essentially wrote most of it in one evening during a Thanksgiving break. Occasionally I browse through the [source code](https://github.com/PreetamJinka/Misframe-Platform) to see how horrible I coded back then.
+A long, *long* time ago, Misframe used to run on Wordpress. That didn't last very long :-). Then, in 2011, I learned enough about Node.js and CouchDB to build my first blogging "platform" from scratch. That was a really fun project. I essentially wrote most of it in one evening during a Thanksgiving break. Occasionally I browse through the [source code](https://github.com/Preetam/Misframe-Platform) to see how horrible I coded back then.
 
 Eventually it became a hassle. I kept tweaking and adding features, and I found myself spending more time coding than writing. I gave up on maintaining my own blogging code and moved to Tumblr.
 
@@ -17,4 +17,4 @@ On March 4th 2014 at around 1 AM, I finished a simple Go program that ran Misfra
 
 There's no fancy database, complicated routing, or any ridiculous dependencies. I have a single binary with a few text files. I'm spending more time writing :-).
 
-The entire source code of this version of Misframe is available on GitHub: [https://github.com/PreetamJinka/misframe](https://github.com/PreetamJinka/misframe)
+The entire source code of this version of Misframe is available on GitHub: [https://github.com/Preetam/misframe](https://github.com/Preetam/misframe)

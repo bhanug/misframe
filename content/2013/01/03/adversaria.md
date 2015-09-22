@@ -42,4 +42,4 @@ Internally there are multiple "circular buffers". I keep 3 months worth of sampl
 
 Source code?
 ----
-[GitHub!](https://github.com/PreetamJinka/adversaria-java)
+[GitHub!](https://github.com/Preetam/adversaria-java)

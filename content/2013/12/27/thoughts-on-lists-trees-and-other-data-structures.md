@@ -16,7 +16,7 @@ I thought rebalancing a tree was too computationally expensive. If you had to do
 
 ![Linked list](http://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Singly-linked-list.svg/500px-Singly-linked-list.svg.png)
 
-I think I then started to think about how to turn a linked list into a balanced tree. I forget where that took me :). I did come up with a tree that you can balance on-demand (on [GitHub](https://github.com/PreetamJinka/dreamtree)). I don't remember whether or not it works! Even if it does, it's probably very inefficient. I think part of it started off as a napkin doodle. Anyway, at the very least, it helped me learn more about [Go](golang.org/).
+I think I then started to think about how to turn a linked list into a balanced tree. I forget where that took me :). I did come up with a tree that you can balance on-demand (on [GitHub](https://github.com/Preetam/dreamtree)). I don't remember whether or not it works! Even if it does, it's probably very inefficient. I think part of it started off as a napkin doodle. Anyway, at the very least, it helped me learn more about [Go](golang.org/).
 
 Over the summer, a close friend told me about skip lists:
 ![](http://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Skip_list.svg/1000px-Skip_list.svg.png)
@@ -45,7 +45,7 @@ Internally, Datomic uses an append-only, persistent tree. Neat!
 
 Writing a database is a hard task, so I had to break it down into smaller ones. A few months ago, I decided I really had to get down to the core of this thing and build it up from the ground up just as I want it.
 
-I created [lexicon](https://github.com/PreetamJinka/lexicon), which is an ordered key-value map package for Go. Lexicon uses another package I wrote, which essentially added ordering to the `container/list` package that's in Go's standard library. I kept it simple enough to not be restrictive, yet still very useful.
+I created [lexicon](https://github.com/Preetam/lexicon), which is an ordered key-value map package for Go. Lexicon uses another package I wrote, which essentially added ordering to the `container/list` package that's in Go's standard library. I kept it simple enough to not be restrictive, yet still very useful.
 
 After I had a decent version of lexicon, it didn't take long to write a simple TCP server wrapper around it and have a *very* basic key-value store. I think at that point, I thought: whoa... that was easy! I think I was able to get replication working (well, trivial replication) in one sitting.
 
@@ -85,7 +85,7 @@ Argh. Okay, so I have to make it mutable, since I'd like to make this write-inte
 >
 > Me: -_-
 
-This past week, I wrote [vlmap](https://github.com/PreetamJinka/vlmap), which is a versioned, ordered skip list map written in C. Lots of words, but what do they mean?
+This past week, I wrote [vlmap](https://github.com/Preetam/vlmap), which is a versioned, ordered skip list map written in C. Lots of words, but what do they mean?
 
 It's ordered. The keys are stored in order (lexicographically), so it's possible to do range reads over the data structure.
 
@@ -93,7 +93,7 @@ It's versioned. I can see what the list looked like in the past. This means I ca
 
 It's a map, so it's an associative array.
 
-It's written in C. I think I chose to write it in C because I got pissed at Go's garbage collector while I was testing out the treaps :P. This was actually very significant. I spent a few days working with Valgrind to make sure I wasn't leaking any memory. I think this was my first big C project, so I definitely learned a few things along the way. Besides that, since it's written in C, I can reuse it in many languages, including Go. In fact, the primary test for it right now is [written in Go](https://github.com/PreetamJinka/vlmap/blob/67ff1585fcea/test/test.go).
+It's written in C. I think I chose to write it in C because I got pissed at Go's garbage collector while I was testing out the treaps :P. This was actually very significant. I spent a few days working with Valgrind to make sure I wasn't leaking any memory. I think this was my first big C project, so I definitely learned a few things along the way. Besides that, since it's written in C, I can reuse it in many languages, including Go. In fact, the primary test for it right now is [written in Go](https://github.com/Preetam/vlmap/blob/67ff1585fcea/test/test.go).
 
 I'm really, *really* proud of this vlmap project. I think it's incredibly neat to have a versioned data structure. You can even iterate through a snapshot! That's awesome!
 
