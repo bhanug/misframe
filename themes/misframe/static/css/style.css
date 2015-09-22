@@ -10,7 +10,7 @@ body {
 }
 
 div.wrapper {
-  width: 43em;
+  width: 55em;
   max-width: 90%;
   margin: 0px auto;
   padding: 50px 0;
@@ -110,7 +110,7 @@ section.post h2 {
 }
 
 p {
-  line-height: 1.75;
+  line-height: 1.5;
 }
 
 p + h2 {
