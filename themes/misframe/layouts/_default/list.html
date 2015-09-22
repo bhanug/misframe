@@ -1,4 +1,4 @@
-<article>
+<article class='list-container'>
   <header>
     <h2 class='list-title'><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     <div class="post-meta">
@@ -9,14 +9,4 @@
       </div>
     </div>
   </header>
-  {{ if .IsPage }}
-  <div>
-    <p>{{ .Summary }}</p>
-  </div>
-  {{ if .Truncated }}
-  <footer>
-    <a class='read-more' href="{{ .Permalink }}">Read more &raquo;</a>
-  </footer>
-  {{ end }}
-  {{ end }}
 </article>
