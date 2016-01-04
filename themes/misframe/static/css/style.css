@@ -57,7 +57,8 @@ h1.site-title em {
 
 .post-date {
   font-family: Cabin, Arial, sans-serif;
-  font-size: 0.9em;
+  font-size: 1em;
+  line-height: 2;
   color: #777;
 }
 
@@ -222,8 +223,28 @@ ul li, ol li {
 }
 
 /*
+*  Tables
+*/
+
+table {
+  margin: 1em 0;
+}
+
+th {
+  font-weight: bold;
+  background-color: #fafafa;
+}
+
+th, td {
+  padding: 0.5em 0.5em;
+  text-align: left;
+  border-bottom: 1px solid #E1E1E1;
+}
+
+/*
 *  Misc. elements
 */
+
 hr {
   border: none;
   width: 50%;
