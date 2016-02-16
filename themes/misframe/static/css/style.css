@@ -5,12 +5,12 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #111;
 }
 
 div.wrapper {
-  width: 52em;
+  width: 50em;
   max-width: 90%;
   margin: 0px auto;
   padding: 50px 0;
@@ -28,6 +28,11 @@ div.footer p a {
 
 .wrapper section.post {
   padding: 1em 0;
+}
+
+.article-list {
+  width: 50%;
+  margin: 0 auto;
 }
 
 /*
@@ -50,15 +55,16 @@ h1.site-title a {
 }
 
 h1.site-title em {
-  color: #777;
+  font-size: 0.85em;
+  color: #444;
   text-transform: none;
   margin: 0 1px;
 }
 
 .post-date {
   font-family: Cabin, Arial, sans-serif;
-  font-size: 1em;
-  line-height: 2;
+  font-size: 0.9em;
+  line-height: 1.5em;
   color: #777;
 }
 
@@ -71,7 +77,6 @@ h1.site-title em {
 }
 
 h2.list-title {
-  font-size: 1.2em;
 }
 
 h2.list-title a {
@@ -96,17 +101,16 @@ a.endnote {
 */
 
 h1 {
-  font-size: 1.6em;
-  line-height: 1.2em;
+  font-size: 1.4em;
+  line-height: 1.8em;
   font-weight: 400;
   font-style: Normal;
 }
 
 section.post h2 {
-  color: #666;
-  font-size: 1.3em;
-  text-transform: uppercase;
-  line-height: 1.8em;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 2em;
 }
 
 p {
