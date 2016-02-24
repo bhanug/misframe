@@ -173,6 +173,7 @@ pre code {
   padding: 1em;
   line-height: 160%;
   overflow: scroll;
+  tab-size: 4;
 }
 
 img {
@@ -273,8 +274,7 @@ p code {
   font-family: monospace;
   font-size: 0.8em;
   padding: 3px;
-  color: #222;
-  background-color: #f0f0f0;
+  background-color: #fafafa;
 }
 
 a.read-more {
