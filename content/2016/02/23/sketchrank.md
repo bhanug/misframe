@@ -35,9 +35,26 @@ precompute some data. Finally, especially in my cases, rankings have to be corre
 see entries that don't belong in the final ranking, and we certainly don't want to miss those that
 do.
 
+One technique we thought about was pre-ranking. We wanted to see if we could take 1-minute time
+ranges, generate ranks within each range, and somehow aggregate those rankings together. We quickly
+found out that this doesn't work because we're considering sums for the rankings.
+
+| Timestamp | Rank 1 | Rank 2 |
+|-----------|--------|--------|
+| 1         | A = 3    | E = 2    |
+| 2         | B = 4    | E = 2    |
+| 3         | C = 1    | E = 0    |
+| 4         | D = 2    | E = 1    |
+
+When you calculate the sums in this time range, you'll see that the top element is E, but it was
+never in the top position in any of the individual timestamps. After realizing this issue, we
+concluded that we can't avoid summing and ranking in order to get the correct results.
+
 ## Approximating with a sketch
 
-I just wrote that ranking has to be correct, so how can approximations help? 
+I wrote that ranking has to be correct, so how can approximations help? Approximations allow you
+to process data in multiple passes, and we'll use a sketch to do most of the ranking work really
+quickly.
 
 First, you'll have to create a hash for each entry. Just like a bloom filter and a count-min sketch,
 the hashing method used will determine the maximum capacity of the sketch and its accuracy. With
