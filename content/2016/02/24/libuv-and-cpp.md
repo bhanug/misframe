@@ -60,7 +60,7 @@ int a = 5;
 
 *This lambda is not just a function* even though it looks like one. The compiler actually generates
 a new class with a reference member that stores `&a`. When the lambda is executed, an instance of
-that class is created within the usual C++ lifetime semantics. When the lambda instances goes out of
+that class is created within the usual C++ lifetime semantics. When the lambda instance goes out of
 scope, it gets destructed. This means you can't use capturing lambdas as C callbacks.
 
 Fortunately you *can* use non-capturing lambdas since they can be converted to function pointers,
