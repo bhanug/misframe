@@ -18,7 +18,7 @@ Cistern had graphs back in October 2014. I think I used my [metricstore](https:/
 <blockquote class="twitter-tweet" lang="en"><p>More progress! <a href="http://t.co/UBG4gDBjvA">pic.twitter.com/UBG4gDBjvA</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/521866847608922112">October 14, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-The issue was always getting graphs "right."  Every method I used seemed like a hack. And they *were* hacks. Nothing I used was specifically made for time series data. Bolt and SQLite are not very well suited for time series, and metricstore is as about as good as storing a CSV for each metric. I needed something better. A couple of days of thinking and about three days of coding, I had something I named *catena*.
+The issue was always getting graphs "right."  Every method I used seemed like a hack. And they *were* hacks. Nothing I used was specifically made for time series data. Bolt and SQLite are not very well suited for time series, and metricstore is as about as good as storing a CSV for each metric. I needed something better. After a couple of days of thinking and about three days of coding, I had something I named *catena*.
 
 Catena
 ---
