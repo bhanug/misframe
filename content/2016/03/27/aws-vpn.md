@@ -43,6 +43,8 @@ External IP: <Elastic IP>
 
 Allow UDP traffic on port 1194.
 
+---
+
 Finally, you'll end up with a `.ovpn` file. Save that file locally and use it with your favorite VPN
 client. I like [Tunnelblick](https://tunnelblick.net/).
 
