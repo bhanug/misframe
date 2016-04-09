@@ -5,12 +5,12 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #111;
 }
 
 div.wrapper {
-  width: 45em;
+  width: 48em;
   max-width: 90%;
   margin: 0px auto;
   padding: 50px 0;
@@ -18,7 +18,7 @@ div.wrapper {
 
 div.footer p {
   color: #777;
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-align: center;
 }
 
@@ -57,7 +57,6 @@ h1.site-title em {
 }
 
 .post-date {
-  font-family: Cabin, Arial, sans-serif;
   font-size: 0.9em;
   line-height: 1.5em;
   color: #777;
@@ -72,6 +71,8 @@ h1.site-title em {
 }
 
 h2.list-title {
+  font-size: 1em;
+  font-weight: normal;
 }
 
 h2.list-title a {
@@ -96,14 +97,21 @@ a.endnote {
 */
 
 h1 {
-  font-size: 1.4em;
+  font-size: 1.5em;
   line-height: 1.8em;
   font-weight: 400;
   font-style: Normal;
 }
 
-section.post h2 {
+h2 {
   font-size: 1.1em;
+  font-weight: bold;
+  line-height: 2em;
+}
+
+h3 {
+  color: #333;
+  font-size: 1em;
   font-weight: bold;
   line-height: 2em;
 }
