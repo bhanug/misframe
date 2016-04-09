@@ -64,6 +64,9 @@ Some are layers on top of existing databases.
 	- Apparently 10x faster than Cassandra (I don't have any more details about this)
 - [Axibase Time Series Database](https://axibase.com/products/axibase-time-series-database/)
 	- Visualizations, rules engine, forecasting
+- [Apache Kudu](http://getkudu.io/) (Incubating)
+	- Columnar, part of the Hadoop stack
+	- "fast analytics on fast data"
 
 ## Things to look at for ideas
 
@@ -89,7 +92,8 @@ These are either proprietary or internal, or not TSDBs.
 	- Columnar in-memory format and API
 - [Apache Parquet](https://parquet.apache.org/)
 	- Columnar storage format for HDFS
-
+- [Apache Drill](https://drill.apache.org/)
+	- "Schema-free SQL Query Engine for Hadoop, NoSQL and Cloud Storage"
 ---
 
 ### Changelog
@@ -97,3 +101,4 @@ These are either proprietary or internal, or not TSDBs.
 - 2016-04-09: Initial version
 	- Thanks to Csaba Csoma and Damian Gryski ([@dgryski](https://twitter.com/dgryski)) for their
 	contributions.
+	- Added Apache Drill, Kudu (thanks [Mark Papadakis](https://twitter.com/markpapadakis))
