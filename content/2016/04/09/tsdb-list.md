@@ -67,6 +67,9 @@ Some are layers on top of existing databases.
 - [Apache Kudu](http://getkudu.io/) (Incubating)
 	- Columnar, part of the Hadoop stack
 	- "fast analytics on fast data"
+- [Hawkular](http://www.hawkular.org/)
+	- Open source monitoring solution by Red Hat
+	- Metrics storage uses Cassandra
 
 ## Things to look at for ideas
 
@@ -94,6 +97,14 @@ These are either proprietary or internal, or not TSDBs.
 	- Columnar storage format for HDFS
 - [Apache Drill](https://drill.apache.org/)
 	- "Schema-free SQL Query Engine for Hadoop, NoSQL and Cloud Storage"
+- [Cityzen Data](http://www.cityzendata.com/)
+	- IoT / sensor data platform
+- [TempoIQ](https://www.tempoiq.com/)
+	- IoT platform
+- [Infiniflux](http://infiniflux.com/)
+	- Time series DBMS with SQL
+- [kdb+](https://kx.com/products.php) by Kx Systems
+	- Very popular in the financial industry
 ---
 
 ### Changelog
@@ -102,3 +113,5 @@ These are either proprietary or internal, or not TSDBs.
 	- Thanks to Csaba Csoma and Damian Gryski ([@dgryski](https://twitter.com/dgryski)) for their
 	contributions.
 	- Added Apache Drill, Kudu (thanks [Mark Papadakis](https://twitter.com/markpapadakis))
+- 2016-04-10: Added Cityzen Data, Hawkular, Infiniflux, TempoIQ, kdb+
+	- Thanks to @pganti in the comments
