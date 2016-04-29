@@ -10,9 +10,9 @@ the IP. This reassignment isn't automatic. When the droplet with the floating IP
 to reassign the IP through the DO interface or use the API.
 
 Then I thought of something interesting: using [libab](https://github.com/Preetam/libab)'s leader
-election and the client callbacks to assign a floating IP.
+election and client callbacks to assign a floating IP.
 
-libab allows you to set callback for certain events. One is gaining leadership. When the current
+libab allows you to set callbacks for certain events. One is gaining leadership. When the current
 node becomes a leader, libab will call the `gained_leadership` function that you provide. When that
 happens you can set the floating IP to point to the droplet the leader node is running on.
 
