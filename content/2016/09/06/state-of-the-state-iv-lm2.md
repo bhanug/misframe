@@ -70,7 +70,7 @@ That said, I *am* interested in making this linked list go as fast as possible!
 
 First, unlike listmap, there is no memory mapping. Records are loaded into memory and flushed out
 to disk during metadata updates. This allows for more control over which records are already in
-memory, so there is a record cache which contains a small subset of records.
+memory. There is a record cache which contains a small subset of records.
 
 The record cache information is regularly serialized to disk, so you could experience a crash or
 shutdown and recover cached records without having to wait for things to warm up naturally. This
@@ -88,8 +88,8 @@ in-place updates to modify offset pointers. This is not copy-on-write. Therefore
 write-ahead log (WAL). Writes also happen in user-defined batches.
 
 Note that new key-value record data *does not* get written to the WAL. I didn't want to append
-writes to both the WAL and the data file, so they only get appended to the data file. This costs an
-additional fsync, which is an OK trade-off.
+writes to both the WAL and the data file. They only get appended to the data file. This costs an
+additional fsync, which I am OK with.
 
 Writes happen in 3 stages:
 
