@@ -32,7 +32,7 @@ use them. Those editors tend to produce horrible HTML; like this:
 ```
 
 WYSIWYG editors also produce inline styling. This is really difficult
-to maintain. If you decide to change the CSS for the site, you won't be updated
+to maintain. If you decide to change the CSS for the site, you won't be updating
 several elements that use inline styling, and you're left with inconsistencies.
 Those build up.
 
