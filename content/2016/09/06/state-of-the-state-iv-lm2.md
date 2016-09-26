@@ -74,7 +74,7 @@ memory. There is a record cache which contains a small subset of records.
 
 The record cache information is regularly serialized to disk, so you could experience a crash or
 shutdown and recover cached records without having to wait for things to warm up naturally. This
-makes a *huge* difference on recovery, since this is where you really see the low O(n) searches make
+makes a *huge* difference on recovery, since this is where you really see the slow O(n) searches make
 a difference.
 
 Because of the append-only nature, it was easy to support concurrent readers that don't block
