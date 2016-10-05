@@ -102,8 +102,8 @@ ACID consistency is about maintaining *constraints*. For SQL databases, these co
 uniqueness of indexes, or foreign key constraints.
 
 In order to test consistency with lm2, which is a flat ordered key-value store, I had to come up
-with my own constraint. It's a simple set of formulas that describe the relations between three
-key: `a`, `b`, and `c`. I call this constraint *transactional squares*. It's easy to implement
+with my own constraint. I created a simple set of formulas that describe the relations between three
+keys: `a`, `b`, and `c`. I call this constraint *transactional squares*. It's easy to implement
 and verify.
 
 ```
