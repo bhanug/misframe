@@ -226,12 +226,10 @@ ul, ol {
 
 ul {
   list-style: disc;
-  list-style-position: inside;
 }
 
 ol {
   list-style: decimal;
-  list-style-position: inside;
 }
 
 ul p {
@@ -299,7 +297,7 @@ ul.pager li {
   width: 125px;
 }
 
-p code {
+code {
   font-family: monospace;
   font-size: 12px;
   padding: 3px;
