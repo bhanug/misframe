@@ -13,7 +13,8 @@ All of these types of changes can be expressed as instructions. What happens whe
 instructions together? You get a log.
 
 Starting with an append-only, immutable log as a database makes you think about all kinds of stuff
-differently. When I started working on lm2, I had a fancy (but still relatively simple) [design]
+differently. When I started working on [lm2](https://github.com/Preetam/lm2), I had a fancy (but
+still relatively simple) [design]
 (https://github.com/Preetam/lm2/blob/d96eaa16f44cd015762d9db8c58fec9152c3b41b/DESIGN.md#design) with
 block allocation, MVCC, free lists and garbage collection, and the possibility of adding
 compression.
