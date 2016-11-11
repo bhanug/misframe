@@ -74,7 +74,7 @@ for significance.
 In this first example, both time series are based on `Math.random()` with an average around 3, but
 series 1 has a value of 80 at index 25.
 
-<img src='/img/2016/11/bootstrap-1.png' width=406 height=317 />
+<img src='/img/2016/11/bootstrap-1.png' style='width: 406px' />
 
 <div>
 <strong>Results</strong>
@@ -98,7 +98,7 @@ The percent change tells us that the number of errors in the second time range w
 a half. I wouldn't put too much faith into that number, though. Bootstrapping tells us this change
 isn't significant.
 
-<img src='/img/2016/11/bootstrap-2.png' width=406 height=317 />
+<img src='/img/2016/11/bootstrap-2.png' style='width: 406px' />
 
 <div>
 <strong>Results</strong>
@@ -117,7 +117,7 @@ Significant: <strong>FALSE</strong>
 Finally, we'll go back to a randomly generated example. These are also using the same formula, but
 series 2 is shifted up a little bit.
 
-<img src='/img/2016/11/bootstrap-3.png' width=406 height=317 />
+<img src='/img/2016/11/bootstrap-3.png' style='width: 406px' />
 
 <div>
 <strong>Results</strong>
