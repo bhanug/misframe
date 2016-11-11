@@ -30,11 +30,11 @@ That's where *bootstrapping* comes in.
 
 ## Bootstrap
 
-[Bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)) is a technique that lets
-you generate new samples from an existing sample. It relies on *sampling with replacement*.
-Bootstrapping is not a new technique. Bradley Efron proposed it in the late 1970s. I heard it didn't
-gain much use because of its high computational requirements. Now that computers are powerful
-enough, bootstrapping is getting more popular.
+<a href='https://en.wikipedia.org/wiki/Bootstrapping_(statistics)'>Bootstrapping</a> is a technique
+that lets you generate new samples from an existing sample. It relies on *sampling with
+replacement*. Bootstrapping is not a new technique. Bradley Efron proposed it in the late 1970s. I
+heard it didn't gain much use because of its high computational requirements. Now that computers are
+powerful enough, bootstrapping is getting more popular.
 
 Suppose you had a 5-element array and its sum:
 
