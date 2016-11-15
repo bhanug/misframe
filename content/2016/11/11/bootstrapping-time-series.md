@@ -74,7 +74,7 @@ for significance.
 In this first example, both time series are based on `Math.random()` with an average around 3, but
 series 1 has a value of 80 at index 25.
 
-<img src='/img/2016/11/bootstrap-1.png' style='width: 406px' />
+<img src='/img/2016/11/bootstrap-1.png' style='width: 417px' />
 
 <div>
 <strong>Results</strong>
@@ -98,7 +98,7 @@ The percent change tells us that the number of errors in the second time range w
 a half. I wouldn't put too much faith into that number, though. Bootstrapping tells us this change
 isn't significant.
 
-<img src='/img/2016/11/bootstrap-2.png' style='width: 406px' />
+<img src='/img/2016/11/bootstrap-2.png' style='width: 417px' />
 
 <div>
 <strong>Results</strong>
@@ -117,7 +117,7 @@ Significant: <strong>FALSE</strong>
 Finally, we'll go back to a randomly generated example. These are also using the same formula, but
 series 2 is shifted up a little bit.
 
-<img src='/img/2016/11/bootstrap-3.png' style='width: 406px' />
+<img src='/img/2016/11/bootstrap-3.png' style='width: 417px' />
 
 <div>
 <strong>Results</strong>
@@ -139,6 +139,16 @@ I've only covered sums in this post, but this technique can be applied with any 
 You can create distributions of averages, quantiles, minimums, maximums... *anything* that can take
 advantage of sampling with replacement. I think bootstrapping has lots of potential, and it's really
 easy to implement!
+
+**EDIT:** The takeaway in the original post may not have been clear. This approach is not a new way
+of detecting changes without outliers or anything like that. I don't even think there's anything
+wrong with the percent change itself. The main takeaway is that a single number like the percent
+change can be affected by outliers and typical variability of systems. A number like that is hard to
+interpret by itself. By bootstrapping, you can create some sort of confidence or significance
+indicator that can help you interpret results. For example, an average is much more useful if you
+also had the standard deviation because the standard deviation gives you an idea of what the spread
+of the data is like. The time series example I showed in this post uses bootstrapping to give you a
+better idea about whether or not there is an actual, significant change in a time series.
 
 ## Example code
 
