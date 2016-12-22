@@ -212,6 +212,11 @@ a img {
   border: none;
 }
 
+sup {
+  font-size: 80%;
+  vertical-align: super;
+}
+
 /*
 *  Lists
 */
