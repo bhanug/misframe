@@ -13,7 +13,9 @@ complicated. It's not something you can simply `yum install runit` since it's
 not a part of the official Amazon Linux package list<sup>1</sup>.
 [EPEL](https://fedoraproject.org/wiki/EPEL) doesn't have it either.
 
-1. Compile it yourself
+I figured I had two options left:
+
+1. Compile it myself
 2. Use https://github.com/imeyer/runit-rpm and build an RPM
 
 Fortunately, I found ["Running runit on Amazon Linux AMI"](https://evasive.ru/50a3904206c52447aa1fa5d90a8382a3.html)
