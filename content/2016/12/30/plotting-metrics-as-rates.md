@@ -9,15 +9,16 @@ were 11.75 million queries executed and 28 executions with errors.
 
 <img src='/img/2016/12/metrics-1.png' width=555 />
 
-I can hover over the time series to get values for each point. There were
-5.35 thousand queries completing at that time.
+I can hover over the time series to get values for each point.
+
+<img src='/img/2016/12/metrics-2.png' width=552 />
+
+There were 5.35 thousand queries completing at that time.
 
 Notice how each spike in the graph for query errors has the same height.
 There is one point per pixel, so if you count up the pixels, there are
-28 spike. Because the total during that time was 28 errors, each spike
+28 spikes. Because the total during that time was 28 errors, each spike
 represents one error.
-
-<img src='/img/2016/12/metrics-2.png' width=552 />
 
 What happens when I hover over a spike? What value do you expect to see
 on the side?
