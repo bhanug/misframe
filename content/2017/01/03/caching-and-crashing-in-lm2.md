@@ -12,7 +12,7 @@ how lm2 works and why I chose to do things a certain way.
 
 ## Caching
 
-lm2 is essentially a linked list on disk. Every knows linked lists aren't
+lm2 is essentially a linked list on disk. Everyone knows linked lists aren't
 very fast. Searches take a ridiculously long time and require a lot of
 seeking. That's why lm2 has a record cache, which stores a subset of
 the key-value records in memory. This cache really speeds up searches.
