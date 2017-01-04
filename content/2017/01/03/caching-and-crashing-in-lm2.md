@@ -15,8 +15,8 @@ how lm2 works and why I chose to do things a certain way.
 lm2 is essentially a linked list on disk. Everyone knows linked lists aren't
 very fast. Searches take a ridiculously long time and require a lot of
 seeking. That's why lm2 has a record cache, which stores a subset of
-the key-value records in memory. This cache really speeds up searches.
-The record cache isn't only used for searches. It's also used for writes.
+the key-value records in memory. This cache really speeds up searches,
+but it's used for much more. It's also used for the write path.
 All writes in lm2 happen in memory before they're durably recorded to disk.
 
 There is only one level of caching at the moment. If you think about it,
