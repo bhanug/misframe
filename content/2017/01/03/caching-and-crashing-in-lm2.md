@@ -32,20 +32,21 @@ over many records.
 Scan resistance is about keeping the cache "good" when faced with large
 scans. A scan will access lots of elements, but many will not be accessed
 again. For example, an LRU is a bad choice for scans because it will insert
-every element accessed during a scan, but that's really not what you want.
+every accessed element, but many won't be accessed again.
 
 lm2 uses probability to insert elements into the cache. Like a skip list,
 records are probabilistically inserted into the record cache whenever
 they're accessed. A frequently accessed record may not be in the cache,
-but it's definitely more likely.
+but it's definitely more likely. Rarely accessed elements will rarely
+make it into the cache.
 
 This approach is scan resistant because a single, full collection scan won't
 destroy the cache. The other benefit is that cached records tend to be at
 the areas that are read the most, which I think is what you want from a cache
 like this.
 
-The bad thing about using a probabilistic cache like this is that it can take
-a while for it to "warm up." We'll get back to this later.
+The bad thing about using a probabilistic cache is that it can take a while
+for it to "warm up." We'll get back to this later.
 
 ### No dirty records
 
