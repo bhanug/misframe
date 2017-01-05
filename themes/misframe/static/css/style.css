@@ -173,6 +173,7 @@ blockquote {
   border-left: 7px solid #eee;
   margin: 0.7em 0.7em 0.7em 0;
   padding-left: 1em;
+  color: #666;
 }
 
 blockquote.pullquote {
@@ -234,10 +235,6 @@ ul {
 
 ol {
   list-style: decimal;
-}
-
-ul p {
-  line-height: 100%;
 }
 
 ul ul, ul ol, ol ol, ol ul {
