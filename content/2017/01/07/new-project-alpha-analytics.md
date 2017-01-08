@@ -4,7 +4,7 @@ date: "2017-01-07T23:00:00-05:00"
 ---
 
 I have a new project! It's called Alpha. Since the last project I started is called
-[Epsilon](2016/11/05/epsilon/) (for <strong>e</strong>vents), I decided to call this Alpha for...
+[Epsilon](/2016/11/05/epsilon/) (for <strong>e</strong>vents), I decided to call this Alpha for...
 <strong>a</strong>nalytics! Alpha is an extremely simplified version of Google Analytics. I know
 very little about website / browser analytics, so building something like this is a great way to
 learn.
