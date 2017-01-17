@@ -3,7 +3,7 @@ title: Faster MySQL replication with group commit and delay
 date: "2017-01-04T22:51:00-05:00"
 ---
 
-We've been having a problem with MySQL replication at work. Replicas periodically
+We've been having a problem with MySQL replication at [VividCortex](https://www.vividcortex.com). Replicas periodically
 tend to fall behind and we couldn't really figure out how to speed things up.
 It wasn't about resources. The replicas have plenty of CPU and I/O available. We're
 also using multithreaded replication (a.k.a. MTR) but most of the replication threads
@@ -32,3 +32,6 @@ improvement. Fortunately, that's something we can tune using `binlog_group_commi
 
 Setting `binlog-group-commit-sync-delay` to 3000 (3 ms) and `--slave-parallel-type=LOGICAL_CLOCK`
 resulted in a huge improvement in replication delay. Too bad I didn't learn about this sooner!
+
+**UPDATE:** We wrote a follow-up blog post on our company site with some more details (and pictures!):
+["Solving MySQL Replication Lag with LOGICAL_CLOCK and Calibrated Delay"](https://www.vividcortex.com/blog/solving-mysql-replication-lag-with-logical_clock-and-calibrated-delay)
