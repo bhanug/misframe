@@ -264,9 +264,9 @@ th {
 }
 
 th, td {
-  padding: 0.5em 0.5em;
+  padding: 0.5rem 1rem;
   text-align: left;
-  border-bottom: 1px solid #E1E1E1;
+  border: 1px solid #E1E1E1;
 }
 
 /*
