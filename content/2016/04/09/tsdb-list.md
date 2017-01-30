@@ -122,3 +122,5 @@ These are either proprietary or internal, or not TSDBs.
 	- Added Apache Drill, Kudu (thanks [Mark Papadakis](https://twitter.com/markpapadakis))
 - 2016-04-10: Added Cityzen Data, Hawkular, Infiniflux, TempoIQ, kdb+
 	- Thanks to @pganti in the comments
+- 2017-01-30: Added SciDB, SiriDB
+	- Thanks to @Pranas and @ps22 in the comments
