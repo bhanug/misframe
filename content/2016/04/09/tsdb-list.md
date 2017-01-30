@@ -70,6 +70,13 @@ Some are layers on top of existing databases.
 - [Hawkular](http://www.hawkular.org/)
 	- Open source monitoring solution by Red Hat
 	- Metrics storage uses Cassandra
+- [SciDB](http://www.paradigm4.com/)
+	- Multidimensional arrays
+	- ACID
+	- By Michael Stonebraker
+- [SiriDB](http://siridb.net/)
+	- Written in C and focused on performance
+	- Query language
 
 ## Things to look at for ideas
 
