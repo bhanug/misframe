@@ -1,5 +1,5 @@
 ---
-title: Client-side DNS Failover
+title: Client-side DNS failover
 date: "2017-03-04T16:30:00-05:00"
 ---
 
