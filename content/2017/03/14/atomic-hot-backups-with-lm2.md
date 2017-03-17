@@ -43,6 +43,6 @@ lm2 never deletes data. At the moment, you're limited to creating cursors at the
 but it's actually possible to create cursors at *any point in the past*.
 
 When would that be useful? Well, you could do neat things like diff two snapshots and determine
-exactly what changed. You have two copies of an lm2 collection at different snapshots
+exactly what changed. Maybe you have two copies of an lm2 collection at different snapshots
 (maybe one's restored from an older backup) and you need to sync the two without transferring an
 entire backup's worth of data. It's just an idea for now.
