@@ -116,7 +116,7 @@ h1 {
 h2 {
   font-size: 1.6em;
   color: #333;
-  margin: 0.5em 0;
+  margin: 1em 0;
 }
 
 h3 {
@@ -292,7 +292,7 @@ code {
   font-family: monospace;
   font-size: 0.85rem;
   padding: 2px;
-  background-color: #fafafa;
+  background-color: #fefefe;
 }
 
 a.read-more {
