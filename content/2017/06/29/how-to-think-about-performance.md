@@ -5,7 +5,7 @@ date: "2017-06-29T19:30:00-04:00"
 
 I've noticed lately that whenever there's some sort of performance problem, people like to
 immediately look at configuration. I'm guilty of this too. Here's an example from a few months ago.
-A user chatted into VividCortex support...
+A user chatted into [VividCortex](https://www.vividcortex.com/) support...
 
 > ... we have been having a concurrency issue in the evenings. I was wondering if you might point to some of the graphs to use to try and figure out where the bottleneck is?
 
