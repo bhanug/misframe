@@ -7,7 +7,7 @@ date: "2017-08-03T23:30:00-04:00"
 and now PostgreSQL in beta. [RDS](https://aws.amazon.com/rds/) is AWS's DBaaS.
 They both have "high availability" options which provide multi-zone redundancy and an automated failover
 mechanism. While they sound exactly the same at a high level, they have some important differences!
-This post describes some of the bigger differences I've noticed.
+This post describes some of the bigger differences I've noticed. I'm also focusing on MySQL.
 
 ## Implementation
 
