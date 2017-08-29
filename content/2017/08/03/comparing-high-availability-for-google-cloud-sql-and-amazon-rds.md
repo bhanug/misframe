@@ -89,7 +89,8 @@ so I'm guessing that failover should be pretty quick.
 
 Multi-AZ failover on RDS uses a DNS change to point to the standby instance. The reference page mentions
 60-120 seconds of unavailability during the failover. Because the standby uses the same storage data
-as the primary, there will probably be InnoDB recovery, so failover time might be longer that.
+as the primary, there will probably be transaction / log recovery (because failover would've looked
+like a crash for MySQL starting up on the standby), so failover time might be longer than that.
 
 ## Backups
 
