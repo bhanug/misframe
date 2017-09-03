@@ -3,17 +3,16 @@ title: List of Time Series Databases
 date: "2016-04-09T16:29:53.791Z"
 ---
 
-**Updated: April 5 2017**
+**Updated: September 3 2017**
 
 This is not an exhaustive list. If you think I should change something, please leave a comment here
 or send me a message on [Twitter](https://twitter.com/PreetamJinka). I'll try to keep it up-to-date
 based on feedback and anything new I find. There is a changelog at the end.
 
-## Existing Solutions
+## Open source
 
 These are either time series databases or general-purpose databases that work well with time series.
 Some are layers on top of existing databases.
-
 
 - [Aerospike](http://www.aerospike.com/)
 	- High performance, in-memory, NoSQL
@@ -54,6 +53,9 @@ Some are layers on top of existing databases.
 - [Druid](http://druid.io/)
 	- Column-oriented open-source distributed data store written in Java
 - [Elasticsearch](https://www.elastic.co/blog/elasticsearch-as-a-time-series-data-store)
+- [EventQL](https://github.com/eventql/eventql)
+	- Distributed, columnar database built for large-scale data collection and analytics workloads
+	- Supports SQL
 - [FiloDB](https://github.com/tuplejump/FiloDB)
 	- Distributed, versioned, and columnar analytical database
 	- Uses Spark SQL
@@ -104,9 +106,36 @@ Some are layers on top of existing databases.
 	- Distributed version uses HBase
 	- From Cityzen Data
 
+## Proprietary or internal
+
+These are either proprietary or internal, and not open source.
+
+- [Cityzen Data](http://www.cityzendata.com/)
+	- IoT / sensor data platform
+- [Infiniflux](http://infiniflux.com/)
+	- Time series DBMS with SQL
+- [IRONdb](https://www.circonus.com/irondb/)
+	- Scalable storage for a Graphite infrastructure. IRONdb is a new product by Circonus,
+	who also created “Snowth” a few years ago (see below).
+- [kdb+](https://kx.com/products.php) by Kx Systems
+	- Very popular in the financial industry
+- [Rocana](https://www.rocana.com/)
+	- Proprietary columnar TSDB using Apache Lucene, Kafka, and HDFS
+- [eXtremeDB](http://financial.mcobject.com/)
+	- Made for financial data
+	- Columnar, ACID-compliant, SQL support
+- Facebook [Scuba](https://research.facebook.com/publications/scuba-diving-into-data-at-facebook/)
+	- Fast, scalable, distributed, in-memory database
+- [SnappyData](http://www.snappydata.io/)
+	- fuses Apache Spark with a highly available, multi-tenanted in-memory database
+	- OLTP + OLAP on streaming data
+- [TempoIQ](https://www.tempoiq.com/)
+	- IoT platform
+
 ## Things to look at for ideas
 
-These are either proprietary or internal, or not TSDBs.
+
+These are not exactly TSDBs, but are interesting resources to take a look at.
 
 - [Apache Arrow](https://github.com/apache/arrow/)
 	- Columnar in-memory format and API
@@ -118,27 +147,11 @@ These are either proprietary or internal, or not TSDBs.
 	- "Optimizing Storage System Design for Timeseries Processing"
 - Circonus Snowth
 	- [YouTube video](https://www.youtube.com/watch?v=hwHpd20NciE) about the design
-- [Cityzen Data](http://www.cityzendata.com/)
-	- IoT / sensor data platform
 - [Facebook Gorilla paper](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf) [PDF]
 	- Fast, scalable, in-memory TSDB
-- [Infiniflux](http://infiniflux.com/)
-	- Time series DBMS with SQL
-- [kdb+](https://kx.com/products.php) by Kx Systems
-	- Very popular in the financial industry
 - [Pulsar](http://gopulsar.io/)
 	- Streaming SQL
-- [Rocana](https://www.rocana.com/)
-	- Proprietary columnar TSDB using Apache Lucene, Kafka, and HDFS
-- Facebook [Scuba](https://research.facebook.com/publications/scuba-diving-into-data-at-facebook/)
-	- Fast, scalable, distributed, in-memory database
-- [SnappyData](http://www.snappydata.io/)
-	- fuses Apache Spark with a highly available, multi-tenanted in-memory database
-	- OLTP + OLAP on streaming data
 - Square [metrics query engine](https://github.com/square/metrics)
-- [TempoIQ](https://www.tempoiq.com/)
-	- IoT platform
-
 
 ---
 
@@ -160,3 +173,5 @@ These are either proprietary or internal, or not TSDBs.
   Ordered by name
 	- Thanks to Damian Gryski ([@dgryski](https://twitter.com/dgryski)) and Khalid Lafi
 	([@LafiKL](https://twitter.com/LafiKL)) for their contributions.
+- **2017-09-03**  
+  Added EventQL, eXtremeDB, IRONdb; reorganized sections.
