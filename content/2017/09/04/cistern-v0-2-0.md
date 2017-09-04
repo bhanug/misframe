@@ -15,7 +15,7 @@ As mentioned in the [previous post](/2017/08/31/whats-coming-in-cistern-v020/), 
 * Generic JSON CloudWatch Logs support
 
 There's also a new website for the project at [cistern.github.io](https://cistern.github.io/) with
-a some [documentation](https://cistern.github.io/docs/) about how it works. There will be more
+some [documentation](https://cistern.github.io/docs/) about how it works. There will be more
 documentation coming soon.
 
 ## Up next
