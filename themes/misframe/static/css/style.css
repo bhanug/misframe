@@ -136,6 +136,7 @@ pre {
   background-color: #fefefe;
   border: 1px solid #eee;
   overflow: scroll;
+  tab-size: 4;
 }
 
 p code {
