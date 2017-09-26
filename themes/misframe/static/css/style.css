@@ -36,7 +36,8 @@ h1.site-title a {
 
 h1 span.site-title-by {
   text-transform: uppercase;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
+  color: #777;
 }
 
 .list-item {
@@ -127,4 +128,19 @@ ul.pager {
 ul.pager li {
   display: table-cell;
   width: 125px;
+}
+
+pre {
+  font-size: 13px;
+  padding: 10px;
+  background-color: #fefefe;
+  border: 1px solid #eee;
+  overflow: scroll;
+}
+
+p code {
+  color: #333;
+  padding: 0 2px;
+  background-color: #f8f8f8;
+  font-size: 13px;
 }
