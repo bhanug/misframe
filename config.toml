@@ -2,6 +2,7 @@ baseurl = "http://misfra.me/"
 title = "Misframe"
 author = "Preetam Jinka"
 copyright = "Copyright &copy; Preetam Jinka"
+theme = "misframe"
 canonifyurls = false
 paginate = 10
 rsslink = "feed"

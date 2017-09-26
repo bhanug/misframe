@@ -6,11 +6,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-    <!-- // CSS Reset – http://meyerweb.com/eric/tools/css/reset/ -->
     <link rel="stylesheet" type="text/css" href="/css/reset.css" media="all">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
     <link rel="stylesheet" type="text/css" href="/css/highlight.css" media="all">
     <link rel="icon" type="image/png" href="/img/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,800" rel="stylesheet">
     <link rel="alternate" type="application/atom+xml" title="Feed" href="/feed">
     <title>
     {{ if ne .URL "/" }} {{ .Title }} - {{ end }} {{ .Site.Title }}
@@ -18,4 +18,4 @@
   </head>
 <body>
   <div class="wrapper">
-    <h1 class="site-title"><a href="/">Misframe <em>by</em> Preetam Jinka</a></h1>
+    <h1 class="site-title"><a href="/">Misframe <span class="site-title-by">by</span> Preetam Jinka</a></h1>
