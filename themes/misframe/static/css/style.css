@@ -11,12 +11,11 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   color: #444;
-  margin-top: 2rem;
 }
 
 .wrapper {
   margin: 0 auto;
-  width: 35rem;
+  width: 40rem;
   max-width: 80%;
 }
 
@@ -35,9 +34,8 @@ h1.site-title a {
 }
 
 h1 span.site-title-by {
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  color: #777;
+  font-style: italic;
+  font-weight: 300;
 }
 
 .list-item {
@@ -46,8 +44,7 @@ h1 span.site-title-by {
 
 .list-date {
   float: left;
-  color: #888;
-  font-size: 10px;
+  font-size: 12px;
   width: 5rem;
   text-align: right;
   margin-right: 1rem;
@@ -61,6 +58,7 @@ h1 span.site-title-by {
 
 .list-link a {
   color: #333;
+  font-size: 1.1rem;
   line-height: 1.3rem;
   text-decoration: none;
 }
@@ -71,22 +69,50 @@ a {
 
 p {
   line-height: 1.5;
-  font-size: 16px;
 }
 
 p img {
   max-width: 100%;
 }
 
+p a img {
+ border: none;
+}
+
+p a, li a {
+  text-decoration: none;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 1px;
+  transition: border-color ease-in .1s;
+}
+
+h1.site-title a {
+  transition: color ease-in .1s;
+}
+
+h1.site-title a:hover {
+  color: #63A0D6;
+}
+
+h1.site-title:hover span.site-title-by {
+  color: #555;
+}
+
+p a:hover, li a:hover {
+  border-bottom: 2px solid #63A0D6;
+}
+
 .post-date {
   color: #aaa;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: 900;
   margin: 0 0 0.25rem 0;
 }
 
 h1.post-title {
   margin-top: 0;
   font-size: 37px;
+  font-weight: 900;
 }
 
 li {
@@ -133,15 +159,15 @@ ul.pager li {
 pre {
   font-size: 13px;
   padding: 10px;
-  background-color: #fefefe;
   border: 1px solid #eee;
   overflow: scroll;
   tab-size: 4;
+  border-radius: 3px;
 }
 
 p code {
   color: #333;
   padding: 0 2px;
   background-color: #f8f8f8;
-  font-size: 13px;
+  font-size: 14px;
 }
