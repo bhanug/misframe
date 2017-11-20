@@ -48,7 +48,7 @@ of all this.
 
 ### What's next
 
-It could look a better. The real thing isn't as nice as the design, and the design is still
+It could look a lot better. The real thing isn't as nice as the design, and the design is still
 pretty bad. I'll work on that soon. In terms of the implementation, the explain analyzer is
 a single page app without any state, so if you refresh the page, you'll lose everything. I
 think I'm going to add a "share" feature so that you can get a permalink with all of the
