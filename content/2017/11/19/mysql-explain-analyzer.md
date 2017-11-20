@@ -27,7 +27,9 @@ public [Mithril.js](https://mithril.js.org/) project so far!
 Here's an example! This is a query with a few joins. The "scalability" column is populated
 based on the access type. "ref" gets O(log n) because that means an index is being used, and
 B-tree lookups are O(log n). Again, *napkin math*. This isn't supposed to be super complicated
-or accurate. It's meant to be slightly better than doing stuff in your head.
+or accurate. For example, I know that the "ref" scalability is wrong because I'm using the rows
+read during the scan instead of the number of rows in the table for the calculation.
+It's meant to be slightly better than doing stuff in your head.
 
 [![Explain example 1](/img/2017/11/explain-1.png)](/img/2017/11/explain-1.png)
 
