@@ -11,9 +11,7 @@ first paragraph on that page:
 
 I was thinking about this and how query EXPLAINs from a test environment can help you
 predict the performance in production. As a design exercise for myself, I first made a
-really quick mockup in Sketch.
-
-I wanted something that would accept MySQL's JSON explain output  
+really rough mockup in Sketch. I wanted something that would accept MySQL's JSON explain output  
 (`EXPLAIN format=json SELECT ...`) and give me a few fields
 to try out different row counts and do some *napkin math* about the expected performance.
 
