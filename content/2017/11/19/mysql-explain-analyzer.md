@@ -3,6 +3,11 @@ title: MySQL Explain Analyzer
 date: "2017-11-19T23:43:00-05:00"
 ---
 
+tl;dr: The source is at [github.com/Preetam/explain-analyzer](https://github.com/Preetam/explain-analyzer)
+and you can try it out [here](https://preetam.github.io/explain-analyzer/).
+
+---
+
 I read [Performance Impacts of Data Volume](https://use-the-index-luke.com/sql/testing-scalability/data-volume) a few weeks
 ago on “Use The Index, Luke!” and found the whole workflow really fascinating. Here's the
 first paragraph on that page:
