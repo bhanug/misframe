@@ -1,6 +1,7 @@
 ---
 title: How to implement secondary indexes
 date: "2017-01-18T00:40:00-05:00"
+bestof: true
 ---
 
 This post is about implementing secondary indexes on top of an ordered key-value store.

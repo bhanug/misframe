@@ -1,10 +1,8 @@
 {{- partial "header.html" . -}}
-<h2>Top posts</h2>
+<h2>Archive</h2>
 {{- range $index, $page := .Site.Pages -}}
-  {{- if $page.Params.bestof -}}
+  {{- if not .Params.archive }}
     {{- .Render "list_item" -}}
   {{- end -}}
 {{- end -}}
-<h2>Archive</h2>
-<p>View all posts in the <a href="/archive">archive</a>.</p>
 {{- partial "footer.html" . -}}

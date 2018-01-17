@@ -3,6 +3,7 @@ title: State of the State Part III
 date: "2015-03-05"
 url: /state-of-the-state-part-iii
 summary: I wrote a time series storage engine.
+bestof: true
 ---
 
 First, I suggest reading Baron's ["Time-Series Database Requirements"](http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/) blog post to get some more context for this post. I read that and, as I usually do, had my mind set on low-level thoughts. I wrote the following comment:

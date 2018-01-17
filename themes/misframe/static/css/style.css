@@ -172,3 +172,13 @@ p code {
   background-color: #f8f8f8;
   font-size: 14px;
 }
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+}

@@ -1,6 +1,7 @@
 ---
 title: Recovering MySQL replication after error 1236
 date: "2017-08-02T23:40:00-04:00"
+bestof: true
 ---
 
 Error 1236 looks like this from `SHOW SLAVE STATUS`:

@@ -1,6 +1,7 @@
 ---
 title: Comparing high availability for Google Cloud SQL and Amazon RDS
 date: "2017-08-03T23:30:00-04:00"
+bestof: true
 ---
 
 [Cloud SQL](https://cloud.google.com/sql/) is Google Cloud's DBaaS platform that supports MySQL

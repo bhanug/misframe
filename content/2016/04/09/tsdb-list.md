@@ -1,6 +1,7 @@
 ---
 title: List of Time Series Databases
 date: "2017-09-03T16:29:53.791Z"
+bestof: true
 ---
 
 **Updated: September 3 2017**

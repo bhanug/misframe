@@ -1,6 +1,7 @@
 ---
 title: "Apple's $9 engineering marvel no one wants"
 date: "2017-12-12T21:40:00-05:00"
+bestof: true
 ---
 
 I got an iPhone X recently and it came with this.

@@ -3,6 +3,7 @@ title: Optimizing Concurrent Map Access in Go
 date: "2015-03-31"
 url: /optimizing-concurrent-map-access-in-go
 summary: "7x performance with 4 lines changed"
+bestof: true
 ---
 
 One of the more contentious sections of code in [Catena](https://github.com/Preetam/catena), my time series storage engine, is the function that fetches a `metricSource` given its name. Every insert operation has to call this function at least once, but realistically it will be called potentially hundreds or thousands of times. This also happens across multiple goroutines, so we'll have to have some sort of synchronization.

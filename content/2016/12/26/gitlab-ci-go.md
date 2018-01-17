@@ -1,6 +1,7 @@
 ---
 title: GitLab CI with Go
 date: "2016-12-26T23:00:00-05:00"
+bestof: true
 ---
 
 This took a few tries to get right. I have a Go project that uses vendoring

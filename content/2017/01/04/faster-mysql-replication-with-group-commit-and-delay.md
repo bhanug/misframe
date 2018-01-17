@@ -1,6 +1,7 @@
 ---
 title: Faster MySQL replication with group commit and delay
 date: "2017-01-04T22:51:00-05:00"
+bestof: true
 ---
 
 We've been having a problem with MySQL replication at [VividCortex](https://www.vividcortex.com). Replicas periodically
