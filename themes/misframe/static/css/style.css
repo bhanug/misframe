@@ -75,7 +75,7 @@ body {
 }
 
 .mf-list-date {
-  color: #bfbfbf;
+  color: #999;
   font-size: 14px;
   font-weight: 300;
 }
@@ -88,7 +88,7 @@ body {
 }
 
 .mf-post-title-date {
-  color: #bfbfbf;
+  color: #999;
   font-size: 14px;
   font-weight: 300;
 }
@@ -152,6 +152,7 @@ pre {
   border: 1px solid #eee;
   tab-size: 4;
   border-radius: 3px;
+  overflow: auto;
 }
 
 p code {
@@ -176,4 +177,5 @@ blockquote {
   padding-left: 2rem;
   border-left: 10px solid #eee;
   color: #666;
+  overflow: auto;
 }
