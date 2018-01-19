@@ -1,22 +1,14 @@
 {{- partial "header.html" . -}}
 {{- $baseurl := .Site.BaseURL -}}
 
-<div class='post-date'>{{- .Date.Format "Jan 2, 2006" -}}</div>
-<h1 class="post-title">{{ .Title }}</h1>
+<h1 class="mf-post-title">{{ .Title }}</h1>
+<div class="mf-post-title-date">Published <strong>{{ .Date.Format "Jan 2, 2006" }}</strong></div>
 
-<section class='post'>
+<section class="mf-post">
 {{ .Content }}
 </section>
 
 <footer>
-  <ul class="pager">
-    {{ if .Next }}
-    <li class="previous"><a href="{{ .Next.Permalink }}"><span aria-hidden="true">&larr;</span> Older</a></li>
-    {{ end }}
-    {{ if .Prev }}
-    <li class="next"><a href="{{ .Prev.Permalink }}">Newer <span aria-hidden="true">&rarr;</span></a></li>
-    {{ end }}
-  </ul>
   {{ with .Site.DisqusShortname }}
   <div id="disqus_thread"></div>
   <script type="text/javascript">

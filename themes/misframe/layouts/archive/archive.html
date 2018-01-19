@@ -1,8 +1,10 @@
 {{- partial "header.html" . -}}
-<h2>Archive</h2>
-{{- range $index, $page := .Site.Pages -}}
-  {{- if not .Params.archive }}
-    {{- .Render "list_item" -}}
+<div class="mf-home-section">
+  <h2>Archive</h2>
+  {{- range $index, $page := .Site.Pages -}}
+    {{- if not .Params.archive }}
+      {{- .Render "list_item" -}}
+    {{- end -}}
   {{- end -}}
-{{- end -}}
+</div>
 {{- partial "footer.html" . -}}

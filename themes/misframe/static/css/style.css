@@ -1,167 +1,155 @@
-/*
-*  Layout
-*/
-
 body {
-  font-family: "Lato", -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
-  padding: 0;
-  color: #4d4d4d;
-  -webkit-font-smoothing: antialiased;
+  font-family: "chronica_pro", Verdana, sans-serif;
   -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #444;
+  -webkit-font-smoothing: antialias;
 }
 
 .wrapper {
-  margin: 0 auto;
-  width: 40rem;
-  max-width: 80%;
+  max-width: 90%;
+  width: 624px;
+  margin: 3rem auto;
 }
 
-h1.site-title {
-  font-weight: normal;
-  font-size: 1.1rem;
-  text-align: right;
-  padding: 0 0 1rem 0;
-  margin: 2rem 0;
-  border-bottom: 1px solid #eee;
+.mf-site-title {
+  border-bottom: 1px solid #000;
+  padding: 1rem 0;
 }
 
-h1.site-title a {
-  color: #555;
+.mf-site-title h1 {
+  margin: 0;
+}
+
+.mf-site-title h1 a {
+  font-weight: bold;
+  font-size: 36px;
+  text-transform: uppercase;
   text-decoration: none;
+  color: black;
+  letter-spacing: -1px;
 }
 
-h1 span.site-title-by {
-  font-style: italic;
+.mf-site-title-by-line {
   font-weight: 300;
 }
 
-.list-item {
-  margin: 1rem 0;
+.mf-site-title-by {
+  font-style: italic;
 }
 
-.list-date {
-  float: left;
-  font-size: 12px;
-  width: 5rem;
-  text-align: right;
-  margin-right: 1rem;
-  line-height: 1.3rem;
+.mf-home-section {
+  margin-bottom: 5rem;
+  font-weight: 300;
+  font-size: 18px;
 }
 
-.list-link {
-  float: left;
-  width: 66%;
+.mf-home-section h2 {
+  font-weight: 700;
+  font-size: 24px;
 }
 
-.list-link a {
-  color: #333;
-  font-size: 1.1rem;
-  line-height: 1.3rem;
+.mf-home-section p a {
+  color: black;
+  text-decoration: none;
+  border-bottom: 2px solid #eee;
+}
+
+.mf-read-this-first {
+  font-weight: 100;
+  font-style: italic;
+}
+
+.mf-list-item {
+  margin: 20px 0;
+}
+
+.mf-list-link {
+  font-size: 24px;
+  line-height: 1.33;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.mf-list-link a {
+  color: black;
   text-decoration: none;
 }
 
-a {
-  color: inherit;
+.mf-list-date {
+  color: #bfbfbf;
+  font-size: 14px;
+  font-weight: 300;
 }
 
-p {
+.mf-post-title {
+  font-weight: 400;
+  margin: 1rem 0 5px 0;
+  font-size: 36px;
+  line-height: 1.33;
+}
+
+.mf-post-title-date {
+  color: #bfbfbf;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.mf-post {
+  font-weight: 300;
+  font-size: 18px;
   line-height: 1.5;
 }
 
-p img {
+.mf-post strong {
+  font-weight: 700;
+}
+
+.mf-post img {
   max-width: 100%;
 }
 
-p a img {
- border: none;
-}
-
-p a, li a {
+.mf-post a {
+  color: black;
   text-decoration: none;
   border-bottom: 2px solid #eee;
-  padding-bottom: 1px;
-  transition: border-color ease-in .1s;
 }
 
-h1.site-title a {
-  transition: color ease-in .1s;
-}
-
-h1.site-title a:hover {
-  color: #63A0D6;
-}
-
-h1.site-title:hover span.site-title-by {
-  color: #555;
-}
-
-p a:hover, li a:hover {
-  border-bottom: 2px solid #63A0D6;
-}
-
-.post-date {
-  color: #aaa;
+.footer {
   font-size: 0.9rem;
-  font-weight: 900;
-  margin: 0 0 0.25rem 0;
+  margin: 2rem 0 1rem 0;
+  text-align: center;
+  color: #222;
+  font-weight: 200;
 }
 
-h1.post-title {
-  margin-top: 0;
-  font-size: 37px;
-  font-weight: 900;
+.footer a {
+  color: black;
+  text-decoration: none;
+  font-weight: 300;
 }
 
-li {
-  line-height: 1.5;
+/* Misc elements */
+
+h2, h3 {
+  font-weight: 300;
+}
+
+h4, h5, h6 {
+  font-weight: 400;
 }
 
 hr {
-  width: 50%;
   border: none;
-  border-bottom: 2px solid #eee;
-}
-
-blockquote {
-  margin-left: 0;
-  padding-left: 2rem;
-  border-left: 10px solid #eee;
-}
-
-.footer p {
-  text-align: center;
-  font-size: 10px;
-  color: #777;
-}
-
-ul.pager {
-  color: #555;
-  list-style: none;
-  text-align: center;
   display: block;
-  margin: 2em auto;
-  width: 200px;
-  font-size: 0.9rem;
-}
-
-.pager a {
-  text-decoration: none;
-}
-
-ul.pager li {
-  display: table-cell;
-  width: 125px;
+  margin: 2rem;
+  background-color: #eee;
+  height: 1px;
+  width: 80%;
 }
 
 pre {
   font-size: 13px;
   padding: 10px;
   border: 1px solid #eee;
-  overflow: scroll;
   tab-size: 4;
   border-radius: 3px;
 }
@@ -170,7 +158,7 @@ p code {
   color: #333;
   padding: 0 2px;
   background-color: #f8f8f8;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 table {
@@ -181,4 +169,11 @@ table {
 table td, table th {
   border: 1px solid #ddd;
   padding: 0.5rem;
+}
+
+blockquote {
+  margin-left: 0;
+  padding-left: 2rem;
+  border-left: 10px solid #eee;
+  color: #666;
 }

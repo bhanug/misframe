@@ -1,10 +1,24 @@
 {{- partial "header.html" . -}}
-<h2>Top posts</h2>
-{{- range $index, $page := .Site.Pages -}}
-  {{- if $page.Params.bestof -}}
+
+<div class="mf-home-section">
+  <h2>Latest <span class="mf-read-this-first">&mdash; Read this first</h2>
+  {{- range first 1 .Site.Pages -}}
     {{- .Render "list_item" -}}
   {{- end -}}
-{{- end -}}
-<h2>Archive</h2>
-<p>View all posts in the <a href="/archive">archive</a>.</p>
+</div>
+
+<div class="mf-home-section">
+  <h2>Top posts</h2>
+  {{- range $index, $page := .Site.Pages -}}
+    {{- if $page.Params.bestof -}}
+      {{- .Render "list_item" -}}
+    {{- end -}}
+  {{- end -}}
+</div>
+
+<div class="mf-home-section">
+  <h2>Archive</h2>
+  <p>View all posts in the <a href="/archive">archive</a>.</p>
+</div>
+
 {{- partial "footer.html" . -}}
