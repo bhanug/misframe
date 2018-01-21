@@ -95,7 +95,7 @@ body {
 
 .mf-post {
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
 }
 
@@ -129,11 +129,7 @@ body {
 
 /* Misc elements */
 
-h2, h3 {
-  font-weight: 300;
-}
-
-h4, h5, h6 {
+h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
