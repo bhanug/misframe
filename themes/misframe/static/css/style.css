@@ -1,7 +1,7 @@
 body {
   font-family: "chronica_pro", Verdana, sans-serif;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialias;
+  -webkit-font-smoothing: antialiased;
 }
 
 .wrapper {
