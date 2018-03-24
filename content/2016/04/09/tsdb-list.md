@@ -1,10 +1,10 @@
 ---
 title: List of Time Series Databases
-date: "2017-09-03T16:29:53.791Z"
+date: "2018-03-22T23:35:00-04:00"
 bestof: true
 ---
 
-**Updated: September 3 2017**
+**Updated: March 23 2018**
 
 This is not an exhaustive list. If you think I should change something, please leave a comment here
 or send me a message on [Twitter](https://twitter.com/PreetamJinka). I'll try to keep it up-to-date
@@ -47,13 +47,28 @@ Some are layers on top of existing databases.
 	- Built on Apache Lucene, Solr, and Spark
 - [CitusDB](https://www.citusdata.com/)
 	- Distributed Postgres (through an extension)
+- [ClickHouse](https://clickhouse.yandex/)
+	- Distributed columnar database
+	- Powers [Yandex.Metrica](https://clickhouse.yandex/docs/en/introduction/ya_metrika_task/) (basically Russia's Google Analytics)
+- [Cortex](https://github.com/weaveworks/cortex)
+	-  Multitenant, horizontally scalable Prometheus as a Service
+- [CrateDB](https://crate.io/)
+	- Distributed SQL database
+	- Fully searchable document oriented data store
+	- Uses Presto for SQL, Elasticsearch and Lucene for storage
 - [Cube](http://square.github.io/cube/) by Square
 	- Built on MongoDB
+- [Cyanite](http://cyanite.io/)
+	- Compatible with the Graphite ecosystem
+	- Stores data in Cassandra
 - [Dalmatiner](https://dalmatiner.io/)
 	- Built on ZFS and Riak Core
 - [Druid](http://druid.io/)
 	- Column-oriented open-source distributed data store written in Java
 - [Elasticsearch](https://www.elastic.co/blog/elasticsearch-as-a-time-series-data-store)
+	- Java & Lucene
+	- Support for live time series resampling
+	- Distributed data storage
 - [EventQL](https://github.com/eventql/eventql)
 	- Distributed, columnar database built for large-scale data collection and analytics workloads
 	- Supports SQL
@@ -75,10 +90,16 @@ Some are layers on top of existing databases.
 	- Clustering is a paid feature now
 - [KairosDB](https://github.com/kairosdb/kairosdb)
 	- Rewrite of OpenTSDB
+- [M3DB](https://github.com/m3db)
+	- Distributed time series database using M3TSZ float64 compression
 - [Newts](https://opennms.github.io/newts/)
 	- Based on Cassandra
 - [OpenTSDB](http://opentsdb.net/)
-	- Built on top of HBase
+	- Built on top of HBase, BigTable, or Cassandra
+- [Pinot](https://github.com/linkedin/pinot)
+	- Realtime distributed OLAP datastore
+	- Horizontally scalable
+	- Used at LinkedIn
 - [Prometheus](http://prometheus.io/)
 	- Monitoring system and TSDB
 	- Not distributed
@@ -111,8 +132,9 @@ Some are layers on top of existing databases.
 
 These are either proprietary or internal, and not open source.
 
-- [Cityzen Data](http://www.cityzendata.com/)
-	- IoT / sensor data platform
+- [Google BigQuery](https://cloud.google.com/bigquery/)
+	- Managed data warehouse for analytics hosted on Google Cloud
+	- BigQuery can do lots of things in addition to time series (also see RedShift)
 - [Infiniflux](http://infiniflux.com/)
 	- Time series DBMS with SQL
 - [IRONdb](https://www.circonus.com/irondb/)
@@ -120,13 +142,19 @@ These are either proprietary or internal, and not open source.
 	who also created “Snowth” a few years ago (see below).
 - [kdb+](https://kx.com/products.php) by Kx Systems
 	- Very popular in the financial industry
-- [Rocana](https://www.rocana.com/)
+- [AWS Redshift](https://aws.amazon.com/redshift/)
+	- Managed data warehouse for analytics hosted on AWS
+	- Redshift can do lots of things in addition to time series (also see BigQuery)
+- [Rocana](https://www.rocana.com/) (acquired by Splunk)
 	- Proprietary columnar TSDB using Apache Lucene, Kafka, and HDFS
 - [eXtremeDB](http://financial.mcobject.com/)
 	- Made for financial data
 	- Columnar, ACID-compliant, SQL support
 - Facebook [Scuba](https://research.facebook.com/publications/scuba-diving-into-data-at-facebook/)
 	- Fast, scalable, distributed, in-memory database
+- [quasardb](https://www.quasardb.net/)
+	- Distributed transactional key-value store with distributed secondary indexes and native time series support
+	- Written in C++14
 - [SnappyData](http://www.snappydata.io/)
 	- fuses Apache Spark with a highly available, multi-tenanted in-memory database
 	- OLTP + OLAP on streaming data
@@ -150,6 +178,8 @@ These are not exactly TSDBs, but are interesting resources to take a look at.
 	- [YouTube video](https://www.youtube.com/watch?v=hwHpd20NciE) about the design
 - [Facebook Gorilla paper](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf) [PDF]
 	- Fast, scalable, in-memory TSDB
+- Honeycomb's columnar data store "Retriever"
+	- [YouTube video](https://www.youtube.com/watch?v=tr2KcekX2kk) about the design
 - [Pulsar](http://gopulsar.io/)
 	- Streaming SQL
 - Square [metrics query engine](https://github.com/square/metrics)
@@ -176,3 +206,10 @@ These are not exactly TSDBs, but are interesting resources to take a look at.
 	([@LafiKL](https://twitter.com/LafiKL)) for their contributions.
 - **2017-09-03**  
   Added EventQL, eXtremeDB, IRONdb; reorganized sections.
+- **2018-03-23**  
+  Added ClickHouse, M3DB, Honeycomb's data store, quasardb, Cortex, Cyanite, BigQuery, RedShift,
+  CrateDB, Pinot;
+  misc cleanup and expanded notes.
+	- Thanks to Damian Gryski ([@dgryski](https://twitter.com/dgryski)), gilles t ([@akiragt](https://twitter.com/akiragt))
+	Misha Brukman ([@MishaBrukman](https://twitter.com/MishaBrukman/status/904536969996374016)),
+	Andrew Montalenti ([@amontalenti](https://twitter.com/amontalenti)), and KurtB, Andy Ellicott in the comments.
