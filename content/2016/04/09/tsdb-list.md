@@ -1,6 +1,6 @@
 ---
 title: List of Time Series Databases
-date: "2018-03-22T23:35:00-04:00"
+date: "2018-03-22T23:15:00-04:00"
 bestof: true
 ---
 
