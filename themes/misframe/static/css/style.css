@@ -151,7 +151,7 @@ pre {
   overflow: auto;
 }
 
-p code {
+p code, li code {
   color: #333;
   padding: 0 2px;
   background-color: #f8f8f8;
