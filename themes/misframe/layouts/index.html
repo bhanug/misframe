@@ -1,8 +1,8 @@
 {{- partial "header.html" . -}}
 
 <div class="mf-home-section">
-  <h2>Latest <span class="mf-read-this-first">&mdash; Read this first</h2>
-  {{- range first 1 .Site.Pages -}}
+  <h2>Latest <span class="mf-read-this-first">&mdash; Read these first</h2>
+  {{- range first 5 .Site.Pages -}}
     {{- .Render "list_item" -}}
   {{- end -}}
 </div>
