@@ -21,6 +21,12 @@
     <link rel="icon" type="image/png" href="/img/favicon.png">
     <link href="https://d2zncawp28ewcu.cloudfront.net/css/fonts/chronica-pro.css?version=misframe" rel="stylesheet">
     <link rel="alternate" type="application/atom+xml" title="Feed" href="/feed">
+    {{ if .Params.twitter_card }}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ .Title }}" />
+    <meta name="twitter:description" content="{{ .Params.twitter_card.description }}" />
+    <meta name="twitter:image" content="{{ .Params.twitter_card.image }}" />
+    {{ end }}
     <title>
     {{ if ne .URL "/" }} {{ .Title }} - {{ end }} {{ .Site.Title }}
     </title>
