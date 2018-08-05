@@ -3,7 +3,7 @@ title: Terrace Time Series Storage Experiment
 date: "2018-08-05T13:05:00-07:00"
 twitter_card:
   description: "I am working on a storage format for time series data."
-  image: /img/2018/terrace.png
+  image: "https://misfra.me/img/2018/terrace.png"
 ---
 
 I'm working on time series storage again!
