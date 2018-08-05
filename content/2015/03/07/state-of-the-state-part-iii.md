@@ -8,7 +8,7 @@ bestof: true
 
 First, I suggest reading Baron's ["Time-Series Database Requirements"](http://www.xaprb.com/blog/2014/06/08/time-series-database-requirements/) blog post to get some more context for this post. I read that and, as I usually do, had my mind set on low-level thoughts. I wrote the following comment:
 
-![Preetam's comment](http://static.misfra.me/images/posts/state-of-the-state-part-iii/preetam-comment.jpg)
+![Preetam's comment](/img/2015/preetam-comment.jpg)
 
 I took this screenshot a few months ago, so it has actually been almost a year since I wrote that. Time flies!
 
@@ -33,19 +33,19 @@ The fundamental unit in Catena is a point. A point is like a point on a time ser
 
 For various reasons, everything is separated into partitions. Partitions are chunks of time series data with disjoint timestamp ranges. *Nothing* is shared between partitions.
 
-![Partitions](http://static.misfra.me/images/posts/state-of-the-state-part-iii/partitions.jpg)
+![Partitions](/img/2015/partitions.jpg)
 
 The most recent partitions are stored entirely in memory. Older partitions are compressed and stored as individual files on disk.
 
 The following image shows how I view partitions. The in-memory partition structure looks a lot like this.
 
-![Logical view of a partition](http://static.misfra.me/images/posts/state-of-the-state-part-iii/partition-view.jpg)
+![Logical view of a partition](/img/2015/partition-view.jpg)
 
 `h1` and `h2` are sources, and `m1` to `m5` are metrics.
 
 The on-disk partition format looks something like this:
 
-![File format](http://static.misfra.me/images/posts/state-of-the-state-part-iii/file-format.jpg)
+![File format](/img/2015/file-format.jpg)
 
 `A, B, ..., J` are arrays of points. They are compressed using gzip compression.
 The metadata at the end stores sources, metrics, and the offsets of the beginning of each point array. When a file partition is opened, its file is memory mapped and the metadata is read into memory in a structure very similar to an in-memory partition, excluding the points themselves. During queries, we look up the offset from the metadata structure, seek, and read the points off. With the current implementation, there is only one seek per metric. Concurrent reads are trivial with file partitions because they are read-only.
