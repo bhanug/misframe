@@ -1,10 +1,10 @@
 ---
 title: List of Time Series Databases
-date: "2018-03-22T23:15:00-04:00"
+date: "2018-09-13T23:15:00-07:00"
 bestof: true
 ---
 
-**Updated: March 23 2018**
+**Updated: September 13 2018**
 
 This is not an exhaustive list. If you think I should change something, please leave a comment here
 or send me a message on [Twitter](https://twitter.com/PreetamJinka). I'll try to keep it up-to-date
@@ -90,8 +90,9 @@ Some are layers on top of existing databases.
 	- Clustering is a paid feature now
 - [KairosDB](https://github.com/kairosdb/kairosdb)
 	- Rewrite of OpenTSDB
-- [M3DB](https://github.com/m3db)
+- [M3DB](https://m3db.io/)
 	- Distributed time series database using M3TSZ float64 compression
+	- Developed at Uber
 - [Newts](https://opennms.github.io/newts/)
 	- Based on Cassandra
 - [OpenTSDB](http://opentsdb.net/)
@@ -117,6 +118,10 @@ Some are layers on top of existing databases.
 - [SiriDB](http://siridb.net/)
 	- Written in C and focused on performance
 	- Query language
+- [sonnerie](https://github.com/njaard/sonnerie)
+	- Written in Rust
+	- Append only (no updates yet)
+	- Simple TCP API
 - [Timely](https://github.com/NationalSecurityAgency/timely) by the NSA
 	- Backed by Accumulo
 - [TimescaleDB](http://www.timescale.com/)
@@ -127,6 +132,10 @@ Some are layers on top of existing databases.
 - [Warp 10](http://www.warp10.io/)
 	- Distributed version uses HBase
 	- From Cityzen Data
+- [Yuvi](https://github.com/pinterest/yuvi)
+	- In-memory storage engine for recent time series metrics data
+	- Implemented in Java
+	- Supports OpenTSDB metric ingestion and OpenTSDB queries
 
 ## Proprietary or internal
 
@@ -213,3 +222,5 @@ These are not exactly TSDBs, but are interesting resources to take a look at.
 	- Thanks to Damian Gryski ([@dgryski](https://twitter.com/dgryski)), gilles t ([@akiragt](https://twitter.com/akiragt))
 	Misha Brukman ([@MishaBrukman](https://twitter.com/MishaBrukman/status/904536969996374016)),
 	Andrew Montalenti ([@amontalenti](https://twitter.com/amontalenti)), and KurtB, Andy Ellicott in the comments.
+- **2018-09-13**  
+  Added Yuvi, sonnerie. Updated M3DB link to official website.
