@@ -1,6 +1,9 @@
 ---
 title: Speed up analytics queries by doing less work
 date: "2018-09-17T23:45:00-07:00"
+twitter_card:
+  description: "Here are my top 3 techniques to speed up analytics queries"
+  image: "https://misfra.me/img/2018/analytics_speedup_diagram_1.svg"
 ---
 
 Often times in my work I come across queries like this,
