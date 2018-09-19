@@ -2,7 +2,7 @@
 title: Terrace Storage Experiment Update
 date: "2018-09-18T20:05:00-07:00"
 twitter_card:
-  description: "I am working on a storage format for time series data."
+  description: "Things are looking good! I have a basic generator, file format, and some success with simulated data."
   image: "https://misfra.me/img/2018/terrace.png"
 ---
 
