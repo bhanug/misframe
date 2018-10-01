@@ -47,21 +47,21 @@ func main() {
     }()
 
     var wait = time.After(time.Millisecond * 100)
-    var buffer = make([]int, 0)
+    var buffer = []int{}
 
     for {
         select {
         case <-wait:
             if len(buffer) > 0 {
                 to <- buffer
-                buffer = buffer[:0]
+                buffer = []int{}
             }
             wait = time.After(time.Millisecond * 100)
         default:
             buffer = append(buffer, <-from)
             if len(buffer) == 15 {
                 to <- buffer
-                buffer = buffer[:0]
+                buffer = []int{}
                 wait = time.After(time.Millisecond * 100)
             }
         }
