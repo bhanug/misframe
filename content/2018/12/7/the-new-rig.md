@@ -1,6 +1,6 @@
 ---
 title: The New Rig
-date: "2018-12-7T20:05:00-08:00"
+date: "2019-03-03T21:23:42.470Z"
 ---
 
 When I first wrote the Rig, I wanted a framework that I could use to keep
@@ -163,3 +163,4 @@ Percentage of the requests served within a certain time (ms)
   99%   3170
  100%   3170 (longest request)
  ```
+ 
