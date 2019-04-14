@@ -133,7 +133,7 @@ Some are layers on top of existing databases.
 	- Written in Go
 - [Warp 10](http://www.warp10.io/)
 	- Distributed version uses HBase
-	- From Cityzen Data
+	- From [SenX](https://senx.io/)
 - [Yuvi](https://github.com/pinterest/yuvi)
 	- In-memory storage engine for recent time series metrics data
 	- Implemented in Java
