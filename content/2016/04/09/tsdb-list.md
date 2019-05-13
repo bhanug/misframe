@@ -6,11 +6,13 @@ twitter_card:
   description: "List of all time series databases as I hear about them"
 ---
 
-**Updated: September 13 2018**
+**Updated: May 13 2019**
 
 This is not an exhaustive list. If you think I should change something, please leave a comment here
 or send me a message on [Twitter](https://twitter.com/PreetamJinka). I'll try to keep it up-to-date
 based on feedback and anything new I find. There is a changelog at the end.
+
+**You can also submit a PR to update this page:** https://github.com/Preetam/misframe/blob/master/content/2016/04/09/tsdb-list.md
 
 ## Open source
 
@@ -77,6 +79,8 @@ Some are layers on top of existing databases.
 - [FiloDB](https://github.com/tuplejump/FiloDB)
 	- Distributed, versioned, and columnar analytical database
 	- Uses Spark SQL
+- [GridDB](https://griddb.net/en/)
+	- Horizontally scalable NoSQL DB
 - [GridGain](http://www.gridgain.com/)
 	- In-memory data fabric
 - [Hawkular](http://www.hawkular.org/)
@@ -171,6 +175,8 @@ These are either proprietary or internal, and not open source.
 	- OLTP + OLAP on streaming data
 - [TempoIQ](https://www.tempoiq.com/)
 	- IoT platform
+- [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics/wiki/Single-server-VictoriaMetrics)
+	- Long-term remote storage for Prometheus
 
 ## Things to look at for ideas
 
@@ -226,3 +232,5 @@ These are not exactly TSDBs, but are interesting resources to take a look at.
 	Andrew Montalenti ([@amontalenti](https://twitter.com/amontalenti)), and KurtB, Andy Ellicott in the comments.
 - **2018-09-13**  
   Added Yuvi, sonnerie. Updated M3DB link to official website.
+- **2019-05-13**  
+  Added GridDB and VictoriaMetrics.
