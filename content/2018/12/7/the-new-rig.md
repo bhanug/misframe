@@ -1,6 +1,6 @@
 ---
 title: The New Rig
-date: "2019-03-03T21:23:42.470Z"
+date: "2019-05-23T21:23:42.470Z"
 ---
 
 When I first wrote the Rig, I wanted a framework that I could use to keep
