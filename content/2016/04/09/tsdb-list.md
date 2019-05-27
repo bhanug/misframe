@@ -94,6 +94,8 @@ Some are layers on top of existing databases.
 - [InfluxDB](https://influxdata.com/)
 	- Written in Go
 	- Clustering is a paid feature now
+- [IoTDB](https://github.com/apache/incubator-iotdb.git)
+	- Written in Java
 - [KairosDB](https://github.com/kairosdb/kairosdb)
 	- Rewrite of OpenTSDB
 - [M3DB](https://m3db.io/)
