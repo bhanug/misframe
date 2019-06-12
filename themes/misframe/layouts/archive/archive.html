@@ -1,7 +1,7 @@
 {{- partial "header.html" . -}}
 <div class="mf-home-section">
   <h2>Archive</h2>
-  {{- range $index, $page := .Site.Pages -}}
+  {{- range $index, $page := .Site.RegularPages -}}
     {{- if not .Params.archive }}
       {{- .Render "list_item" -}}
     {{- end -}}

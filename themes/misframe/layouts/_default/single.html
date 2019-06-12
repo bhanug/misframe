@@ -1,14 +1,14 @@
 {{- partial "header.html" . -}}
 {{- $baseurl := .Site.BaseURL -}}
 
+<div class="mf-post-title-date">{{ .Date.Format "Jan 2, 2006" }}</div>
 <h1 class="mf-post-title">{{ .Title }}</h1>
-<div class="mf-post-title-date">Published <strong>{{ .Date.Format "Jan 2, 2006" }}</strong></div>
 
 <section class="mf-post">
 {{ .Content }}
 </section>
 
-<footer>
+<!-- <footer>
   {{ with .Site.DisqusShortname }}
   <div id="disqus_thread"></div>
   <script type="text/javascript">
@@ -21,6 +21,6 @@
   </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   {{ end }}
-</footer>
+</footer> -->
 
 {{ partial "footer.html" . }}

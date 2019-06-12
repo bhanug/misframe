@@ -2,14 +2,14 @@
 
 <div class="mf-home-section">
   <h2>Latest <span class="mf-read-this-first">&mdash; Read these first</h2>
-  {{- range first 5 .Site.Pages -}}
+  {{- range first 5 .Site.RegularPages -}}
     {{- .Render "list_item" -}}
   {{- end -}}
 </div>
 
 <div class="mf-home-section">
   <h2>Top posts</h2>
-  {{- range $index, $page := .Site.Pages -}}
+  {{- range $index, $page := .Site.RegularPages -}}
     {{- if $page.Params.bestof -}}
       {{- .Render "list_item" -}}
     {{- end -}}
