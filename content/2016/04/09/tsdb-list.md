@@ -1,6 +1,6 @@
 ---
 title: List of Time Series Databases
-date: "2018-09-13T23:15:00-07:00"
+date: "2016-04-09T23:15:00-07:00"
 bestof: true
 twitter_card:
   description: "List of all time series databases as I hear about them"
