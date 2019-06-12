@@ -8,6 +8,8 @@ paginate = 10
 rsslink = "feed"
 DisqusShortname = "preetamjinka"
 
+disableKinds = ["section", "taxonomy", "taxonomyTerm"]
+
 [params]
   DateForm = "Mon, Jan 2, 2006"
   RSSlink = "feed"
