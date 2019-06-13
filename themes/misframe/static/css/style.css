@@ -78,9 +78,9 @@ body {
 }
 
 .mf-list-date {
-  font-size: 0.6em;
+  font-size: 15px;
   color: #ccc;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .mf-post-title {
