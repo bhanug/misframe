@@ -104,6 +104,7 @@ a.mf-keep-reading {
 
 .mf-post h1, .mf-post h2, .mf-post h3, .mf-post h4, .mf-post h5, .mf-post h6 {
   color: #000;
+  line-height: 125%;
 }
 
 .mf-post strong {
