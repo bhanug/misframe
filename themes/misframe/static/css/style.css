@@ -72,7 +72,7 @@ a.mf-keep-reading {
 }
 
 .mf-list-link a {
-  color: black;
+  color: #333;
   text-decoration: none;
 }
 
@@ -116,7 +116,6 @@ a.mf-keep-reading {
 }
 
 .mf-post a {
-  color: black;
   font-style: italic;
   text-decoration: none;
   border-bottom: 2px solid #ccc;
