@@ -1,24 +1,34 @@
 {{- partial "header.html" . -}}
 
-<div class="mf-home-section">
-  <h2>Latest <span class="mf-read-this-first">&mdash; Read these first</h2>
-  {{- range first 5 .Site.RegularPages -}}
-    {{- .Render "list_item" -}}
-  {{- end -}}
+{{- $posts := first 3 .Site.RegularPages -}}
+{{- range first 2 $posts -}}
+<div class="mf-index-summary-section">
+  <div class="mf-post-title-date">{{ .Date.Format "Jan 2, 2006" }}</div>
+  <h1 class="mf-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+  <div class="mf-post">
+    {{ .Summary }}
+  </div>
+
+  {{ if .Truncated }}
+  <a class="mf-keep-reading" href="{{ .RelPermalink }}">Keep reading→</a>
+  {{ end }}
 </div>
 
-<div class="mf-home-section">
-  <h2>Top posts</h2>
-  {{- range $index, $page := .Site.RegularPages -}}
-    {{- if $page.Params.bestof -}}
-      {{- .Render "list_item" -}}
-    {{- end -}}
-  {{- end -}}
-</div>
+<hr class="mf-article-separator">
+{{- end -}}
 
-<div class="mf-home-section">
-  <h2>Archive</h2>
-  <p>View all posts in the <a href="/archive">archive</a>.</p>
+{{- range after 2 $posts -}}
+<div class="mf-index-summary-section">
+  <div class="mf-post-title-date">{{ .Date.Format "Jan 2, 2006" }}</div>
+  <h1 class="mf-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+  <div class="mf-post">
+    {{ .Summary }}
+  </div>
+
+  {{ if .Truncated }}
+  <a class="mf-keep-reading" href="{{ .RelPermalink }}">Keep reading→</a>
+  {{ end }}
 </div>
+{{- end -}}
 
 {{- partial "footer.html" . -}}

@@ -1,8 +1,8 @@
 {{- partial "header.html" . -}}
 <div class="mf-home-section">
-  <h2>Archive</h2>
+  <h2>Top posts</h2>
   {{- range $index, $page := .Site.RegularPages -}}
-    {{- if and (not .Params.archive) (not .Params.top) }}
+    {{- if $page.Params.bestof -}}
       {{- .Render "list_item" -}}
     {{- end -}}
   {{- end -}}

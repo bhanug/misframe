@@ -15,6 +15,8 @@ which is a much simpler version, and that was the inspiration to start over.
 
 Here's what you can do with it. Let's start with a simple factorial function:
 
+<!--more-->
+
 ```lisp
 ;; Factorial
 (define fact

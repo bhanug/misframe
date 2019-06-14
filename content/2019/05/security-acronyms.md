@@ -7,6 +7,8 @@ twitter_card:
 
 I joined [ShiftLeft](https://www.shiftleft.io/) a year ago, and since it's my first time in the security space I had to familiarize myself with the following terminology. I use this as a reference. Hopefully it's useful for you too!
 
+<!--more-->
+
 ## Runtime
 
 Runtime security involves inspection and protection against vulnerabilities while an application is running in production. Runtime security usually involves configuring a set of rules that apply to your application or architecture and enforcing them against incoming traffic.

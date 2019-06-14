@@ -18,6 +18,8 @@ So far, things are looking good! Early last month I only had an idea and
 zero code. Now I have a basic generator, file format, and some success with
 simulated data. Read on to see how it works.
 
+<!--more-->
+
 The code is available on GitHub: https://github.com/Preetam/terrace
 
 ## Structure of Terrace files
