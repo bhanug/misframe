@@ -15,6 +15,8 @@ use case I had was plotting charts. Since then my requirements have changed. My 
 have to be more than arrays of points with simple string names. They have to be computed
 from _events_ with lots of attributes that I can filter, group, aggregate, and rank.
 
+<!--more-->
+
 What are events? They're basically maps with timestamps, like the following log message:
 
 ```json

@@ -1,7 +1,7 @@
 {{- partial "header.html" . -}}
 
-{{- $posts := first 3 .Site.RegularPages -}}
-{{- range first 2 $posts -}}
+{{- $posts := first 6 .Site.RegularPages -}}
+{{- range first 5 $posts -}}
 <div class="mf-index-summary-section">
   <div class="mf-post-title-date">{{ .Date.Format "Jan 2, 2006" }}</div>
   <h1 class="mf-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
@@ -17,7 +17,7 @@
 <hr class="mf-article-separator">
 {{- end -}}
 
-{{- range after 2 $posts -}}
+{{- range after 5 $posts -}}
 <div class="mf-index-summary-section">
   <div class="mf-post-title-date">{{ .Date.Format "Jan 2, 2006" }}</div>
   <h1 class="mf-post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>

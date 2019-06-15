@@ -24,6 +24,9 @@ We want these queries to execute faster, which is the same as reducing their
 latency. Remember that **latency comes from doing work or waiting**. This post
 is about modifying the work aspect because analytics queries don't really have
 problems with waiting (at least in my experience, but there are exceptions).
+
+<!--more-->
+
 There are two ways to improve how work gets done to speed up your queries:
 
 1. **Do work faster** by allocating more resources (parallelizing execution,
