@@ -5,7 +5,7 @@ url: /custom-router-part-ii
 ---
 
 
-Welcome back! In my [previous post](http://misfra.me/custom-router) I
+Welcome back! In my [previous post](https://misfra.me/custom-router) I
 described this interesting idea of writing a router.
 I had no idea whether or not it would work. I knew it was possible, of course. I
 run two OpenBSD routers in a failover setup with CARP (this blog is routed through
@@ -17,7 +17,7 @@ Turns out my BeagleBone Black is great for testing this out! When you plug in
 a factory default BeagleBone Black into a computer, it sets up a network over
 USB.
 
-![](http://static.misfra.me/images/posts/custom-router-part-ii/bbb-network.png)
+![](/img/copied/posts/custom-router-part-ii/bbb-network.png)
 
 	eth1      Link encap:Ethernet  HWaddr 78:a5:04:c8:8c:a3  
 	          inet addr:192.168.7.1  Bcast:192.168.7.3  Mask:255.255.255.252
@@ -101,9 +101,9 @@ Well...  the simple answer would be to send it to your default gateway. There's 
 but you can figure that out on your own (I did :P).
 
 How do you actually send that packet to the default gateway? We know that the default gateway is on the
-same subnet you are. Therefore, we're only working at layer 2 of the [OSI model](http://en.wikipedia.org/wiki/OSI_model).
+same subnet you are. Therefore, we're only working at layer 2 of the [OSI model](https://en.wikipedia.org/wiki/OSI_model).
 There's a really simple answer for this one: just modify the MAC addresses in the Ethernet packet header
-and write the packet back into the socket. That's it! I think this is called [packet injection](http://en.wikipedia.org/wiki/Packet_injection).
+and write the packet back into the socket. That's it! I think this is called [packet injection](https://en.wikipedia.org/wiki/Packet_injection).
 The Wikipedia page makes it sound evil...
 
 Getting packets back
@@ -112,7 +112,7 @@ One thing you have to be careful about is getting packets back from the Internet
 I set up a static route on my WiFi router to route the 192.168.7.0/30 subnet
 to my laptop.
 
-![](http://static.misfra.me/images/posts/custom-router-part-ii/static-route.png)
+![](/img/copied/posts/custom-router-part-ii/static-route.png)
 
 Yes, the subnet mask is incorrect but it doesn't make a difference in this situation.
 
@@ -121,7 +121,7 @@ End result
 
 Ta-daaaah!
 
-![](http://static.misfra.me/images/posts/custom-router-part-ii/demo.gif)
+![](/img/copied/posts/custom-router-part-ii/demo.gif)
 
 On the left is the log output of a Go program that's reading and writing from/to
 a raw socket, and printing out the Ethernet frames it's receiving and sending.
@@ -152,7 +152,7 @@ Check this out... it's cool.
 
 How come my laptop (192.168.7.1) isn't showing up? Let's think about
 how traceroute(1) actually works. In short, it sends out multiple packets
-with different TTLs (time to live). Quoting [Wikipedia](http://en.wikipedia.org/wiki/Time_to_live)...
+with different TTLs (time to live). Quoting [Wikipedia](https://en.wikipedia.org/wiki/Time_to_live)...
 
 > The TTL field is set by the sender of the datagram, and reduced by every router on the route to its destination. If the TTL field reaches zero before the datagram arrives at its destination, then the datagram is discarded and an ICMP error datagram (11 - Time Exceeded) is sent back to the sender.
 
@@ -164,7 +164,7 @@ that scary? Uhm...
 
 Checksums and TTLs
 ---
-If you open up a diagram of an Ethernet frame (look [here](http://en.wikipedia.org/wiki/Ethernet_frame#Structure)),
+If you open up a diagram of an Ethernet frame (look [here](https://en.wikipedia.org/wiki/Ethernet_frame#Structure)),
 you'll notice that there's a field called "Frame check sequence". This is a 32-bit CRC -- a checksum.
 Turns out that NICs take care of calculating this checksum for you, so you don't have to worry about it when
 constructing Ethernet frames.
@@ -181,6 +181,6 @@ is available on GitHub and is MIT licensed ('cause I like your freedom):
 https://github.com/Preetam/gateway-experiment
 
 Now I'm thinking about inter-VLAN routing, stateful firewalls, routing tables, etc.
-It would be neat to try to implement some of this stuff in Go. I already wrote a [post](http://misfra.me/router-on-a-stick) on inter-VLAN routing. That was over two years ago? I keep redoing stuff, but every time I do it I go a level lower :P.
+It would be neat to try to implement some of this stuff in Go. I already wrote a [post](https://misfra.me/router-on-a-stick) on inter-VLAN routing. That was over two years ago? I keep redoing stuff, but every time I do it I go a level lower :P.
 
 Well, I hope that was informative. Ask me questions on Twitter: [@PreetamJinka](https://twitter.com/PreetamJinka)

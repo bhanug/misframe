@@ -5,7 +5,7 @@ url: /state-of-the-state-part-ii
 ---
 
 
-The [original post](http://misfra.me/state-of-the-state) was written last December (almost 10 months ago). To summarize, I mentioned my time series logging program, Adversaria, and I wrote about my little toy key-value store, Fickle. I wrote that I would try to add transactions, and then I ended with a goal to use it to power this blog.
+The [original post](https://misfra.me/state-of-the-state) was written last December (almost 10 months ago). To summarize, I mentioned my time series logging program, Adversaria, and I wrote about my little toy key-value store, Fickle. I wrote that I would try to add transactions, and then I ended with a goal to use it to power this blog.
 
 Since then, I wrote a [skip list](https://github.com/Preetam/txfun/blob/5440e53e17c050b620da6410aaa5bcf1353fd5f5/db_test.go) in C, implemented basic [transactions](https://github.com/Preetam/txfun/blob/a36943e976d9baf5d94dcd85726c21f683428810/db_test.go) in Go, and played around with [chunks](https://github.com/Preetam/chunks) of ordered byte slices, and wrote a [memory-mapped linked list](https://github.com/Preetam/listmap).
 
@@ -13,7 +13,7 @@ There was certainly a lack of focus, and part of that was due to the fact that I
 
 Cistern
 ---
-I'm not exactly interested in writing a traditional database anymore. I've been working mainly on [Cistern](https://github.com/Preetam/cistern), my sFlow collector. [sFlow](http://sflow.org/) is a network monitoring specification. It's very simple to understand. A set of devices (routers, switches, servers) emit counters and packet samples, and they all flow to a collector. The collector then aggregates them.
+I'm not exactly interested in writing a traditional database anymore. I've been working mainly on [Cistern](https://github.com/Preetam/cistern), my sFlow collector. [sFlow](https://sflow.org/) is a network monitoring specification. It's very simple to understand. A set of devices (routers, switches, servers) emit counters and packet samples, and they all flow to a collector. The collector then aggregates them.
 
 This is how it all works as a short summary.
 
@@ -28,13 +28,13 @@ This is how it all works as a short summary.
 Examples
 ---
 This is something I came up with that uses Angular.JS and Cistern. The frontend polls occasionally to get a list of hosts, and then queries for the current values of certain metrics. It's all completely dynamic. As new hosts start sending their sFlow datagrams, Cistern automatically creates new entries in the registry and starts supplying the frontend with an updated list of hosts.
-![](http://static.misfra.me/images/posts/state-of-the-state-part-ii/realtime.gif)
+![](/img/copied/posts/state-of-the-state-part-ii/realtime.gif)
 
 Here's some information from packet headers. As you can tell, there's a single IP address opening a bunch of connections to port 22 for a bunch of destination IP addresses. This is most likely a bot trying to find active hosts listening on port 22.
-![Port scan](http://static.misfra.me/images/posts/state-of-the-state-part-ii/portscan.png)
+![Port scan](/img/copied/posts/state-of-the-state-part-ii/portscan.png)
 
 This is a quick demo using the HTTP interface to fetch time series for a metric. I used D3.js to plot the graph.
-![D3.js](http://static.misfra.me/images/posts/state-of-the-state-part-ii/d3.png)
+![D3.js](/img/copied/posts/state-of-the-state-part-ii/d3.png)
 
 ---
 

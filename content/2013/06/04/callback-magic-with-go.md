@@ -71,7 +71,7 @@ database driver.
 
 </p>
 
-  [C-API]: http://foundationdb.com/documentation/beta1/api-c.html
-  [futures]: http://en.wikipedia.org/wiki/Futures_and_promises
+  [C-API]: https://foundationdb.com/documentation/beta1/api-c.html
+  [futures]: https://en.wikipedia.org/wiki/Futures_and_promises
   [Take a look at the entire prototype.]: https://github.com/Preetam/fdbgo
 

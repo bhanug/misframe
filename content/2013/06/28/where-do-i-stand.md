@@ -9,7 +9,7 @@ I do many different things. When I was younger (around 11 years old), I used to 
 
 I consider myself a "Jack of all trades, master of none." I surround myself with extremely smart people whom I often times consider to be experts in their fields. I see who the masters are. I never feel like one. I always like to surround myself with people who are better than me at certain things. They push me to become better myself and learn more from them, whether they realize it or not.
 
-I've seen exceptional artists, developers, guitarists, photographers, and entrepreneurs. I'm just never at their level. It reminds me of my [journey to perfection](http://misfra.me/the-journey-to-perfection).
+I've seen exceptional artists, developers, guitarists, photographers, and entrepreneurs. I'm just never at their level. It reminds me of my [journey to perfection](https://misfra.me/the-journey-to-perfection).
 
 I think it's really hard for me to gauge my abilities. I guess I'm better than average at some things, worse at others, and terrible at the rest. I never consider myself an expert. I just never feel that knowledgeable. I know who the real experts are. I'm nowhere close. What's interesting is that some might call me an expert at certain things. So, where do I stand?
 

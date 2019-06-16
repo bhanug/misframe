@@ -5,10 +5,10 @@ url: /making-skip-lists-faster
 ---
 
 
-First off, watch this video: [Bjarne Stroustrup: Why you should avoid Linked Lists](http://www.youtube.com/watch?v=YQs6IC-vgmo). To summarize, Stroustrup states that using vectors is significantly better than using linked lists because linked lists are horrible at cache hits.
+First off, watch this video: [Bjarne Stroustrup: Why you should avoid Linked Lists](https://www.youtube.com/watch?v=YQs6IC-vgmo). To summarize, Stroustrup states that using vectors is significantly better than using linked lists because linked lists are horrible at cache hits.
 
-[![](http://daviddeley.com/programming/docs/listvsvector.png)](http://daviddeley.com/programming/docs/listvsvector.png)
-<br/>(From http://daviddeley.com/programming/docs/page_faults_and_array_addressing.htm)
+[![](https://daviddeley.com/programming/docs/listvsvector.png)](https://daviddeley.com/programming/docs/listvsvector.png)
+<br/>(From https://daviddeley.com/programming/docs/page_faults_and_array_addressing.htm)
 
 Notice that reading sequentially from a vector means sequential reads in memory, but sequential reads from a linked list is comparable to random (bad for cache) reads in memory.
 

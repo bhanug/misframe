@@ -11,7 +11,7 @@ also using multithreaded replication (a.k.a. MTR) but most of the replication th
 were idle.
 
 One thing that we decided to try out was the new `LOGICAL_CLOCK` parallelization policy
-introduced in MySQL 5.7.2. Here's what the [MySQL reference manual](http://dev.mysql.com/doc/refman/5.7/en/replication-options-slave.html#option_mysqld_slave-parallel-type)
+introduced in MySQL 5.7.2. Here's what the [MySQL reference manual](https://dev.mysql.com/doc/refman/5.7/en/replication-options-slave.html#option_mysqld_slave-parallel-type)
 says about `slave-parallel-type`:
 
 > When using a multi-threaded slave (`slave_parallel_workers` is greater than 0), this option specifies the policy used to decide which transactions are allowed to execute in parallel on the slave. The possible values are:
@@ -27,7 +27,7 @@ Initially, this ended being *slower* than `--slave-parallel-type=DATABASE`. My g
 we're not grouping enough transactions per binary log commit for this to be a big
 improvement. Fortunately, that's something we can tune using `binlog_group_commit_sync_delay`.
 
-[Here](http://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_group_commit_sync_delay) is the documentation about that:
+[Here](https://dev.mysql.com/doc/refman/5.7/en/replication-options-binary-log.html#sysvar_binlog_group_commit_sync_delay) is the documentation about that:
 
 > Controls how many microseconds the binary log commit waits before synchronizing the binary log file to disk. By default `binlog-group-commit-sync-delay` is set to 0, meaning that there is no delay. Setting `binlog-group-commit-sync-delay` to a microsecond delay enables more transactions to be synchronized together to disk at once, reducing the overall time to commit a group of transactions because the larger groups require fewer time units per group. With the correct tuning, this can increase slave performance without compromising the master's throughput.
 

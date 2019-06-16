@@ -5,7 +5,7 @@ url: /the-journey-to-perfection
 ---
 
 
-<a href='http://www.flickr.com/photos/preetamjinka/8137287920/'><img src='http://media.tumblr.com/bed1e9476784b6ce68855dd68457d627/tumblr_inline_mfzesjMRqm1rs73cz.jpg' alt='Hanging by a Silk Thread'/></a>
+<a href='https://www.flickr.com/photos/preetamjinka/8137287920/'><img src='https://media.tumblr.com/bed1e9476784b6ce68855dd68457d627/tumblr_inline_mfzesjMRqm1rs73cz.jpg' alt='Hanging by a Silk Thread'/></a>
 
 I start many things. I never finish anything. For some reason, I think of “finishing” as perfecting. I never think of something I create to be perfect. That’s just unrealistic. So here I am with a mountain of works in progress.
 

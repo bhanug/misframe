@@ -106,10 +106,10 @@ money. It’s about something much more important for me: raising the bar.
 By the way, Bitcable hosts one of the Washington, DC Panopta monitoring
 nodes. I guess our uptime is good enough to monitor your uptime! :)
 
-[1]: http://media.tumblr.com/b42318c15cfccba773260f03c2c971d5/tumblr_inline_mr37bgl1pa1qz4rgp.png
-[Suggest.Name]: http://suggest.name/
-[2]: http://media.tumblr.com/6599f1dd41ac641fbf9ec3b1817253cc/tumblr_inline_mr37bqEsX31qz4rgp.png
-[Web Hosting Talk]: http://www.webhostingtalk.com/
-[3]: http://media.tumblr.com/bfac2d0fed49f6575297a0ca0677cfa4/tumblr_inline_mr37byy5ok1qz4rgp.png
-[4]: http://media.tumblr.com/eef09e06bb9ed38103efa6897f1b526c/tumblr_inline_mr37c5xxRr1qz4rgp.png
+[1]: https://media.tumblr.com/b42318c15cfccba773260f03c2c971d5/tumblr_inline_mr37bgl1pa1qz4rgp.png
+[Suggest.Name]: https://suggest.name/
+[2]: https://media.tumblr.com/6599f1dd41ac641fbf9ec3b1817253cc/tumblr_inline_mr37bqEsX31qz4rgp.png
+[Web Hosting Talk]: https://www.webhostingtalk.com/
+[3]: https://media.tumblr.com/bfac2d0fed49f6575297a0ca0677cfa4/tumblr_inline_mr37byy5ok1qz4rgp.png
+[4]: https://media.tumblr.com/eef09e06bb9ed38103efa6897f1b526c/tumblr_inline_mr37c5xxRr1qz4rgp.png
 

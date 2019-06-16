@@ -5,7 +5,7 @@ date: "2016-02-23T04:39:10.385Z"
 
 For the past few years I've been writing and speaking about time-series storage, a problem inspired
 by what I help build at [VividCortex](https://www.vividcortex.com) and also my
-[personal projects](http://cisternproject.com). I've been thinking about a related problem for much
+[personal projects](https://cisternproject.com). I've been thinking about a related problem for much
 longer, but I haven't had to work on it until now: ranking.
 
 At VividCortex, we have a new tool called the Profiler. It allows you to rank within various

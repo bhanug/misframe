@@ -37,7 +37,7 @@ Here's what Haste's memory usage looks like right now:
 
 Again, an OOM event is really unexpected.
 
-So what in the world caused that out-of-memory issue? Was it perhaps a DOS vulnerability? Did cPanel explode on me? Unfortunately, it looks like I didn't add Haste to my [Observium](http://observium.org/) setup (doh!). But, would that have helped? Observium polls SNMP counters every 5 minutes. And it doesn't even track processes. It wouldn't have been useful, in my opinion.
+So what in the world caused that out-of-memory issue? Was it perhaps a DOS vulnerability? Did cPanel explode on me? Unfortunately, it looks like I didn't add Haste to my [Observium](https://observium.org/) setup (doh!). But, would that have helped? Observium polls SNMP counters every 5 minutes. And it doesn't even track processes. It wouldn't have been useful, in my opinion.
 
 The issue right now isn't that there was downtime. The issue is that something bad happened and I have no idea why. Maybe I need a high-resolution monitoring system to help diagnose issues like this! ;)
 

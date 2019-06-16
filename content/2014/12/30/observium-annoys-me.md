@@ -51,7 +51,7 @@ It looks like Observium uses the Net-SNMP library with PHP. And Net-SNMP isn't e
 <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/PreetamJinka">@PreetamJinka</a> no… most languages have their own implementations b/c net-snmp is such a pile. (much of net-snmp is thread safe).</p>&mdash; Theo Schlossnagle (@postwait) <a href="https://twitter.com/postwait/status/545755326608580608">December 19, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-I want to like Observium. I love the idea. This is what they write on their [home page](http://observium.org/):
+I want to like Observium. I love the idea. This is what they write on their [home page](https://observium.org/):
 
 > Network monitoring for all.
 > 
@@ -63,9 +63,9 @@ That sounds great, but I think they messed up along the way. Observium is buggy.
 
 They don't say anything about new features. I'm interpreting this as, "the open source version will stay the same unless there are security issues, and anything new is something you have to pay for." That annoys me. A lot.
 
-<blockquote class="twitter-tweet" lang="en"><p>This is a GigE interface. I shouldn&#39;t be seeing this &gt;.&lt;. <a href="http://t.co/K7fG3o9cBG">pic.twitter.com/K7fG3o9cBG</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/407931417134260224">December 3, 2013</a></blockquote>
+<blockquote class="twitter-tweet" lang="en"><p>This is a GigE interface. I shouldn&#39;t be seeing this &gt;.&lt;. <a href="https://t.co/K7fG3o9cBG">pic.twitter.com/K7fG3o9cBG</a></p>&mdash; Preetam Jinka (@PreetamJinka) <a href="https://twitter.com/PreetamJinka/status/407931417134260224">December 3, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-I don't like Observium anymore. It's clunky (have you seen the [dependencies](http://www.observium.org/wiki/Installation)?!), buggy, and I don't like what the authors are doing.
+I don't like Observium anymore. It's clunky (have you seen the [dependencies](https://www.observium.org/wiki/Installation)?!), buggy, and I don't like what the authors are doing.
 
-And that's why I'm working on [Cistern](http://preetamjinka.github.io/cistern/). I want to show you how *I* think network monitoring should be done. I think I'm on the right track because [many](https://cloudhelix.com/) [companies](http://www.arbornetworks.com/products/peakflow) [are](http://www.solarwinds.com/solutions/network-flow-analyzer.aspx) [doing](http://www.metaforsoftware.com/blog/netflow-traffic-analyzer-beyond-nbad) [similar](https://www.sevone.com/supported-technologies/network-performance-management) [things](http://www.ca.com/us/opscenter/ca-network-flow-analysis.aspx).
+And that's why I'm working on [Cistern](https://preetamjinka.github.io/cistern/). I want to show you how *I* think network monitoring should be done. I think I'm on the right track because [many](https://cloudhelix.com/) [companies](https://www.arbornetworks.com/products/peakflow) [are](https://www.solarwinds.com/solutions/network-flow-analyzer.aspx) [doing](https://www.metaforsoftware.com/blog/netflow-traffic-analyzer-beyond-nbad) [similar](https://www.sevone.com/supported-technologies/network-performance-management) [things](https://www.ca.com/us/opscenter/ca-network-flow-analysis.aspx).

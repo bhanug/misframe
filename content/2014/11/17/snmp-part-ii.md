@@ -10,7 +10,7 @@ The code at the latest commit as I write this is [here](https://github.com/Preet
 
 SNMP communication itself is pretty simple. There are requests and responses.
 
-![](http://static.misfra.me/images/posts/snmp-part-ii/get-request-response.jpg)
+![](/img/copied/posts/snmp-part-ii/get-request-response.jpg)
 
 *PDU* stands for "protocol data unit." I think of them as structs. If you look
 in the RFCs you'll see them defined like this, in the ASN.1 language:
@@ -36,7 +36,7 @@ GetResponse-PDU ::=
 That's a pretty dense way of describing a `GetResponse`. You can just think
 of the `GetRequest` and `GetResponse` PDUs as structs with certain fields.
 
-![](http://static.misfra.me/images/posts/snmp-part-ii/get-request-response-pdus.jpg)
+![](/img/copied/posts/snmp-part-ii/get-request-response-pdus.jpg)
 
 You'll notice that they have the same structure. The only thing that changes between the two
 is the PDU type identifier which goes in the header and the `VarBindList`. The `RequestID`
@@ -47,12 +47,12 @@ stays the same. This is how you know which request you got a response to, and it
 If you run Wireshark (or tcpdump) as you run `snmpget` (or Cistern :P) over SNMPv3 with encryption,
 you'll see something like this:
 
-![](http://static.misfra.me/images/posts/snmp-part-ii/wireshark-screenshot.png)
+![](/img/copied/posts/snmp-part-ii/wireshark-screenshot.png)
 
 There are four packets of communication. The last two are encrypted. You see the first two show up
 because they are required to fetch the necessary parameters to do encryption.
 
-![](http://static.misfra.me/images/posts/snmp-part-ii/discovery.jpg)
+![](/img/copied/posts/snmp-part-ii/discovery.jpg)
 
 The `GetRequest` is blank. The response is a `Report`, a PDU similar to a `GetResponse`. It's
 returning a COUNTER of how many invalid SNMP packets were dropped. The important part of this
@@ -63,7 +63,7 @@ and `EngineBoots`. Once we have those parameters, we can start encrypting the re
 
 This is what SNMP communication may potentially look like:
 
-![](http://static.misfra.me/images/posts/snmp-part-ii/communication-diagram.jpg)
+![](/img/copied/posts/snmp-part-ii/communication-diagram.jpg)
 
 Things are out of order, lots of things are going on at the same time, and it's all happening
 over a single port. I suppose you *could* open a new socket for each request, but that's not
@@ -105,7 +105,7 @@ Single socket?
 
 The current implementation uses a separate socket for each device that Cistern connects to.
 If you had 1,000 devices, you'll have to open 1,000 sockets. That doesn't seem efficient.
-I think everything can be done using a single socket. Specifically, [`UDPConn.ReadFromUDP`](http://golang.org/pkg/net/#UDPConn.ReadFromUDP)
+I think everything can be done using a single socket. Specifically, [`UDPConn.ReadFromUDP`](https://golang.org/pkg/net/#UDPConn.ReadFromUDP)
 needs to be used. Basically, it allows you to read from a socket and know where it came from.
 
 The "session" logic in Cistern will get more complicated. I'm honestly not sure what the performance

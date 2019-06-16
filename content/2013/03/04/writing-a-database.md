@@ -5,8 +5,8 @@ url: /writing-a-database
 ---
 
 
-Early last month, I wrote [Adversaria](http://misfra.me/adversaria). I don't have a precise definition for it, but I like to think of it as a tool to store time series data in key-value format. It's really simple but useful. Using Adversaria and a little [Flot](http://www.flotcharts.org/) magic, I make graphs like this:
-![](http://media.tumblr.com/3b5d56788ebf7359244e91ccc396e11f/tumblr_inline_mitdq7RwNC1qz4rgp.png)
+Early last month, I wrote [Adversaria](https://misfra.me/adversaria). I don't have a precise definition for it, but I like to think of it as a tool to store time series data in key-value format. It's really simple but useful. Using Adversaria and a little [Flot](https://www.flotcharts.org/) magic, I make graphs like this:
+![](https://media.tumblr.com/3b5d56788ebf7359244e91ccc396e11f/tumblr_inline_mitdq7RwNC1qz4rgp.png)
 
 A few weeks ago, I decided to take it one step further. I felt that it was time to use whatever I learned to make that ad-hoc data storage solution to write a distributed key-value store.
 
@@ -28,7 +28,7 @@ Any way, enough about the abstract.
 
 How do we store data?
 ----
-![](http://media.tumblr.com/89f5fd2e7e05e269241ef55116d14cbf/tumblr_inline_mix9b3190P1qz4rgp.png)
+![](https://media.tumblr.com/89f5fd2e7e05e269241ef55116d14cbf/tumblr_inline_mix9b3190P1qz4rgp.png)
 
 Adversaria uses TreeMaps internally to store key-values. TreeMaps are great because we can perform range operations like reading a range of values between two keys. For example, I read the values between 48 hours ago and now to make those cool graphs.
 
@@ -42,7 +42,7 @@ This can get rather tricky to implement correctly, I think. I don't really like 
 
 Transactions?
 ----
-Transactions are important. I recommend reading [FoundationDB's Transaction Manifesto](http://www.foundationdb.com/white-papers/the-transaction-manifesto/) for an in-depth look into transactions.
+Transactions are important. I recommend reading [FoundationDB's Transaction Manifesto](https://www.foundationdb.com/white-papers/the-transaction-manifesto/) for an in-depth look into transactions.
 
 I have no idea how to implement transactions. What data structures should we use? How do we check transaction conflicts? I think finding the answers to these questions will take a bit of whiteboarding.
 

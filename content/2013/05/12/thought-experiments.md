@@ -10,7 +10,7 @@ I've been doing this for a few years now, and it's an interesting process.
 It's pretty much exactly what a thought experiment is:
 
 > In its broadest usage, thought experimentation is the process of employing imaginary situations to help us understand the way things really are (or, in the case of Herman Kahn’s "scenarios", understand something about something in the future). The understanding comes through reflection upon this imaginary situation.
-> -- [Wikipedia](http://en.wikipedia.org/wiki/Thought_experiment)
+> -- [Wikipedia](https://en.wikipedia.org/wiki/Thought_experiment)
 
 In my "thought experiments," which generally occur in the shower or when I'm shaving, I assume I make a certain decision and then I fast forward into the future. It could be a few weeks or even years -- it all depends on the context. Then I start asking myself questions. I pretend like I'm being interviewed and I try to think about important questions to ask myself.
 

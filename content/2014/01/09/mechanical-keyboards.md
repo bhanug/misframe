@@ -8,7 +8,7 @@ url: /mechanical-keyboards
 ![](https://31.media.tumblr.com/8cd37c48b5d9457f36396dbe8686e1c6/tumblr_inline_mz49efGDXa1rs73cz.jpg)
 (Tux says "Hi.")
 
-I purchased a [Monoprice mechanical keyboard](http://www.monoprice.com/Product?seq=1&format=2&p_id=9433) almost a year ago (Jan. 30). It was around $60 and has the loud, clicky Cherry MX Blue keys. It's on the cheaper-end of the mechanical keyboard range, but it has literally the same switches as the more expensive keyboards, like the [Das Keyboard](http://www.daskeyboard.com/).
+I purchased a [Monoprice mechanical keyboard](https://www.monoprice.com/Product?seq=1&format=2&p_id=9433) almost a year ago (Jan. 30). It was around $60 and has the loud, clicky Cherry MX Blue keys. It's on the cheaper-end of the mechanical keyboard range, but it has literally the same switches as the more expensive keyboards, like the [Das Keyboard](https://www.daskeyboard.com/).
 
 I use laptops a lot these days (perhaps exclusively), and they all have the Apple-style chiclet keys. I don't have a problem with these keyboards -- I've been using them for around 7 years now. If I'm not using my mechanical keyboard, I'm using a chiclet keyboard.
 

@@ -7,7 +7,7 @@ url: /fun-to-obligation
 
 A few months ago I was sitting in the back seat of a minivan on the way to New Jersey to visit family.
 I had music playing through my headphones and I was staring at a bunch of [sFlow specification
-documents](http://www.sflow.org/developers/specifications.php) that I had downloaded onto my laptop.
+documents](https://www.sflow.org/developers/specifications.php) that I had downloaded onto my laptop.
 sFlow is a packet and counter sampling specification, and I wanted to write a decoder in Go.
 
 It's pretty neat to have the entire history on GitHub. I had my first [interesting commit](https://github.com/Preetam/sflow-go/commit/64a8afb40eaa322f655105ae2f569550335219fc) pushed at

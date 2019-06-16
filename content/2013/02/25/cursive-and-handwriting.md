@@ -5,7 +5,7 @@ url: /cursive-and-handwriting
 ---
 
 
-[![Cursive](http://media.tumblr.com/bc1152643e44e893d1c062ad017566d4/tumblr_inline_mirlifszuF1qz4rgp.jpg)](http://static.misfra.me/images/cursive.jpg)
+[![Cursive](https://media.tumblr.com/bc1152643e44e893d1c062ad017566d4/tumblr_inline_mirlifszuF1qz4rgp.jpg)](/img/copied/cursive.jpg)
 
 In 9th grade, our English teacher would assign us journal entries for homework. Sometimes we had prompts, but usually we would have the option of writing whatever we wanted. Poetry, short stories, haikus, whatever. I remember writing about my handwriting a few times. It's interesting. I noticed in middle school that my handwriting always changed somehow after summer vacation. My handwriting would even change as I wrote a journal entry. I wrote about that too.
 
@@ -24,7 +24,7 @@ I think a person's penmanship says a lot about their personality. It also says s
 --------
 
 I love the way this is written:
-![](http://media.tumblr.com/7d6eb5c1d4d03ee7256a16afdf88abd3/tumblr_inline_mirlveSU0H1qz4rgp.jpg)
+![](https://media.tumblr.com/7d6eb5c1d4d03ee7256a16afdf88abd3/tumblr_inline_mirlveSU0H1qz4rgp.jpg)
 
 It's unfortunate that we don't see penmanship like that anymore.
 

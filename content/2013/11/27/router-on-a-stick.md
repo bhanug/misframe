@@ -7,7 +7,7 @@ url: /router-on-a-stick
 
 (This is an old post from July 2012.)
 
-![](http://media.tumblr.com/6ab3187ba70814940579f613dd54e156/tumblr_inline_mwy0cl4GTl1rs73cz.jpg)Attribution: <a href='http://www.flickr.com/photos/pdstahl/3903808739/'>Patrick Stahl</a>
+![](https://media.tumblr.com/6ab3187ba70814940579f613dd54e156/tumblr_inline_mwy0cl4GTl1rs73cz.jpg)Attribution: <a href='https://www.flickr.com/photos/pdstahl/3903808739/'>Patrick Stahl</a>
 
 This is just a quick configuration example to setup a “router-on-a-stick.” I’m using Vyatta for the router and a Brocade switch. I’ve changed the real addresses.
 

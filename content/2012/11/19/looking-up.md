@@ -5,7 +5,7 @@ url: /looking-up
 ---
 
 
-<a href='http://www.flickr.com/photos/preetamjinka/7963664676/'><img src='http://media.tumblr.com/80deae478469ef4c465103658cd922d8/tumblr_inline_mfzev4AjoF1rs73cz.png' alt='Stars'/></a>
+<a href='https://www.flickr.com/photos/preetamjinka/7963664676/'><img src='https://media.tumblr.com/80deae478469ef4c465103658cd922d8/tumblr_inline_mfzev4AjoF1rs73cz.png' alt='Stars'/></a>
 
 How often do you just look up on a clear night? I’m starting to do it as often as I can. It fascinates me that photons have been traveling for perhaps thousands of years through space to pierce my cornea. It fascinates me that there is so much more to these dots in the sky. There are red supergiants (Betelgeuse), open clusters (Pleides), planets (occasionally), and galaxies (Andromeda). They’re out there. Just look up.
 

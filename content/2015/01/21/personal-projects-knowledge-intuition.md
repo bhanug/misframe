@@ -14,7 +14,7 @@ I had a short conversation with someone recently about having personal projects 
 ---
 
 Just for fun, I did a quick search on personal projects to see what kind of links would show up.
-![](http://i.imgur.com/FcmrHYL.png)
+![](https://i.imgur.com/FcmrHYL.png)
 
 Design, photography, and art. I was not surprised. I predicted that photography would show up. When people look for individuals for some sort of artistic or creative position, I think they're always looking for some sort of portfolio. If you're just getting started -- perhaps as an intern -- your portfolio would only have personal projects. I think portfolios show skill, personality, and experience. How else could you get those?
 
@@ -30,7 +30,7 @@ I think the *most important* aspect of personal projects is that they increase o
 
 ---
 
-A few weeks ago, I learned about [HackCville](http://hackcville.com/)'s [Land A Startup Internship](http://januaryterm.splashthat.com/) course. I don't like this for many reasons, but I'll focus on the following taken from their site:
+A few weeks ago, I learned about [HackCville](https://hackcville.com/)'s [Land A Startup Internship](https://januaryterm.splashthat.com/) course. I don't like this for many reasons, but I'll focus on the following taken from their site:
 
 > **Learn about the importance of side projects and how to start them.**
 > 

@@ -18,17 +18,17 @@ a sheet of paper with some notes on it. This is a rental, so it's
 probably from the previous person. I noticed something interesting
 about this person's cursive 'f'...
 
-![](http://static.misfra.me/images/posts/cursive-f/f-note.jpg)
+![](/img/copied/posts/cursive-f/f-note.jpg)
 
 That's exactly how my professor does it! I had to make sure *I* wasn't
 doing it wrong, so I asked an apartmentmate to write a cursive 'f'.
 
-![](http://static.misfra.me/images/posts/cursive-f/f-post-it.jpg)
+![](/img/copied/posts/cursive-f/f-post-it.jpg)
 
 #2 and #3 are his, #1 is mine, and #4 is how the weird people do it :P.
 How'd they pick that up? It's more of a cursive long s, but no one uses
 that anymore!
 
-![](http://static.misfra.me/images/posts/cursive-f/long-s-google.png)
+![](/img/copied/posts/cursive-f/long-s-google.png)
 
 The first image says "1834." Interesting...

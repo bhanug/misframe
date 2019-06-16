@@ -9,7 +9,7 @@ Three months ago, I started working on [fickle](https://github.com/Preetam/fickl
 
 Adversaria
 ---
-This all goes back to [Adversaria](http://misfra.me/adversaria). It's that small program I wrote in Java to help me log traffic. I use it in combination with a little [Flot](http://www.flotcharts.org/) code to make pretty graphs:
+This all goes back to [Adversaria](https://misfra.me/adversaria). It's that small program I wrote in Java to help me log traffic. I use it in combination with a little [Flot](https://www.flotcharts.org/) code to make pretty graphs:
 
 ![](https://31.media.tumblr.com/81741791c5f33df8624d6fc250f88d7e/tumblr_inline_mxyoeqMxeh1rs73cz.png)
 
@@ -78,7 +78,7 @@ Looking ahead
 Have you seen this?
 ![](https://pbs.twimg.com/media/BbksqhsCIAASoUl.png:large)
 
-It's a [CuBox-i](http://cubox-i.com/). It's a tiny ARM system that can have up to 4 cores and 2 GB of RAM. And it's not that expensive.
+It's a [CuBox-i](https://cubox-i.com/). It's a tiny ARM system that can have up to 4 cores and 2 GB of RAM. And it's not that expensive.
 
 Here's an aside: I have a bunch of cPanel customers at [Bitcable](https://bitcable.com/), and I wanted to look at the distribution of MySQL database sizes. Here's what it looks like:
 ![](https://31.media.tumblr.com/63b2996bb8861072c304d4fcac2a10ef/tumblr_inline_mxyqoxzVFd1rs73cz.png)

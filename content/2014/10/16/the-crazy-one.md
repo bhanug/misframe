@@ -10,9 +10,9 @@ url: /the-crazy-one
 
 I liked that paragraph, especially the part about the piano.
 
-It reminded me of this review of Bitcable I found: http://www.96mb.com/96mb-low-end-vps-review-part-xix-bitcable/
+It reminded me of this review of Bitcable I found: https://www.96mb.com/96mb-low-end-vps-review-part-xix-bitcable/
 
-![](http://static.misfra.me/images/posts/the-crazy-one/excerpt.png)
+![](/img/copied/posts/the-crazy-one/excerpt.png)
 
 Some people ask for a free trial in order to write a review. This reviewer did not. I had no idea he would write this, so I
 did not give him any sort of special treatment. Looking back, I'm really impressed I was able to pull that off. I was generally
@@ -36,7 +36,7 @@ until I found it again three years later.
 ---
 I personally think that entrepreneurs are the crazy type. And you can't teach crazy. I'm not a fan of the
 entrepreneurship stuff that people organize and sign up for. Have you seen the How to Start a Startup series? Paul Graham mentions
-in [lecture 3](http://startupclass.samaltman.com/courses/lec03/) that "the best way to learn on how to start a startup is just to just try to start it."
+in [lecture 3](https://startupclass.samaltman.com/courses/lec03/) that "the best way to learn on how to start a startup is just to just try to start it."
 
 Hm... I guess I'll mention that perhaps the most amazing things are happening
 all the time and they simply go unnoticed. That doesn't apply to me, of course... have you seen the screenshots I've tweeted? :P

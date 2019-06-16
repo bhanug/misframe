@@ -30,7 +30,7 @@ OK, so this thing has a DAC and an amp. How good can a tiny little $9 circuit be
 
 > This tiny Apple device has better performance and more and cleaner output than many fancier "audiophile" devices I've tested. Apple has more resources to make better stuff than the smaller companies. Most 3rd-party headphone amps and DACs, all be they bigger and far more expensive, put out less clean power into 32Ω loads, and do it with more distortion, poorer sound and lousier frequency response.
 >
-> http://www.kenrockwell.com/apple/lightning-adapter-audio-quality.htm
+> https://www.kenrockwell.com/apple/lightning-adapter-audio-quality.htm
 
 Whoa! This adapter, which I got for *free* and costs *$9* to replace, has a ridiculous amount of
 quality and engineering put into it. Can you imagine how much went into making this thing? All of that

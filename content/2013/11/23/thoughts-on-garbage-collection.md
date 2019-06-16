@@ -7,7 +7,7 @@ url: /thoughts-on-garbage-collection
 
 A few days ago, I was in the shower thinking about garbage collectors. I think some of my best ideas come from the shower, and I think it's because I don't have anything to distract me.
 
-I was thinking about easy it was to use the [Hans Boehm garbage collector](http://www.hpl.hp.com/personal/Hans_Boehm/gc/):
+I was thinking about easy it was to use the [Hans Boehm garbage collector](https://www.hpl.hp.com/personal/Hans_Boehm/gc/):
 
 > Empirically, this collector works with most unmodified C programs, simply by replacing malloc with GC_malloc calls, replacing realloc with GC_realloc calls, and removing free calls.
 

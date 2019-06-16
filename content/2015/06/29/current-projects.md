@@ -14,6 +14,6 @@ So far, it's been an incredible way of learning C++. I'm just getting into smart
 <br/>
 
 <a class='endnote' name='endnote-ref-1'>[1]</a> [Thinking big, starting small](https://medium.com/@preetamjinka/thinking-big-starting-small-b0719ac9604)  
-<a class='endnote' name='endnote-ref-2'>[2]</a> [FailureDetectors](http://www.cs.yale.edu/homes/aspnes/pinewiki/FailureDetectors.html)  
+<a class='endnote' name='endnote-ref-2'>[2]</a> [FailureDetectors](https://www.cs.yale.edu/homes/aspnes/pinewiki/FailureDetectors.html)  
 <a class='endnote' name='endnote-ref-3'>[3]</a> [ip.hpp](https://github.com/Preetam/cpplibs/blob/39a9eee62112edb08bc2a3388e6bd5b5e1cd2242/include/ip.hpp)  
 <a class='endnote' name='endnote-ref-4'>[4]</a> [flags.hpp](https://github.com/Preetam/cpplibs/blob/39a9eee62112edb08bc2a3388e6bd5b5e1cd2242/include/flags.hpp)

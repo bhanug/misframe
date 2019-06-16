@@ -8,7 +8,7 @@ It's simple. Instead of having a single A record with one IP, you add additional
 A records with different IPs, and clients automatically skip over failing servers.
 
 Check out this Webmasters Stack Exchange question:
-["Using multiple A-records for my domain - do web browsers ever try more than one?"](http://webmasters.stackexchange.com/questions/10927/using-multiple-a-records-for-my-domain-do-web-browsers-ever-try-more-than-one)
+["Using multiple A-records for my domain - do web browsers ever try more than one?"](https://webmasters.stackexchange.com/questions/10927/using-multiple-a-records-for-my-domain-do-web-browsers-ever-try-more-than-one)
 
 > Pretty much every browser does indeed receive the full list of A records, and does indeed check others if the one it is using fails. You can expect each client to have a 30 second wait when they first try to access a site when a server is down, until it connects to a working address. The browser will then cache which address is working and continue using that one for future requests unless it also fails, then it will have to search through the list again. So 30 second wait on first request, fine thereafter.
 

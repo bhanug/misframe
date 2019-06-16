@@ -10,7 +10,7 @@ monochromatic. I use the default Terminal theme on OS X and made my own theme fo
 My Sublime theme Infimum is available on [GitHub](https://github.com/Preetam/Infimum) and I wrote
 a [post](/syntax-highlighting/) about it before. Creating a theme is very simple. I used an online
 editor called TmTheme Editor. It's not great but it has allowed me to make and view changes quickly.
-You can load a tmTheme file directly from a URL, so you can [play around](http://tmtheme-editor.herokuapp.com/#!/editor/url/https://raw.githubusercontent.com/Preetam/Infimum/master/Infimum.tmTheme) with Infimum from the
+You can load a tmTheme file directly from a URL, so you can [play around](https://tmtheme-editor.herokuapp.com/#!/editor/url/https://raw.githubusercontent.com/Preetam/Infimum/master/Infimum.tmTheme) with Infimum from the
 GitHub repository. Many of the scopes are assigned the default style: black on white without any
 text decoration.
 

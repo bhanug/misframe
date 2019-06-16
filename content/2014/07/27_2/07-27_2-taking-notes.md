@@ -21,7 +21,7 @@ It's almost impossible for me to write an essay without taking notes. I generall
 some bullet points and then handwrite a page (handwritten) at a time. The following is part of a
 first draft I wrote for an essay from my first semester.<sup>1</sup>
 
-<p  style=" margin: 12px auto 6px auto; font-family: Helvetica,Arial,Sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 14px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; display: block;">   <a title="View Essay Notes - Fall 2012 on Scribd" href="http://www.scribd.com/doc/235242144/Essay-Notes-Fall-2012"  style="text-decoration: underline;" >Essay Notes - Fall 2012</a> by <a title="View preetamjinka's profile on Scribd" href="http://www.scribd.com/preetamjinka"  style="text-decoration: underline;" >preetamjinka</a></p><iframe class="scribd_iframe_embed" src="//www.scribd.com/embeds/235242144/content?start_page=1&view_mode=scroll&access_key=key-0xyg0S2wxdUe0Oe0YaZM&show_recommendations=false" data-auto-height="false" data-aspect-ratio="0.8859390363815143" scrolling="no" id="doc_16632" width="400" height="400" frameborder="0"></iframe>
+<p  style=" margin: 12px auto 6px auto; font-family: Helvetica,Arial,Sans-serif; font-style: normal; font-variant: normal; font-weight: normal; font-size: 14px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; display: block;">   <a title="View Essay Notes - Fall 2012 on Scribd" href="https://www.scribd.com/doc/235242144/Essay-Notes-Fall-2012"  style="text-decoration: underline;" >Essay Notes - Fall 2012</a> by <a title="View preetamjinka's profile on Scribd" href="https://www.scribd.com/preetamjinka"  style="text-decoration: underline;" >preetamjinka</a></p><iframe class="scribd_iframe_embed" src="//www.scribd.com/embeds/235242144/content?start_page=1&view_mode=scroll&access_key=key-0xyg0S2wxdUe0Oe0YaZM&show_recommendations=false" data-auto-height="false" data-aspect-ratio="0.8859390363815143" scrolling="no" id="doc_16632" width="400" height="400" frameborder="0"></iframe>
 
 It's well-known that taking notes, regardless of whether or not you look over them afterwards, has
 a big impact on content retention. So, I generally like to scribble stuff down. These notes eventually
@@ -34,7 +34,7 @@ on while I interned during the semester. That makes sense though, right? I had f
 and writing to do, plus exams and stuff. I just don't have the mental capacity to handle all of this context
 switching.
 
-Oh hey, I wrote about context switching before: [Mastering the art of context switching](http://misfra.me/mastering-the-art-of-context-switching).
+Oh hey, I wrote about context switching before: [Mastering the art of context switching](https://misfra.me/mastering-the-art-of-context-switching).
 
 And as part of the journey to master the art of context switching, I've learned a new technique: taking
 notes often. I see at as like... saving my mental context down. I always carry around a notebook in my backpack
@@ -42,7 +42,7 @@ for this reason. If I think about something that I want to get back to later, I 
 only that, I'm also writing down stuff that I do. If I'm at work and I start working on something new,
 I scribble down a few lines about it.
 
-![Flow notes](http://static.misfra.me/images/posts/notes/notes.jpg)
+![Flow notes](/img/copied/posts/notes/notes.jpg)
 
 I almost always have my notebook out during SUMs. My coworkers might notice me scribbling stuff down
 as the first few people start talking about what they've been working on. The interesting thing is that

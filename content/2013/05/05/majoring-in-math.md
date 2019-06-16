@@ -21,7 +21,7 @@ So, here I am. I want to major in math with a concentration in financial mathema
 
 So why math? I'm bad at it. I want to get better. I've never been good at math. It was my worst subject in high school. I used to say, "what's the point of this?" But last year, something changed. I stopped asking that. I took a course called Advanced Math Techniques for Scientists and Engineers. It was more of a survey into different fields of math. It was a preview of what to expect. I liked it. A lot.
 
-Picking a major isn't really a big deal for me. I'm not sure what I'll do after undergrad. It'll probably something in IT. I'd love to start a company, get funding, and tackle a challenging problem in the world. Anyway, I'm not letting my major limit the scope of my future. If anything, it'll make it more interesting by giving me more [potential](http://misfra.me/success-potential-and-opportunity).
+Picking a major isn't really a big deal for me. I'm not sure what I'll do after undergrad. It'll probably something in IT. I'd love to start a company, get funding, and tackle a challenging problem in the world. Anyway, I'm not letting my major limit the scope of my future. If anything, it'll make it more interesting by giving me more [potential](https://misfra.me/success-potential-and-opportunity).
 
 
 I [asked Hacker News](https://news.ycombinator.com/item?id=5630177) what I should expect in the future. I wish I got more responses, but "it is what it is...!" I liked this response the most:

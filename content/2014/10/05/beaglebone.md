@@ -5,9 +5,9 @@ url: /beaglebone
 ---
 
 
-![BeagleBone Black](http://static.misfra.me/images/posts/beaglebone/beaglebone.jpg)
+![BeagleBone Black](/img/copied/posts/beaglebone/beaglebone.jpg)
 
-I'm a huge fan of the [BeagleBone Black](http://beagleboard.org/black). It's an alternative
+I'm a huge fan of the [BeagleBone Black](https://beagleboard.org/black). It's an alternative
 to the popular Raspberry Pi. I'm such a fan that I got my second one a few days ago.
 
 This website runs on a BeagleBone Black. It's powered via USB, and it's connected to

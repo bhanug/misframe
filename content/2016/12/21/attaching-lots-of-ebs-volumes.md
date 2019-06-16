@@ -11,7 +11,7 @@ if you're using the console:
 What if you have already used /dev/sdf to /dev/sdp<sup>1</sup>? You can still use other
 names!
 
-[Here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html) is the AWS
+[Here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/device_naming.html) is the AWS
 documentation for device naming. I've copied the relevant table below.
 
 [![Available EBS Names](/img/2016/12/ebs-names.png)](/img/2016/12/ebs-names.png)

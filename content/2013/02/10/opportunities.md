@@ -5,9 +5,9 @@ url: /opportunities
 ---
 
 
-[![Blocked.](http://static.misfra.me/images/blocked.jpg)](http://www.flickr.com/photos/preetamjinka/8460800340/)
+[![Blocked.](/img/copied/blocked.jpg)](https://www.flickr.com/photos/preetamjinka/8460800340/)
 
-As I mentioned in [this post](http://misfra.me/success-potential-and-opportunity), I think success is the product of both potential and opportunity. I've started noticing people with great potential who struggle to succeed because they don't receive the necessary opportunities. It's annoying to think about, but there's not much to do about it.
+As I mentioned in [this post](https://misfra.me/success-potential-and-opportunity), I think success is the product of both potential and opportunity. I've started noticing people with great potential who struggle to succeed because they don't receive the necessary opportunities. It's annoying to think about, but there's not much to do about it.
 
 Given enough potential, it's not hard to find opportunities. I think sometimes opportunities just come to you. That's what it feels like to me. It feels a lot like luck, but I don't believe in luck. Some might call it divine intervention, but again, I don't believe in that.
 
@@ -17,5 +17,5 @@ I guess I'll end this post by saying that you shouldn't really aim for success. 
 
 ------
 
-Here's a little shoutout to [Abi](http://abigopal.com/). I think he's an incredibly smart kid with a lot of potential. He inspires me just as much as I inspire him (I think... :)). I'm glad he's there for me to bounce ideas off of and to serve as a sanity check for some of my crazier ideas.
+Here's a little shoutout to [Abi](https://abigopal.com/). I think he's an incredibly smart kid with a lot of potential. He inspires me just as much as I inspire him (I think... :)). I'm glad he's there for me to bounce ideas off of and to serve as a sanity check for some of my crazier ideas.
 

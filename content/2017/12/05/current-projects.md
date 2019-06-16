@@ -36,7 +36,7 @@ Transverse.
 
 ### Non-programming stuff
 
-* Guitar. I got a [Gibson Les Paul Classic](http://www.gibson.com/Products/Electric-Guitars/2017/USA/Les-Paul-Classic.aspx) recently and
+* Guitar. I got a [Gibson Les Paul Classic](https://www.gibson.com/Products/Electric-Guitars/2017/USA/Les-Paul-Classic.aspx) recently and
 it's super fun. I'm trying to get into jazz instead of just playing AC/DC or Joe Satriani covers all night.
 * Reading. Thanks to Transverse I'm been reading roughly two books a month. I did some napkin
 math recently and learned that I'll probably get to read only about 1200 more books in my lifetime, so...

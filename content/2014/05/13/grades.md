@@ -12,7 +12,7 @@ relatively late enrollment time, but I managed to work it out.
 
 I'm not much of a humanities guy. I have to work harder, and it's a bit more stressful.
 I dislike writing essays, and to make things even more difficult I had to write essays
-on German Jewish literature. Stuff like *[Response to Anti-Semitism in Professor Bernhardi and “A Solution of the Jewish Question”](http://www.scribd.com/doc/223953516/Response-to-Anti-Semitism-in-Professor-Bernhardi-and-A-Solution-of-the-Jewish-Question?secret_password=OvVEbp3lTbaIlTXsFQFQ)*.
+on German Jewish literature. Stuff like *[Response to Anti-Semitism in Professor Bernhardi and “A Solution of the Jewish Question”](https://www.scribd.com/doc/223953516/Response-to-Anti-Semitism-in-Professor-Bernhardi-and-A-Solution-of-the-Jewish-Question?secret_password=OvVEbp3lTbaIlTXsFQFQ)*.
 I think it took me a solid week to get that done. Some people can write essays in one
 sitting. I can't.
 

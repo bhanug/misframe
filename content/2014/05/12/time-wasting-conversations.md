@@ -6,7 +6,7 @@ url: /time-wasting-conversations
 
 
 On December 30 last year, I decided to delete my Facebook account. I was regularly deactivating my account and finally decided that I did not need it anymore.
-![Deactivations](http://static.misfra.me/images/facebook_deactivated.png)
+![Deactivations](/img/copied/facebook_deactivated.png)
 
 Facebook chat was one of the sources of time-wasting conversations. These conversations took up time, were generally about things I did not really care about, and I did not get a lot out of them. They unfortunately stole time that I could have used for other things. I don't remember most of them, and when I think back to them they seem pointless. For similar reasons, I also disabled Google chat. While these conversations did not have a drastically negative impact on me, they certainly did not make things any better. In many cases, there were far more important things to do.
 

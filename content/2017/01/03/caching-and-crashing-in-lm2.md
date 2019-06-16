@@ -82,5 +82,5 @@ before the crash.
 For more on scan resistance, check out [this](https://dev.mysql.com/doc/refman/5.7/en/innodb-performance-midpoint_insertion.html)
 page titled "Making the Buffer Pool Scan Resistant" in the MySQL reference manual.
 
-Also see ["Saving and Restoring the Buffer Pool State"](http://dev.mysql.com/doc/refman/5.7/en/innodb-preload-buffer-pool.html).
+Also see ["Saving and Restoring the Buffer Pool State"](https://dev.mysql.com/doc/refman/5.7/en/innodb-preload-buffer-pool.html).
 This is where I got the record cache saving idea :).

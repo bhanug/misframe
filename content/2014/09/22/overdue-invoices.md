@@ -9,7 +9,7 @@ I used to subscribe to CloudLinux but then stopped. I do not use CloudLinux anym
 
 I'm still getting invoiced every month even though I'm not using my license at all.
 
-![CloudLinux email](http://static.misfra.me/images/posts/overdue-invoices/cloudlinux.png)
+![CloudLinux email](/img/copied/posts/overdue-invoices/cloudlinux.png)
 
 And so, every month, my balance goes up. I will not pay it. Why should I? I didn't use their
 service! It's too much of a hassle, in my opinion, to contact them about it. Eh.

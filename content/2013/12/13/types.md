@@ -40,5 +40,5 @@ Nope. It's actually `map[1:foo 1:bar]`.
 
 I think this is weird. :-/
 
-http://play.golang.org/p/AlmujxUWRa
+https://play.golang.org/p/AlmujxUWRa
 

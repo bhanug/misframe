@@ -7,7 +7,7 @@ url: /stripes
 
 I put racing stripes back on my guitars. I took them off temporarily because I messed up the first time and didn't bother to replace them.
 
-![Capella and Vega](http://static.misfra.me/images/guitars_stripes.jpg)
+![Capella and Vega](/img/copied/guitars_stripes.jpg)
 
 Why the stripes?
 ----

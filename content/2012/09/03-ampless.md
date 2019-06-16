@@ -5,13 +5,13 @@ url: /ampless
 ---
 
 
-<img src="http://media.tumblr.com/4868e27c915ebd069f9ca55ce9cca599/tumblr_inline_mm3t2lduUJ1qz4rgp.jpg" alt="image" /><div class="caption">Attribution: <a href="http://www.flickr.com/photos/raaphorst/3554002238/">Marco Raaphorst</a></div>
+<img src="https://media.tumblr.com/4868e27c915ebd069f9ca55ce9cca599/tumblr_inline_mm3t2lduUJ1qz4rgp.jpg" alt="image" /><div class="caption">Attribution: <a href="https://www.flickr.com/photos/raaphorst/3554002238/">Marco Raaphorst</a></div>
 
 <h2>Introduction</h2>
 <p>For years I had a beginner’s electric guitar amp. After a while I wasn’t satisfied with the sound that I was getting from it. After looking at (and listening to) products like Native Instrument’s Guitar Rig I decided to transition to a digital rig. Why not just get a better amp? Good amps are expensive! Tube amps sound the best with their warmth and rich distortion, but they need to be cranked to a high volume. I couldn’t have anything too loud in my small bedroom.</p>
 
 <h2>Signal Chain</h2>
-![](http://media.tumblr.com/050f643b9a433bf95726f4f1e09f7453/tumblr_inline_mm3t3t4jJ81qz4rgp.png)
+![](https://media.tumblr.com/050f643b9a433bf95726f4f1e09f7453/tumblr_inline_mm3t3t4jJ81qz4rgp.png)
 
 <p>This is what people probably care about the most. The iMic is required since the input port on my Macbook doesn’t have microphone-level input. For a while I didn’t use a distortion pedal. I plugged my guitar straight into my computer and tried to introduce the harmonic distortion digitally. That was a whole new challenge.</p>
 

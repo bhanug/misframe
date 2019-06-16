@@ -11,7 +11,7 @@ ARP stands for Address Resolution Protocol. It's a protocol to translate network
 (layer 3) IP addresses to link layer (layer 2) MAC addresses. Why would you need this?
 Let's look at a simple example.
 
-![](http://static.misfra.me/images/posts/arp-101/hosts.png)
+![](/img/copied/posts/arp-101/hosts.png)
 
 Here we have a couple of hosts. We need them to communicate with each other and they
 both have IP addresses on the same subnet. They're connected to a layer 2 switch. We
@@ -21,7 +21,7 @@ IP. Remember, layer 2 devices don't know what IP addresses are! We can't just sa
 The switch *does* speak Ethernet. Our servers are connected to the switch via an
 Ethernet connection, so they'll communicate using Ethernet packets.
 
-![Ethernet packet structure](http://static.misfra.me/images/posts/arp-101/ethernet_packet_format.png)
+![Ethernet packet structure](/img/copied/posts/arp-101/ethernet_packet_format.png)
 
 Look, there are "source" and "destination" fields. We're going to use those. Whenever
 a host sends an Ethernet packet, it fills those fields in. When the switch receives
@@ -32,7 +32,7 @@ that it got the packet from has a host with that MAC address.
 Every switch has a MAC table. This table shows which provides a mapping from MAC
 addresses to physical ports.
 
-![](http://static.misfra.me/images/posts/arp-101/mac_table.png)
+![](/img/copied/posts/arp-101/mac_table.png)
 
 The switch adds a MAC entry to its internal table when it recognizes a new address
 coming from one of its ports. But what if you don't know the destination's MAC address?
@@ -42,7 +42,7 @@ address will be transmitted to every port on the switch. When a host receives a 
 packet, it'll know that it's a broadcast packet because of the destination address.
 It will also know the MAC address that it came from, because of the source address.
 
-![](http://static.misfra.me/images/posts/arp-101/broadcast.png)
+![](/img/copied/posts/arp-101/broadcast.png)
 
 In the case of our two hosts, they don't know each other's MAC addresses. But that
 does not mean that they are not able to communicate -- they can send broadcast

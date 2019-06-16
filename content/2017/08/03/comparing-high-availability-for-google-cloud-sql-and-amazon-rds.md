@@ -43,7 +43,7 @@ You **can** use the failover replica on Cloud SQL to serve reads.
 
 #### RDS
 
-[Reference](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
+[Reference](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
 
 > The high-availability feature is not a scaling solution for read-only scenarios; you cannot use a standby replica to serve read traffic.
 
@@ -86,7 +86,7 @@ so I'm guessing that failover should be pretty quick.
 
 #### RDS
 
-[Reference](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html#Concepts.MultiAZ.Failover)
+[Reference](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html#Concepts.MultiAZ.Failover)
 
 Multi-AZ failover on RDS uses a DNS change to point to the standby instance. The reference page mentions
 60-120 seconds of unavailability during the failover. Because the standby uses the same storage data

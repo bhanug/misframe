@@ -5,7 +5,7 @@ url: /gambling-with-cheap-ram
 ---
 
 
-I got an email from [123Systems](http://123systems.net/) about a week ago:
+I got an email from [123Systems](https://123systems.net/) about a week ago:
 
 ![](https://31.media.tumblr.com/678055852db80bb4020e687d71b2cd1a/tumblr_inline_myn1ycfmg41rs73cz.png)
 

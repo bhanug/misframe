@@ -7,9 +7,9 @@ url: /wal-and-shadow-paging
 
 There are at least two ways to provide atomicity and durability in databases.
 The first, and (I think) more common approach, is
-[write-ahead logging](http://en.wikipedia.org/wiki/Write-ahead_logging). The
-other is [shadow paging](http://en.wikipedia.org/wiki/Shadow_paging). The only
-system that I'm aware of that uses shadow paging is [lmdb](http://symas.com/mdb/).
+[write-ahead logging](https://en.wikipedia.org/wiki/Write-ahead_logging). The
+other is [shadow paging](https://en.wikipedia.org/wiki/Shadow_paging). The only
+system that I'm aware of that uses shadow paging is [lmdb](https://symas.com/mdb/).
 
 Write-ahead log (WAL)
 ---

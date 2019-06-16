@@ -3,7 +3,7 @@ title: runit on Amazon Linux with BusyBox
 date: "2016-12-20T22:15:00-05:00"
 ---
 
-[runit](http://smarden.org/runit/) is a great init scheme that you can use
+[runit](https://smarden.org/runit/) is a great init scheme that you can use
 along with your existing init system. It makes it really easy to create
 service configurations for APIs and other long-running programs.
 

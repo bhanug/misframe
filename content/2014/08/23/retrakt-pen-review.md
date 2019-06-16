@@ -5,18 +5,18 @@ url: /retrakt-pen-review
 ---
 
 
-This is the [Retrakt Pen](http://karaskustoms.com/pens/retrakt.html) by Karas Kustoms.
+This is the [Retrakt Pen](https://karaskustoms.com/pens/retrakt.html) by Karas Kustoms.
 It's machined out of aluminum and uses the popular Pilot G-2 gel refill. While this
 pen is made out of solid metal, machined in the US, and looks neat, it's not a
 good pen.
 
-![Retrakt Pen](http://static.misfra.me/images/posts/retrakt-pen-review/full.jpg)
+![Retrakt Pen](/img/copied/posts/retrakt-pen-review/full.jpg)
 
 The clip is made of stainless steel and feels quite durable. It comes with two springs
 (one shown here) and a spacer. The pen also accepts a Parker ballpoint refill,
 so that's what the smaller spring and spacer are for.
 
-![Clip](http://static.misfra.me/images/posts/retrakt-pen-review/clip.jpg)
+![Clip](/img/copied/posts/retrakt-pen-review/clip.jpg)
 
 This pen is really light because of the aluminum. Unfortunately it has a weird
 weight distribution, and it's really top-heavy. The barrel is also really thick.
@@ -25,7 +25,7 @@ tiny bit thicker.
 
 The barrel is smooth and really slippery. It's hard for me to keep it in my hand.
 
-![Detail](http://static.misfra.me/images/posts/retrakt-pen-review/detail.jpg)
+![Detail](/img/copied/posts/retrakt-pen-review/detail.jpg)
 
 The top and bottom are connected with a screw joint, and both joints are machined
 from the same aluminum piece the makes up the rest of the part. It's not very smooth
@@ -35,7 +35,7 @@ I like to take pens apart and put them back together when I'm bored, but it look
 like I won't be doing that with this pen. Maybe I just need to get the threads to
 wear out a little bit.
 
-![Parts](http://static.misfra.me/images/posts/retrakt-pen-review/parts.jpg)
+![Parts](/img/copied/posts/retrakt-pen-review/parts.jpg)
 
 Overall, it's a solid pen that accepts a common refill. There's no doubt that this
 will last me a long time... but this pen isn't that good. The weight distribution

@@ -5,7 +5,7 @@ url: /managing-memory
 ---
 
 
-I found [`libgc`](http://www.hpl.hp.com/personal/Hans_Boehm/gc/), a garbage collector library written in C, a few months ago and wanted to write something like it. The usage is really simple: replace all `malloc`s with `gc_malloc` and delete all occurrences of `free` in your code.
+I found [`libgc`](https://www.hpl.hp.com/personal/Hans_Boehm/gc/), a garbage collector library written in C, a few months ago and wanted to write something like it. The usage is really simple: replace all `malloc`s with `gc_malloc` and delete all occurrences of `free` in your code.
 
 Now, a few months later, I'm thinking that it's not going to happen :). I'm not giving up, but rather changing my focus. I learned some more about other garbage collectors, especially those with persistent data structures. Actually, I could say that I've already written some form of garbage collector. My `vlmap` library, which is a versioned skip list, has a function to delete older nodes. The implementation resembles a mark-and-sweep collector --  nodes are marked as removed and sweeping occurs when you call a certain function.
 

@@ -63,5 +63,5 @@ Building distributed systems requires reliable message propagation and delivery,
 
 ## Further reading
 
-* http://www.cs.yale.edu/homes/aspnes/pinewiki/ReliableBroadcast.html
-* [Consensus: the Big Misunderstanding [PDF]](http://www.ict.kth.se/courses/ID2203/material/assignments/misunderstanding.pdf)
+* https://www.cs.yale.edu/homes/aspnes/pinewiki/ReliableBroadcast.html
+* [Consensus: the Big Misunderstanding [PDF]](https://www.ict.kth.se/courses/ID2203/material/assignments/misunderstanding.pdf)

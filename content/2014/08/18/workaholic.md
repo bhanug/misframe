@@ -15,7 +15,7 @@ Onto the good stuff. I'm pretty sure I'm a workaholic.
 
 > A workaholic is a person who is addicted to work. While the term generally implies that the person enjoys their work; it can also imply that they simply feel compelled to do it.
 >
-> — [Wikipedia](http://en.wikipedia.org/wiki/Workaholic) (I'm pretty sure that this misuses a semicolon, but that's besides
+> — [Wikipedia](https://en.wikipedia.org/wiki/Workaholic) (I'm pretty sure that this misuses a semicolon, but that's besides
 > the point.)
 
 Yeah, that. Work, work, work. I'm generally always "busy" because I always have something to do.
@@ -31,7 +31,7 @@ a break and think.
 
 ---
 
-My sister shared ["Let's Stop the Glorification of Busy"](http://www.huffingtonpost.com/guy-kawasaki/lets-stop-the-glorification-of-busy_b_5018712.html), and I have a few comments. I'll use block quotes.
+My sister shared ["Let's Stop the Glorification of Busy"](https://www.huffingtonpost.com/guy-kawasaki/lets-stop-the-glorification-of-busy_b_5018712.html), and I have a few comments. I'll use block quotes.
 
 > Redefine success. There's no prize for working the most hours per week or making the most money. At the end of our lives, we're all about the same amount of dust, so the question is how much joy you've brought into people's lives and how much have you made the world a better place.
 

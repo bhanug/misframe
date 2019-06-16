@@ -9,7 +9,7 @@ A couple of years ago, for whatever reason, I wrote a color scheme. I called
 it "DarkFruit" because it has some fruity-looking colors on a dark background.
 The "LightFruit" version has the same colors on a light background.
 
-![](http://static.misfra.me/images/posts/syntax-highlighting/darkfruit.png)
+![](/img/copied/posts/syntax-highlighting/darkfruit.png)
 
 I used it for a long time, and I got used to looking at it, but there are
 many things obviously wrong with it. The colors basically look randomly chosen.
@@ -24,12 +24,12 @@ questions about code answered.
 I'm always reading the code directly from the golang.org website. It's very simple.
 The only syntax highlighting they do is make the comments green.
 
-![](http://static.misfra.me/images/posts/syntax-highlighting/golang-src.png)
+![](/img/copied/posts/syntax-highlighting/golang-src.png)
 
 I thought it might be fun to see what it would be like to have a color scheme...
 without any colors! This is what I came up with:
 
-![](http://static.misfra.me/images/posts/syntax-highlighting/syntax.png)
+![](/img/copied/posts/syntax-highlighting/syntax.png)
 
 Strings are a light grey, comments are a lighter grey, normal text is very dark,
 builtin types are italicized, and keywords are bolded. That's all there is to

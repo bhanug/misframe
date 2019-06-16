@@ -26,6 +26,6 @@ out this is the weighted average of the expense ratios of the individual funds, 
 than doing it yourself, but it's completely automatic.
 
 Like this approach? Check out how much of your finances you can automate via [Ramit Sethi]
-(http://fourhourworkweek.com/2009/03/26/the-psychology-of-automation-building-a-bulletproof-personal-finance-system/).
+(https://fourhourworkweek.com/2009/03/26/the-psychology-of-automation-building-a-bulletproof-personal-finance-system/).
 I'm reading Tim Ferriss's [*The 4-Hour Workweek*](https://en.wikipedia.org/wiki/The_4-Hour_Workweek)
 right now too.

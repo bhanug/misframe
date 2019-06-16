@@ -11,7 +11,7 @@ What if you wanted to do these checks from a Go program? As far as I know, ICMP 
 
 ![](https://31.media.tumblr.com/19cc34ca920a237601b6883d0593bbb5/tumblr_inline_mzdf7oJtBp1rs73cz.jpg)
 
-(From http://www.cisco.com/web/about/ac123/ac147/archived_issues/ipj_9-4/syn_flooding_attacks.html)
+(From https://www.cisco.com/web/about/ac123/ac147/archived_issues/ipj_9-4/syn_flooding_attacks.html)
 
 I think I've figured out a neat trick. TCP uses a 3-way handshake. The "initiator," or client, starts off by sending a SYN packet to a destination with a specific port. If there's something listening on that port, the listener, or server, sends back a SYN-ACK. If there's nothing listening on that port, the listener responds with RST.
 

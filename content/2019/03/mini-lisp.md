@@ -10,7 +10,7 @@ I started writing an interpreter a couple of months ago using the [mal - Make a
 Lisp](https://github.com/kanaka/mal/) guide. After step 4 my implementation felt
 really messy, and I felt I was just doing what the guide told me without learning
 too much about how things actually worked. Later I found Peter Norvig's
-[(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html)
+[(How to Write a (Lisp) Interpreter (in Python))](https://norvig.com/lispy.html)
 which is a much simpler version, and that was the inspiration to start over.
 
 Here's what you can do with it. Let's start with a simple factorial function:
@@ -34,7 +34,7 @@ Here's what you can do with it. Let's start with a simple factorial function:
 
 There are mathematical operations, `if`, printing, and lambas.
 
-Using [(An ((Even Better) Lisp) Interpreter (in Python))](http://norvig.com/lispy2.html),
+Using [(An ((Even Better) Lisp) Interpreter (in Python))](https://norvig.com/lispy2.html),
 I also added tail recursion optimization. I was almost at that point in the mal guide too.
 Tail recursion optimization makes it really cheap to execute certain functions implemented
 recursively. Something like the following function, which takes advantage of tail recursion

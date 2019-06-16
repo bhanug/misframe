@@ -27,11 +27,11 @@ So we need a *root pointer*.
 ![][3]
 
 We've now just constructed a linked list. More specifically, it's closer to an
-[unrolled linked list](http://en.wikipedia.org/wiki/Unrolled_linked_list). There
+[unrolled linked list](https://en.wikipedia.org/wiki/Unrolled_linked_list). There
 isn't a lot written about unrolled linked lists online, but I think what I
 described above is very similar to LevelDB's (and other LSM implementations')
 structure of SSTables. They're just like unrolled linked lists.
 
-[1]: http://static.misfra.me/images/posts/appending-instead-of-prepending/linked_list_file_1.jpg
-[2]: http://static.misfra.me/images/posts/appending-instead-of-prepending/linked_list_file_2.jpg
-[3]: http://static.misfra.me/images/posts/appending-instead-of-prepending/linked_list_file_3.jpg
+[1]: /img/copied/posts/appending-instead-of-prepending/linked_list_file_1.jpg
+[2]: /img/copied/posts/appending-instead-of-prepending/linked_list_file_2.jpg
+[3]: /img/copied/posts/appending-instead-of-prepending/linked_list_file_3.jpg

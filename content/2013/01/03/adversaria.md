@@ -4,7 +4,7 @@ date: "2013-01-03"
 url: /adversaria
 ---
 
-Everyone (or almost everyone) uses [RRDtool](http://oss.oetiker.ch/rrdtool/) to store traffic data. I wanted something a little different.
+Everyone (or almost everyone) uses [RRDtool](https://oss.oetiker.ch/rrdtool/) to store traffic data. I wanted something a little different.
 
 Couchbase woes!
 ---

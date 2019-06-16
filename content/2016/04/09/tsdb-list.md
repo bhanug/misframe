@@ -19,7 +19,7 @@ based on feedback and anything new I find. There is a changelog at the end.
 These are either time series databases or general-purpose databases that work well with time series.
 Some are layers on top of existing databases.
 
-- [Aerospike](http://www.aerospike.com/)
+- [Aerospike](https://www.aerospike.com/)
 	- High performance, in-memory, NoSQL
 - [Akumuli](https://github.com/akumuli/Akumuli)
 	- Written in C++
@@ -27,11 +27,11 @@ Some are layers on top of existing databases.
 	- Can be used as a server application or an embedded library
 - [Apache Apex](https://apex.apache.org/)
 	- [DataTorrent](https://www.datatorrent.com/)
-- [Apache Cassandra](http://cassandra.apache.org/)
-	- Or [Scylla](http://www.scylladb.com/), a much faster C++ implementation of Cassandra
+- [Apache Cassandra](https://cassandra.apache.org/)
+	- Or [Scylla](https://www.scylladb.com/), a much faster C++ implementation of Cassandra
 	- Distributed, columnar database
 	- Has a query language
-- [Apache Kudu](http://getkudu.io/) (Incubating)
+- [Apache Kudu](https://getkudu.io/) (Incubating)
 	- Columnar, part of the Hadoop stack
 	- "fast analytics on fast data"
 - [Atlas](https://github.com/Netflix/atlas) by Netflix
@@ -43,11 +43,11 @@ Some are layers on top of existing databases.
 - [Beringei](https://github.com/facebookincubator/beringei) by Facebook
 	- In memory
 	- Open source implementation of ideas presented in their Gorilla paper (link below)
-- [Blueflood](http://blueflood.io/)
+- [Blueflood](https://blueflood.io/)
 	- Built on Cassandra
 	- Multi-tenant distributed database and metric processing system created by Rackspace
 	- Apache 2.0 license
-- [Chronix](http://chronix.io/)
+- [Chronix](https://chronix.io/)
 	- Built on Apache Lucene, Solr, and Spark
 - [CitusDB](https://www.citusdata.com/)
 	- Distributed Postgres (through an extension)
@@ -60,14 +60,14 @@ Some are layers on top of existing databases.
 	- Distributed SQL database
 	- Fully searchable document oriented data store
 	- Uses Presto for SQL, Elasticsearch and Lucene for storage
-- [Cube](http://square.github.io/cube/) by Square
+- [Cube](https://square.github.io/cube/) by Square
 	- Built on MongoDB
-- [Cyanite](http://cyanite.io/)
+- [Cyanite](https://cyanite.io/)
 	- Compatible with the Graphite ecosystem
 	- Stores data in Cassandra
 - [Dalmatiner](https://dalmatiner.io/)
 	- Built on ZFS and Riak Core
-- [Druid](http://druid.io/)
+- [Druid](https://druid.io/)
 	- Column-oriented open-source distributed data store written in Java
 - [Elasticsearch](https://www.elastic.co/blog/elasticsearch-as-a-time-series-data-store)
 	- Java & Lucene
@@ -81,9 +81,9 @@ Some are layers on top of existing databases.
 	- Uses Spark SQL
 - [GridDB](https://griddb.net/en/)
 	- Horizontally scalable NoSQL DB
-- [GridGain](http://www.gridgain.com/)
+- [GridGain](https://www.gridgain.com/)
 	- In-memory data fabric
-- [Hawkular](http://www.hawkular.org/)
+- [Hawkular](https://www.hawkular.org/)
 	- Open source monitoring solution by Red Hat
 	- Metrics storage uses Cassandra
 - [HBase](https://hbase.apache.org/)
@@ -103,27 +103,27 @@ Some are layers on top of existing databases.
 	- Developed at Uber
 - [Newts](https://opennms.github.io/newts/)
 	- Based on Cassandra
-- [OpenTSDB](http://opentsdb.net/)
+- [OpenTSDB](https://opentsdb.net/)
 	- Built on top of HBase, BigTable, or Cassandra
 - [Pinot](https://github.com/linkedin/pinot)
 	- Realtime distributed OLAP datastore
 	- Horizontally scalable
 	- Used at LinkedIn
-- [Prometheus](http://prometheus.io/)
+- [Prometheus](https://prometheus.io/)
 	- Monitoring system and TSDB
 	- Not distributed
 	- Polling-based
-- [Riak TS](http://basho.com/products/riak-ts/)
+- [Riak TS](https://basho.com/products/riak-ts/)
 	- Query language
 	- Apparently 10x faster than Cassandra (I don't have any more details about this)
 - [Roshi](https://github.com/soundcloud/roshi) by SoundCloud
 	- Time-series event storage
 	- Stateless, distributed layer on top of Redis and is implemented in Go
-- [SciDB](http://www.paradigm4.com/)
+- [SciDB](https://www.paradigm4.com/)
 	- Multidimensional arrays
 	- ACID
 	- By Michael Stonebraker
-- [SiriDB](http://siridb.net/)
+- [SiriDB](https://siridb.net/)
 	- Written in C and focused on performance
 	- Query language
 - [sonnerie](https://github.com/njaard/sonnerie)
@@ -132,12 +132,12 @@ Some are layers on top of existing databases.
 	- Simple TCP API
 - [Timely](https://github.com/NationalSecurityAgency/timely) by the NSA
 	- Backed by Accumulo
-- [TimescaleDB](http://www.timescale.com/)
+- [TimescaleDB](https://www.timescale.com/)
 	- Built on PostgreSQL (as an extension)
 - [Vulcan](https://github.com/digitalocean/vulcan) by DigitalOcean
 	- Extends Prometheus adding horizontal scalability and long-term storage
 	- Written in Go
-- [Warp 10](http://www.warp10.io/)
+- [Warp 10](https://www.warp10.io/)
 	- Distributed version uses HBase
 	- From [SenX](https://senx.io/)
 - [Yuvi](https://github.com/pinterest/yuvi)
@@ -152,7 +152,7 @@ These are either proprietary or internal, and not open source.
 - [Google BigQuery](https://cloud.google.com/bigquery/)
 	- Managed data warehouse for analytics hosted on Google Cloud
 	- BigQuery can do lots of things in addition to time series (also see RedShift)
-- [Infiniflux](http://infiniflux.com/)
+- [Infiniflux](https://infiniflux.com/)
 	- Time series DBMS with SQL
 - [IRONdb](https://irondb.io/)
 	- Scalable storage for a Graphite infrastructure. IRONdb is a new product by Circonus,
@@ -164,7 +164,7 @@ These are either proprietary or internal, and not open source.
 	- Redshift can do lots of things in addition to time series (also see BigQuery)
 - [Rocana](https://www.rocana.com/) (acquired by Splunk)
 	- Proprietary columnar TSDB using Apache Lucene, Kafka, and HDFS
-- [eXtremeDB](http://financial.mcobject.com/)
+- [eXtremeDB](https://financial.mcobject.com/)
 	- Made for financial data
 	- Columnar, ACID-compliant, SQL support
 - Facebook [Scuba](https://research.facebook.com/publications/scuba-diving-into-data-at-facebook/)
@@ -172,7 +172,7 @@ These are either proprietary or internal, and not open source.
 - [quasardb](https://www.quasardb.net/)
 	- Distributed transactional key-value store with distributed secondary indexes and native time series support
 	- Written in C++14
-- [SnappyData](http://www.snappydata.io/)
+- [SnappyData](https://www.snappydata.io/)
 	- fuses Apache Spark with a highly available, multi-tenanted in-memory database
 	- OLTP + OLAP on streaming data
 - [TempoIQ](https://www.tempoiq.com/)
@@ -195,11 +195,11 @@ These are not exactly TSDBs, but are interesting resources to take a look at.
 	- "Optimizing Storage System Design for Timeseries Processing"
 - Circonus Snowth
 	- [YouTube video](https://www.youtube.com/watch?v=hwHpd20NciE) about the design
-- [Facebook Gorilla paper](http://www.vldb.org/pvldb/vol8/p1816-teller.pdf) [PDF]
+- [Facebook Gorilla paper](https://www.vldb.org/pvldb/vol8/p1816-teller.pdf) [PDF]
 	- Fast, scalable, in-memory TSDB
 - Honeycomb's columnar data store "Retriever"
 	- [YouTube video](https://www.youtube.com/watch?v=tr2KcekX2kk) about the design
-- [Pulsar](http://gopulsar.io/)
+- [Pulsar](https://gopulsar.io/)
 	- Streaming SQL
 - Square [metrics query engine](https://github.com/square/metrics)
 

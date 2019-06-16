@@ -11,7 +11,7 @@ Eventually it became a hassle. I kept tweaking and adding features, and I found 
 
 Tumblr was fine but I had two concerns. First, as before, I found myself writing less. I'm not sure why that happened. I also felt insecure about my content. It was just somewhere "in the cloud." It was also not easily accessible. There's no easy way to get all of my posts in a ZIP file, for example.
 
-I also tried out [Pelican](http://blog.getpelican.com/), a static site generator. It worked fine... sort of. It still felt a little too bloated. I felt like I could write something myself. I had already converted all of my posts to Markdown in order to migrate to Pelican. So, in somewhat of a fit one evening, I sat down and started coding something that I felt would be simple and *elegant*.
+I also tried out [Pelican](https://blog.getpelican.com/), a static site generator. It worked fine... sort of. It still felt a little too bloated. I felt like I could write something myself. I had already converted all of my posts to Markdown in order to migrate to Pelican. So, in somewhat of a fit one evening, I sat down and started coding something that I felt would be simple and *elegant*.
 
 On March 4th 2014 at around 1 AM, I finished a simple Go program that ran Misframe. It had less than 150 lines, including the HTML and CSS, and ran on my BeagleBone Black. I've cleaned up the code a little and now, on April 19th 2014, I have the next iteration of this simple program that's still running on my BeagleBone.
 

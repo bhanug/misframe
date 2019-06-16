@@ -7,7 +7,7 @@ This is something that took me a few hours to get right. These steps will get yo
 less time.
 
 I'm going to skip over how to setup a VPC. You should read Amazon's [Getting Started with Amazon
-VPC](http://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/GetStarted.html) guide for
+VPC](https://docs.aws.amazon.com/AmazonVPC/latest/GettingStartedGuide/GetStarted.html) guide for
 that.
 
 First off, make sure you have an EC2 instance running in your VPC with an elastic IP. Also make sure

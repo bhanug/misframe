@@ -9,7 +9,7 @@ url: /what-i-do-alone
 >
 > — https://medium.com/things-ive-written/thirty-things-ive-learned-482765ee3503
 
-I mentioned something about this before when I wrote about [thought experiments](http://misfra.me/thought-experiments).
+I mentioned something about this before when I wrote about [thought experiments](https://misfra.me/thought-experiments).
 I still do this stuff. These days, it happens mostly right before I go to sleep.
 
 Fortunately, I'm already aware of what's "truly interesting" to me.

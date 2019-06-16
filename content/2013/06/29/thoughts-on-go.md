@@ -65,6 +65,6 @@ Go is really fun. Try it out!
 
 </p>
 
-  [Go]: http://golang.org/
-  [earlier]: http://point.davidglasser.net/2013/06/27/surprising-javascript-memory-leak.html
+  [Go]: https://golang.org/
+  [earlier]: https://point.davidglasser.net/2013/06/27/surprising-javascript-memory-leak.html
 

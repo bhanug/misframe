@@ -28,9 +28,9 @@ Given the right tools, those problems could have been solved in seconds or minut
 
 Cistern
 ---
-[Cistern](http://preetamjinka.github.io/cistern/) is a flow collector. I wrote about it previously [here](http://misfra.me/state-of-the-state-part-ii). Its main purpose is to serve as the destination for flow data, in the form of packet samples and counters. It will aggregate these data, analyze them, and serve as a platform to build richer systems. I was certainly surprised to learn how much information can be extracted from packet samples. Those things are quite dense, and they provide a level of insight that you can't get from any other method.
+[Cistern](https://preetamjinka.github.io/cistern/) is a flow collector. I wrote about it previously [here](https://misfra.me/state-of-the-state-part-ii). Its main purpose is to serve as the destination for flow data, in the form of packet samples and counters. It will aggregate these data, analyze them, and serve as a platform to build richer systems. I was certainly surprised to learn how much information can be extracted from packet samples. Those things are quite dense, and they provide a level of insight that you can't get from any other method.
 
-Flows are an efficient, scalable method of collecting information. Cistern currently decodes flows using the [sFlow](http://sflow.org/) protocol. sFlow does have its limitations. It isn't very useful on its own, and in fact, it wasn't designed to be. SNMP polling is used to fetch metadata, like interface names, when necessary. sFlow and SNMP together maximize monitoring capability.
+Flows are an efficient, scalable method of collecting information. Cistern currently decodes flows using the [sFlow](https://sflow.org/) protocol. sFlow does have its limitations. It isn't very useful on its own, and in fact, it wasn't designed to be. SNMP polling is used to fetch metadata, like interface names, when necessary. sFlow and SNMP together maximize monitoring capability.
 
 This is a short summary of what I want to see in Cistern in the near future:
 
@@ -64,7 +64,7 @@ Here are some of the pieces that I have so far:
 * AngularJS powered web UI
 	* https://github.com/Preetam/cistern/tree/gh-pages/ui
 
-I think it's a bit inaccurate to describe this as a monitoring system. I like the following comment someone made on Hacker News about Observium (something I [don't like](http://misfra.me/observium-annoys-me)):
+I think it's a bit inaccurate to describe this as a monitoring system. I like the following comment someone made on Hacker News about Observium (something I [don't like](https://misfra.me/observium-annoys-me)):
 
 > (In response to "Observium: An auto-discovering network monitoring platform")
 
@@ -86,7 +86,7 @@ This is my startup idea. I think there is business potential here, but that is n
 
 I think there is a lot of opportunity for revenue with support and custom integrations. I think this makes a lot of sense for an open-source project. Custom additions to fit into a specific environment will require development regardless of what tools you choose, so maybe it would be better if the original developers do it? I can already imagine people building plugins to inject rules or configuration updates into OpenBSD firewalls, Cisco, Brocade, and Juniper routers and switches, and so on.
 
-There's [no rush](http://misfra.me/no-rush) for me to start a new business right now.
+There's [no rush](https://misfra.me/no-rush) for me to start a new business right now.
 
 Requests
 ---

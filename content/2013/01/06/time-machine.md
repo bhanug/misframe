@@ -5,7 +5,7 @@ url: /time-machine
 ---
 
 
-[![Clock](http://static.misfra.me/images/clock.jpg)](http://www.flickr.com/photos/preetamjinka/7553305534/)
+[![Clock](/img/copied/clock.jpg)](https://www.flickr.com/photos/preetamjinka/7553305534/)
 
 I really want a time machine. I want to meet past-Preetam. I’m different from him, and in some ways it’s incredibly significant. I forget what he was like. I forget how he thought. I want to hear his stories.
 

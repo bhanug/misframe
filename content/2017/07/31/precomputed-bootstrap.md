@@ -66,7 +66,7 @@ Matrix multiplication is something that can be made really fast with SIMD and/or
 
 Here's a great slide deck I found about this sort of stuff:
 
-http://on-demand.gputechconf.com/gtc/2013/presentations/S3338-Bootstrap-Statistics-Simulation.pdf
+https://on-demand.gputechconf.com/gtc/2013/presentations/S3338-Bootstrap-Statistics-Simulation.pdf
 
 Some screenshots from that...
 

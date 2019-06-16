@@ -5,7 +5,7 @@ url: /no-rush
 ---
 
 
-I've just finished my first day of [Fluent 2014](http://fluentconf.com/fluent2014/).
+I've just finished my first day of [Fluent 2014](https://fluentconf.com/fluent2014/).
 I've talked and listened to people about jobs, careers, internships, startups,
 and businesses. Also, by quick observation, I think I'm the youngest person here.
 It's pretty weird when I'm in conversations where people talk about their jobs

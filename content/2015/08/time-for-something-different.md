@@ -5,7 +5,7 @@ date: "2015-08-30"
 
 Back when I was 16, I never thought about where I'd be five years from then. I didn't even know where I would go for college. I certainly didn't think I would be still running a web hosting business. The thought never came up.
 
-The following was posted today on [WebHostingTalk](http://www.webhostingtalk.com/showthread.php?t=1509254):
+The following was posted today on [WebHostingTalk](https://www.webhostingtalk.com/showthread.php?t=1509254):
 
 > ## Going to miss Bitcable
 > As Bitcable will be shutting down its operations on 10/1/2015 (as announced to its customers), I would like to wish Preetam the best moving forward.

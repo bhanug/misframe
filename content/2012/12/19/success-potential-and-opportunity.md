@@ -5,7 +5,7 @@ url: /success-potential-and-opportunity
 ---
 
 
-<a href="http://www.flickr.com/photos/preetamjinka/7046406061"><img src="http://media.tumblr.com/f3bd0bf35f9a505ae13d3f48928ea6ae/tumblr_inline_mfzgk5uoWA1rs73cz.jpg" alt="Capella" /></a>
+<a href="https://www.flickr.com/photos/preetamjinka/7046406061"><img src="https://media.tumblr.com/f3bd0bf35f9a505ae13d3f48928ea6ae/tumblr_inline_mfzgk5uoWA1rs73cz.jpg" alt="Capella" /></a>
 
 Success
 ----
@@ -23,7 +23,7 @@ The point is, you can have all the potential in the world but it won’t make a 
 
 Opportunity
 ----
-I’m in a fantastic position right now. I have an amazing job working for [Isomerous](http://isomero.us) with amazing ideas on how to move forward. I have time. I have energy. I have *potential*. Now, I have an *opportunity*. Everything seems to fit. I’m not religious and I don’t believe in fate. I think the future is a result of what has happened in the past and what occurs in the present. I have no guarantees, but that’s more interesting anyway.
+I’m in a fantastic position right now. I have an amazing job working for [Isomerous](https://isomero.us) with amazing ideas on how to move forward. I have time. I have energy. I have *potential*. Now, I have an *opportunity*. Everything seems to fit. I’m not religious and I don’t believe in fate. I think the future is a result of what has happened in the past and what occurs in the present. I have no guarantees, but that’s more interesting anyway.
 
 *Tempus fugit.* Time to start. Let’s see what happens!
 

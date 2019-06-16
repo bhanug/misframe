@@ -41,7 +41,7 @@ down to two simple points:
 Those two points are enough for a framework to ask great questions. For example:
 
 1. X is slow. It's spending time on something. Is it doing work, or waiting? **How can I tell if it's doing work or waiting?**
-2. If it is doing work too slowly, why? What does the [USE Method](http://www.brendangregg.com/usemethod.html) tell me?
+2. If it is doing work too slowly, why? What does the [USE Method](https://www.brendangregg.com/usemethod.html) tell me?
 3. If X's resource Y is saturated, why is Y slow? Go to step #1 for Y.
 4. If it's waiting, **how can I tell what it's waiting on?**
 
@@ -72,7 +72,7 @@ Let's check out the thread states.
 ![Thread states](/img/2017/06/thread-states.png)
 
 Ahah! 101 threads are waiting for a lock! Well, that was easy. The
-[infamous query cache](http://blog.koehntopp.info/index.php/1844-good-riddance-to-the-query-cache/) strikes again!
+[infamous query cache](https://blog.koehntopp.info/index.php/1844-good-riddance-to-the-query-cache/) strikes again!
 
 I think this process works well for performance problems at any level (system, database, application, etc).
 I think it also probably gives you an idea of how to instrument your services, or find out where your

@@ -5,7 +5,7 @@ url: /dont-panic-type-assertion-safety
 ---
 
 
-Go's `container/heap` package documentation has an [example](http://golang.org/pkg/container/heap/#example__intHeap) of an integer heap. Here's an interesting part of it:
+Go's `container/heap` package documentation has an [example](https://golang.org/pkg/container/heap/#example__intHeap) of an integer heap. Here's an interesting part of it:
 
 	func (h *IntHeap) Push(x interface{}) {
 		// Push and Pop use pointer receivers because they modify the slice's length,
@@ -19,7 +19,7 @@ The last line (ignoring the brace) has a type assertion. `x` is an `interface{}`
 
 > If the type assertion is false, a run-time panic occurs.
 >
-> — http://golang.org/ref/spec#Type_assertions
+> — https://golang.org/ref/spec#Type_assertions
 
 The thing about panics is that they bubble up. If you don't handle a panic by recovering, an entire goroutine will crash and, potentially, so will your entire program. Having a program crash isn't good (unless you want it to, of course)!
 

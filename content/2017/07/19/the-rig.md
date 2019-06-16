@@ -73,6 +73,6 @@ I'm working on it.
 Other stuff I was looking at:
 
 * https://dev.mysql.com/doc/refman/5.7/en/replication-semisync.html
-* DRBD internals: http://docs.linbit.com/docs/users-guide-9.0/p-learn/#ch-internals
-  * Some two-phase commit stuff in DRBD: http://git.drbd.org/drbd-9.0.git/blob/HEAD:/drbd/drbd_state.c
+* DRBD internals: https://docs.linbit.com/docs/users-guide-9.0/p-learn/#ch-internals
+  * Some two-phase commit stuff in DRBD: https://git.drbd.org/drbd-9.0.git/blob/HEAD:/drbd/drbd_state.c
 * FreeBSD HAST: https://wiki.freebsd.org/HAST

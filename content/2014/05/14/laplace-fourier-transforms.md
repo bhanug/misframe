@@ -20,7 +20,7 @@ The Laplace transform helps when dealing with *convolutions* of functions. Convo
 are functions that express the area of the overlapping region of two functions as one
 is translated. That's a weird description, so here's an animation by Brian Amberg:
 
-![](http://upload.wikimedia.org/wikipedia/commons/6/6e/Convolution_of_box_signal_with_itself.gif)
+![](https://upload.wikimedia.org/wikipedia/commons/6/6e/Convolution_of_box_signal_with_itself.gif)
 
 The Laplace transform basically takes a convolution and breaks it down into a multiplication
 of two functions. Working with multiplication is much easier when trying to solve differential
@@ -56,8 +56,8 @@ into moments (which is why it's the moment generating function).
 
 And that's what you learn when you're bored and read Wikipedia on a phone.
 
-[1]: http://static.misfra.me/images/posts/laplace-fourier-transforms/1.jpg
-[2]: http://static.misfra.me/images/posts/laplace-fourier-transforms/2.jpg
-[3]: http://static.misfra.me/images/posts/laplace-fourier-transforms/3.jpg
-[4]: http://static.misfra.me/images/posts/laplace-fourier-transforms/4.jpg
-[5]: http://static.misfra.me/images/posts/laplace-fourier-transforms/5.jpg
+[1]: /img/copied/posts/laplace-fourier-transforms/1.jpg
+[2]: /img/copied/posts/laplace-fourier-transforms/2.jpg
+[3]: /img/copied/posts/laplace-fourier-transforms/3.jpg
+[4]: /img/copied/posts/laplace-fourier-transforms/4.jpg
+[5]: /img/copied/posts/laplace-fourier-transforms/5.jpg

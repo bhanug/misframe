@@ -7,7 +7,7 @@ url: /working-and-growing-up
 
 ## My first internship.
 
-In July 2011, I joined a company called [25K Digital](http://25kdigital.com/) as a software engineering intern. I just finished my junior year of high school, and I was excited. It was my first internship and I was ready to apply those impressive skills I had acquired over the years. I was ready to make some cool things!
+In July 2011, I joined a company called [25K Digital](https://25kdigital.com/) as a software engineering intern. I just finished my junior year of high school, and I was excited. It was my first internship and I was ready to apply those impressive skills I had acquired over the years. I was ready to make some cool things!
 
 25K Digital is a digital media agency. Most, if not all, of their work is client-based. They get clients with certain requirements and they design and build a solution that fits those requirements. I learned rather early on that this gets boring *really* quickly.
 
@@ -25,7 +25,7 @@ Overall, that was an interesting summer. I'm glad I experienced that side of tec
 
 ## Internship searches.
 
-After two summers of interning, I realized that I've become picky about internships. Last summer, I interned at [FoundationDB](http://foundationdb.com/). What an experience! To some, an internship might be about making money. While I also consider compensation to be important, I think the amount of knowledge gained and the professional connections made trump however much one makes in a summer. At FoundationDB, I realized how thrilling it is to work on a beautifully designed product that brings something new to the table. I realized that I learned tips and techniques that I probably wouldn't have learned in school. Even more importantly, FoundationDB started me on a [journey](http://misfra.me/writing-a-database) to learn more about databases and transactional systems, and even got me to [create](http://misfra.me/adversaria) a key-value store.
+After two summers of interning, I realized that I've become picky about internships. Last summer, I interned at [FoundationDB](https://foundationdb.com/). What an experience! To some, an internship might be about making money. While I also consider compensation to be important, I think the amount of knowledge gained and the professional connections made trump however much one makes in a summer. At FoundationDB, I realized how thrilling it is to work on a beautifully designed product that brings something new to the table. I realized that I learned tips and techniques that I probably wouldn't have learned in school. Even more importantly, FoundationDB started me on a [journey](https://misfra.me/writing-a-database) to learn more about databases and transactional systems, and even got me to [create](https://misfra.me/adversaria) a key-value store.
 
 For this summer, I wanted to try to get an internship that would be as lucrative as FoundationDB was. I think I found one. I'll be working in Charlottesville for another [database startup](https://vividcortex.com/). I'm excited to learn more about what they call [adaptive fault detection](https://vividcortex.com/blog/2013/04/17/how-does-adaptive-fault-detection-work-does-it-really-eliminate-thresholds/).
 

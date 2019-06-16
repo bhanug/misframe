@@ -30,7 +30,7 @@ This is where things get nontrivial. Our simulator needs to send `c(1:20)`, or s
 
 Conclusion
 ---
-Please, don't actually build a simulator like this for R. There are better ways to do this, like telling R to [output to a file](http://www.statmethods.net/interface/io.html).
+Please, don't actually build a simulator like this for R. There are better ways to do this, like telling R to [output to a file](https://www.statmethods.net/interface/io.html).
 
 However, if you "zoom out" and think about UNIX pipes in general, these concepts are important. This is why most protocols over TCP include a payload length. You can think of TCP sockets as pipes, and think about how these questions are formed in that scenario.
 

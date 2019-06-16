@@ -13,9 +13,9 @@ People have varying reasons why they don't use Windows or Mac OS X. I think I ha
 
 The following images show what I'm talking about. This is from my Macbook.
 
-![](http://media.tumblr.com/c58be6009559019d5e3f5fda8bf0cb9f/tumblr_inline_ml9n90sMYL1qz4rgp.png)
+![](https://media.tumblr.com/c58be6009559019d5e3f5fda8bf0cb9f/tumblr_inline_ml9n90sMYL1qz4rgp.png)
 
-![](http://media.tumblr.com/3d8c4f8d7c9889fbd6ccf5a49b261b6f/tumblr_inline_ml9wukfEqT1qz4rgp.png)
+![](https://media.tumblr.com/3d8c4f8d7c9889fbd6ccf5a49b261b6f/tumblr_inline_ml9wukfEqT1qz4rgp.png)
 
 It's too chunky! I can't read chunky text all the time.
 

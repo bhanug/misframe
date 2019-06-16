@@ -71,8 +71,8 @@ judging myself. It's better to underestimate than overestimate your
 skills, right?
 
   [atto]: https://npmjs.org/package/atto
-  [image]: http://media.tumblr.com/313997ab59b7c95941357d5782653ce9/tumblr_inline_movo4lMfGP1qz4rgp.png
+  [image]: https://media.tumblr.com/313997ab59b7c95941357d5782653ce9/tumblr_inline_movo4lMfGP1qz4rgp.png
   [Github]: https://github.com/PreetamJinka?tab=repositories
-  [writing]: http://misfra.me/callback-magic-with-go
-  [blog]: http://misfra.me/etc-shadow-passwords-with-go
-  [posts]: http://misfra.me/adversaria
+  [writing]: https://misfra.me/callback-magic-with-go
+  [blog]: https://misfra.me/etc-shadow-passwords-with-go
+  [posts]: https://misfra.me/adversaria
