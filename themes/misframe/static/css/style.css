@@ -51,7 +51,7 @@ a {
 .mf-header-nav-links a {
   text-decoration: none;
   margin-right: 24px;
-  color: #333;
+  color: #424242;
 }
 
 a.mf-keep-reading {
@@ -72,7 +72,7 @@ a.mf-keep-reading {
 }
 
 .mf-list-link a {
-  color: #333;
+  color: #424242;
   text-decoration: none;
 }
 
@@ -99,7 +99,7 @@ a.mf-keep-reading {
 }
 
 .mf-post {
-  color: #333;
+  color: #424242;
 }
 
 .mf-post h1, .mf-post h2, .mf-post h3, .mf-post h4, .mf-post h5, .mf-post h6 {
