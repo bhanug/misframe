@@ -65,7 +65,7 @@ later to reduce the amount of data you need to consider. For example, if you
 can store the first time `foo = 'bar'`, you can use that information to truncate
 time ranges in your queries to begin at that time without affecting the result.
 
-<img src='/img/2018/analytics_speedup_diagram_3.svg'/>
+<img src='/img/2018/analytics_speedup_diagram_3.png'/>
 
 I say this has minimal code change requirements since I find that we're often
 storing this information anyway, and we just have to start looking it up for other
