@@ -12,7 +12,7 @@ Here's the gist of my previous thinking:
 On a single instance of a database like MySQL, data are in two places: cached in the buffer pool in
 memory or on disk.
 
-![Buffer pool and disk](/img/2017/02/buffer-pool-disk.svg)
+![Buffer pool and disk](/img/2017/02/buffer-pool-disk.png)
 
 The disk is considered to be durable storage. For backups, depending on the strategy you use, you
 either end up with a single snapshot of the data or incremental pieces. Everything ends up going to
@@ -22,7 +22,7 @@ disaster recovery).
 Now, I believe that S3 can play a way more active role. What you can also do is add S3 as another
 storage tier.
 
-![Buffer pool, disk, and S3](/img/2017/02/buffer-pool-disk-s3.svg)
+![Buffer pool, disk, and S3](/img/2017/02/buffer-pool-disk-s3.png)
 
 Instead of treating S3 as some continuous backup destination, you can actually treat it like the
 system of record, i.e. what your storage system actually is. At that point, the disk starts to look

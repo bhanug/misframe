@@ -31,7 +31,7 @@ sublevels which form the rest of the layers. In the following diagram, there
 are three layers: region, server, and level (like log level, not a Terrace
 level. Naming is hard!). Each blue box is a Terrace level.
 
-![](/img/2018/terrace_level_visualization.svg)
+![](/img/2018/terrace_level_visualization.png)
 
 The us-west-1 level has two sublevels: db-1 and db-2.
 

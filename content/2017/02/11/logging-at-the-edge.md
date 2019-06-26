@@ -6,7 +6,7 @@ date: "2017-02-11T13:45:00-05:00"
 I was thinking about how logging plays a huge role in many ingest pipelines.
 Usually I see architectures like this:
 
-![Logging with Kafka](/img/2017/02/log-kafka.svg)
+![Logging with Kafka](/img/2017/02/log-kafka.png)
 
 There are lots of sources that send their data to a log, which is usually a Kafka cluster.
 After the data are in Kafka, consumers (not displayed) read through the log and push to a database
@@ -25,7 +25,7 @@ My applications have logs, and web servers like Apache and nginx do too.
 
 My logs are *already* at the edge, so I decided to keep them there and avoid using Kafka =).
 
-![Logging at the edge](/img/2017/02/log-edge.svg)
+![Logging at the edge](/img/2017/02/log-edge.png)
 
 The downside is that this requires some more interaction between components in the architecture.
 But that's not necessarily a bad thing. Instead of having a bunch of independent things just shoving

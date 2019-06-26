@@ -26,7 +26,7 @@ some weird race conditions.
 
 Here's what the prototype architecture looks like:
 
-<img src='/img/2017/03/failover.svg' width=500/>
+<img src='/img/2017/03/failover.png' width=500/>
 
 1. There are two identical services. I made these simple HTTP servers responding with "200 OK".
 2. There's a single process using libab to do the actual health checking. It simply makes sure that

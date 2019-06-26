@@ -22,7 +22,7 @@ All writes in lm2 happen in memory before they're durably recorded to disk.
 There is only one level of caching at the moment. If you think about it,
 the architecture looks like a 2-level skip list.
 
-![](/img/2017/01/lm2-cache.svg)
+![](/img/2017/01/lm2-cache.png)
 
 A cache like this has some interesting behavior when you have large scans
 over many records.

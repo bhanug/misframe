@@ -3,7 +3,7 @@ title: Speed up analytics queries by doing less work
 date: "2018-09-17T23:45:00-07:00"
 twitter_card:
   description: "Here are my top 3 techniques to speed up analytics queries"
-  image: "https://misfra.me/img/2018/analytics_speedup_diagram_1.svg"
+  image: "https://misfra.me/img/2018/analytics_speedup_diagram_1.png"
 ---
 
 Often times in my work I come across queries like this,
@@ -18,7 +18,7 @@ which is getting a total count for a month with a filter, and they
 take a long time to run because there's a significant number
 of rows in the `data` table but only a few have `foo = 'bar'`.
 
-<img src='/img/2018/analytics_speedup_diagram_1.svg'/>
+<img src='/img/2018/analytics_speedup_diagram_1.png'/>
 
 We want these queries to execute faster, which is the same as reducing their
 latency. Remember that **latency comes from doing work or waiting**. This post
@@ -47,7 +47,7 @@ The first approach to making this query faster is familiar to those used to
 SQL databases. Adding an index on `foo` and using it for your query
 lets you do less work by skipping to only the data you're interested in.
 
-<img src='/img/2018/analytics_speedup_diagram_2.svg'/>
+<img src='/img/2018/analytics_speedup_diagram_2.png'/>
 
 If you're using a relational database, you probably won't need any code
 changes. You can just add a new index to a table and immediately get benefits.
