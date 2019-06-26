@@ -28,7 +28,7 @@
     <meta name="twitter:image" content="{{ .Params.twitter_card.image }}" />
     {{ end }}
     <title>
-    {{ if ne .URL "/" }} {{ .Title }} - {{ end }} {{ .Site.Title }}
+    {{ if ne .RelPermalink "/" }} {{ .Title }} - {{ end }} {{ .Site.Title }}
     </title>
   </head>
 <body>
