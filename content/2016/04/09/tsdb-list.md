@@ -138,7 +138,9 @@ Some are layers on top of existing databases.
 	- Extends Prometheus adding horizontal scalability and long-term storage
 	- Written in Go
 - [Warp 10](https://www.warp10.io/)
-	- Distributed version uses HBase
+	- Geo Time Series database
+	- Storage engine: standalone version uses LevelDB, distributed version uses HBase
+	- Analytics environment: [WarpScript](https://www.warp10.io/content/03_Documentation/04_WarpScript/01_Concepts) (900+ functions)
 	- From [SenX](https://senx.io/)
 - [Yuvi](https://github.com/pinterest/yuvi)
 	- In-memory storage engine for recent time series metrics data
