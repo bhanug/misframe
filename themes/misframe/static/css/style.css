@@ -1,5 +1,5 @@
 body {
-  font-family: "chronica_pro", Verdana, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -11,12 +11,11 @@ a {
 .wrapper {
   max-width: 90%;
   width: 700px;
-  margin: 3rem auto;
+  margin: 2rem auto;
 }
 
 .mf-site-title {
-  border-bottom: 1px solid #000;
-  margin-bottom: 17px;
+  margin-bottom: 2rem;
 }
 
 .mf-site-title h1 {
@@ -26,7 +25,7 @@ a {
 }
 
 .mf-site-title h1 a {
-  font-weight: bold;
+  font-weight: 700;
   font-size: 28px;
   text-transform: uppercase;
   text-decoration: none;
@@ -36,7 +35,7 @@ a {
 }
 
 .mf-site-title-by-line {
-  font-weight: 300;
+  color: #555;
 }
 
 .mf-site-title-by {
@@ -45,13 +44,12 @@ a {
 
 .mf-header-nav-links {
   margin-top: 10px;
-  margin-bottom: 4px;
 }
 
 .mf-header-nav-links a {
   text-decoration: none;
   margin-right: 24px;
-  color: #424242;
+  color: #555;
 }
 
 a.mf-keep-reading {
@@ -59,6 +57,10 @@ a.mf-keep-reading {
   font-style: italic;
   text-decoration: none;
   color: #000;
+}
+
+.mf-article-separator {
+  margin: 4rem auto;
 }
 
 .mf-list-item {
@@ -84,7 +86,7 @@ a.mf-keep-reading {
 
 .mf-post-title, .mf-post-title a {
   font-size: 41px;
-  margin: 0;
+  margin: 0 0 1rem 0;
   text-decoration: none;
 }
 
@@ -116,16 +118,15 @@ a.mf-keep-reading {
 }
 
 .mf-post a {
-  font-style: italic;
   text-decoration: none;
   border-bottom: 2px solid #ccc;
 }
 
 .mf-footer {
-  border-top: 1px solid #000;
+  border-top: 1px solid #aaa;
   font-size: 0.85rem;
   line-height: 150%;
-  margin: 2rem 0 1rem 0;
+  margin: 4rem 0 1rem 0;
   color: #777;
 }
 
