@@ -16,7 +16,7 @@ that I enjoy using and would recommend to others.
 I use several Apple products. I like the quality, how they work together, and how I don't have to think about them much.
 
 * **Early 2015 13" MacBook Pro** — This is my personal laptop. I only use it at home with a **Dell P2715Q** 4K monitor and **Magic Keyboard 2**.
-* **5th Gen iPad** — This is my first iPad. I used to use an **Amazon Fire 7**. This is a significant upgrade.
+* **6th Gen iPad (2018)** — This is my first iPad. I used to use an **Amazon Fire 7**. This is a significant upgrade.
 * **iPhone X**
 * **Apple Watch Series 4**
 
