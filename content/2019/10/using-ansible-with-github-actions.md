@@ -7,22 +7,20 @@ twitter_card:
 ---
 
 My most recent work with GitHub Actions involves migrating [Transverse](https://transverseapp.com) from being
-deployed manually using Ansible from my laptop to a CI/CD approach using Ansible on GitHub Actions.
-Now I can push changes and deploy from anywhere without requiring access to my personal laptop and private
-SSH keys to run Ansible.
+deployed manually using Ansible run on my laptop to a CI/CD approach using Ansible on GitHub Actions.
+Now I can push changes and deploy from anywhere without requiring access to my personal laptop or the private
+keys to connect to my server.
 
 <!--more-->
 
 _Note:_ Transverse is open source so you can look at the actual GitHub Actions files in the [repo](https://github.com/Preetam/transverse).
 I've copied the relevant portions here for convenience.
 
-### How it's built
+### How it's built and run
 
 Transverse runs as two containers, but both are run from the same Docker image with different parameters. The image
 is built using `docker build` and the image is pushed to Docker Hub. This is also done using GitHub Actions and
 I've described that workflow in a [previous post](/2019/09/deploying-projects-to-cloud-run-using-github-actions/).
-
-### How it runs
 
 The Docker containers run on a DigitalOcean droplet as [runit](http://smarden.org/runit/) services. A "deploy" in this case just means
 SSHing into the server, updating the runit service scripts with the new Docker image tags, and restarting the services. This is
