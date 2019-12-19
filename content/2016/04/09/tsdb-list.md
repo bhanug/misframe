@@ -166,7 +166,7 @@ These are either proprietary or internal, and not open source.
 	- Redshift can do lots of things in addition to time series (also see BigQuery)
 - [Rocana](https://www.rocana.com/) (acquired by Splunk)
 	- Proprietary columnar TSDB using Apache Lucene, Kafka, and HDFS
-- [eXtremeDB](https://financial.mcobject.com/)
+- [eXtremeDB](https://mcobject.com/time-series-analysis/)
 	- Made for financial data
 	- Columnar, ACID-compliant, SQL support
 - Facebook [Scuba](https://research.facebook.com/publications/scuba-diving-into-data-at-facebook/)
