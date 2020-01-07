@@ -102,7 +102,7 @@ a.mf-keep-reading {
 }
 
 .mf-post {
-  color: #424242;
+  color: #000;
 }
 
 .mf-post h1, .mf-post h2, .mf-post h3, .mf-post h4, .mf-post h5, .mf-post h6 {
@@ -195,6 +195,6 @@ blockquote {
   margin-left: 0;
   padding-left: 2rem;
   border-left: 10px solid #eee;
-  color: #666;
+  color: #444;
   overflow: auto;
 }
