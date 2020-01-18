@@ -43,7 +43,7 @@ never prioritized writing them down mainly because I didn't fully understand the
 But writing is a great way to understand things! I learned that in college.
 
 > I write entirely to find out what I'm thinking. What I'm looking at, what I see
-> and what it means. What I want and what I fear."  
+> and what it means. What I want and what I fear.  
 > —Joan Didion
 
 I have plenty of blog post ideas in my head and still think about new ones all the time
