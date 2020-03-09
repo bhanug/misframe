@@ -5,8 +5,8 @@ date: "2020-03-09"
 
 I've been trying to read more. I've had a Goodreads reading challenge every year since 2017,
 and my goals have been at least 12 books a year. Even though I'm more serious about reading
-more than ever, I'm actually reading less. It's been difficult to come up with a reading
-strategy that becomes a habit.
+than ever, I'm actually reading less. It's been difficult to come up with a reading strategy
+that becomes a habit.
 
 <!--more-->
 
