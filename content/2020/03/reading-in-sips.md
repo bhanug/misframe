@@ -25,6 +25,7 @@ That's why I was reading less than before. Then I found out about how Stephen Ki
 > in. The trick is to teach yourself to read in small sips as well as in long swallows.
 > Waiting rooms were made for books -- of course! But so are theater lobbies before the show,
 > long and boring checkout lines, and everyone's favorite, the john.
+>
 > —Stephen King, _On Writing_
 
 I was initially skeptical–can you really read a couple of pages at a time and still make
