@@ -30,7 +30,7 @@ That's why I was reading less than before. Then I found out about how Stephen Ki
 >
 > —Stephen King, _On Writing_
 
-I was initially skeptical–can you really read a couple of pages at a time and still make
+I was initially skeptical—can you really read a couple of pages at a time and still make
 decent progress? Won't you forget what you just read by the time you get around to another
 "sip" of reading? After trying it out, I learned you don't. After years of mainly reading blog
 posts, tweets, emails, and Slack messages, it turns out I got used to reading little sips at a
