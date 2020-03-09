@@ -8,6 +8,8 @@ and my goals have been at least 12 books a year. Even though I'm more serious ab
 more than ever, I'm actually reading less. It's been difficult to come up with a reading
 strategy that becomes a habit.
 
+<!--more-->
+
 My goal was to read a chapter a day. I read about a page a minute, and I assumed chapters
 are usually around 30 pages, so that's about 30 minutes a day. I wanted those 30 minutes
 to be 30 uninterrupted minutes of reading. I tried to figure out the best time of the day
