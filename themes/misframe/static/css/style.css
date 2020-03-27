@@ -89,6 +89,7 @@ a.mf-keep-reading {
   margin: 0 0 1rem 0;
   text-decoration: none;
   line-height: normal;
+  letter-spacing: -0.03rem;
 }
 
 .mf-post-title-date {
@@ -108,6 +109,7 @@ a.mf-keep-reading {
 .mf-post h1, .mf-post h2, .mf-post h3, .mf-post h4, .mf-post h5, .mf-post h6 {
   color: #000;
   line-height: normal;
+  letter-spacing: -0.03rem;
 }
 
 .mf-post strong {
