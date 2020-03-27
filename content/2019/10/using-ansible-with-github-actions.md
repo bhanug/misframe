@@ -1,6 +1,7 @@
 ---
 title: Using Ansible with GitHub Actions
 date: "2019-10-21"
+bestof: true
 twitter_card:
   description: "Running Ansible playbooks using GitHub Actions"
   image: "https://misfra.me/img/2019/10/github-actions-ansible.png"
