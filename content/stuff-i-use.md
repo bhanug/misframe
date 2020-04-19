@@ -17,8 +17,8 @@ I use several Apple products. I like the quality, how they work together, and ho
 
 * **Early 2015 13" MacBook Pro** — This is my personal laptop. I only use it at home with a **Dell P2715Q** 4K monitor and **Magic Keyboard 2**.
 * **6th Gen iPad (2018)** — This is my first iPad. I used to use an **Amazon Fire 7**. This is a significant upgrade.
-* **iPhone X**
-* **Apple Watch Series 4**
+* **iPhone 11 Pro**
+* **Apple Watch Edition Series 5**
 
 <div class="mf-captioned-image">
 <img src='/img/stuff-i-use/desk.jpeg'>
@@ -43,7 +43,7 @@ I use the following at the office:
 
 ### Photography
 
-* **Fujifilm X-T20** — I just bought this camera so I only have the Fujifilm 15-45mm XC f/3.5-5.6 lens.
+* **Fujifilm X-T20** — I have the Fujifilm 15-45mm XC f/3.5-5.6 and XF f/2.8-4 lenses.
 * **Panasonic Lumix ZS50** — This is a tiny point-and-shoot that I can carry around in my pocket.
 
 ### Music
