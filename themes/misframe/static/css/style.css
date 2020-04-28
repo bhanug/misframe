@@ -161,7 +161,7 @@ a.mf-keep-reading {
 hr {
   border: none;
   display: block;
-  margin: 2rem;
+  margin: 2rem auto;
   background-color: #eee;
   height: 1px;
   width: 80%;
