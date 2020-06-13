@@ -64,24 +64,23 @@ a.mf-keep-reading {
 }
 
 .mf-list-item {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 .mf-list-link {
   font-size: 20px;
   line-height: 1.33;
-  margin-bottom: 5px;
 }
 
 .mf-list-link a {
-  color: #424242;
   text-decoration: none;
 }
 
 .mf-list-date {
   font-size: 15px;
   color: #c0c0c0;
-  font-weight: normal;
+  font-weight: bold;
+  line-height: 150%;
 }
 
 .mf-post-title, .mf-post-title a {
@@ -99,11 +98,7 @@ a.mf-keep-reading {
 }
 
 .mf-post {
-  line-height: 150%;
-}
-
-.mf-post {
-  color: #333;
+  line-height: 165%;
 }
 
 .mf-post h1, .mf-post h2, .mf-post h3, .mf-post h4, .mf-post h5, .mf-post h6 {
