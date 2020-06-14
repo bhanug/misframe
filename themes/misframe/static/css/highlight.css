@@ -13,3 +13,13 @@
 .hljs-comment {
   color: #888;
 }
+
+@media (prefers-color-scheme: dark) {
+  .hljs-string {
+    color: #eee;
+  }
+
+  .hljs-comment {
+    color: #aaa;
+  }
+}

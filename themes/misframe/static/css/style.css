@@ -1,4 +1,22 @@
+:root {
+  --main-bg-color: white;
+  --main-fg-color: black;
+  --date-fg-color: #c0c0c0;
+  --border-color: #eee;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg-color: black;
+    --main-fg-color: white;
+    --date-fg-color: #888;
+    --border-color: #333;
+  }
+}
+
 body {
+  color: var(--main-fg-color);
+  background-color: var(--main-bg-color);
   font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -35,7 +53,7 @@ a {
 }
 
 .mf-site-title-by-line {
-  color: #555;
+  color: var(--main-fg-color);
 }
 
 .mf-site-title-by {
@@ -49,14 +67,14 @@ a {
 .mf-header-nav-links a {
   text-decoration: none;
   margin-right: 24px;
-  color: #555;
+  color: var(--main-fg-color);
 }
 
 a.mf-keep-reading {
   font-weight: bold;
   font-style: italic;
   text-decoration: none;
-  color: #000;
+  color: var(--main-fg-color);
 }
 
 .mf-article-separator {
@@ -78,7 +96,7 @@ a.mf-keep-reading {
 
 .mf-list-date {
   font-size: 15px;
-  color: #c0c0c0;
+  color: var(--date-fg-color);
   font-weight: bold;
   line-height: 150%;
 }
@@ -93,7 +111,7 @@ a.mf-keep-reading {
 
 .mf-post-title-date {
   line-height: 200%;
-  color: #c0c0c0;
+  color: var(--date-fg-color);
   font-weight: bold;
 }
 
@@ -102,7 +120,7 @@ a.mf-keep-reading {
 }
 
 .mf-post h1, .mf-post h2, .mf-post h3, .mf-post h4, .mf-post h5, .mf-post h6 {
-  color: #000;
+  color: var(--main-fg-color);
   line-height: normal;
   letter-spacing: -0.03rem;
 }
@@ -116,8 +134,7 @@ a.mf-keep-reading {
 }
 
 .mf-post a {
-  text-decoration: none;
-  border-bottom: 2px solid #ccc;
+  text-decoration: underline;
 }
 
 .mf-post .mf-captioned-image {
@@ -125,18 +142,18 @@ a.mf-keep-reading {
 }
 
 .mf-post .mf-captioned-image .mf-caption {
-  color: #777;
+  color: var(--main-fg-color);
   line-height: 100%;
   font-size: 12px;
 }
 
 .mf-footer {
   clear: both;
-  border-top: 1px solid #aaa;
+  border-top: 1px solid var(--border-color);
   font-size: 0.85rem;
   line-height: 150%;
   margin: 4rem 0 1rem 0;
-  color: #777;
+  color: var(--main-fg-color);
 }
 
 .mf-footer .mf-portrait {
@@ -157,41 +174,41 @@ hr {
   border: none;
   display: block;
   margin: 2rem auto;
-  background-color: #eee;
+  background-color: var(--main-fg-color);
+  opacity: 0.3;
   height: 1px;
   width: 80%;
 }
 
 pre {
   font-size: 13px;
-  padding: 10px;
+  padding: 20px;
   line-height: 130%;
-  border: 1px solid #eee;
+  border: 1px solid var(--border-color);
   tab-size: 4;
   border-radius: 3px;
   overflow: auto;
 }
 
 p code, li code {
-  padding: 0 4px;
-  background-color: #f0f0f0;
-  font-size: 15px;
+  padding: 3px;
+  background-color: var(--border-color);
 }
 
 table {
   border-collapse: collapse;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
 }
 
 table td, table th {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   padding: 0.5rem;
 }
 
 blockquote {
   margin-left: 0;
   padding-left: 2rem;
-  border-left: 10px solid #eee;
-  color: #444;
+  border-left: 10px solid var(--border-color);
+  color: var(--main-fg-color);
   overflow: auto;
 }
