@@ -3,7 +3,7 @@ title: Transverse Open Beta
 date: "2017-11-13T21:30:00-05:00"
 ---
 
-It's ready! https://transverseapp.com/
+It's ready!
 
 Two months ago I [introduced Transverse](/2017/09/12/introducing-transverse/), my app
 to forecast goal progress. Everything you saw on that page was just a mockup. Now,

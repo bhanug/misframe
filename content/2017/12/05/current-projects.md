@@ -20,7 +20,7 @@ day. I haven't been working on the CSV stuff.
 
 ### Current focus
 
-* [Transverse](https://transverseapp.com/), my goal forecasting app. It's in open beta. I'm
+* [Transverse](https://github.com/Preetam/transverse), my goal forecasting app. It's in open beta. I'm
 so glad I got this done! I use it everyday and I'm *crushing* my goals.
 	* Transverse depends on lm2 and [the Rig](https://misfra.me/2017/07/19/the-rig/) so I'm obviously working on both when I have to.
 * [MySQL Explain Analyzer](https://misfra.me/2017/11/19/mysql-explain-analyzer/). I need to redesign this.

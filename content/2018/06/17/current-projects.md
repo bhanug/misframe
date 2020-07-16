@@ -14,7 +14,7 @@ in my free time. Here are the past three:
 
 Here are things I mentioned last time:
 
-* [**Transverse**](https://transverseapp.com/) is disabled for everyone except me. GDPR is a reason but not the only one. See below.
+* [**Transverse**](https://github.com/Preetam/transverse) is disabled for everyone except me. GDPR is a reason but not the only one. See below.
 * **MySQL Explain Analyzer**: I don't use MySQL on a daily basis anymore (see [Hello, ShiftLeft](https://misfra.me/2018/03/22/hello-shiftleft/))
 so I'm not really working on this at the moment. I already redesigned it, so that's good. I might extend it
 for PostgreSQL explains since I now work with PostgreSQL on a daily basis.

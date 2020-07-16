@@ -21,4 +21,4 @@ I think what ultimately mattered was recognizing that this is something I want t
 
 1. This is a great way to explore music. I’ve been sharing what I listen to on Snapchat.
 2. I don’t want to promote my own stuff too much, but... you know how I did this ;D.
-[Ahem](https://transverseapp.com/).
+[Ahem](https://github.com/Preetam/transverse).

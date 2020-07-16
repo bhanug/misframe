@@ -7,7 +7,7 @@ twitter_card:
   image: "https://misfra.me/img/2019/10/github-actions-ansible.png"
 ---
 
-My most recent work with GitHub Actions involves migrating [Transverse](https://transverseapp.com) from being
+My most recent work with GitHub Actions involves migrating [Transverse](https://github.com/Preetam/transverse) from being
 deployed manually using Ansible run on my laptop to a CI/CD approach using Ansible on GitHub Actions.
 Now I can push changes and deploy from anywhere without requiring access to my personal laptop or the private
 keys to connect to my server.

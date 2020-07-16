@@ -7,7 +7,7 @@ I wrote [GitLab CI with Go](/2016/12/26/gitlab-ci-go/) last year with
 my **.gitlab-ci.yml** for building Go projects on GitLab, but I switched to Bitbucket and
 Bitbucket Pipelines so I figured I should post my new setup.
 
-This is how I'm building binaries and assets for [Transverse](https://www.transverseapp.com).
+This is how I'm building binaries and assets for [Transverse](https://github.com/Preetam/transverse).
 I have two Go binaries, **web** and **metadata**, and a tar.gz with my static assets (images,
 templates, CSS, the minified **app.min.js**, etc.). Once my artifacts are built they're uploaded
 to S3 so I can fetch them later during deployment.
