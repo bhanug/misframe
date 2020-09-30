@@ -1,10 +1,12 @@
 ---
 title: Common Table Expressions
-date: "2020-09-28"
+date: "2020-09-29"
 ---
 
-I use common table expressions (CTEs) in SQL queries a lot these days. CTEs allow
-you to temporarily use the results of one query as a table in other queries.
+I use `WITH` clauses in SQL queries a lot these days. `WITH` is a keyword associated
+with common table expressions (CTEs). CTEs allow you to temporarily use the results
+of one query as a table in other queries.
+
 You use them like this:
 
 ```sql
@@ -13,7 +15,7 @@ SELECT * FROM cte;
 ```
 
 When would you want to use CTEs? One case is when you want to use a subquery, that you're already using as a
-column, as a WHERE condition. Here's an example that uses a schema inspired by GitHub issues.
+column, as a `WHERE` condition. Here's an example that uses a schema inspired by GitHub issues.
 
 <!--more-->
 
@@ -51,7 +53,7 @@ SELECT
 FROM issues;
 ```
 
-If you try to add a WHERE clause referencing `latest_label`, you'd see this:
+If you try to add a `WHERE` clause referencing `latest_label`, you'd see this:
 
 ```sql
 SELECT
@@ -71,7 +73,7 @@ ERROR:  column "latest_label" does not exist
 LINE 11: WHERE latest_label = 5;
 ```
 
-You can get around this by using the subquery again in the WHERE clause.
+You can get around this by using the subquery again in the `WHERE` clause.
 
 ```sql
 SELECT
@@ -119,7 +121,7 @@ In general CTEs won't make your queries faster by themselves. Their results are 
 and you can't index on them so you should be careful with larger tables. However I think they
 help you write faster queries more clearly.
 
-The other great thing about CTEs is that you can nest them, e.g.
+The other great thing about CTEs is that you can nest them:
 
 ```sql
 WITH baz AS (
@@ -133,4 +135,11 @@ SELECT * FROM baz;
 
 I find this really useful when writing analytics-style queries for Grafana dashboards.
 It's easy to start with one layer or CTE at a time and logically build up to the
-final result you want.
+final result you want. It's also easy to copy-paste queries and change only small
+sections of a query while maintaining more complicated CTE sections.
+Fun fact: almost every page on the [ShiftLeft](https://www.shiftleft.io/) dashboard
+depends on a CTE behind the scenes now, and probably dozens of Grafana charts
+and alerts.
+
+There's a lot more to CTEs but the [documentation](https://www.postgresql.org/docs/9.6/queries-with.html)
+is a better source to look at.
